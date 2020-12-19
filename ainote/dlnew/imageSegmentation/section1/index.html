@@ -1,0 +1,1132 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>目标分割介绍 - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#51" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              目标分割介绍
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        目标分割介绍
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="目标分割介绍" class="md-nav__link md-nav__link--active">
+      目标分割介绍
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 图像分割的定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 任务类型
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 任务类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    1.2.1 任务描述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    1.2.2 任务类型
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 常用的开源数据集
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 常用的开源数据集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-voc" class="md-nav__link">
+    1.3.1 VOC数据集
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132cityscapes" class="md-nav__link">
+    1.3.2城市风光Cityscapes数据集
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 评价指标
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 评价指标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    1.4.1 像素精度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    1.4.2 平均像素精度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    1.4.3 平均交并比
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 图像分割的定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 任务类型
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 任务类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    1.2.1 任务描述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    1.2.2 任务类型
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 常用的开源数据集
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 常用的开源数据集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-voc" class="md-nav__link">
+    1.3.1 VOC数据集
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132cityscapes" class="md-nav__link">
+    1.3.2城市风光Cityscapes数据集
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 评价指标
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 评价指标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    1.4.1 像素精度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    1.4.2 平均像素精度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    1.4.3 平均交并比
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="51">5.1 图像分割<a class="headerlink" href="#51" title="Permanent link">&para;</a></h1>
+<p><strong>学习目标</strong></p>
+<ul>
+<li>知道图像分割的目的</li>
+<li>知道图像分割的任务类型</li>
+<li>知道图像分割的常见数据集</li>
+<li>知道图像分割的评估方法</li>
+</ul>
+<hr />
+<p>计算机视觉旨在识别和理解图像中的内容，包含三大基本任务：图像分类(图a)、目标检测(图b)和图像分割,其中图像分割又可分为：语义分割(图c)和实例分割(图d)。</p>
+<p><img alt="image-20201008111256237" src="../assets/image-20201008111256237.png" /></p>
+<p>这三个任务对图像的理解逐步深入。假设给定一张输入图像，</p>
+<ul>
+<li>图像分类旨在判断该图像所属类别。</li>
+<li>目标检测是在图像分类的基础上，进一步判断图像中的目标具体在图像的什么位置，通常是以外包矩形(bounding box)的形式表示。</li>
+<li>图像分割是目标检测更进阶的任务，目标检测只需要框出每个目标的包围盒，语义分割需要进一步判断图像中哪些像素属于哪个目标。但是，语义分割不区分属于相同类别的不同实例。如上图所示，当图像中有多个cube时，语义分割会将所有立方体整体的所有像素预测为“cube”这个类别。与此不同的是，**实例分割**需要区分出哪些像素属于第一个cube、哪些像素属于第二个cube……。</li>
+</ul>
+<h2 id="11">1.1 图像分割的定义<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>定义：在计算机视觉领域，图像分割（Object Segmentation）指的是将数字图像细分为多个图像子区域（像素的集合）的过程，并且同一个子区域内的特征具有一定相似性，不同子区域的特征呈现较为明显的差异。</li>
+</ul>
+<p><img alt="image-20201009104445622" src="../assets/image-20201009104445622.png" /></p>
+<p>图像分割的目标就是为图像中的每个像素分类。应用领域非常的广泛：自动驾驶、医疗影像，图像美化、三维重建等等。</p>
+<ul>
+<li>自动驾驶（Autonomous vehicles）：汽车需要安装必要的感知系统以了解它们的环境，这样自动驾驶汽车才能够安全地驶入现有的道路</li>
+</ul>
+<p><img alt="image-20201009104652324" src="../assets/image-20201009104652324.png" /></p>
+<ul>
+<li>医疗影像诊断（Medical image diagnostics）：机器在分析能力上比放射科医生更强，而且可以大大减少诊断所需时间。</li>
+</ul>
+<p><img alt="image-20201009104719908" src="../assets/image-20201009104719908.png" />图像分割是一个非常困难的问题，尤其是在深度学习之前。深度学习使得图像分割的准确率提高了很多，接下来我们主要围绕深度学习方法给大家介绍图像分割的内容。</p>
+<h2 id="12">1.2 任务类型<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
+<h3 id="121">1.2.1 任务描述<a class="headerlink" href="#121" title="Permanent link">&para;</a></h3>
+<p>简单来说，我们的目标是输入一个RGB彩色图片<span><span class="MathJax_Preview">（height×width×3）</span><script type="math/tex">（height×width×3）</script></span>或者一个灰度图<span><span class="MathJax_Preview">（height×width×1）</span><script type="math/tex">（height×width×1）</script></span>，然后输出一个包含各个像素类别标签的分割图<span><span class="MathJax_Preview">（height×width×1）</span><script type="math/tex">（height×width×1）</script></span>。如下图所示：</p>
+<p><img alt="image-20201009105254006" src="../assets/image-20201009105254006.png" /></p>
+<p>与我们处理分类值的方式类似，预测目标可以采用one-hot编码，即为每一个可能的类创建一个输出通道。通过取每个像素点在各个channel的argmax可以得到最终的预测分割图，（如下图所示）：</p>
+<p><img alt="image-20201009105504982" src="../assets/image-20201009105504982.png" /></p>
+<p>比如：person的编码为：10000，而Grass的编码为：00100</p>
+<p>当将预测结果叠加到单个channel时，称这为一个掩膜mask，它可以给出一张图像中某个特定类的所在区域：</p>
+<p><img alt="image-20201009105643733" src="../assets/image-20201009105643733.png" /></p>
+<h3 id="122">1.2.2 任务类型<a class="headerlink" href="#122" title="Permanent link">&para;</a></h3>
+<p>目前的图像分割任务主要有两类： 语义分割和实例分割</p>
+<p>我们以下图为例，来介绍这两种分割方式：</p>
+<p><img alt="image-20201008145054343" src="../assets/image-20201008145054343.png" /></p>
+<ul>
+<li>语义分割就是把图像中每个像素赋予一个类别标签，如下图我们将图像中的像素分类为人，羊，狗，草地即可。</li>
+</ul>
+<p><img src="../images/语义分割.jpg" style="zoom:50%;" /></p>
+<ul>
+<li>实例分割，相对于语义分割来讲，不仅要区分不同类别的像素，还需要需要对同一类别的不同个体进行区分。如下图所示，不仅需要进行类别的划分，还要将各个个体划分出来：羊1，羊2，羊3，羊4，羊5等。</li>
+</ul>
+<p><img src="../images/实例分割.jpg" style="zoom:50%;" /></p>
+<p>目前图像分割的任务主要集中在语义分割，而目前的难点也在于“语义”，表达某一语义的同一物体并不总是以相同的形象出现，如包含不同的颜色、纹理等，这对精确分割带来了很大的挑战。而且以目前的模型表现来看，在准确率上还有很大的提升空间。而实例分割的思路主要是目标检测+语义分割，即用目标检测方法将图像中的不同实例框出，再用语义分割方法在不同检测结果内进行逐像素标记。</p>
+<h2 id="13">1.3 常用的开源数据集<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<p>图像分割常用的数据集是PASCAL VOC，城市风光数据集，coco数据集等。</p>
+<h3 id="131-voc">1.3.1 VOC数据集<a class="headerlink" href="#131-voc" title="Permanent link">&para;</a></h3>
+<p>VOC数据集共有20类数据，目录结构如下图所示：</p>
+<p><img alt="image-20201008151318715" src="../assets/image-20201008151318715.png" /></p>
+<p>这个在目标检测概述一节中已经给大家介绍过，接下来我们主要介绍目标分割相关的内容：</p>
+<ul>
+<li>JPEGImages中存放图片文件</li>
+<li>imagesets中的segmentation中记录了用于分割的图像信息</li>
+<li>SegmentationClass中是语义分割的标注信息</li>
+<li>SegmentationObject中是实例分割的标注信息</li>
+</ul>
+<p>VOC中的图片并不是所有都用于分割，用于分割比赛的图片实例都记录在txt文件中，如下图所示：</p>
+<p><img alt="image-20201008150633156" src="../assets/image-20201008150633156.png" /></p>
+<p>相关的图像记录在相应的文本文件中，如训练集数据记录在train.txt文件中，其中内容如下：</p>
+<p><img alt="image-20201008150848905" src="../assets/image-20201008150848905.png" /></p>
+<p>那我们就可以使用这些数据进行图像分割模型的训练。图像的标注效果如下图所示:</p>
+<p><img alt="image-20201008154432348" src="../assets/image-20201008154432348.png" /></p>
+<p>原图像002378.jpg的语义分割和实例分割的标注结果如上所示，背景是黑色的，不同类别的像素标注为不同的颜色。可以看出，语义分割只标注了像素的类别，而实例分割不仅标注了类别，还对同一类别的不同个体进行了区分。</p>
+<p>在写程序的时候就利用 train.txt 对图片进行挑选，因为不是所有的图片都有分割真实值，获取图片及其对应的真实值，对网络进行训练即可。</p>
+<h3 id="132cityscapes">1.3.2城市风光Cityscapes数据集<a class="headerlink" href="#132cityscapes" title="Permanent link">&para;</a></h3>
+<p>Cityscapes是由奔驰于2015年推出的，提供无人驾驶环境下的图像分割数据集。它包含50个城市不同场景、不同背景、不同季节的街景，提供了5000张在城市环境中驾驶场景的高质量像素级注释图像（其中 2975 for train，500 for val，1525 for test）。</p>
+<p>Cityscapes是目前公认的自动驾驶领域内最具权威性和专业性的图像语义分割评测集之一，其关注真实场景下的城区道路环境理解，任务难度更高且更贴近于自动驾驶等热门需求。接下来我们看下数据的内容，数据集的文件目录结构如下图所示：</p>
+<p><img alt="image-20201008172832205" src="../assets/image-20201008172832205.png" /></p>
+<p>其中txt文件中保存了相关样本图片的路径和文件名，便于查找相应的数据，我们主要使用数据是leftImg8bit和gtFine中的内容，如下所示：</p>
+<p><img alt="image-20201008173056349" src="../assets/image-20201008173056349.png" /></p>
+<ul>
+<li>leftImg8bit文件夹有三个子目录：test， train以及val，分别为测试集，训练集以及验证集图片。这三个子目录的图片又以城市为单元来存放，如下图所示：</li>
+</ul>
+<p><img alt="image-20201008173639451" src="../assets/image-20201008173639451.png" /></p>
+<p>这里解释下leftImg8bit的含义，因为cityscapes实际上来源于双摄像头拍摄的立体视频序列，所以这里的leftImg就是来自于左摄像头的图片，而8bit意味着该图片集都为RGB每个分量为8bit的图片。</p>
+<ul>
+<li>gtFine是样本图片对应的标注信息，gtFine下面也是分为train， test以及val，然后它们的子目录也是以城市为单位来放置图片。这些都是和leftImg8bit的一一对应。 不同的是，在城市子目录下面，每张样本图片对应有6个标注文件，如下所示：</li>
+</ul>
+<p><img alt="image-20201008174404731" src="../assets/image-20201008174404731.png" /></p>
+<p>精细标注数据集里面每张图片只对应四张标注文件：xxx_gtFine_color.png, xxx_gtFine_instanceIds.png, xxx_gtFine_labelsIds.png以及xxx_gtFine_polygons.json。 xxx_color.png是标注的可视化图片，真正对训练有用的是后面三个文件。xxx_instanceIds.png是用来做实例分割训练用的，而xxx_labelsIds.png是语义分割训练需要的。而最后一个文件xxx_polygons.json主要记录了每个多边形标注框上的点集坐标。</p>
+<p>该数据集的标注效果可视化如下所示：</p>
+<p><img alt="image-20201008175032901" src="../assets/image-20201008175032901.png" /></p>
+<h2 id="14">1.4 评价指标<a class="headerlink" href="#14" title="Permanent link">&para;</a></h2>
+<p>图像分割中通常使用许多标准来衡量算法的精度。这些标准通常是像素精度及IoU的变种，以下我们将会介绍常用的几种逐像素标记的精度标准。</p>
+<p>为了便于解释，假设如下：共有<span><span class="MathJax_Preview">k+1</span><script type="math/tex">k+1</script></span>个类（从<span><span class="MathJax_Preview">L_0</span><script type="math/tex">L_0</script></span>到<span><span class="MathJax_Preview">L_k</span><script type="math/tex">L_k</script></span>，其中包含一个背景类），<span><span class="MathJax_Preview">p_{ij}</span><script type="math/tex">p_{ij}</script></span>表示本属于类<span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>但被预测为类<span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span>的像素。即<span><span class="MathJax_Preview">p_{ii}</span><script type="math/tex">p_{ii}</script></span>表示预测正确的像素。</p>
+<h3 id="141">1.4.1 像素精度<a class="headerlink" href="#141" title="Permanent link">&para;</a></h3>
+<p>Pixel Accuracy(PA，像素精度)：这是最简单的度量，为预测正确的像素占总像素的比例。</p>
+<p><img alt="image-20201009110451492" src="../assets/image-20201009110451492.png" /></p>
+<p>对于样本不均衡的情况，例如医学图像分割中，背景与标记样本之间的比例往往严重失衡。因此并不适合使用这种方法进行度量。</p>
+<h3 id="142">1.4.2 平均像素精度<a class="headerlink" href="#142" title="Permanent link">&para;</a></h3>
+<p>Mean Pixel Accuracy(MPA，平均像素精度)：是PA的一种简单提升，计算每个**类内**被正确分类像素数的比例，之后求所有类的平均。</p>
+<p><img alt="image-20201009110706074" src="../assets/image-20201009110706074.png" /></p>
+<h3 id="143">1.4.3 平均交并比<a class="headerlink" href="#143" title="Permanent link">&para;</a></h3>
+<p>Mean Intersection over Union(MIoU，平均交并比)：为语义分割的标准度量，其计算两个集合的交集和并集之比，在语义分割的问题中，这两个集合为真实值（ground truth）和预测值（predicted segmentation）。交集为预测正确的像素数（intersection），并集为预测或真实值为<span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>类的和减去预测正确的像素，在每个类上计算IoU，之后求平均即可。</p>
+<p><img alt="image-20201009110824498" src="../assets/image-20201009110824498.png" /></p>
+<p>那么，如何理解这里的公式呢？如下图所示，红色圆代表真实值，黄色圆代表预测值。橙色部分红色圆与黄色圆的交集，即预测正确的部分，红色部分表示假负（真实值为该类预测错误）的部分，黄色表示假正（预测值为i类，真实值为其他）的部分。</p>
+<p><img alt="image-20201009111304305" src="../assets/image-20201009111304305.png" /></p>
+<p>MIoU计算的是计算A与B的交集（橙色部分）与A与B的并集（红色+橙色+黄色）之间的比例，在理想状态下A与B重合，两者比例为1 。</p>
+<p><strong>在以上所有的度量标准中，MIoU由于其简洁、代表性强而成为最常用的度量标准，大多数研究人员都使用该标准报告其结果。PA对于样本不均衡的情况不适用。</strong></p>
+<hr />
+<p><strong>总结</strong></p>
+<ul>
+<li>图像分割的定义</li>
+</ul>
+<p>图像分割（Object Segmentation）指的是将数字图像细分为多个图像子区域（像素的集合）的过程，并且同一个子区域内的特征具有一定相似性，不同子区域的特征呈现较为明显的差异。</p>
+<ul>
+<li>图像分割的任务类型</li>
+</ul>
+<p>图像分割的任务就是给图像中的每一个像素点进行分类</p>
+<p>语义分割和实例分割</p>
+<ul>
+<li>图像分割的常见数据集</li>
+</ul>
+<p>Voc 数据集，城市风光数据集，coco数据集等</p>
+<ul>
+<li>图像分割的评估指标</li>
+</ul>
+<p>像素精度（PA），平均像素精度（mPA）和 平均交并比（mIOU）</p>
+<p>最常用的是MIOU</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                SSD算法
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../section2/" title="语义分割：FCN和UNet" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                语义分割：FCN和UNet
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

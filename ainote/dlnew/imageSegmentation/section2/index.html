@@ -1,0 +1,1047 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>语义分割：FCN和UNet - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#52-fcnunet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              语义分割：FCN和UNet
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        语义分割：FCN和UNet
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="语义分割：FCN和UNet" class="md-nav__link md-nav__link--active">
+      语义分割：FCN和UNet
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1fcn" class="md-nav__link">
+    1.FCN网络
+  </a>
+  
+    <nav class="md-nav" aria-label="1.FCN网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 网络结构
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 网络结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    1.1.1 全卷积部分
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    1.1.2 上采样部分
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 跳层连接
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2unet" class="md-nav__link">
+    2.Unet网络
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1fcn" class="md-nav__link">
+    1.FCN网络
+  </a>
+  
+    <nav class="md-nav" aria-label="1.FCN网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 网络结构
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 网络结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    1.1.1 全卷积部分
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    1.1.2 上采样部分
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 跳层连接
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2unet" class="md-nav__link">
+    2.Unet网络
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="52-fcnunet">5.2 语义分割：FCN和UNet<a class="headerlink" href="#52-fcnunet" title="Permanent link">&para;</a></h1>
+<p><strong>学习目标</strong></p>
+<ul>
+<li>了解FCN的结构</li>
+<li>了解FCN的上采样方法及跳层连接</li>
+<li>掌握Unet网络结构</li>
+</ul>
+<hr />
+<p><img alt="image-20201009154312975" src="../assets/image-20201009154312975.png" /></p>
+<h2 id="1fcn">1.FCN网络<a class="headerlink" href="#1fcn" title="Permanent link">&para;</a></h2>
+<p><strong>FCN（Fully Convolutional Networks）</strong> 用于图像语义分割，自从该网络提出后，就成为语义分割的基本框架，后续算法基本都是在该网络框架中改进而来。</p>
+<p>对于一般的分类CNN网络，如VGG和Resnet，都会在网络的最后加入一些全连接层，经过softmax后就可以获得类别概率信息。</p>
+<p><img alt="image-20201009160138511" src="../assets/image-20201009160138511.png" /></p>
+<p>但是这个概率只能标识整个图片的类别，不能标识每个像素点的类别，所以这种全连接方法不适用于图像分割。</p>
+<p>而FCN提出可以把后面几个全连接都换成卷积，这样就可以获得一张2维的feature map，后接softmax获得每个像素点的分类信息，从而解决了分割问题，如下图所示：</p>
+<p><img alt="image-20201009160204953" src="../assets/image-20201009160204953.png" /></p>
+<p>简而言之，FCN和CNN的区别就是：CNN卷积层之后连接的是全连接层；FCN卷积层之后仍连接卷积层，输出的是与输入大小相同的特征图。</p>
+<h3 id="11">1.1 网络结构<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>FCN是一个端到端，像素对像素的全卷积网络，用于进行图像的语义分割。整体的网络结构分为两个部分：全卷积部分和上采样部分。</p>
+<p><img alt="image-20201009162105881" src="../assets/image-20201009162105881.png" /></p>
+<h4 id="111">1.1.1 全卷积部分<a class="headerlink" href="#111" title="Permanent link">&para;</a></h4>
+<p>全卷积部分使用经典的CNN网络（以AlexNet网络为例），并把最后的全连接层换成<img alt="1\times 1" src="https://math.jianshu.com/math?formula=1%5Ctimes%201" />卷积，用于提取特征。</p>
+<ul>
+<li>在传统的Alex结构中，前5层是卷积层，第6层和第7层分别是一个长度为4096的一维向量，第8层是长度为1000的一维向量，分别对应1000个不同类别的概率。</li>
+</ul>
+<p><img alt="image-20201009162935347" src="../assets/image-20201009162935347.png" /></p>
+<ul>
+<li>FCN将最后的3层转换为卷积层，卷积核的大小 (通道数，宽，高) 分别为 (4096,1,1)、(4096,1,1)、(1000,1,1)，虽然参数数目相同，但是计算方法就不一样了，这时还可使用预训练模型的参数。</li>
+</ul>
+<p><img alt="image-20201009163047658" src="../assets/image-20201009163047658.png" /></p>
+<ul>
+<li>CNN中输入的图像固定成227x227大小，第一层pooling后为55x55，第二层pooling后图像大小为27x27，第五层pooling后的图像大小为13x13, 而FCN输入的图像是H*W大小，第一层pooling后变为原图大小的&frac12;，第二层变为原图大小的&frac14;，第五层变为原图大小的&#8539;，第八层变为原图大小的1/16，如下所示：</li>
+</ul>
+<p><img alt="image-20201009163320887" src="../assets/image-20201009163320887.png" /></p>
+<ul>
+<li>经过多次卷积和pooling以后，得到的图像越来越小，分辨率越来越低。对最终的特征图进行upsampling，把图像进行放大到原图像的大小，就得到原图像的分割结果。</li>
+</ul>
+<h4 id="112">1.1.2 上采样部分<a class="headerlink" href="#112" title="Permanent link">&para;</a></h4>
+<p>上采样部分将最终得到的特征图上采样得到原图像大小的语义分割结果。</p>
+<p>在这里采用的上采样方法是反卷积（Deconvolution），也叫做转置卷积（Transposed Convolution）：</p>
+<ul>
+<li>反卷积是一种特殊的正向卷积</li>
+<li>通俗的讲，就是输入补0+卷积。先按照一定的比例通过补0来扩大输入图像的尺寸，再进行正向卷积即可。</li>
+</ul>
+<p>如下图所示：输入图像尺寸为3x3，卷积核kernel为3x3，步长strides=2，填充padding=1</p>
+<p><img src="../images/f2RiP.gif" style="zoom:50%;" /></p>
+<p>假设反卷积的输入是n x n ，反卷积的输出为mxm ，padding=p，stride=s，kernel_size = k。</p>
+<p>那么此时反卷积的输出就为：</p>
+<p><span><span class="MathJax_Preview">m = s(n-1) + k -2p</span><script type="math/tex">m = s(n-1) + k -2p</script></span></p>
+<p><img alt="反卷积" src="../assets/%E5%8F%8D%E5%8D%B7%E7%A7%AF.jpg" /></p>
+<p>与正向卷积不同的是，要先根据步长strides对输入的内部进行填充，这里strides可以理解成输入放大的倍数，而不能理解成卷积移动的步长。</p>
+<p>这样我们就可以通过反卷积实现上采样。</p>
+<h3 id="12">1.2 跳层连接<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>如果只利用反卷积对最后一层的特征图进行上采样的到原图大小的分割，由于最后一层的特征图太小，会损失很多细节。因而提出增加Skips结构将最后一层的预测（有更富的全局信息）和更浅层（有更多的局部细节）的预测结合起来。</p>
+<p><img alt="image-20201009171358161" src="../assets/image-20201009171358161.png" /></p>
+<p>那么：</p>
+<ul>
+<li>
+<p>对于FCN-32s，直接对pool5 feature进行32倍上采样获得32x upsampled feature，再对32x upsampled feature每个点做softmax prediction获得32x upsampled feature prediction（即分割图）。</p>
+</li>
+<li>
+<p>对于FCN-16s，首先对pool5 feature进行2倍上采样获得2x upsampled feature，再把pool4 feature和2x upsampled feature逐点相加，然后对相加的feature进行16倍上采样，并softmax prediction，获得16x upsampled feature prediction。</p>
+</li>
+<li>
+<p>对于FCN-8s，首先进行pool4+2x upsampled feature逐点相加，然后又进行pool3+2x upsampled逐点相加，即进行更多次特征融合。具体过程与16s类似，不再赘述。</p>
+</li>
+</ul>
+<p>下面有一张32倍，16倍和8倍上采样得到的结果图对比：</p>
+<p><img alt="image-20201009171608322" src="../assets/image-20201009171608322.png" /></p>
+<p>可以看到随着上采样做得越多，分割结果越来越精细。</p>
+<h3 id="13">1.3 总结<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>优点</li>
+</ul>
+<p>端到端的，可以接受任意大小的输入图像尺寸，比较高效。</p>
+<ul>
+<li>局限性</li>
+</ul>
+<p>得到的结果还是不够精细。进行8倍上采样虽然比32倍的效果好了很多，但是上采样的结果还是比较模糊的，对图像中的细节不敏感。而且在对各个像素进行分类时，没有考虑像素与像素之间的关系。</p>
+<h2 id="2unet">2.Unet网络<a class="headerlink" href="#2unet" title="Permanent link">&para;</a></h2>
+<p>Unet网络是建立在FCN网络基础上的，它的网络架构如下图所示，总体来说与FCN思路非常类似。</p>
+<p><img alt="image-20201012102631922" src="../assets/image-20201012102631922.png" /></p>
+<p>整个网络由编码部分（左） 和 解码部分（右）组成，类似于一个大大的U字母，具体介绍如下：</p>
+<p>1、编码部分是典型的卷积网络架构：</p>
+<ul>
+<li>架构中含有着一种重复结构，每次重复中都有2个 3 x 3卷积层、非线性ReLU层和一个 2 x 2 max pooling层（stride为2）。（图中的蓝箭头、红箭头，没画ReLu）</li>
+<li>每一次下采样后我们都把特征通道的数量加倍</li>
+</ul>
+<p>2、解码部分也使用了类似的模式：</p>
+<ul>
+<li>每一步都首先使用反卷积(up-convolution)，每次使用反卷积都将特征通道数量减半，特征图大小加倍。（图中绿箭头）</li>
+<li>反卷积过后，将反卷积的结果与编码部分中对应步骤的特征图拼接起来。（白/蓝块）</li>
+<li>编码部分中的特征图尺寸稍大，将其修剪过后进行拼接。（左边深蓝虚线）</li>
+<li>对拼接后的map再进行2次3 x 3的卷积。（右侧蓝箭头）</li>
+<li>最后一层的卷积核大小为1 x 1，将64通道的特征图转化为特定类别数量（分类数量）的结果。（图中青色箭头）</li>
+</ul>
+<hr />
+<p><strong>总结</strong></p>
+<ul>
+<li>了解FCN的结构</li>
+</ul>
+<p>FCN网络与CNN的不同是将全连接层替换为卷积层提取图像的特征，获取二维的特征图，得到图像的分割结果，整个网络可分为全卷积部分和上采样两部分</p>
+<ul>
+<li>了解FCN的上采样方法及跳层连接</li>
+</ul>
+<p>上采样：使用反卷积完成</p>
+<p>跳层连接：将网络提取的深层特征和浅层特征结合起来</p>
+<ul>
+<li>掌握Unet网络结构</li>
+</ul>
+<p>类似于一个大大的U字母：首先进行卷积和池化来完成下采样；然后通过反卷积进行上采样，crop之前的低层feature map，进行融合；然后再次上采样。重复这个过程，直到获得输出的feature map，最后经过softmax获得输出分割结果</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../section1/" title="目标分割介绍" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                目标分割介绍
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../section3/" title="UNet案例" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                UNet案例
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,932 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>4.5 LBP和HOG特征算子 | 课程介绍</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../视频操作/ReadMe.html" />
+    
+    
+    <link rel="prev" href="../图像特征提取与描述/section3.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.5"
+        data-chapter-title="4.5 LBP和HOG特征算子"
+        data-filepath="图像特征提取与描述/section4.md"
+        data-basepath=".."
+        data-revision="Fri Oct 09 2020 17:57:10 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="OpenCV简介/ReadMe.html">
+            
+                
+                    <a href="../OpenCV简介/ReadMe.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        1. OpenCV简介
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="OpenCV简介/section0.html">
+            
+                
+                    <a href="../OpenCV简介/section0.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        1.1 图像处理简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="OpenCV简介/section1.html">
+            
+                
+                    <a href="../OpenCV简介/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        1.2 OpenCV简介及安装方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="OpenCV简介/section2.html">
+            
+                
+                    <a href="../OpenCV简介/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        1.3 OpenCV的模块
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="OpenCV基本操作/ReadMe.html">
+            
+                
+                    <a href="../OpenCV基本操作/ReadMe.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        2 OpenCV基本操作
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="OpenCV基本操作/section0.html">
+            
+                
+                    <a href="../OpenCV基本操作/section0.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        2.1 图像的基础操作
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="OpenCV基本操作/section1.html">
+            
+                
+                    <a href="../OpenCV基本操作/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        2.2 算数操作
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="OpenCV图像处理/ReadMe.html">
+            
+                
+                    <a href="../OpenCV图像处理/ReadMe.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        3 OpenCV图像处理
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="OpenCV图像处理/section0.html">
+            
+                
+                    <a href="../OpenCV图像处理/section0.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        3.1 几何变换
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="OpenCV图像处理/section1.html">
+            
+                
+                    <a href="../OpenCV图像处理/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        3.2 形态学操作
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="OpenCV图像处理/section2.html">
+            
+                
+                    <a href="../OpenCV图像处理/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        3.3 图像平滑
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="OpenCV图像处理/section3.html">
+            
+                
+                    <a href="../OpenCV图像处理/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        3.4 直方图
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="OpenCV图像处理/section4.html">
+            
+                
+                    <a href="../OpenCV图像处理/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        3.5 边缘检测
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="OpenCV图像处理/section5.html">
+            
+                
+                    <a href="../OpenCV图像处理/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        3.6 模版匹配和霍夫变换
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="OpenCV图像处理/section6.html">
+            
+                
+                    <a href="../OpenCV图像处理/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        3.7 图像变换-傅里叶变换
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="OpenCV图像处理/section7.html">
+            
+                
+                    <a href="../OpenCV图像处理/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        3.8 轮廓检测
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="OpenCV图像处理/section8.html">
+            
+                
+                    <a href="../OpenCV图像处理/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        3.9 图像分割
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="图像特征提取与描述/ReadMe.html">
+            
+                
+                    <a href="../图像特征提取与描述/ReadMe.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        4 图像特征提取与描述
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="图像特征提取与描述/section0.html">
+            
+                
+                    <a href="../图像特征提取与描述/section0.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        4.1 角点特征
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="图像特征提取与描述/section1.html">
+            
+                
+                    <a href="../图像特征提取与描述/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        4.2 Harris和Shi-Tomas算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="图像特征提取与描述/section2.html">
+            
+                
+                    <a href="../图像特征提取与描述/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        4.3 SIFT/SURF算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="图像特征提取与描述/section3.html">
+            
+                
+                    <a href="../图像特征提取与描述/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        4.4 Fast和ORB算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.5" data-path="图像特征提取与描述/section4.html">
+            
+                
+                    <a href="../图像特征提取与描述/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        4.5 LBP和HOG特征算子
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="视频操作/ReadMe.html">
+            
+                
+                    <a href="../视频操作/ReadMe.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        5 视频操作
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="视频操作/section0.html">
+            
+                
+                    <a href="../视频操作/section0.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        5.1 视频读写
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="视频操作/section1.html">
+            
+                
+                    <a href="../视频操作/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        5.2 视频追踪
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="案例/ReadMe.html">
+            
+                
+                    <a href="../案例/ReadMe.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        6 案例:人脸案例
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >课程介绍</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="45-lbp&#x548C;hog&#x7279;&#x5F81;&#x7B97;&#x5B50;">4.5 LBP&#x548C;HOG&#x7279;&#x5F81;&#x7B97;&#x5B50;</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong>&#xFF1A;</p>
+<ol>
+<li>&#x4E86;&#x89E3;LBP&#x7279;&#x5F81;&#x7684;&#x539F;&#x7406;</li>
+<li>&#x4E86;&#x89E3;LBP&#x7684;&#x6539;&#x8FDB;&#x7B97;&#x6CD5;&#xFF1A;&#x5706;&#x5F62;LBP&#xFF0C;&#x65CB;&#x8F6C;LBP&#x548C;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;</li>
+<li>&#x4E86;&#x89E3;HOG&#x7B97;&#x6CD5;&#x7684;&#x539F;&#x7406;</li>
+<li>&#x719F;&#x6089;&#x7070;&#x5EA6;&#x56FE;&#x50CF;&#x7684;&#x3B3;&#x53D8;&#x6362;</li>
+<li>&#x4E86;&#x89E3;HOG&#x7279;&#x5F81;&#x7684;&#x63D0;&#x53D6;&#x6D41;&#x7A0B;</li>
+<li>&#x4E86;&#x89E3;LBP&#x7279;&#x5F81;&#x7684;&#x63D0;&#x53D6;&#x65B9;&#x6CD5;</li>
+<li>&#x4E86;&#x89E3;HOG&#x7279;&#x5F81;&#x7684;&#x63D0;&#x53D6;&#x65B9;&#x6CD5;</li>
+</ol>
+<hr>
+<h1 id="1lbp&#x7B97;&#x6CD5;">1.LBP&#x7B97;&#x6CD5;</h1>
+<p>LBP(Local Binary Pattern)&#x6307;&#x5C40;&#x90E8;&#x4E8C;&#x503C;&#x6A21;&#x5F0F;&#xFF0C;<strong>&#x662F;&#x4E00;&#x79CD;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x56FE;&#x50CF;&#x5C40;&#x90E8;&#x7279;&#x5F81;&#x7684;&#x7B97;&#x5B50;</strong>&#xFF0C;LBP&#x7279;&#x5F81;&#x5177;&#x6709;&#x7070;&#x5EA6;&#x4E0D;&#x53D8;&#x6027;&#x548C;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;&#x6027;&#x7B49;&#x663E;&#x8457;&#x4F18;&#x70B9;&#x3002;&#x5B83;&#x662F;&#x7531;T. Ojala, M.Pietik&#xE4;inen, &#x548C; D. Harwood&#x5728;1994&#x5E74;&#x63D0;&#x51FA;&#xFF0C;&#x7531;&#x4E8E;LBP&#x7279;&#x5F81;&#x8BA1;&#x7B97;&#x7B80;&#x5355;&#x3001;&#x6548;&#x679C;&#x8F83;&#x597D;&#xFF0C;&#x56E0;&#x6B64;LBP&#x7279;&#x5F81;&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x89C6;&#x89C9;&#x7684;&#x8BB8;&#x591A;&#x9886;&#x57DF;&#x90FD;&#x5F97;&#x5230;&#x4E86;&#x5E7F;&#x6CDB;&#x7684;&#x5E94;&#x7528;&#x3002;</p>
+<h2 id="11-lbp&#x7279;&#x5F81;&#x63CF;&#x8FF0;">1.1 LBP&#x7279;&#x5F81;&#x63CF;&#x8FF0;</h2>
+<h6 id="&#x539F;&#x59CB;&#x7684;lbp&#x7B97;&#x5B50;&#x5B9A;&#x4E49;&#x4E3A;&#x5728;33&#x7684;&#x7A97;&#x53E3;&#x5185;&#xFF0C;&#x4EE5;&#x7A97;&#x53E3;&#x4E2D;&#x5FC3;&#x50CF;&#x7D20;&#x4E3A;&#x9608;&#x503C;&#xFF0C;&#x5C06;&#x76F8;&#x90BB;&#x7684;8&#x4E2A;&#x50CF;&#x7D20;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x4E0E;&#x5176;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF0C;&#x82E5;&#x5468;&#x56F4;&#x50CF;&#x7D20;&#x503C;&#x5927;&#x4E8E;&#x4E2D;&#x5FC3;&#x50CF;&#x7D20;&#x503C;&#xFF0C;&#x5219;&#x8BE5;&#x50CF;&#x7D20;&#x70B9;&#x7684;&#x4F4D;&#x7F6E;&#x88AB;&#x6807;&#x8BB0;&#x4E3A;1&#xFF0C;&#x5426;&#x5219;&#x4E3A;0&#x3002;&#x8FD9;&#x6837;&#xFF0C;33&#x90BB;&#x57DF;&#x5185;&#x7684;8&#x4E2A;&#x70B9;&#x7ECF;&#x6BD4;&#x8F83;&#x53EF;&#x4EA7;&#x751F;8&#x4F4D;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#xFF08;&#x901A;&#x5E38;&#x8F6C;&#x6362;&#x4E3A;&#x5341;&#x8FDB;&#x5236;&#x6570;&#x5373;lbp&#x7801;&#xFF0C;&#x5171;256&#x79CD;&#xFF09;&#xFF0C;&#x5373;&#x5F97;&#x5230;&#x8BE5;&#x7A97;&#x53E3;&#x4E2D;&#x5FC3;&#x50CF;&#x7D20;&#x70B9;&#x7684;lbp&#x503C;&#xFF0C;&#x5E76;&#x7528;&#x8FD9;&#x4E2A;&#x503C;&#x6765;&#x53CD;&#x6620;&#x8BE5;&#x533A;&#x57DF;&#x7684;&#x7EB9;&#x7406;&#x4FE1;&#x606F;&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;">&#x539F;&#x59CB;&#x7684;LBP&#x7B97;&#x5B50;&#x5B9A;&#x4E49;&#x4E3A;&#x5728;$3<em>3$&#x7684;&#x7A97;&#x53E3;&#x5185;&#xFF0C;&#x4EE5;&#x7A97;&#x53E3;&#x4E2D;&#x5FC3;&#x50CF;&#x7D20;&#x4E3A;&#x9608;&#x503C;&#xFF0C;&#x5C06;&#x76F8;&#x90BB;&#x7684;8&#x4E2A;&#x50CF;&#x7D20;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x4E0E;&#x5176;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF0C;&#x82E5;&#x5468;&#x56F4;&#x50CF;&#x7D20;&#x503C;&#x5927;&#x4E8E;&#x4E2D;&#x5FC3;&#x50CF;&#x7D20;&#x503C;&#xFF0C;&#x5219;&#x8BE5;&#x50CF;&#x7D20;&#x70B9;&#x7684;&#x4F4D;&#x7F6E;&#x88AB;&#x6807;&#x8BB0;&#x4E3A;1&#xFF0C;&#x5426;&#x5219;&#x4E3A;0&#x3002;&#x8FD9;&#x6837;&#xFF0C;$3</em>3$&#x90BB;&#x57DF;&#x5185;&#x7684;8&#x4E2A;&#x70B9;&#x7ECF;&#x6BD4;&#x8F83;&#x53EF;&#x4EA7;&#x751F;8&#x4F4D;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#xFF08;&#x901A;&#x5E38;&#x8F6C;&#x6362;&#x4E3A;&#x5341;&#x8FDB;&#x5236;&#x6570;&#x5373;LBP&#x7801;&#xFF0C;&#x5171;256&#x79CD;&#xFF09;&#xFF0C;&#x5373;&#x5F97;&#x5230;&#x8BE5;&#x7A97;&#x53E3;&#x4E2D;&#x5FC3;&#x50CF;&#x7D20;&#x70B9;&#x7684;LBP&#x503C;&#xFF0C;&#x5E76;&#x7528;&#x8FD9;&#x4E2A;&#x503C;&#x6765;&#x53CD;&#x6620;&#x8BE5;&#x533A;&#x57DF;&#x7684;&#x7EB9;&#x7406;&#x4FE1;&#x606F;&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</h6>
+<p><img src="assets/image-20191107142559806.png" alt="image-20191107142559806"></p>
+<p>LBP&#x503C;&#x662F;&#x4ECE;&#x5DE6;&#x4E0A;&#x89D2;&#x50CF;&#x7D20;&#xFF0C;&#x987A;&#x65F6;&#x9488;&#x65CB;&#x8F6C;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191107142804781.png" alt="image-20191107142804781"></p>
+<p>&#x7528;&#x516C;&#x5F0F;&#x6765;&#x8FDB;&#x884C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>B</mi><mi>P</mi><mo>(</mo><msub><mi>x</mi><mi>c</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>c</mi></msub><mo>)</mo><mo>=</mo><msubsup><mo>&#x2211;</mo><mrow><mi>p</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>p</mi><mo>&#x2212;</mo><mn>1</mn></mrow></msubsup><msup><mn>2</mn><mi>p</mi></msup><mi>s</mi><mo>(</mo><msub><mi>i</mi><mi>p</mi></msub><mo>&#x2212;</mo><msub><mi>i</mi><mi>c</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">
+LBP(x_c,y_c)=\sum_{p=0}^{p-1}2^ps(i_p-i_c)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.8482210000000001em;"></span><span class="strut bottom" style="height:3.251442em;vertical-align:-1.403221em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">L</span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">c</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">c</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.167113em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">p</span><span class="mrel mtight">=</span><span class="mord mathrm mtight">0</span></span></span></span><span style="top:-0.000005000000000032756em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span><span class="mop op-symbol large-op">&#x2211;</span></span></span><span style="top:-1.297113em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">p</span><span class="mbin mtight">&#x2212;</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathrm">2</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathit mtight">p</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord mathit">s</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">i</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">p</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">&#x2212;</span><span class="mord"><span class="mord mathit">i</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">c</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span></span></span></span></span>
+&#x5176;&#x4E2D;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msub><mi>x</mi><mi>c</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>c</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">(x_c,y_c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">c</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">c</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span></span></span></span>&#x8868;&#x793A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo>&#x2217;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">3*3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.64444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">3</span><span class="mbin">&#x2217;</span><span class="mord mathrm">3</span></span></span></span>&#x90BB;&#x57DF;&#x5185;&#x7684;&#x4E2D;&#x5FC3;&#x5143;&#x7D20;&#xFF0C;&#x5B83;&#x7684;&#x50CF;&#x7D20;&#x503C;&#x4E3A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>i</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">i_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.65952em;"></span><span class="strut bottom" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">i</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">c</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>i</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">i_p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.65952em;"></span><span class="strut bottom" style="height:0.9456279999999999em;vertical-align:-0.286108em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">i</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">p</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x4EE3;&#x8868;&#x90BB;&#x57DF;&#x5185;&#x5176;&#x4ED6;&#x50CF;&#x7D20;&#x7684;&#x503C;&#x3002;s(x)&#x662F;&#x7B26;&#x53F7;&#x51FD;&#x6570;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mrow><mn>1</mn><mo separator="true">,</mo></mrow></mtd><mtd><mrow><mi>i</mi><mi>f</mi></mrow></mtd><mtd><mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow></mtd></mtr><mtr><mtd><mrow><mn>0</mn><mo separator="true">,</mo></mrow></mtd><mtd><mrow><mi>e</mi><mi>l</mi><mi>s</mi><mi>e</mi></mrow></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+s(x)=\begin{cases}1,&amp;if&amp;x&gt;0\\0,&amp;else\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.75em;"></span><span class="strut bottom" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">s</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose">)</span><span class="mrel">=</span><span class="minner displaystyle textstyle uncramped"><span class="mopen style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist"><span style="top:-0.6819999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">1</span><span class="mpunct">,</span></span></span><span style="top:0.7579999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">0</span><span class="mpunct">,</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist"><span style="top:-0.6819999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.10764em;">f</span></span></span><span style="top:0.7579999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">s</span><span class="mord mathit">e</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist"><span style="top:-0.6819999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit">x</span><span class="mrel">&gt;</span><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></span>
+&#x5BF9;&#x4E8E;&#x4E00;&#x5E45;&#x5927;&#x5C0F;&#x4E3A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mo>&#x2217;</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">W*H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">W</span><span class="mbin">&#x2217;</span><span class="mord mathit" style="margin-right:0.08125em;">H</span></span></span></span> &#x7684;&#x56FE;&#x50CF;&#xFF0C;&#x56E0;&#x4E3A;&#x8FB9;&#x7F18;&#x7684;&#x50CF;&#x7D20;&#x65E0;&#x6CD5;&#x8BA1;&#x7B97;8&#x4F4D;&#x7684;LBP&#x503C;&#xFF0C;&#x6240;&#x4EE5;&#x5C06;LBP&#x503C;&#x8F6C;&#x6362;&#x4E3A;&#x7070;&#x5EA6;&#x56FE;&#x50CF;&#x65F6;&#xFF0C;&#x5B83;&#x7684;&#x5927;&#x5C0F;&#x662F;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>W</mi><mo>&#x2212;</mo><mn>2</mn><mo>)</mo><mo>&#x2217;</mo><mo>(</mo><mi>H</mi><mo>&#x2212;</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(W-2)*(H-2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.13889em;">W</span><span class="mbin">&#x2212;</span><span class="mord mathrm">2</span><span class="mclose">)</span><span class="mbin">&#x2217;</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.08125em;">H</span><span class="mbin">&#x2212;</span><span class="mord mathrm">2</span><span class="mclose">)</span></span></span></span>&#x3002;</p>
+<p> LBP&#x7B97;&#x5B50;&#x5229;&#x7528;&#x4E86;&#x5468;&#x56F4;&#x70B9;&#x4E0E;&#x8BE5;&#x70B9;&#x7684;&#x5173;&#x7CFB;&#x5BF9;&#x8BE5;&#x70B9;&#x8FDB;&#x884C;&#x91CF;&#x5316;&#x3002;&#x91CF;&#x5316;&#x540E;&#x53EF;&#x4EE5;<strong>&#x66F4;&#x6709;&#x6548;&#x5730;&#x6D88;&#x9664;&#x5149;&#x7167;&#x5BF9;&#x56FE;&#x50CF;&#x7684;&#x5F71;&#x54CD;</strong>&#x3002;&#x53EA;&#x8981;&#x5149;&#x7167;&#x7684;&#x53D8;&#x5316;&#x4E0D;&#x8DB3;&#x4EE5;&#x6539;&#x53D8;&#x4E24;&#x4E2A;&#x70B9;&#x50CF;&#x7D20;&#x503C;&#x4E4B;&#x95F4;&#x7684;&#x5927;&#x5C0F;&#x5173;&#x7CFB;&#xFF0C;&#x90A3;&#x4E48;LBP&#x7B97;&#x5B50;&#x7684;&#x503C;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF0C;<strong>&#x6240;&#x4EE5;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#xFF0C;&#x57FA;&#x4E8E;LBP&#x7684;&#x8BC6;&#x522B;&#x7B97;&#x6CD5;&#x89E3;&#x51B3;&#x4E86;&#x5149;&#x7167;&#x53D8;&#x5316;&#x7684;&#x95EE;&#x9898;&#xFF0C;</strong>&#x4F46;&#x662F;&#x5F53;&#x56FE;&#x50CF;&#x5149;&#x7167;&#x53D8;&#x5316;&#x4E0D;&#x5747;&#x5300;&#x65F6;&#xFF0C;&#x5404;&#x50CF;&#x7D20;&#x95F4;&#x7684;&#x5927;&#x5C0F;&#x5173;&#x7CFB;&#x88AB;&#x7834;&#x574F;&#xFF0C;&#x5BF9;&#x5E94;&#x7684;LBP&#x6A21;&#x5F0F;&#x4E5F;&#x5C31;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x5316;&#x3002;</p>
+<p>&#x539F;&#x59CB;&#x7684;LBP&#x63D0;&#x51FA;&#x540E;&#xFF0C;&#x7814;&#x7A76;&#x4EBA;&#x5458;&#x4E0D;&#x65AD;&#x5BF9;&#x5176;&#x63D0;&#x51FA;&#x4E86;&#x5404;&#x79CD;&#x6539;&#x8FDB;&#x548C;&#x4F18;&#x5316;&#x3002;</p>
+<h2 id="12-&#x5706;&#x5F62;lbp&#x7B97;&#x5B50;">1.2 &#x5706;&#x5F62;LBP&#x7B97;&#x5B50;</h2>
+<h6 id="&#x539F;&#x59CB;lbp&#x7279;&#x5F81;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x56FA;&#x5B9A;&#x90BB;&#x57DF;&#x5185;&#x7684;&#x7070;&#x5EA6;&#x503C;&#xFF0C;&#x5F53;&#x56FE;&#x50CF;&#x7684;&#x5C3A;&#x5EA6;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;lbp&#x7279;&#x5F81;&#x7684;&#x7F16;&#x7801;&#x5C06;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x6362;&#xFF0C;lbp&#x7279;&#x5F81;&#x5C06;&#x4E0D;&#x80FD;&#x6B63;&#x786E;&#x7684;&#x53CD;&#x6620;&#x50CF;&#x7D20;&#x70B9;&#x5468;&#x56F4;&#x7684;&#x7EB9;&#x7406;&#x4FE1;&#x606F;&#xFF0C;&#x56E0;&#x6B64;&#x7814;&#x7A76;&#x4EBA;&#x5458;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x4E86;&#x6539;&#x8FDB;&#x3002;&#x57FA;&#x672C;&#x7684;-lbp-&#x7B97;&#x5B50;&#x7684;&#x6700;&#x5927;&#x7F3A;&#x9677;&#x5728;&#x4E8E;&#x5B83;&#x53EA;&#x8986;&#x76D6;&#x4E86;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x534A;&#x5F84;&#x8303;&#x56F4;&#x5185;&#x7684;&#x5C0F;&#x533A;&#x57DF;&#xFF0C;&#x53EA;&#x5C40;&#x9650;&#x5728;33&#x7684;&#x90BB;&#x57DF;&#x5185;&#xFF0C;&#x5BF9;&#x4E8E;&#x8F83;&#x5927;&#x56FE;&#x50CF;&#x5927;&#x5C3A;&#x5EA6;&#x7684;&#x7ED3;&#x6784;&#x4E0D;&#x80FD;&#x5F88;&#x597D;&#x7684;&#x63D0;&#x53D6;&#x9700;&#x8981;&#x7684;&#x7EB9;&#x7406;&#x7279;&#x5F81;&#xFF0C;&#x56E0;&#x6B64;&#x7814;&#x7A76;&#x8005;&#x4EEC;&#x5BF9;lbp&#x7B97;&#x5B50;&#x8FDB;&#x884C;&#x4E86;&#x6269;&#x5C55;&#x3002;">&#x539F;&#x59CB;LBP&#x7279;&#x5F81;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x56FA;&#x5B9A;&#x90BB;&#x57DF;&#x5185;&#x7684;&#x7070;&#x5EA6;&#x503C;&#xFF0C;&#x5F53;&#x56FE;&#x50CF;&#x7684;&#x5C3A;&#x5EA6;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;LBP&#x7279;&#x5F81;&#x7684;&#x7F16;&#x7801;&#x5C06;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x6362;&#xFF0C;LBP&#x7279;&#x5F81;&#x5C06;&#x4E0D;&#x80FD;&#x6B63;&#x786E;&#x7684;&#x53CD;&#x6620;&#x50CF;&#x7D20;&#x70B9;&#x5468;&#x56F4;&#x7684;&#x7EB9;&#x7406;&#x4FE1;&#x606F;&#xFF0C;&#x56E0;&#x6B64;&#x7814;&#x7A76;&#x4EBA;&#x5458;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x4E86;&#x6539;&#x8FDB;&#x3002;&#x57FA;&#x672C;&#x7684; LBP &#x7B97;&#x5B50;&#x7684;&#x6700;&#x5927;&#x7F3A;&#x9677;&#x5728;&#x4E8E;&#x5B83;&#x53EA;&#x8986;&#x76D6;&#x4E86;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x534A;&#x5F84;&#x8303;&#x56F4;&#x5185;&#x7684;&#x5C0F;&#x533A;&#x57DF;&#xFF0C;&#x53EA;&#x5C40;&#x9650;&#x5728;3*3&#x7684;&#x90BB;&#x57DF;&#x5185;&#xFF0C;&#x5BF9;&#x4E8E;&#x8F83;&#x5927;&#x56FE;&#x50CF;&#x5927;&#x5C3A;&#x5EA6;&#x7684;&#x7ED3;&#x6784;&#x4E0D;&#x80FD;&#x5F88;&#x597D;&#x7684;&#x63D0;&#x53D6;&#x9700;&#x8981;&#x7684;&#x7EB9;&#x7406;&#x7279;&#x5F81;&#xFF0C;&#x56E0;&#x6B64;&#x7814;&#x7A76;&#x8005;&#x4EEC;&#x5BF9;LBP&#x7B97;&#x5B50;&#x8FDB;&#x884C;&#x4E86;&#x6269;&#x5C55;&#x3002;</h6>
+<h6 id="&#x65B0;&#x7684;lbp&#x7B97;&#x5B50;lbppr&#x8BA1;&#x7B97;&#x4E0D;&#x540C;&#x534A;&#x5F84;&#x90BB;&#x57DF;&#x5927;&#x5C0F;&#x548C;&#x4E0D;&#x540C;&#x50CF;&#x7D20;&#x70B9;&#x6570;&#x7684;&#x7279;&#x5F81;&#x503C;&#xFF0C;&#x5176;&#x4E2D;p&#x8868;&#x793A;&#x5468;&#x56F4;&#x50CF;&#x7D20;&#x70B9;&#x4E2A;&#x6570;&#xFF0C;r&#x8868;&#x793A;&#x90BB;&#x57DF;&#x534A;&#x5F84;&#xFF0C;&#x540C;&#x65F6;&#x628A;&#x539F;&#x6765;&#x7684;&#x65B9;&#x5F62;&#x90BB;&#x57DF;&#x6269;&#x5C55;&#x5230;&#x4E86;&#x5706;&#x5F62;&#xFF0C;&#x4E0B;&#x56FE;&#x7ED9;&#x51FA;&#x4E86;&#x4E09;&#x79CD;&#x6269;&#x5C55;&#x540E;&#x7684;lbp&#x4F8B;&#x5B50;&#xFF0C;&#x5176;&#x4E2D;&#xFF0C;r&#x53EF;&#x4EE5;&#x662F;&#x5C0F;&#x6570;&#xFF1A;">&#x65B0;&#x7684;LBP&#x7B97;&#x5B50;$LBP_{p}^{R}$&#x8BA1;&#x7B97;&#x4E0D;&#x540C;&#x534A;&#x5F84;&#x90BB;&#x57DF;&#x5927;&#x5C0F;&#x548C;&#x4E0D;&#x540C;&#x50CF;&#x7D20;&#x70B9;&#x6570;&#x7684;&#x7279;&#x5F81;&#x503C;&#xFF0C;&#x5176;&#x4E2D;P&#x8868;&#x793A;&#x5468;&#x56F4;&#x50CF;&#x7D20;&#x70B9;&#x4E2A;&#x6570;&#xFF0C;R&#x8868;&#x793A;&#x90BB;&#x57DF;&#x534A;&#x5F84;&#xFF0C;&#x540C;&#x65F6;&#x628A;&#x539F;&#x6765;&#x7684;&#x65B9;&#x5F62;&#x90BB;&#x57DF;&#x6269;&#x5C55;&#x5230;&#x4E86;&#x5706;&#x5F62;&#xFF0C;&#x4E0B;&#x56FE;&#x7ED9;&#x51FA;&#x4E86;&#x4E09;&#x79CD;&#x6269;&#x5C55;&#x540E;&#x7684;LBP&#x4F8B;&#x5B50;&#xFF0C;&#x5176;&#x4E2D;&#xFF0C;R&#x53EF;&#x4EE5;&#x662F;&#x5C0F;&#x6570;&#xFF1A;</h6>
+<p><img src="assets/image-20191107144658710.png" alt="image-20191107144658710"></p>
+<p>&#x5BF9;&#x4E8E;&#x6CA1;&#x6709;&#x843D;&#x5230;&#x6574;&#x6570;&#x4F4D;&#x7F6E;&#x7684;&#x70B9;&#xFF0C;&#x6839;&#x636E;&#x8F68;&#x9053;&#x5185;&#x79BB;&#x5176;&#x6700;&#x8FD1;&#x7684;&#x4E24;&#x4E2A;&#x6574;&#x6570;&#x4F4D;&#x7F6E;&#x50CF;&#x7D20;&#x7070;&#x5EA6;&#x503C;&#xFF0C;&#x5229;&#x7528;&#x53CC;&#x7EBF;&#x6027;&#x63D2;&#x503C;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x8BA1;&#x7B97;&#x5B83;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x3002;</p>
+<p>&#x8BE5;&#x7B97;&#x5B50;&#x7684;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#x4E0E;&#x539F;&#x59CB;&#x7684;LBP&#x63CF;&#x8FF0;&#x7B97;&#x5B50;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#x76F8;&#x540C;&#xFF0C;&#x533A;&#x522B;&#x5728;&#x90BB;&#x57DF;&#x7684;&#x9009;&#x62E9;&#x4E0A;&#x3002;</p>
+<h2 id="13-&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;lbp&#x7279;&#x5F81;">1.3 &#x65CB;&#x8F6C;&#x4E0D;&#x53D8;LBP&#x7279;&#x5F81;</h2>
+<h6 id="&#x4ECE;-lbp-&#x7684;&#x5B9A;&#x4E49;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;lbp&#x7B97;&#x5B50;&#x4E0D;&#x662F;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;&#x7684;&#x3002;&#x56FE;&#x50CF;&#x7684;&#x65CB;&#x8F6C;&#x5C31;&#x4F1A;&#x5F97;&#x5230;&#x4E0D;&#x540C;&#x7684;-lbp&#x503C;&#x3002;&#x6240;&#x4EE5;-maenpaa&#x7B49;&#x4EBA;&#x53C8;&#x5C06;-lbp&#x7B97;&#x5B50;&#x8FDB;&#x884C;&#x4E86;&#x6269;&#x5C55;&#xFF0C;&#x63D0;&#x51FA;&#x4E86;&#x5177;&#x6709;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;&#x6027;&#x7684;-lbp-&#x7B97;&#x5B50;&#xFF0C;&#x5373;&#x4E0D;&#x65AD;&#x65CB;&#x8F6C;&#x5706;&#x5F62;&#x90BB;&#x57DF;&#x5F97;&#x5230;&#x4E00;&#x7CFB;&#x5217;&#x521D;&#x59CB;&#x5B9A;&#x4E49;&#x7684;-lbp&#x503C;&#xFF0C;&#x53D6;&#x5176;&#x6700;&#x5C0F;&#x503C;&#x4F5C;&#x4E3A;&#x8BE5;&#x90BB;&#x57DF;&#x7684;-lbp-&#x503C;&#x3002;&#x5373;&#xFF1A;">&#x4ECE; LBP &#x7684;&#x5B9A;&#x4E49;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;LBP&#x7B97;&#x5B50;&#x4E0D;&#x662F;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;&#x7684;&#x3002;&#x56FE;&#x50CF;&#x7684;&#x65CB;&#x8F6C;&#x5C31;&#x4F1A;&#x5F97;&#x5230;&#x4E0D;&#x540C;&#x7684; LBP&#x503C;&#x3002;&#x6240;&#x4EE5; Maenpaa&#x7B49;&#x4EBA;&#x53C8;&#x5C06; LBP&#x7B97;&#x5B50;&#x8FDB;&#x884C;&#x4E86;&#x6269;&#x5C55;&#xFF0C;&#x63D0;&#x51FA;&#x4E86;&#x5177;&#x6709;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;&#x6027;&#x7684; LBP &#x7B97;&#x5B50;&#xFF0C;&#x5373;&#x4E0D;&#x65AD;&#x65CB;&#x8F6C;&#x5706;&#x5F62;&#x90BB;&#x57DF;&#x5F97;&#x5230;&#x4E00;&#x7CFB;&#x5217;&#x521D;&#x59CB;&#x5B9A;&#x4E49;&#x7684; LBP&#x503C;&#xFF0C;&#x53D6;&#x5176;&#x6700;&#x5C0F;&#x503C;&#x4F5C;&#x4E3A;&#x8BE5;&#x90BB;&#x57DF;&#x7684; LBP &#x503C;&#x3002;&#x5373;&#xFF1A;</h6>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>B</mi><msubsup><mi>P</mi><mrow><mi>p</mi><mo separator="true">,</mo><mi>R</mi></mrow><mrow><mi>r</mi><mi>i</mi></mrow></msubsup><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>{</mo><mi>R</mi><mi>O</mi><mi>R</mi><mo>(</mo><mi>L</mi><mi>B</mi><msubsup><mi>P</mi><mi>p</mi><mi>R</mi></msubsup><mo separator="true">,</mo><mi>i</mi><mo>)</mo><mi mathvariant="normal">&#x2223;</mi><mi>i</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi>p</mi><mo>&#x2212;</mo><mn>1</mn><mo>}</mo></mrow><annotation encoding="application/x-tex">
+LBP_{p,R}^{ri}= min\{ROR(LBP_p^R,i) |  i = 0,1,...p-1\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.891331em;"></span><span class="strut bottom" style="height:1.274439em;vertical-align:-0.383108em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">L</span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.24700000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">p</span><span class="mpunct mtight">,</span><span class="mord mathit mtight" style="margin-right:0.00773em;">R</span></span></span></span><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">i</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord mathit">m</span><span class="mord mathit">i</span><span class="mord mathit">n</span><span class="mopen">{</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.24700000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">p</span></span></span><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.00773em;">R</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord mathit">i</span><span class="mclose">)</span><span class="mord mathrm">&#x2223;</span><span class="mord mathit">i</span><span class="mrel">=</span><span class="mord mathrm">0</span><span class="mpunct">,</span><span class="mord mathrm">1</span><span class="mpunct">,</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mord mathit">p</span><span class="mbin">&#x2212;</span><span class="mord mathrm">1</span><span class="mclose">}</span></span></span></span></span>
+&#x5176;&#x4E2D;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mi>O</mi><mi>R</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">ROR(x,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit">i</span><span class="mclose">)</span></span></span></span>&#x6307;&#x6CBF;&#x987A;&#x65F6;&#x9488;&#x65B9;&#x5411;&#x65CB;&#x8F6C;LBP&#x7B97;&#x5B50;i&#x6B21;&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191107150512440.png" alt="image-20191107150512440"></p>
+<p>&#x4E0A;&#x56FE;&#x7ED9;&#x51FA;&#x4E86;&#x6C42;&#x53D6;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;&#x7684; LBP &#x7684;&#x8FC7;&#x7A0B;&#x793A;&#x610F;&#x56FE;&#xFF0C;&#x7B97;&#x5B50;&#x4E0B;&#x65B9;&#x7684;&#x6570;&#x5B57;&#x8868;&#x793A;&#x8BE5;&#x7B97;&#x5B50;&#x5BF9;&#x5E94;&#x7684; LBP&#x503C;&#xFF0C;&#x56FE;&#x4E2D;&#x6240;&#x793A;&#x7684; 8 &#x79CD; LBP&#x6A21;&#x5F0F;&#xFF0C;&#x7ECF;&#x8FC7;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x6700;&#x7EC8;&#x5F97;&#x5230;&#x7684;&#x5177;&#x6709;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;&#x6027;&#x7684; LBP&#x503C;&#x4E3A; 15&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x56FE;&#x4E2D;&#x7684; 8&#x79CD; LBP &#x6A21;&#x5F0F;&#x5BF9;&#x5E94;&#x7684;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;&#x7684; LBP&#x6A21;&#x5F0F;&#x90FD;&#x662F; 00001111&#x3002;</p>
+<h2 id="14-uniform-pattern-lbp&#x7279;&#x5F81;">1.4 Uniform Pattern LBP&#x7279;&#x5F81;</h2>
+<h6 id="uniform-pattern&#xFF0C;&#x4E5F;&#x88AB;&#x79F0;&#x4E3A;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x6216;&#x5747;&#x5300;&#x6A21;&#x5F0F;&#xFF0C;&#x7531;&#x4E8E;&#x4E00;&#x4E2A;lbp&#x7279;&#x5F81;&#x6709;&#x591A;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5F62;&#x5F0F;&#xFF0C;&#x5BF9;&#x4E8E;&#x534A;&#x5F84;&#x4E3A;r&#x7684;&#x5706;&#x5F62;&#x533A;&#x57DF;&#x5185;&#x542B;&#x6709;p&#x4E2A;&#x91C7;&#x6837;&#x70B9;&#x7684;lbp&#x7B97;&#x5B50;&#x5C06;&#x4F1A;&#x4EA7;&#x751F;2p&#x79CD;&#x6A21;&#x5F0F;&#x3002;&#x5F88;&#x663E;&#x7136;&#xFF0C;&#x968F;&#x7740;&#x90BB;&#x57DF;&#x96C6;&#x5185;&#x91C7;&#x6837;&#x70B9;&#x6570;&#x7684;&#x589E;&#x52A0;&#xFF0C;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x7684;&#x79CD;&#x7C7B;&#x662F;&#x4EE5;&#x6307;&#x6570;&#x5F62;&#x5F0F;&#x589E;&#x52A0;&#x7684;&#x3002;&#x4F8B;&#x5982;&#xFF1A;5&#xD7;5&#x90BB;&#x57DF;&#x5185;20&#x4E2A;&#x91C7;&#x6837;&#x70B9;&#xFF0C;&#x6709;220&#xFF1D;1048576&#x79CD;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x3002;&#x8FD9;&#x4E48;&#x591A;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x4E0D;&#x5229;&#x4E8E;&#x7EB9;&#x7406;&#x7684;&#x63D0;&#x53D6;&#x3001;&#x5206;&#x7C7B;&#x3001;&#x8BC6;&#x522B;&#x53CA;&#x5B58;&#x53D6;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5C06;lbp&#x7B97;&#x5B50;&#x7528;&#x4E8E;&#x7EB9;&#x7406;&#x5206;&#x7C7B;&#x6216;&#x4EBA;&#x8138;&#x8BC6;&#x522B;&#x65F6;&#xFF0C;&#x5E38;&#x91C7;&#x7528;lbp&#x6A21;&#x5F0F;&#x7684;&#x7EDF;&#x8BA1;&#x76F4;&#x65B9;&#x56FE;&#x6765;&#x8868;&#x8FBE;&#x56FE;&#x50CF;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x8F83;&#x591A;&#x7684;&#x6A21;&#x5F0F;&#x79CD;&#x7C7B;&#x5C06;&#x4F7F;&#x5F97;&#x6570;&#x636E;&#x91CF;&#x8FC7;&#x5927;&#xFF0C;&#x4E14;&#x76F4;&#x65B9;&#x56FE;&#x8FC7;&#x4E8E;&#x7A00;&#x758F;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x9700;&#x8981;&#x5BF9;&#x539F;&#x59CB;&#x7684;lbp&#x6A21;&#x5F0F;&#x8FDB;&#x884C;&#x964D;&#x7EF4;&#xFF0C;&#x4F7F;&#x5F97;&#x6570;&#x636E;&#x91CF;&#x51CF;&#x5C11;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x80FD;&#x6700;&#x597D;&#x7684;&#x8868;&#x793A;&#x56FE;&#x50CF;&#x7684;&#x4FE1;&#x606F;&#x3002;">Uniform Pattern&#xFF0C;&#x4E5F;&#x88AB;&#x79F0;&#x4E3A;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x6216;&#x5747;&#x5300;&#x6A21;&#x5F0F;&#xFF0C;&#x7531;&#x4E8E;&#x4E00;&#x4E2A;LBP&#x7279;&#x5F81;&#x6709;&#x591A;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5F62;&#x5F0F;&#xFF0C;&#x5BF9;&#x4E8E;&#x534A;&#x5F84;&#x4E3A;R&#x7684;&#x5706;&#x5F62;&#x533A;&#x57DF;&#x5185;&#x542B;&#x6709;P&#x4E2A;&#x91C7;&#x6837;&#x70B9;&#x7684;LBP&#x7B97;&#x5B50;&#x5C06;&#x4F1A;&#x4EA7;&#x751F;$2^P$&#x79CD;&#x6A21;&#x5F0F;&#x3002;&#x5F88;&#x663E;&#x7136;&#xFF0C;&#x968F;&#x7740;&#x90BB;&#x57DF;&#x96C6;&#x5185;&#x91C7;&#x6837;&#x70B9;&#x6570;&#x7684;&#x589E;&#x52A0;&#xFF0C;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x7684;&#x79CD;&#x7C7B;&#x662F;&#x4EE5;&#x6307;&#x6570;&#x5F62;&#x5F0F;&#x589E;&#x52A0;&#x7684;&#x3002;&#x4F8B;&#x5982;&#xFF1A;5&#xD7;5&#x90BB;&#x57DF;&#x5185;20&#x4E2A;&#x91C7;&#x6837;&#x70B9;&#xFF0C;&#x6709;2^20&#xFF1D;1,048,576&#x79CD;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x3002;&#x8FD9;&#x4E48;&#x591A;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x4E0D;&#x5229;&#x4E8E;&#x7EB9;&#x7406;&#x7684;&#x63D0;&#x53D6;&#x3001;&#x5206;&#x7C7B;&#x3001;&#x8BC6;&#x522B;&#x53CA;&#x5B58;&#x53D6;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5C06;LBP&#x7B97;&#x5B50;&#x7528;&#x4E8E;&#x7EB9;&#x7406;&#x5206;&#x7C7B;&#x6216;&#x4EBA;&#x8138;&#x8BC6;&#x522B;&#x65F6;&#xFF0C;&#x5E38;&#x91C7;&#x7528;LBP&#x6A21;&#x5F0F;&#x7684;&#x7EDF;&#x8BA1;&#x76F4;&#x65B9;&#x56FE;&#x6765;&#x8868;&#x8FBE;&#x56FE;&#x50CF;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x8F83;&#x591A;&#x7684;&#x6A21;&#x5F0F;&#x79CD;&#x7C7B;&#x5C06;&#x4F7F;&#x5F97;&#x6570;&#x636E;&#x91CF;&#x8FC7;&#x5927;&#xFF0C;&#x4E14;&#x76F4;&#x65B9;&#x56FE;&#x8FC7;&#x4E8E;&#x7A00;&#x758F;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x9700;&#x8981;&#x5BF9;&#x539F;&#x59CB;&#x7684;LBP&#x6A21;&#x5F0F;&#x8FDB;&#x884C;&#x964D;&#x7EF4;&#xFF0C;&#x4F7F;&#x5F97;&#x6570;&#x636E;&#x91CF;&#x51CF;&#x5C11;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x80FD;&#x6700;&#x597D;&#x7684;&#x8868;&#x793A;&#x56FE;&#x50CF;&#x7684;&#x4FE1;&#x606F;&#x3002;</h6>
+<h6 id="&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x8FC7;&#x591A;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x63D0;&#x9AD8;&#x7EDF;&#x8BA1;&#x6027;&#xFF0C;ojala&#x63D0;&#x51FA;&#x4E86;&#x91C7;&#x7528;&#x4E00;&#x79CD;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;uniform-pattern&#x6765;&#x5BF9;lbp&#x7B97;&#x5B50;&#x7684;&#x6A21;&#x5F0F;&#x79CD;&#x7C7B;&#x8FDB;&#x884C;&#x964D;&#x7EF4;&#x3002;ojala&#x7B49;&#x8BA4;&#x4E3A;&#xFF0C;&#x5728;&#x5B9E;&#x9645;&#x56FE;&#x50CF;&#x4E2D;&#xFF0C;&#x7EDD;&#x5927;&#x591A;&#x6570;lbp&#x6A21;&#x5F0F;&#x6700;&#x591A;&#x53EA;&#x5305;&#x542B;&#x4E24;&#x6B21;&#x4ECE;1&#x5230;0&#x6216;&#x4ECE;0&#x5230;1&#x7684;&#x8DF3;&#x53D8;&#x3002;&#x56E0;&#x6B64;&#xFF0C;ojala&#x5C06;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x5B9A;&#x4E49;&#x4E3A;&#xFF1A;&#x5F53;&#x67D0;&#x4E2A;lbp&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x5FAA;&#x73AF;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x4ECE;0&#x5230;1&#x6216;&#x4ECE;1&#x5230;0&#x6700;&#x591A;&#x6709;&#x4E24;&#x6B21;&#x8DF3;&#x53D8;&#x65F6;&#xFF0C;&#x8BE5;lbp&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5C31;&#x79F0;&#x4E3A;&#x4E00;&#x4E2A;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#x3002;&#x5982;000000000&#x6B21;&#x8DF3;&#x53D8;&#xFF0C;00000111&#x53EA;&#x542B;&#x4E00;&#x6B21;&#x4ECE;0&#x5230;1&#x7684;&#x8DF3;&#x53D8;&#xFF0C;10001111&#x5148;&#x7531;1&#x8DF3;&#x5230;0&#xFF0C;&#x518D;&#x7531;0&#x8DF3;&#x5230;1&#xFF0C;&#x5171;&#x4E24;&#x6B21;&#x8DF3;&#x53D8;&#x90FD;&#x662F;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#x3002;&#x9664;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#x4EE5;&#x5916;&#x7684;&#x6A21;&#x5F0F;&#x90FD;&#x5F52;&#x4E3A;&#x53E6;&#x4E00;&#x7C7B;&#xFF0C;&#x79F0;&#x4E3A;&#x6DF7;&#x5408;&#x6A21;&#x5F0F;&#x7C7B;&#xFF0C;&#x4F8B;&#x5982;10010111&#x5171;&#x56DB;&#x6B21;&#x8DF3;&#x53D8;&#x3002;">&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x8FC7;&#x591A;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x63D0;&#x9AD8;&#x7EDF;&#x8BA1;&#x6027;&#xFF0C;Ojala&#x63D0;&#x51FA;&#x4E86;&#x91C7;&#x7528;&#x4E00;&#x79CD;&#x201C;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x201D;(Uniform Pattern)&#x6765;&#x5BF9;LBP&#x7B97;&#x5B50;&#x7684;&#x6A21;&#x5F0F;&#x79CD;&#x7C7B;&#x8FDB;&#x884C;&#x964D;&#x7EF4;&#x3002;Ojala&#x7B49;&#x8BA4;&#x4E3A;&#xFF0C;&#x5728;&#x5B9E;&#x9645;&#x56FE;&#x50CF;&#x4E2D;&#xFF0C;&#x7EDD;&#x5927;&#x591A;&#x6570;LBP&#x6A21;&#x5F0F;&#x6700;&#x591A;&#x53EA;&#x5305;&#x542B;&#x4E24;&#x6B21;&#x4ECE;1&#x5230;0&#x6216;&#x4ECE;0&#x5230;1&#x7684;&#x8DF3;&#x53D8;&#x3002;&#x56E0;&#x6B64;&#xFF0C;Ojala&#x5C06;&#x201C;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x201D;&#x5B9A;&#x4E49;&#x4E3A;&#xFF1A;<strong>&#x5F53;&#x67D0;&#x4E2A;LBP&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x5FAA;&#x73AF;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x4ECE;0&#x5230;1&#x6216;&#x4ECE;1&#x5230;0&#x6700;&#x591A;&#x6709;&#x4E24;&#x6B21;&#x8DF3;&#x53D8;&#x65F6;&#xFF0C;&#x8BE5;LBP&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5C31;&#x79F0;&#x4E3A;&#x4E00;&#x4E2A;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#x3002;&#x5982;00000000(0&#x6B21;&#x8DF3;&#x53D8;)&#xFF0C;00000111(&#x53EA;&#x542B;&#x4E00;&#x6B21;&#x4ECE;0&#x5230;1&#x7684;&#x8DF3;&#x53D8;)&#xFF0C;10001111(&#x5148;&#x7531;1&#x8DF3;&#x5230;0&#xFF0C;&#x518D;&#x7531;0&#x8DF3;&#x5230;1&#xFF0C;&#x5171;&#x4E24;&#x6B21;&#x8DF3;&#x53D8;)&#x90FD;&#x662F;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;</strong>&#x3002;&#x9664;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#x4EE5;&#x5916;&#x7684;&#x6A21;&#x5F0F;&#x90FD;&#x5F52;&#x4E3A;&#x53E6;&#x4E00;&#x7C7B;&#xFF0C;&#x79F0;&#x4E3A;&#x6DF7;&#x5408;&#x6A21;&#x5F0F;&#x7C7B;&#xFF0C;&#x4F8B;&#x5982;10010111(&#x5171;&#x56DB;&#x6B21;&#x8DF3;&#x53D8;)&#x3002;</h6>
+<p>&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x7684;LBP&#x503C;&#x5C5E;&#x4E8E;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#xFF1A;</p>
+<p><img src="assets/image-20191107151414795.png" alt="image-20191107151414795"></p>
+<p>&#x4E0B;&#x56FE;&#x4E2D;&#x5305;&#x542B;&#x56DB;&#x6B21;&#x8DF3;&#x53D8;&#xFF0C;&#x5C5E;&#x4E8E;&#x975E;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x3002;</p>
+<p><img src="assets/image-20191107151519089.png" alt="image-20191107151519089"></p>
+<h6 id="&#x901A;&#x8FC7;&#x8FD9;&#x6837;&#x7684;&#x6539;&#x8FDB;&#xFF0C;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x7684;&#x79CD;&#x7C7B;&#x5927;&#x5927;&#x51CF;&#x5C11;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x4E22;&#x5931;&#x4EFB;&#x4F55;&#x4FE1;&#x606F;&#x3002;&#x6A21;&#x5F0F;&#x6570;&#x91CF;&#x7531;&#x539F;&#x6765;&#x7684;2p&#x79CD;&#x51CF;&#x5C11;&#x4E3A;-p--p12&#x79CD;&#xFF0C;&#x5176;&#x4E2D;p&#x8868;&#x793A;&#x90BB;&#x57DF;&#x96C6;&#x5185;&#x7684;&#x91C7;&#x6837;&#x70B9;&#x6570;&#x3002;&#x5BF9;&#x4E8E;3&#xD7;3&#x90BB;&#x57DF;&#x5185;8&#x4E2A;&#x91C7;&#x6837;&#x70B9;&#x6765;&#x8BF4;&#xFF0C;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x7531;&#x539F;&#x59CB;&#x7684;256&#x79CD;&#x51CF;&#x5C11;&#x4E3A;58&#x79CD;&#xFF0C;&#x5373;&#xFF1A;&#x5B83;&#x628A;&#x503C;&#x5206;&#x4E3A;59&#x7C7B;&#xFF0C;58&#x4E2A;uniform-pattern&#x4E3A;&#x4E00;&#x7C7B;&#xFF0C;&#x5176;&#x5B83;&#x7684;&#x6240;&#x6709;&#x503C;&#x4E3A;&#x7B2C;59&#x7C7B;&#x3002;&#x8FD9;&#x6837;&#x76F4;&#x65B9;&#x56FE;&#x4ECE;&#x539F;&#x6765;&#x7684;256&#x7EF4;&#x53D8;&#x6210;59&#x7EF4;&#x3002;&#x8FD9;&#x4F7F;&#x5F97;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x7684;&#x7EF4;&#x6570;&#x66F4;&#x5C11;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x9AD8;&#x9891;&#x566A;&#x58F0;&#x5E26;&#x6765;&#x7684;&#x5F71;&#x54CD;&#x3002;">&#x901A;&#x8FC7;&#x8FD9;&#x6837;&#x7684;&#x6539;&#x8FDB;&#xFF0C;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x7684;&#x79CD;&#x7C7B;&#x5927;&#x5927;&#x51CF;&#x5C11;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x4E22;&#x5931;&#x4EFB;&#x4F55;&#x4FE1;&#x606F;&#x3002;&#x6A21;&#x5F0F;&#x6570;&#x91CF;&#x7531;&#x539F;&#x6765;&#x7684;$2^P$&#x79CD;&#x51CF;&#x5C11;&#x4E3A; P ( P-1)+2&#x79CD;&#xFF0C;&#x5176;&#x4E2D;P&#x8868;&#x793A;&#x90BB;&#x57DF;&#x96C6;&#x5185;&#x7684;&#x91C7;&#x6837;&#x70B9;&#x6570;&#x3002;&#x5BF9;&#x4E8E;3&#xD7;3&#x90BB;&#x57DF;&#x5185;8&#x4E2A;&#x91C7;&#x6837;&#x70B9;&#x6765;&#x8BF4;&#xFF0C;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#x7531;&#x539F;&#x59CB;&#x7684;256&#x79CD;&#x51CF;&#x5C11;&#x4E3A;58&#x79CD;&#xFF0C;&#x5373;&#xFF1A;&#x5B83;&#x628A;&#x503C;&#x5206;&#x4E3A;59&#x7C7B;&#xFF0C;58&#x4E2A;uniform pattern&#x4E3A;&#x4E00;&#x7C7B;&#xFF0C;&#x5176;&#x5B83;&#x7684;&#x6240;&#x6709;&#x503C;&#x4E3A;&#x7B2C;59&#x7C7B;&#x3002;&#x8FD9;&#x6837;&#x76F4;&#x65B9;&#x56FE;&#x4ECE;&#x539F;&#x6765;&#x7684;256&#x7EF4;&#x53D8;&#x6210;59&#x7EF4;&#x3002;&#x8FD9;&#x4F7F;&#x5F97;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x7684;&#x7EF4;&#x6570;&#x66F4;&#x5C11;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x9AD8;&#x9891;&#x566A;&#x58F0;&#x5E26;&#x6765;&#x7684;&#x5F71;&#x54CD;&#x3002;</h6>
+<p>&#x7B49;&#x4EF7;&#x7279;&#x5F81;&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#xFF1A;&#x91C7;&#x6837;&#x70B9;&#x6570;&#x76EE;&#x4E3A;8&#x4E2A;&#xFF0C;&#x5373;LBP&#x7279;&#x5F81;&#x503C;&#x6709;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup></mrow><annotation encoding="application/x-tex">2^8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathrm">2</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">8</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x79CD;&#xFF0C;&#x5171;256&#x4E2A;&#x503C;&#xFF0C;&#x6B63;&#x597D;&#x5BF9;&#x5E94;&#x7070;&#x5EA6;&#x56FE;&#x50CF;&#x7684;0-255&#xFF0C;&#x56E0;&#x6B64;&#x539F;&#x59CB;&#x7684;LBP&#x7279;&#x5F81;&#x56FE;&#x50CF;&#x662F;&#x4E00;&#x5E45;&#x6B63;&#x5E38;&#x7684;&#x7070;&#x5EA6;&#x56FE;&#x50CF;&#xFF0C;&#x800C;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;LBP&#x7279;&#x5F81;&#xFF0C;&#x6839;&#x636E;0-1&#x8DF3;&#x53D8;&#x6B21;&#x6570;&#xFF0C;&#x5C06;&#x8FD9;256&#x4E2A;LBP&#x7279;&#x5F81;&#x503C;&#x5206;&#x4E3A;&#x4E86;59&#x7C7B;&#xFF0C;&#x4ECE;&#x8DF3;&#x53D8;&#x6B21;&#x6570;&#x4E0A;&#x5212;&#x5206;&#xFF1A;&#x8DF3;&#x53D8;0&#x6B21;&#x2014;2&#x4E2A;&#xFF0C;&#x8DF3;&#x53D8;1&#x6B21;&#x2014;0&#x4E2A;&#xFF0C;&#x8DF3;&#x53D8;2&#x6B21;&#x2014;56&#x4E2A;&#xFF0C;&#x8DF3;&#x53D8;3&#x6B21;&#x2014;0&#x4E2A;&#xFF0C;&#x8DF3;&#x53D8;4&#x6B21;&#x2014;140&#x4E2A;&#xFF0C;&#x8DF3;&#x53D8;5&#x6B21;&#x2014;0&#x4E2A;&#xFF0C;&#x8DF3;&#x53D8;6&#x6B21;&#x2014;56&#x4E2A;&#xFF0C;&#x8DF3;&#x53D8;7&#x6B21;&#x2014;0&#x4E2A;&#xFF0C;&#x8DF3;&#x53D8;8&#x6B21;&#x2014;2&#x4E2A;&#x3002;<strong>&#x5171;9&#x79CD;&#x8DF3;&#x53D8;&#x60C5;&#x51B5;&#xFF0C;&#x5C06;&#x8FD9;256&#x4E2A;&#x503C;&#x8FDB;&#x884C;&#x5206;&#x914D;&#xFF0C;&#x8DF3;&#x53D8;&#x5C0F;&#x4E8E;2&#x6B21;&#x7684;&#x4E3A;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#xFF0C;&#x5171;58&#x4E2A;&#xFF0C;</strong>&#x4ED6;&#x4EEC;&#x5BF9;&#x5E94;&#x7684;&#x503C;&#x6309;&#x7167;&#x4ECE;&#x5C0F;&#x5230;&#x5927;&#x5206;&#x522B;&#x7F16;&#x7801;&#x4E3A;1&#x2014;58&#xFF0C;&#x5373;&#x5B83;&#x4EEC;<strong>&#x5728;LBP&#x7279;&#x5F81;&#x56FE;&#x50CF;&#x4E2D;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x4E3A;1&#x2014;58</strong>&#xFF0C;&#x800C;&#x9664;&#x4E86;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#x4E4B;&#x5916;&#x7684;&#x6DF7;&#x5408;&#x6A21;&#x5F0F;&#x7C7B;&#x88AB;&#x7F16;&#x7801;&#x4E3A;0&#xFF0C;&#x5373;&#x5B83;&#x4EEC;&#x5728;LBP&#x7279;&#x5F81;&#x4E2D;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x4E3A;0&#xFF0C;&#x56E0;&#x6B64;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;LBP&#x7279;&#x5F81;&#x56FE;&#x50CF;&#x6574;&#x4F53;&#x504F;&#x6697;&#x3002;</p>
+<h2 id="15-&#x5B9E;&#x73B0;">1.5 &#x5B9E;&#x73B0;</h2>
+<p>&#x5728;OpenCV&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;LBP&#x7279;&#x5F81;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x8BA1;&#x7B97;LBP&#x7279;&#x5F81;&#x7684;&#x63A5;&#x53E3;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x4F7F;&#x7528;skimage&#x7ED9;&#x5927;&#x5BB6;&#x6F14;&#x793A;&#x8BE5;&#x7B97;&#x6CD5;&#x3002;</p>
+<h6 id="skimage&#x5373;&#x662F;scikitimage&#x3002;&#x57FA;&#x4E8E;python&#x811A;&#x672C;&#x8BED;&#x8A00;&#x5F00;&#x53D1;&#x7684;&#x6570;&#x5B57;&#x56FE;&#x7247;&#x5904;&#x7406;&#x5305;&#xFF0C;scikitimage&#x662F;&#x57FA;&#x4E8E;scipy&#x7684;&#x4E00;&#x6B3E;&#x56FE;&#x50CF;&#x5904;&#x7406;&#x5305;&#xFF0C;&#x5B83;&#x5C06;&#x56FE;&#x7247;&#x4F5C;&#x4E3A;numpy&#x6570;&#x7EC4;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1A;">skimage&#x5373;&#x662F;Scikit-Image&#x3002;&#x57FA;&#x4E8E;python&#x811A;&#x672C;&#x8BED;&#x8A00;&#x5F00;&#x53D1;&#x7684;&#x6570;&#x5B57;&#x56FE;&#x7247;&#x5904;&#x7406;&#x5305;&#xFF0C;scikit-image&#x662F;&#x57FA;&#x4E8E;scipy&#x7684;&#x4E00;&#x6B3E;&#x56FE;&#x50CF;&#x5904;&#x7406;&#x5305;&#xFF0C;&#x5B83;&#x5C06;&#x56FE;&#x7247;&#x4F5C;&#x4E3A;numpy&#x6570;&#x7EC4;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1A;</h6>
+<pre><code>pip install scikit-image
+</code></pre><h6 id="skimage&#x5305;&#x7684;&#x5168;&#x79F0;&#x662F;scikitimage-scikit-toolkit-for-scipy-&#xFF0C;&#x5B83;&#x5BF9;scipyndimage&#x8FDB;&#x884C;&#x4E86;&#x6269;&#x5C55;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x591A;&#x7684;&#x56FE;&#x7247;&#x5904;&#x7406;&#x529F;&#x80FD;&#x3002;&#x5B83;&#x662F;&#x7531;python&#x8BED;&#x8A00;&#x7F16;&#x5199;&#x7684;&#xFF0C;&#x7531;scipy-&#x793E;&#x533A;&#x5F00;&#x53D1;&#x548C;&#x7EF4;&#x62A4;&#x3002;skimage&#x5305;&#x7531;&#x8BB8;&#x591A;&#x7684;&#x5B50;&#x6A21;&#x5757;&#x7EC4;&#x6210;&#xFF0C;&#x5404;&#x4E2A;&#x5B50;&#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4E0D;&#x540C;&#x7684;&#x529F;&#x80FD;&#x3002;&#x5176;&#x4E2D;feature&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x7279;&#x5F81;&#x68C0;&#x6D4B;&#x4E0E;&#x63D0;&#x53D6;&#x3002;">skimage&#x5305;&#x7684;&#x5168;&#x79F0;&#x662F;scikit-image SciKit (toolkit for SciPy) &#xFF0C;&#x5B83;&#x5BF9;scipy.ndimage&#x8FDB;&#x884C;&#x4E86;&#x6269;&#x5C55;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x591A;&#x7684;&#x56FE;&#x7247;&#x5904;&#x7406;&#x529F;&#x80FD;&#x3002;&#x5B83;&#x662F;&#x7531;python&#x8BED;&#x8A00;&#x7F16;&#x5199;&#x7684;&#xFF0C;&#x7531;scipy &#x793E;&#x533A;&#x5F00;&#x53D1;&#x548C;&#x7EF4;&#x62A4;&#x3002;skimage&#x5305;&#x7531;&#x8BB8;&#x591A;&#x7684;&#x5B50;&#x6A21;&#x5757;&#x7EC4;&#x6210;&#xFF0C;&#x5404;&#x4E2A;&#x5B50;&#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4E0D;&#x540C;&#x7684;&#x529F;&#x80FD;&#x3002;&#x5176;&#x4E2D;feature&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x7279;&#x5F81;&#x68C0;&#x6D4B;&#x4E0E;&#x63D0;&#x53D6;&#x3002;</h6>
+<p>&#x4F7F;&#x7528;&#x7684;API&#x662F;&#xFF1A;</p>
+<pre><code class="lang-python">skimage.feature.local_binary_pattern(image, P, R, method=&#x2018;default&#x2019;)
+</code></pre>
+<p>&#x53C2;&#x6570;&#xFF1A;</p>
+<ul>
+<li><p>image: &#x8F93;&#x5165;&#x7684;&#x7070;&#x5EA6;&#x56FE;&#x50CF;</p>
+</li>
+<li><p>P&#xFF0C;R: &#x8FDB;&#x884C;LBP&#x7B97;&#x5B50;&#x8BA1;&#x7B97;&#x65F6;&#x7684;&#x534A;&#x5F84;&#x548C;&#x50CF;&#x7D20;&#x70B9;&#x6570;</p>
+</li>
+<li><p>method:  &#x7B97;&#x6CD5;&#x7C7B;&#x578B;&#xFF1A;{&#x2018;default&#x2019;, &#x2018;ror&#x2019;, &#x2018;nri-uniform&#x2019;, &#x2018;var&#x2019;}</p>
+<pre><code>default: &quot;&#x9ED8;&#x8BA4;&quot;&#xFF0C;&#x539F;&#x59CB;&#x7684;LBP&#x7279;&#x5F81;
+</code></pre><p>ror: &#x5706;&#x5F62;LBP&#x7B97;&#x5B50;</p>
+<p>nri-uniform: &#x7B49;&#x4EF7;LBP&#x7B97;&#x5B50;</p>
+<p>var:&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;LBP&#x7B97;&#x5B50;</p>
+</li>
+</ul>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<p>&#x6211;&#x4EEC;&#x5728;&#x4E0B;&#x56FE;&#x4E2D;&#x63D0;&#x53D6;LBP&#x7279;&#x5F81;&#xFF1A;</p>
+<p><img src="assets/face.jpeg" alt="face"></p>
+<p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv
+<span class="hljs-keyword">from</span> skimage.feature <span class="hljs-keyword">import</span> local_binary_pattern
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-comment"># 1.&#x8BFB;&#x53D6;&#x56FE;&#x50CF;</span>
+img = cv.imread(<span class="hljs-string">&quot;face.jpeg&quot;</span>)
+face = cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+<span class="hljs-comment"># 2.&#x7279;&#x5F81;&#x63D0;&#x53D6;</span>
+<span class="hljs-comment"># 2.0 &#x9700;&#x8981;&#x7684;&#x53C2;&#x6570;</span>
+<span class="hljs-comment"># LBP&#x7B97;&#x6CD5;&#x4E2D;&#x8303;&#x56F4;&#x534A;&#x5F84;&#x7684;&#x53D6;&#x503C;</span>
+radius = <span class="hljs-number">1</span>  
+<span class="hljs-comment"># &#x9886;&#x57DF;&#x50CF;&#x7D20;&#x70B9;&#x6570;</span>
+n_points = <span class="hljs-number">8</span> * radius 
+
+<span class="hljs-comment"># 2.1 &#x539F;&#x59CB;LBP&#x7279;&#x5F81;</span>
+lbp = local_binary_pattern(face, <span class="hljs-number">8</span>, <span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># 2.2 &#x5706;&#x5F62;LBP&#x7279;&#x5F81;</span>
+clbp = local_binary_pattern(face,n_points,radius,method=<span class="hljs-string">&quot;ror&quot;</span>)
+
+<span class="hljs-comment"># 2.3 &#x65CB;&#x8F6C;&#x4E0D;&#x53D8;LBP&#x7279;&#x5F81;</span>
+varlbp = local_binary_pattern(face,n_points,radius,method=<span class="hljs-string">&quot;var&quot;</span>)
+
+<span class="hljs-comment"># 2.4 &#x7B49;&#x4EF7;&#x7279;&#x5F81;</span>
+uniformlbp = local_binary_pattern(face,n_points,radius,method=<span class="hljs-string">&quot;nri-uniform&quot;</span>)
+
+fig,axes=plt.subplots(nrows=<span class="hljs-number">2</span>,ncols=<span class="hljs-number">2</span>,figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">8</span>))
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>].imshow(lbp,<span class="hljs-string">&apos;gray&apos;</span>)
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>].set_title(<span class="hljs-string">&quot;&#x539F;&#x59CB;&#x7684;LBP&#x7279;&#x5F81;&quot;</span>)
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>].set_xticks([])
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>].set_yticks([])
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>].imshow(clbp,<span class="hljs-string">&apos;gray&apos;</span>)
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>].set_title(<span class="hljs-string">&quot;&#x5706;&#x5F62;LBP&#x7279;&#x5F81;&quot;</span>)
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>].set_xticks([])
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>].set_yticks([])
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>].imshow(varlbp,<span class="hljs-string">&apos;gray&apos;</span>)
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>].set_title(<span class="hljs-string">&quot;&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;LBP&#x7279;&#x5F81;&quot;</span>)
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>].set_xticks([])
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>].set_yticks([])
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>].imshow(uniformlbp,<span class="hljs-string">&quot;gray&quot;</span>)
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>].set_title(<span class="hljs-string">&quot;&#x7B49;&#x4EF7;&#x7279;&#x5F81;&quot;</span>)
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>].set_xticks([])
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>].set_yticks([])
+plt.show()
+</code></pre>
+<p>&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191107161947626.png" alt="image-20191107161947626"></p>
+<h1 id="2hog&#x7B97;&#x6CD5;">2.HOG&#x7B97;&#x6CD5;</h1>
+<h6 id="hog&#xFF08;histogram-of-oriented-gridients&#x7684;&#x7B80;&#x5199;&#xFF09;&#x7279;&#x5F81;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;&#xFF0C;&#x6700;&#x65E9;&#x662F;&#x7531;&#x6CD5;&#x56FD;&#x7814;&#x7A76;&#x5458;dalal&#x7B49;&#x5728;cvpr2005&#x4E0A;&#x63D0;&#x51FA;&#x6765;&#x7684;&#xFF0C;&#x4E00;&#x79CD;&#x89E3;&#x51B3;&#x4EBA;&#x4F53;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x7684;&#x56FE;&#x50CF;&#x63CF;&#x8FF0;&#x5B50;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x7528;&#x4E8E;&#x8868;&#x5F81;&#x56FE;&#x50CF;&#x5C40;&#x90E8;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x548C;&#x68AF;&#x5EA6;&#x5F3A;&#x5EA6;&#x5206;&#x5E03;&#x7279;&#x6027;&#x7684;&#x63CF;&#x8FF0;&#x7B26;&#x3002;&#x5176;&#x4E3B;&#x8981;&#x601D;&#x60F3;&#x662F;&#xFF1A;&#x5728;&#x8FB9;&#x7F18;&#x5177;&#x4F53;&#x4F4D;&#x7F6E;&#x672A;&#x77E5;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FB9;&#x7F18;&#x65B9;&#x5411;&#x7684;&#x5206;&#x5E03;&#x4E5F;&#x53EF;&#x4EE5;&#x5F88;&#x597D;&#x7684;&#x8868;&#x793A;&#x884C;&#x4EBA;&#x76EE;&#x6807;&#x7684;&#x5916;&#x5F62;&#x8F6E;&#x5ED3;&#x3002;">HOG&#xFF08;Histogram of Oriented Gridients&#x7684;&#x7B80;&#x5199;&#xFF09;&#x7279;&#x5F81;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;&#xFF0C;&#x6700;&#x65E9;&#x662F;&#x7531;&#x6CD5;&#x56FD;&#x7814;&#x7A76;&#x5458;Dalal&#x7B49;&#x5728;CVPR-2005&#x4E0A;&#x63D0;&#x51FA;&#x6765;&#x7684;&#xFF0C;&#x4E00;&#x79CD;&#x89E3;&#x51B3;&#x4EBA;&#x4F53;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x7684;&#x56FE;&#x50CF;&#x63CF;&#x8FF0;&#x5B50;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x7528;&#x4E8E;&#x8868;&#x5F81;&#x56FE;&#x50CF;&#x5C40;&#x90E8;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x548C;&#x68AF;&#x5EA6;&#x5F3A;&#x5EA6;&#x5206;&#x5E03;&#x7279;&#x6027;&#x7684;&#x63CF;&#x8FF0;&#x7B26;&#x3002;&#x5176;&#x4E3B;&#x8981;&#x601D;&#x60F3;&#x662F;&#xFF1A;&#x5728;&#x8FB9;&#x7F18;&#x5177;&#x4F53;&#x4F4D;&#x7F6E;&#x672A;&#x77E5;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FB9;&#x7F18;&#x65B9;&#x5411;&#x7684;&#x5206;&#x5E03;&#x4E5F;&#x53EF;&#x4EE5;&#x5F88;&#x597D;&#x7684;&#x8868;&#x793A;&#x884C;&#x4EBA;&#x76EE;&#x6807;&#x7684;&#x5916;&#x5F62;&#x8F6E;&#x5ED3;&#x3002;</h6>
+<h2 id="21-&#x7279;&#x5F81;&#x63D0;&#x53D6;&#x6D41;&#x7A0B;">2.1 &#x7279;&#x5F81;&#x63D0;&#x53D6;&#x6D41;&#x7A0B;</h2>
+<p>HOG&#x7684;&#x4E3B;&#x8981;&#x601D;&#x60F3;&#x662F;&#xFF1A;&#x5728;&#x4E00;&#x526F;&#x56FE;&#x50CF;&#x4E2D;&#xFF0C;&#x5C40;&#x90E8;&#x76EE;&#x6807;&#x7684;&#x8868;&#x8C61;&#x548C;&#x5F62;&#x72B6;&#xFF08;appearance and shape&#xFF09;&#x80FD;&#x591F;&#x88AB;&#x68AF;&#x5EA6;&#x6216;&#x8FB9;&#x7F18;&#x7684;&#x65B9;&#x5411;&#x5BC6;&#x5EA6;&#x5206;&#x5E03;&#xFF08;&#x5373;&#x68AF;&#x5EA6;&#x7684;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x68AF;&#x5EA6;&#x4E3B;&#x8981;&#x4F4D;&#x4E8E;&#x8FB9;&#x7F18;&#x7684;&#x5730;&#x65B9;&#xFF09;&#x5F88;&#x597D;&#x5730;&#x63CF;&#x8FF0;&#x3002;</p>
+<p><strong>HOG</strong>&#x7279;&#x5F81;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;&#x7684;&#x51E0;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;<strong>&#x989C;&#x8272;&#x7A7A;&#x95F4;&#x5F52;&#x4E00;&#x5316;&#x2014;&gt;&#x68AF;&#x5EA6;&#x8BA1;&#x7B97;&#x2014;&gt;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#x2014;&gt;&#x91CD;&#x53E0;&#x5757;&#x76F4;&#x65B9;&#x56FE;&#x5F52;&#x4E00;&#x5316;&#x2014;&gt;HOG&#x7279;&#x5F81;</strong>&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191107164141468.png" alt="image-20191107164141468"></p>
+<p>&#x6574;&#x4F53;&#x6D41;&#x7A0B;&#x7B80;&#x5355;&#x63CF;&#x8FF0;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li>&#x5C06;&#x8F93;&#x5165;&#x56FE;&#x50CF;&#xFF08;&#x4F60;&#x8981;&#x68C0;&#x6D4B;&#x7684;&#x76EE;&#x6807;&#x6216;&#x8005;&#x626B;&#x63CF;&#x7A97;&#x53E3;&#xFF09;&#x7070;&#x5EA6;&#x5316;&#xFF0C;&#x5373;&#x5C06;&#x5F69;&#x8272;&#x56FE;&#x8F6C;&#x6362;&#x4E3A;&#x7070;&#x5EA6;&#x56FE;</li>
+<li>&#x989C;&#x8272;&#x7A7A;&#x95F4;&#x5F52;&#x4E00;&#x5316;&#xFF1A;&#x91C7;&#x7528;Gamma&#x6821;&#x6B63;&#x6CD5;&#x5BF9;&#x8F93;&#x5165;&#x56FE;&#x50CF;&#x8FDB;&#x884C;&#x989C;&#x8272;&#x7A7A;&#x95F4;&#x7684;&#x6807;&#x51C6;&#x5316;&#xFF08;&#x5F52;&#x4E00;&#x5316;&#xFF09;,&#x76EE;&#x7684;&#x662F;&#x8C03;&#x8282;&#x56FE;&#x50CF;&#x7684;&#x5BF9;&#x6BD4;&#x5EA6;&#xFF0C;&#x964D;&#x4F4E;&#x56FE;&#x50CF;&#x5C40;&#x90E8;&#x7684;&#x9634;&#x5F71;&#x548C;&#x5149;&#x7167;&#x53D8;&#x5316;&#x6240;&#x9020;&#x6210;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x540C;&#x65F6;&#x53EF;&#x4EE5;&#x6291;&#x5236;&#x566A;&#x97F3;&#x7684;&#x5E72;&#x6270;</li>
+<li>&#x68AF;&#x5EA6;&#x8BA1;&#x7B97;&#xFF1A;&#x8BA1;&#x7B97;&#x56FE;&#x50CF;&#x6BCF;&#x4E2A;&#x50CF;&#x7D20;&#x7684;&#x68AF;&#x5EA6;&#xFF08;&#x5305;&#x62EC;&#x5927;&#x5C0F;&#x548C;&#x65B9;&#x5411;&#xFF09;&#xFF1B;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x6355;&#x83B7;&#x8F6E;&#x5ED3;&#x4FE1;&#x606F;&#xFF0C;&#x540C;&#x65F6;&#x8FDB;&#x4E00;&#x6B65;&#x5F31;&#x5316;&#x5149;&#x7167;&#x7684;&#x5E72;&#x6270;</li>
+<li>&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#xFF1A;&#x5C06;&#x56FE;&#x50CF;&#x5212;&#x5206;&#x6210;&#x5C0F;cells&#xFF08;&#x4F8B;&#x5982;8*8&#x50CF;&#x7D20;/cell&#xFF09;,  &#x7EDF;&#x8BA1;&#x6BCF;&#x4E2A;cell&#x7684;&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#xFF08;&#x4E0D;&#x540C;&#x68AF;&#x5EA6;&#x7684;&#x4E2A;&#x6570;&#xFF09;&#xFF0C;&#x5373;&#x53EF;&#x5F62;&#x6210;&#x6BCF;&#x4E2A;cell&#x7684;&#x63CF;&#x8FF0;&#x7B26;</li>
+<li>&#x91CD;&#x53E0;&#x76F4;&#x65B9;&#x56FE;&#x5F52;&#x4E00;&#x5316;&#xFF1A;&#x5C06;&#x6BCF;&#x51E0;&#x4E2A;cell&#x7EC4;&#x6210;&#x4E00;&#x4E2A;block&#xFF08;&#x4F8B;&#x5982;3*3&#x4E2A;cell/block&#xFF09;&#xFF0C;&#x4E00;&#x4E2A;block&#x5185;&#x6240;&#x6709;cell&#x7684;&#x7279;&#x5F81;descriptor&#x4E32;&#x8054;&#x8D77;&#x6765;&#x4FBF;&#x5F97;&#x5230;&#x8BE5;block&#x7684;HOG&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x7B26;&#x3002;</li>
+<li>HOG&#x7279;&#x5F81;&#xFF1A;&#x5C06;&#x56FE;&#x50CF;image&#x5185;&#x7684;&#x6240;&#x6709;block&#x7684;HOG&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x7B26;&#x4E32;&#x8054;&#x8D77;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8BE5;image&#xFF08;&#x4F60;&#x8981;&#x68C0;&#x6D4B;&#x7684;&#x76EE;&#x6807;&#xFF09;&#x7684;HOG&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x7B26;&#xFF0C;&#x5C31;&#x5F97;&#x5230;&#x6700;&#x7EC8;&#x7684;&#x53EF;&#x4F9B;&#x5206;&#x7C7B;&#x4F7F;&#x7528;&#x7684;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x4E86;</li>
+</ol>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x6BCF;&#x4E00;&#x6B65;&#x9AA4;&#x7684;&#x5185;&#x5BB9;&#xFF1A;</p>
+<h2 id="22-&#x989C;&#x8272;&#x7A7A;&#x95F4;&#x5F52;&#x4E00;&#x5316;">2.2 &#x989C;&#x8272;&#x7A7A;&#x95F4;&#x5F52;&#x4E00;&#x5316;</h2>
+<p>&#x4E3A;&#x4E86;&#x51CF;&#x5C11;&#x5149;&#x7167;&#x56E0;&#x7D20;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x9996;&#x5148;&#x9700;&#x8981;&#x5C06;&#x6574;&#x4E2A;&#x56FE;&#x50CF;&#x8FDB;&#x884C;&#x89C4;&#x8303;&#x5316;&#xFF08;&#x5F52;&#x4E00;&#x5316;&#xFF09;&#x3002;&#x5728;&#x56FE;&#x50CF;&#x7684;&#x7EB9;&#x7406;&#x5F3A;&#x5EA6;&#x4E2D;&#xFF0C;&#x5C40;&#x90E8;&#x7684;&#x8868;&#x5C42;&#x66DD;&#x5149;&#x8D21;&#x732E;&#x7684;&#x6BD4;&#x91CD;&#x8F83;&#x5927;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x8FD9;&#x79CD;&#x538B;&#x7F29;&#x5904;&#x7406;&#x80FD;&#x591F;&#x6709;&#x6548;&#x5730;&#x964D;&#x4F4E;&#x56FE;&#x50CF;&#x5C40;&#x90E8;&#x7684;&#x9634;&#x5F71;&#x548C;&#x5149;&#x7167;&#x53D8;&#x5316;&#x3002;&#x56E0;&#x4E3A;&#x989C;&#x8272;&#x4FE1;&#x606F;&#x4F5C;&#x7528;&#x4E0D;&#x5927;&#xFF0C;&#x901A;&#x5E38;&#x5148;&#x8F6C;&#x5316;&#x4E3A;&#x7070;&#x5EA6;&#x56FE;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x8FDB;&#x884C;&#x4F3D;&#x9A6C;&#x6821;&#x6B63;&#x3002;</p>
+<p>&#x4F3D;&#x9A6C;&#x6821;&#x6B63;&#x80FD;&#x591F;&#x6709;&#x6548;&#x7684;&#x964D;&#x4F4E;&#x56FE;&#x50CF;&#x7684;&#x5C40;&#x90E8;&#x9634;&#x5F71;&#x548C;&#x5149;&#x7167;&#x6240;&#x5E26;&#x6765;&#x7684;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x4ECE;&#x800C;&#x964D;&#x4F4E;&#x7B97;&#x6CD5;&#x5BF9;&#x5149;&#x7167;&#x7684;&#x654F;&#x611F;&#x5EA6;&#xFF0C;&#x589E;&#x5F3A;&#x7B97;&#x6CD5;&#x7684;&#x9C81;&#x68D2;&#x6027;&#x3002;</p>
+<p>&#x4F3D;&#x9A6C;&#x6821;&#x6B63;&#x4F7F;&#x7528;&#x4E0B;&#x5F0F;&#x6240;&#x5F97;&#xFF1A;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mi>I</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><msup><mo>)</mo><mrow><mi>&#x3B3;</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+Y(x,y) = I(x,y)^{\gamma}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.22222em;">Y</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.05556em;">&#x3B3;</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></span>
+&#x5176;&#x4E2D;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">I(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>&#x662F;&#x56FE;&#x50CF;&#x5728;&#x4F3D;&#x9A6C;&#x6821;&#x6B63;&#x524D;&#x50CF;&#x7D20;&#x70B9;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>&#x5904;&#x7684;&#x7070;&#x5EA6;&#x503C;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">Y(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.22222em;">Y</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>&#x4E3A;&#x6807;&#x51C6;&#x5316;&#x7684;&#x50CF;&#x7D20;&#x70B9;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>&#x5904;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x3002;&#x4F3D;&#x9A6C;&#x6821;&#x6B63;&#x5982;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191107171015588.png" alt="image-20191107171015588"></p>
+<p>&#x4ECE;&#x4E0A;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF1A;</p>
+<ol>
+<li>&#x5F53;&#x3B3;&lt;1&#x65F6;&#xFF0C;&#x5982;&#x4E0A;&#x56FE;&#x4E2D;&#x865A;&#x7EBF;&#x6240;&#x793A;&#xFF0C;&#x5728;&#x4F4E;&#x7070;&#x5EA6;&#x503C;&#x533A;&#x57DF;&#x5185;&#xFF0C;&#x52A8;&#x6001;&#x8303;&#x56F4;&#x53D8;&#x5927;&#xFF08;&#x5F53;x&#x5728;[0,0.2]&#x65F6;&#xFF0C;y&#x7684;&#x8303;&#x56F4;&#x662F;[0,0.5]&#xFF09;&#xFF0C;&#x8FDB;&#x800C;&#x56FE;&#x50CF;&#x7684;&#x5BF9;&#x6BD4;&#x5EA6;&#x589E;&#x5F3A;&#xFF1B;&#x5728;&#x9AD8;&#x7070;&#x5EA6;&#x503C;&#x533A;&#x57DF;&#x5185;&#xFF0C;&#x52A8;&#x6001;&#x8303;&#x56F4;&#x53D8;&#x5C0F;&#xFF08;&#x5F53;x&#x5728;[0.8,1]&#x65F6;&#xFF0C;y&#x7684;&#x8303;&#x56F4;&#x662F;[0.9,1]&#xFF09;&#xFF0C;&#x56FE;&#x50CF;&#x7684;&#x5BF9;&#x6BD4;&#x5EA6;&#x964D;&#x4F4E;&#xFF1B;&#x540C;&#x65F6;&#xFF0C;&#x56FE;&#x50CF;&#x6574;&#x4F53;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x53D8;&#x5927;&#x3002;</li>
+<li>&#x5F53;&#x3B3;&gt;1&#x65F6;&#xFF0C;&#x5982;&#x4E0A;&#x56FE;&#x4E2D;&#x5B9E;&#x7EBF;&#x6240;&#x793A;&#xFF0C;&#x5728;&#x4F4E;&#x7070;&#x5EA6;&#x503C;&#x533A;&#x57DF;&#x5185;&#xFF0C;&#x52A8;&#x6001;&#x8303;&#x56F4;&#x53D8;&#x5C0F;&#xFF08;&#x5F53;x&#x5728;[0,0.5]&#x65F6;&#xFF0C;y&#x7684;&#x8303;&#x56F4;&#x662F;[0,0.2]&#xFF09;&#xFF0C;&#x8FDB;&#x800C;&#x56FE;&#x50CF;&#x7684;&#x5BF9;&#x6BD4;&#x5EA6;&#x964D;&#x4F4E;&#xFF1B;&#x5728;&#x9AD8;&#x7070;&#x5EA6;&#x503C;&#x533A;&#x57DF;&#x5185;&#xFF0C;&#x52A8;&#x6001;&#x8303;&#x56F4;&#x53D8;&#x5927;&#xFF0C;&#x56FE;&#x50CF;&#x7684;&#x5BF9;&#x6BD4;&#x5EA6;&#x589E;&#x5F3A;&#xFF1B;&#x540C;&#x65F6;&#xFF0C;&#x56FE;&#x50CF;&#x6574;&#x4F53;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x53D8;&#x5C0F;&#x3002;</li>
+</ol>
+<p>&#x4E0B;&#x56FE;&#x4E2D;&#x5DE6;&#x56FE;&#x662F;&#x539F;&#x56FE;&#xFF0C;&#x4E2D;&#x56FE;&#x662F;&#x3B3;=1/2.2&#x7684;&#x6821;&#x6B63;&#x7ED3;&#x679C;&#xFF0C;&#x53F3;&#x56FE;&#x662F;&#x3B3;=2.2&#x7684;&#x6821;&#x6B63;&#x7ED3;&#x679C;&#x3002;</p>
+<p><img src="assets/image-20191107171040083.png" alt="image-20191107171040083"></p>
+<p>&#x5728;HOG&#x7279;&#x5F81;&#x63D0;&#x53D6;&#x4E2D;&#xFF0C;&#x3B3;&#x4E00;&#x822C;&#x53D6;0.5&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x56FE;&#x50CF;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x88AB;&#x62C9;&#x4F38;&#xFF0C;&#x4E14;&#x7070;&#x5EA6;&#x8D8A;&#x4F4E;&#xFF0C;&#x62C9;&#x4F38;&#x7684;&#x5E45;&#x5EA6;&#x8D8A;&#x5927;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5BF9;&#x4E8E;&#x5149;&#x7167;&#x8F83;&#x6697;&#x7684;&#x56FE;&#x50CF;&#x5904;&#x7406;&#x8F83;&#x597D;&#xFF0C;&#x80FD;&#x8F83;&#x5927;&#x7A0B;&#x5EA6;&#x63D0;&#x5347;&#x4ED6;&#x4EEC;&#x7684;&#x4EAE;&#x5EA6;&#x3002;</p>
+<h2 id="23-&#x56FE;&#x50CF;&#x68AF;&#x5EA6;&#x8BA1;&#x7B97;">2.3 &#x56FE;&#x50CF;&#x68AF;&#x5EA6;&#x8BA1;&#x7B97;</h2>
+<h6 id="&#x8FB9;&#x7F18;&#x662F;&#x7531;&#x56FE;&#x50CF;&#x5C40;&#x90E8;&#x7279;&#x5F81;&#x5305;&#x62EC;&#x7070;&#x5EA6;&#x3001;&#x989C;&#x8272;&#x548C;&#x7EB9;&#x7406;&#x7684;&#x7A81;&#x53D8;&#x5BFC;&#x81F4;&#x7684;&#x3002;&#x4E00;&#x5E45;&#x56FE;&#x50CF;&#x4E2D;&#x76F8;&#x90BB;&#x7684;&#x50CF;&#x7D20;&#x70B9;&#x4E4B;&#x95F4;&#x53D8;&#x5316;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;&#x533A;&#x57DF;&#x53D8;&#x5316;&#x6BD4;&#x8F83;&#x5E73;&#x5766;&#xFF0C;&#x5219;&#x68AF;&#x5EA6;&#x5E45;&#x503C;&#x5C31;&#x4F1A;&#x6BD4;&#x8F83;&#x5C0F;&#xFF0C;&#x53CD;&#x4E4B;&#xFF0C;&#x5219;&#x68AF;&#x5EA6;&#x5E45;&#x503C;&#x5C31;&#x4F1A;&#x6BD4;&#x8F83;&#x5927;&#x3002;&#x68AF;&#x5EA6;&#x5728;&#x56FE;&#x50CF;&#x4E2D;&#x5BF9;&#x5E94;&#x7684;&#x5C31;&#x662F;&#x5176;&#x4E00;&#x9636;&#x5BFC;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x56FE;&#x50CF;&#x68AF;&#x5EA6;&#x8BA1;&#x7B97;&#x5229;&#x7528;&#x4E00;&#x9636;&#x5FAE;&#x5206;&#x6C42;&#x5BFC;&#x5904;&#x7406;&#xFF0C;&#x4E0D;&#x4EC5;&#x80FD;&#x591F;&#x6355;&#x83B7;&#x8F6E;&#x5ED3;&#x3001;&#x4EBA;&#x5F71;&#x4EE5;&#x53CA;&#x4E00;&#x4E9B;&#x7EB9;&#x7406;&#x4FE1;&#x606F;&#xFF0C;&#x8FD8;&#x80FD;&#x8FDB;&#x4E00;&#x6B65;&#x5F31;&#x5316;&#x5149;&#x7167;&#x7684;&#x5F71;&#x54CD;&#x3002;dalal&#x7814;&#x7A76;&#x4E86;&#x5F88;&#x591A;&#x7B97;&#x5B50;&#xFF0C;&#x5982;&#x4E0B;&#x8868;&#x6240;&#x793A;&#xFF1A;">&#x8FB9;&#x7F18;&#x662F;&#x7531;&#x56FE;&#x50CF;&#x5C40;&#x90E8;&#x7279;&#x5F81;&#x5305;&#x62EC;&#x7070;&#x5EA6;&#x3001;&#x989C;&#x8272;&#x548C;&#x7EB9;&#x7406;&#x7684;&#x7A81;&#x53D8;&#x5BFC;&#x81F4;&#x7684;&#x3002;&#x4E00;&#x5E45;&#x56FE;&#x50CF;&#x4E2D;&#x76F8;&#x90BB;&#x7684;&#x50CF;&#x7D20;&#x70B9;&#x4E4B;&#x95F4;&#x53D8;&#x5316;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;&#x533A;&#x57DF;&#x53D8;&#x5316;&#x6BD4;&#x8F83;&#x5E73;&#x5766;&#xFF0C;&#x5219;&#x68AF;&#x5EA6;&#x5E45;&#x503C;&#x5C31;&#x4F1A;&#x6BD4;&#x8F83;&#x5C0F;&#xFF0C;&#x53CD;&#x4E4B;&#xFF0C;&#x5219;&#x68AF;&#x5EA6;&#x5E45;&#x503C;&#x5C31;&#x4F1A;&#x6BD4;&#x8F83;&#x5927;&#x3002;&#x68AF;&#x5EA6;&#x5728;&#x56FE;&#x50CF;&#x4E2D;&#x5BF9;&#x5E94;&#x7684;&#x5C31;&#x662F;&#x5176;&#x4E00;&#x9636;&#x5BFC;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x56FE;&#x50CF;&#x68AF;&#x5EA6;&#x8BA1;&#x7B97;&#x5229;&#x7528;&#x4E00;&#x9636;&#x5FAE;&#x5206;&#x6C42;&#x5BFC;&#x5904;&#x7406;&#xFF0C;&#x4E0D;&#x4EC5;&#x80FD;&#x591F;&#x6355;&#x83B7;&#x8F6E;&#x5ED3;&#x3001;&#x4EBA;&#x5F71;&#x4EE5;&#x53CA;&#x4E00;&#x4E9B;&#x7EB9;&#x7406;&#x4FE1;&#x606F;&#xFF0C;&#x8FD8;&#x80FD;&#x8FDB;&#x4E00;&#x6B65;&#x5F31;&#x5316;&#x5149;&#x7167;&#x7684;&#x5F71;&#x54CD;&#x3002;Dalal&#x7814;&#x7A76;&#x4E86;&#x5F88;&#x591A;&#x7B97;&#x5B50;&#xFF0C;&#x5982;&#x4E0B;&#x8868;&#x6240;&#x793A;&#xFF1A;</h6>
+<p><img src="assets/image-20191115084424182.png" alt="image-20191115084424182"></p>
+<p>&#x6700;&#x7EC8;&#x8868;&#x660E;[-1,0,1]&#x548C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mo>&#x2212;</mo><mn>1</mn><msup><mo>]</mo><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">[1,0,-1]^T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8413309999999999em;"></span><span class="strut bottom" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">[</span><span class="mord mathrm">1</span><span class="mpunct">,</span><span class="mord mathrm">0</span><span class="mpunct">,</span><span class="mord">&#x2212;</span><span class="mord mathrm">1</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span> &#x7684;&#x6548;&#x679C;&#x6700;&#x597D;&#xFF0C;&#x6240;&#x4EE5;&#x6709;&#x68AF;&#x5EA6;&#xFF1A;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>G</mi><mi>x</mi></msub><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mi>I</mi><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>&#x2212;</mo><mi>I</mi><mo>(</mo><mi>x</mi><mo>&#x2212;</mo><mn>1</mn><mo separator="true">,</mo><mi>y</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">
+G_x(x,y)= I(x+1,y)-I(x-1,y)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">G</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">x</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mbin">&#x2212;</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mbin">&#x2212;</span><span class="mord mathrm">1</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>G</mi><mi>y</mi></msub><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mi>I</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#x2212;</mo><mi>I</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>&#x2212;</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">
+G_y(x,y)= I(x,y+1)-I(x,y-1)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">G</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">&#x2212;</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mbin">&#x2212;</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span></span></span></p>
+<p>&#x5F0F;&#x4E2D;&#xFF0C;Gx&#xFF0C;Gy&#xFF0C;I(x,y)&#x5206;&#x522B;&#x8868;&#x793A;&#x7684;&#x662F;&#x50CF;&#x7D20;&#x70B9;&#xFF08;x,y&#xFF09;&#x5728;&#x6C34;&#x5E73;&#x65B9;&#x5411;&#x4E0A;&#x53CA;&#x5782;&#x76F4;&#x65B9;&#x5411;&#x4E0A;&#x7684;&#x68AF;&#x5EA6;&#x4EE5;&#x53CA;&#x50CF;&#x7D20;&#x7684;&#x7070;&#x5EA6;&#x503C;&#xFF0C;&#x5176;&#x68AF;&#x5EA6;&#x7684;&#x5E45;&#x503C;&#x53CA;&#x65B9;&#x5411;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#x5982;&#x4E0B;:
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><msqrt><mrow><msubsup><mi>G</mi><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msubsup><mo>+</mo><msubsup><mi>G</mi><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msubsup></mrow></msqrt></mrow><annotation encoding="application/x-tex">
+G(x,y)= \sqrt{G_{x}^{2}+G_{y}^{2}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.212385em;"></span><span class="strut bottom" style="height:1.84002em;vertical-align:-0.6276349999999999em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">G</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord sqrt"><span class="sqrt-sign" style="top:-0.0223850000000001em;"><span class="style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing size2">&#x221A;</span></span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord displaystyle textstyle cramped"><span class="mord"><span class="mord mathit">G</span><span class="msupsub"><span class="vlist"><span style="top:0.247em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">x</span></span></span></span><span style="top:-0.28900000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">G</span><span class="msupsub"><span class="vlist"><span style="top:0.24700000000000003em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span style="top:-0.2889999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span style="top:-1.132385em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>&#x3B1;</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mi>t</mi><mi>a</mi><msup><mi>n</mi><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup><mrow><mo fence="true">(</mo><mfrac><mrow><msub><mi>G</mi><mrow><mi>y</mi></mrow></msub></mrow><mrow><msub><mi>G</mi><mrow><mi>x</mi></mrow></msub></mrow></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\alpha(x,y)= tan^{-1}\left ( \frac{G_{y}}{G_{x}} \right )
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.45em;"></span><span class="strut bottom" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.0037em;">&#x3B1;</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit">t</span><span class="mord mathit">a</span><span class="mord"><span class="mord mathit">n</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mtight">&#x2212;</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="minner displaystyle textstyle uncramped"><span class="mopen style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord"><span class="mord mathit">G</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">G</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mclose style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span></p>
+<p>&#x5229;&#x7528;&#x8BE5;&#x7B97;&#x5B50;&#x8BA1;&#x7B97;&#x68AF;&#x5EA6;&#x4E0D;&#x4EC5;&#x6548;&#x679C;&#x597D;&#xFF0C;&#x800C;&#x4E14;&#x8FD0;&#x7B97;&#x91CF;&#x4F4E;&#x3002;</p>
+<h2 id="24-&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#x8BA1;&#x7B97;">2.4 &#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#x8BA1;&#x7B97;</h2>
+<h6 id="dalal&#x7684;&#x7814;&#x7A76;&#x7ED3;&#x679C;&#x8868;&#x660E;&#xFF0C;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x4E3A;&#x65E0;&#x7B26;&#x53F7;&#x4E14;&#x901A;&#x9053;&#x6570;&#x4E3A;9&#x65F6;&#x5F97;&#x5230;&#x6700;&#x597D;&#x7684;&#x68C0;&#x6D4B;&#x6548;&#x679C;&#xFF0C;&#x6B64;&#x65F6;&#x4E00;&#x4E2A;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x7684;&#x4E00;&#x4E2A;&#x901A;&#x9053;&#x4E3A;180920&#xB0;&#xFF0C;&#x4EE3;&#x8868;&#x7684;&#x662F;&#x89D2;&#x5EA6;0204060160&#x3002;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x77E9;&#x9635;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x89D2;&#x5EA6;&#x662F;0180&#x5EA6;&#xFF0C;&#x4E0D;&#x662F;0360&#x5EA6;&#xFF0C;&#x8FD9;&#x79CD;&#x88AB;&#x79F0;&#x4E4B;&#x4E3A;&#x65E0;&#x7B26;&#x53F7;&#x68AF;&#x5EA6;unsigned-gradients&#x56E0;&#x4E3A;&#x4E00;&#x4E2A;&#x68AF;&#x5EA6;&#x548C;&#x5B83;&#x7684;&#x8D1F;&#x6570;&#x662F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x8868;&#x793A;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4E00;&#x4E2A;&#x68AF;&#x5EA6;&#x7684;&#x65B9;&#x5411;&#x4EE5;&#x53CA;&#x5B83;&#x65CB;&#x8F6C;180&#x5EA6;&#x4E4B;&#x540E;&#x7684;&#x65B9;&#x5411;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;">Dalal&#x7684;&#x7814;&#x7A76;&#x7ED3;&#x679C;&#x8868;&#x660E;&#xFF0C;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x4E3A;&#x65E0;&#x7B26;&#x53F7;&#x4E14;&#x901A;&#x9053;&#x6570;&#x4E3A;9&#x65F6;&#x5F97;&#x5230;&#x6700;&#x597D;&#x7684;&#x68C0;&#x6D4B;&#x6548;&#x679C;&#xFF0C;&#x6B64;&#x65F6;&#x4E00;&#x4E2A;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x7684;&#x4E00;&#x4E2A;&#x901A;&#x9053;&#x4E3A;180/9=20&#xB0;&#xFF0C;&#x4EE3;&#x8868;&#x7684;&#x662F;&#x89D2;&#x5EA6;0,20,40,60.....160&#x3002;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x77E9;&#x9635;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x89D2;&#x5EA6;&#x662F;0-180&#x5EA6;&#xFF0C;&#x4E0D;&#x662F;0-360&#x5EA6;&#xFF0C;&#x8FD9;&#x79CD;&#x88AB;&#x79F0;&#x4E4B;&#x4E3A;&quot;&#x65E0;&#x7B26;&#x53F7;&quot;&#x68AF;&#x5EA6;(&quot;unsigned&quot; gradients)&#x56E0;&#x4E3A;&#x4E00;&#x4E2A;&#x68AF;&#x5EA6;&#x548C;&#x5B83;&#x7684;&#x8D1F;&#x6570;&#x662F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x8868;&#x793A;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4E00;&#x4E2A;&#x68AF;&#x5EA6;&#x7684;&#x65B9;&#x5411;&#x4EE5;&#x53CA;&#x5B83;&#x65CB;&#x8F6C;180&#x5EA6;&#x4E4B;&#x540E;&#x7684;&#x65B9;&#x5411;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</h6>
+<p><img src="assets/image-20191107174042837.png" alt="image-20191107174042837"></p>
+<p>&#x5047;&#x8BBE;&#x56FE;&#x50CF;&#x88AB;&#x5206;&#x4E3A;&#x591A;&#x4E2A;cell&#x5355;&#x5143;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191107175236497.png" alt="image-20191107175236497"></p>
+<p>&#x6BCF;&#x4E2A;cell&#x5355;&#x5143;&#x4E2D;&#x5305;&#x542B;8*8&#x4E2A;&#x50CF;&#x7D20;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191107175558831.png" alt="image-20191107175558831"></p>
+<p>&#x6211;&#x4EEC;&#x5C06;&#x4E0A;&#x4E00;&#x6B65;&#x5F97;&#x5230;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x6295;&#x5F71;&#x5230;9&#x4E2A;&#x901A;&#x9053;&#x4E2D;&#xFF0C;&#x5E76;&#x5C06;&#x68AF;&#x5EA6;&#x5E45;&#x503C;&#x4F5C;&#x4E3A;&#x6295;&#x5F71;&#x65F6;&#x7684;&#x6743;&#x503C;&#x3002;</p>
+<p>&#x5728;&#x8FDB;&#x884C;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x6295;&#x5F71;&#x5904;&#x7406;&#x65F6;&#x91C7;&#x7528;&#x52A0;&#x6743;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x786E;&#x5B9A;&#x67D0;&#x4E2A;&#x901A;&#x9053;&#x7684;&#x6743;&#x503C;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191107180300619.png" alt="image-20191107180300619"></p>
+<p>&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x7EC6;&#x8282;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x89D2;&#x5EA6;&#x5927;&#x4E8E;&#x5728;&#xFF08;160&#xFF0C;180&#xFF09;&#x4E4B;&#x95F4;&#x65F6;&#xFF0C;&#x89D2;&#x5EA6;0&#x548C;180&#x662F;&#x76F8;&#x7B49;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x89D2;&#x5EA6;&#x4E3A;165&#x65F6;&#x5C06;&#x5176;&#x6309;&#x7167;&#x5E45;&#x503C;&#x6BD4;&#x4F8B;&#x6295;&#x5F71;&#x5230;0&#x548C;160&#x4E24;&#x4E2A;&#x901A;&#x9053;&#x4E2D;&#xFF1A;(180-165)/(165-160)</p>
+<p><img src="assets/image-20191107180534928.png" alt="image-20191107180534928"></p>
+<p>&#x904D;&#x5386;&#x6574;&#x4E2A;cell&#x4E2D;&#x7684;&#x6240;&#x6709;&#x50CF;&#x7D20;&#x70B9;&#xFF0C;&#x4FBF;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8BE5;cell&#x5355;&#x5143;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#xFF1A;</p>
+<p><img src="assets/image-20191107180617264.png" alt="image-20191107180617264"></p>
+<h2 id="25-&#x91CD;&#x53E0;&#x5757;&#x76F4;&#x65B9;&#x56FE;&#x5F52;&#x4E00;&#x5316;">2.5 &#x91CD;&#x53E0;&#x5757;&#x76F4;&#x65B9;&#x56FE;&#x5F52;&#x4E00;&#x5316;</h2>
+<h6 id="&#x7531;&#x4E8E;&#x56FE;&#x50CF;&#x7684;&#x5C40;&#x90E8;&#x66DD;&#x5149;&#x5EA6;&#x4EE5;&#x53CA;&#x524D;&#x666F;&#x4E0E;&#x80CC;&#x666F;&#x4E4B;&#x95F4;&#x7684;&#x5BF9;&#x6BD4;&#x5EA6;&#x5B58;&#x5728;&#x591A;&#x6837;&#x5316;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x6240;&#x4EE5;&#x68AF;&#x5EA6;&#x503C;&#x7684;&#x53D8;&#x5316;&#x8303;&#x56F4;&#x975E;&#x5E38;&#x5E7F;&#xFF0C;&#x5F15;&#x8FDB;&#x5F52;&#x4E00;&#x5316;&#x7684;&#x76F4;&#x65B9;&#x56FE;&#x5BF9;&#x4E8E;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x7684;&#x63D0;&#x9AD8;&#x6709;&#x7740;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x4F5C;&#x7528;&#x3002;">&#x7531;&#x4E8E;&#x56FE;&#x50CF;&#x7684;&#x5C40;&#x90E8;&#x66DD;&#x5149;&#x5EA6;&#x4EE5;&#x53CA;&#x524D;&#x666F;&#x4E0E;&#x80CC;&#x666F;&#x4E4B;&#x95F4;&#x7684;&#x5BF9;&#x6BD4;&#x5EA6;&#x5B58;&#x5728;&#x591A;&#x6837;&#x5316;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x6240;&#x4EE5;&#x68AF;&#x5EA6;&#x503C;&#x7684;&#x53D8;&#x5316;&#x8303;&#x56F4;&#x975E;&#x5E38;&#x5E7F;&#xFF0C;&#x5F15;&#x8FDB;&#x5F52;&#x4E00;&#x5316;&#x7684;&#x76F4;&#x65B9;&#x56FE;&#x5BF9;&#x4E8E;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x7684;&#x63D0;&#x9AD8;&#x6709;&#x7740;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x4F5C;&#x7528;&#x3002;</h6>
+<h6 id="&#x5728;&#x4E0A;&#x4E00;&#x6B65;&#x4E2D;&#x6211;&#x4EEC;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;cell&#x5355;&#x5143;&#x4E2D;&#x521B;&#x5EFA;&#x4E86;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#xFF0C;&#x5728;&#x8FD9;&#x4E00;&#x6B65;&#x4E2D;&#x6211;&#x4EEC;&#x5C06;&#x5728;block&#x5757;&#x4E2D;&#x8FDB;&#x884C;&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#x7684;&#x5F52;&#x4E00;&#x5316;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;block&#x662F;&#x7531;224&#x4E2A;cell&#x5355;&#x5143;&#x6784;&#x6210;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;">&#x5728;&#x4E0A;&#x4E00;&#x6B65;&#x4E2D;&#x6211;&#x4EEC;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;cell&#x5355;&#x5143;&#x4E2D;&#x521B;&#x5EFA;&#x4E86;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#xFF0C;&#x5728;&#x8FD9;&#x4E00;&#x6B65;&#x4E2D;&#x6211;&#x4EEC;&#x5C06;&#x5728;block&#x5757;&#x4E2D;&#x8FDB;&#x884C;&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#x7684;&#x5F52;&#x4E00;&#x5316;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;block&#x662F;&#x7531;2*2=4&#x4E2A;cell&#x5355;&#x5143;&#x6784;&#x6210;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</h6>
+<p><img src="assets/hog-3180128.gif" alt="hog-3180128"></p>
+<p>&#x5728;&#x6BCF;&#x4E2A;&#x5757;&#x4E2D;&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#x5E94;&#x8BE5;&#x662F;4*9=36&#x7EF4;&#x7684;&#x3002;</p>
+<h6 id="&#x5728;&#x89E3;&#x91CA;&#x76F4;&#x65B9;&#x56FE;&#x662F;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x5F52;&#x4E00;&#x5316;&#x4E4B;&#x524D;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x770B;&#x770B;&#x957F;&#x5EA6;&#x4E3A;3&#x7684;&#x5411;&#x91CF;&#x662F;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x5F52;&#x4E00;&#x5316;&#x7684;&#xFF1A;&#x5047;&#x8BBE;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x5411;&#x91CF;1286432&#xFF0C;&#x5411;&#x91CF;&#x7684;&#x957F;&#x5EA6;&#x5219;&#x4E3A;&#xFF1A;sqrt1282--642--322--14664-&#x8FD9;&#x4E5F;&#x88AB;&#x79F0;&#x4E3A;&#x5411;&#x91CF;&#x7684;l2&#x8303;&#x6570;&#x3002;&#x5C06;&#x5411;&#x91CF;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x9664;&#x4EE5;14664&#x5F97;&#x5230;&#x5F52;&#x4E00;&#x5316;&#x5411;&#x91CF;087043022&#x3002;">&#x5728;&#x89E3;&#x91CA;&#x76F4;&#x65B9;&#x56FE;&#x662F;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x5F52;&#x4E00;&#x5316;&#x4E4B;&#x524D;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x770B;&#x770B;&#x957F;&#x5EA6;&#x4E3A;3&#x7684;&#x5411;&#x91CF;&#x662F;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x5F52;&#x4E00;&#x5316;&#x7684;&#xFF1A;&#x5047;&#x8BBE;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x5411;&#x91CF;[128,64,32]&#xFF0C;&#x5411;&#x91CF;&#x7684;&#x957F;&#x5EA6;&#x5219;&#x4E3A;&#xFF1A;sqrt{128^2 + 64^2 + 32^2} = 146.64 &#x8FD9;&#x4E5F;&#x88AB;&#x79F0;&#x4E3A;&#x5411;&#x91CF;&#x7684;L2&#x8303;&#x6570;&#x3002;&#x5C06;&#x5411;&#x91CF;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x9664;&#x4EE5;146.64&#x5F97;&#x5230;&#x5F52;&#x4E00;&#x5316;&#x5411;&#x91CF;[0.87,0.43,0.22]&#x3002;</h6>
+<h6 id="&#x6211;&#x4EEC;&#x5C06;&#x4E00;&#x4E2A;block&#x5757;&#x4E2D;&#x7684;&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#x4E32;&#x8054;&#x6210;&#x4E00;&#x4E2A;361&#x7EF4;&#x5411;&#x91CF;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x5F52;&#x4E00;&#x5316;&#xFF0C;&#x5C31;&#x5F97;&#x5230;&#x4E86;&#x8BE5;block&#x5757;&#x5185;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x56E0;&#x4E3A;block&#x5757;&#x4E4B;&#x95F4;&#x662F;&#x6709;&#x91CD;&#x53E0;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6BCF;&#x4E2A;cell&#x5355;&#x5143;&#x4E2D;&#x7684;&#x7279;&#x5F81;&#x4F1A;&#x591A;&#x6B21;&#x51FA;&#x73B0;&#x5728;&#x4E0D;&#x540C;&#x7684;block&#x5757;&#x4E2D;&#x3002;">&#x6211;&#x4EEC;&#x5C06;&#x4E00;&#x4E2A;block&#x5757;&#x4E2D;&#x7684;&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#x4E32;&#x8054;&#x6210;&#x4E00;&#x4E2A;36*1&#x7EF4;&#x5411;&#x91CF;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x5F52;&#x4E00;&#x5316;&#xFF0C;&#x5C31;&#x5F97;&#x5230;&#x4E86;&#x8BE5;block&#x5757;&#x5185;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x56E0;&#x4E3A;block&#x5757;&#x4E4B;&#x95F4;&#x662F;&#x6709;&#x91CD;&#x53E0;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6BCF;&#x4E2A;cell&#x5355;&#x5143;&#x4E2D;&#x7684;&#x7279;&#x5F81;&#x4F1A;&#x591A;&#x6B21;&#x51FA;&#x73B0;&#x5728;&#x4E0D;&#x540C;&#x7684;block&#x5757;&#x4E2D;&#x3002;</h6>
+<h2 id="26-&#x6536;&#x96C6;hog&#x7279;&#x5F81;">2.6 &#x6536;&#x96C6;HOG&#x7279;&#x5F81;</h2>
+<h6 id="&#x4E0A;&#x4E00;&#x6B65;&#x4E2D;&#x6211;&#x4EEC;&#x5F97;&#x5230;&#x4E00;&#x4E2A;block&#x5757;&#x7684;&#x5F52;&#x4E00;&#x5316;&#x540E;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x904D;&#x5386;&#x68C0;&#x6D4B;&#x56FE;&#x50CF;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x5757;&#x4FBF;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6574;&#x4E2A;&#x56FE;&#x50CF;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x8981;&#x6C42;&#x89E3;&#x7684;hog&#x7279;&#x5F81;&#x5411;&#x91CF;&#x3002;">&#x4E0A;&#x4E00;&#x6B65;&#x4E2D;&#x6211;&#x4EEC;&#x5F97;&#x5230;&#x4E00;&#x4E2A;block&#x5757;&#x7684;&#x5F52;&#x4E00;&#x5316;&#x540E;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x904D;&#x5386;&#x68C0;&#x6D4B;&#x56FE;&#x50CF;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x5757;&#x4FBF;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6574;&#x4E2A;&#x56FE;&#x50CF;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x8981;&#x6C42;&#x89E3;&#x7684;HOG&#x7279;&#x5F81;&#x5411;&#x91CF;&#x3002;</h6>
+<p><img src="assets/image-20191108110820778.png" alt="image-20191108110820778"></p>
+<p>&#x5982;&#x4E0A;&#x56FE;&#x6240;&#x793A;&#xFF0C;block&#x5757;&#x4E0E;block&#x5757;&#x4E4B;&#x95F4;&#x662F;&#x53EF;&#x4EE5;&#x91CD;&#x53E0;&#x7684;&#xFF0C;&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x7684;&#x68C0;&#x6D4B;&#x56FE;&#x50CF;&#x5927;&#x5C0F;&#x4E3A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>6</mn><mn>4</mn><mo>&#xD7;</mo><mn>1</mn><mn>2</mn><mn>8</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(64\times128)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathrm">6</span><span class="mord mathrm">4</span><span class="mbin">&#xD7;</span><span class="mord mathrm">1</span><span class="mord mathrm">2</span><span class="mord mathrm">8</span><span class="mclose">)</span></span></span></span>&#xFF0C;&#x5176;x&#x65B9;&#x5411;&#x7684;&#x6709;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>6</mn><mn>4</mn><mo>&#x2212;</mo><mn>8</mn><mo>&#xD7;</mo><mn>2</mn><mo>)</mo><mi mathvariant="normal">/</mi><mn>8</mn><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">(64-8\times2)/8=7 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathrm">6</span><span class="mord mathrm">4</span><span class="mbin">&#x2212;</span><span class="mord mathrm">8</span><span class="mbin">&#xD7;</span><span class="mord mathrm">2</span><span class="mclose">)</span><span class="mord mathrm">/</span><span class="mord mathrm">8</span><span class="mrel">=</span><span class="mord mathrm">7</span></span></span></span>&#x4E2A;block&#x5757;&#xFF0C;&#x5176;&#x4E2D;64&#x4E3A;&#x68C0;&#x6D4B;&#x56FE;&#x50CF;&#x7684;&#x5BBD;&#x5EA6;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;8&#x4E3A;cell&#x5BBD;&#x5EA6;&#xFF0C;2&#x4E3A;&#x4E00;&#x4E2A;block&#x5757;&#x4E2D;&#x7684;cell&#x5355;&#x5143;&#x5BBD;&#x5EA6;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;8&#x4E3A;block&#x5757;&#x7684;&#x6ED1;&#x52A8;&#x589E;&#x91CF;&#xFF0C;&#x540C;&#x7406;&#xFF0C;y&#x65B9;&#x5411;&#x6709;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mn>2</mn><mn>8</mn><mo>&#x2212;</mo><mn>8</mn><mo>&#xD7;</mo><mn>2</mn><mo>)</mo><mi mathvariant="normal">/</mi><mn>8</mn><mo>+</mo><mn>1</mn><mo>=</mo><mn>1</mn><mn>5</mn></mrow><annotation encoding="application/x-tex">(128-8\times2)/8+1=15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathrm">1</span><span class="mord mathrm">2</span><span class="mord mathrm">8</span><span class="mbin">&#x2212;</span><span class="mord mathrm">8</span><span class="mbin">&#xD7;</span><span class="mord mathrm">2</span><span class="mclose">)</span><span class="mord mathrm">/</span><span class="mord mathrm">8</span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mrel">=</span><span class="mord mathrm">1</span><span class="mord mathrm">5</span></span></span></span>&#x4E2A;block&#x5757;&#xFF0C;&#x5176;&#x4E2D;128&#x4E3A;&#x68C0;&#x6D4B;&#x56FE;&#x50CF;&#x7684;&#x9AD8;&#x5EA6;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;8&#x4E3A;cell&#x9AD8;&#x5EA6;&#xFF0C;2&#x4E3A;&#x4E00;&#x4E2A;block&#x5757;&#x4E2D;&#x7684;cell&#x5355;&#x5143;&#x9AD8;&#x5EA6;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;8&#x4E3A;block&#x5757;&#x7684;&#x6ED1;&#x52A8;&#x589E;&#x91CF;&#xFF0C;&#x56E0;&#x6B64;&#x4E00;&#x5171;&#x6709;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>7</mn><mo>&#xD7;</mo><mn>1</mn><mn>5</mn><mo>=</mo><mn>1</mn><mn>0</mn><mn>5</mn></mrow><annotation encoding="application/x-tex">7\times15=105</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">7</span><span class="mbin">&#xD7;</span><span class="mord mathrm">1</span><span class="mord mathrm">5</span><span class="mrel">=</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">5</span></span></span></span> &#x4E2A;block&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;block&#x4E2D;&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#x7684;&#x7EF4;&#x6570;&#x4E3A;36&#xFF0C;&#x90A3;&#x4E48;&#x68C0;&#x6D4B;&#x56FE;&#x50CF;&#x4E3A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>6</mn><mn>4</mn><mo>&#xD7;</mo><mn>1</mn><mn>2</mn><mn>8</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(64\times128)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathrm">6</span><span class="mord mathrm">4</span><span class="mbin">&#xD7;</span><span class="mord mathrm">1</span><span class="mord mathrm">2</span><span class="mord mathrm">8</span><span class="mclose">)</span></span></span></span>&#x7684;HOG&#x7279;&#x5F81;&#x5411;&#x91CF;&#x7684;&#x7EF4;&#x6570;&#x4E3A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mn>0</mn><mn>5</mn><mo>&#xD7;</mo><mn>3</mn><mn>6</mn><mo>=</mo><mn>3</mn><mn>7</mn><mn>8</mn><mn>0</mn></mrow><annotation encoding="application/x-tex">105\times36=3780</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">5</span><span class="mbin">&#xD7;</span><span class="mord mathrm">3</span><span class="mord mathrm">6</span><span class="mrel">=</span><span class="mord mathrm">3</span><span class="mord mathrm">7</span><span class="mord mathrm">8</span><span class="mord mathrm">0</span></span></span></span>&#x3002;&#x5C06;&#x5176;&#x663E;&#x793A;&#x5728;&#x56FE;&#x50CF;&#x4E0A;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191108111824266.png" alt="image-20191108111824266"></p>
+<p>&#x4ECE;&#x4E0A;&#x56FE;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x76F4;&#x65B9;&#x56FE;&#x7684;&#x4E3B;&#x8981;&#x65B9;&#x5411;&#x6355;&#x6349;&#x4E86;&#x4EBA;&#x7684;&#x5916;&#x5F62;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x8EAF;&#x5E72;&#x548C;&#x817F;&#x7684;&#x90E8;&#x4F4D;&#x3002;&#x6211;&#x4EEC;&#x5F97;&#x5230;&#x5F52;&#x4E00;&#x5316;&#x7684;HOG&#x7279;&#x5F81;&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5206;&#x7C7B;&#x5668;&#x5BF9;&#x884C;&#x4EBA;&#x8FDB;&#x884C;&#x68C0;&#x6D4B;&#xFF0C;&#x6BD4;&#x5982;&#x4F7F;&#x7528;&#x652F;&#x6301;&#x5411;&#x91CF;&#x673A;SVM&#x8FDB;&#x884C;&#x4EBA;&#x4E0E;&#x80CC;&#x666F;&#x7684;&#x5206;&#x7C7B;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20191115090149728.png" alt="image-20191115090149728"></p>
+<h2 id="27-hog&#x7279;&#x5F81;&#x7684;&#x4F18;&#x7F3A;&#x70B9;">2.7 HOG&#x7279;&#x5F81;&#x7684;&#x4F18;&#x7F3A;&#x70B9;</h2>
+<p>HOG&#x7279;&#x5F81;&#x5177;&#x6709;&#x4EE5;&#x4E0B;&#x4F18;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>HOG&#x8868;&#x793A;&#x7684;&#x662F;&#x8FB9;&#x7F18;&#x7684;&#x7ED3;&#x6784;&#x7279;&#x5F81;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x63CF;&#x8FF0;&#x5C40;&#x90E8;&#x7684;&#x5F62;&#x72B6;&#x4FE1;&#x606F;</li>
+<li>&#x4F4D;&#x7F6E;&#x548C;&#x65B9;&#x5411;&#x7684;&#x91CF;&#x5316;&#x5728;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#x53EF;&#x4EE5;&#x4E00;&#x76F4;&#x5E73;&#x79FB;&#x548C;&#x65CB;&#x8F6C;&#x5E26;&#x6765;&#x7684;&#x5F71;&#x54CD;</li>
+<li>&#x91C7;&#x53D6;&#x5C40;&#x90E8;&#x533A;&#x57DF;&#x5F52;&#x4E00;&#x5316;&#x76F4;&#x65B9;&#x56FE;&#xFF0C;&#x53EF;&#x4EE5;&#x90E8;&#x5206;&#x62B5;&#x6D88;&#x5149;&#x7167;&#x53D8;&#x6362;&#x5E26;&#x6765;&#x7684;&#x5F71;&#x54CD;</li>
+</ul>
+<p>&#x5B83;&#x4E5F;&#x6709;&#x4E0D;&#x5C11;&#x7F3A;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x63CF;&#x8FF0;&#x5B50;&#x751F;&#x6210;&#x5197;&#x957F;&#xFF0C;&#x7EF4;&#x6570;&#x8F83;&#x9AD8;&#xFF0C;&#x5BFC;&#x81F4;&#x901F;&#x5EA6;&#x6162;&#xFF0C;&#x5B9E;&#x65F6;&#x6027;&#x5DEE;</li>
+<li>&#x5F88;&#x96BE;&#x5904;&#x7406;&#x906E;&#x6321;&#x95EE;&#x9898;</li>
+<li>&#x7531;&#x4E8E;&#x68AF;&#x5EA6;&#x7684;&#x6027;&#x8D28;&#xFF0C;&#x5BF9;&#x566A;&#x58F0;&#x975E;&#x5E38;&#x654F;&#x611F;</li>
+</ul>
+<h2 id="22-&#x5B9E;&#x73B0;">2.2 &#x5B9E;&#x73B0;</h2>
+<p>OpenCV&#x63D0;&#x4F9B;&#x4E86;&#x8BA1;&#x7B97;HOG&#x7279;&#x5F81;&#x7684;API&#xFF0C;&#x5B9E;&#x73B0;HOG&#x7279;&#x5F81;&#x63D0;&#x53D6;&#x7684;&#x6D41;&#x7A0B;&#x662F;&#xFF1A;</p>
+<ol>
+<li>&#x5B9E;&#x4F8B;&#x5316;HOG&#x7279;&#x5F81;&#x63D0;&#x53D6;&#x7B97;&#x5B50;&#xFF0C;&#x4F7F;&#x7528;&#x7684;API&#x662F;&#xFF1A;</li>
+</ol>
+<pre><code class="lang-python">hog = cv2.HOGDescriptor(winSize,blockSize,blockStride,cellSize,nbins)
+</code></pre>
+<p>&#x53C2;&#x6570;&#xFF1A;</p>
+<ul>
+<li>winSize: &#x68C0;&#x6D4B;&#x7A97;&#x53E3;&#x7684;&#x5927;&#x5C0F;</li>
+<li>blockSize: block&#x5757;&#x7684;&#x5927;&#x5C0F;</li>
+<li>blockStride: block&#x5757;&#x7684;&#x6ED1;&#x52A8;&#x6B65;&#x957F;</li>
+<li>cellSize: cell&#x5355;&#x5143;&#x7684;&#x5927;&#x5C0F;</li>
+<li>Nbins&#xFF1A;&#x7EDF;&#x8BA1;&#x68AF;&#x5EA6;&#x7684;&#x65B9;&#x5411;&#x7684;&#x6570;&#x76EE;&#xFF0C;&#x4E00;&#x822C;&#x53D6;&#x4E3A;9&#xFF0C;&#x5373;&#x5728;&#x4E00;&#x4E2A;cell&#x5355;&#x5143;&#x4E2D;&#x8BA1;&#x7B97;9&#x4E2A;&#x65B9;&#x5411;&#x7684;&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;</li>
+</ul>
+<p>&#x8FD4;&#x56DE;&#xFF1A;</p>
+<ul>
+<li><p>hog: &#x5B9E;&#x4F8B;&#x5316;&#x540E;&#x7684;Hog&#x7279;&#x5F81;&#x68C0;&#x6D4B;&#x5BF9;&#x8C61;</p>
+</li>
+<li><p>&#x641C;&#x7D22;&#x6574;&#x4E2A;&#x56FE;&#x50CF;&#xFF0C;&#x8BA1;&#x7B97;&#x56FE;&#x50CF;&#x7684;HOG&#x7279;&#x5F81;&#xFF0C;&#x8C03;&#x7528;&#xFF1A;</p>
+</li>
+</ul>
+<pre><code class="lang-python">hogDes = hog.compute(img, winStride, padding)
+</code></pre>
+<p>&#x53C2;&#x6570;&#xFF1A;</p>
+<ul>
+<li>img: &#x8F93;&#x5165;&#x56FE;&#x50CF;</li>
+<li>winStrise:&#x68C0;&#x6D4B;&#x7A97;&#x53E3;&#x7684;&#x6ED1;&#x52A8;&#x6B65;&#x957F;</li>
+<li>padding&#xFF1A;&#x586B;&#x5145;&#xFF0C;&#x5728;&#x56FE;&#x50CF;&#x7684;&#x5468;&#x56F4;&#x586B;&#x5145;&#x70B9;&#x5BF9;&#x8FB9;&#x754C;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;</li>
+</ul>
+<p>&#x8FD4;&#x56DE;&#xFF1A;</p>
+<ul>
+<li>hogDes: &#x6574;&#x5E45;&#x56FE;&#x50CF;&#x7684;HOG&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x7B26;&#xFF0C;&#x5F53;padding&#x4E3A;&#x9ED8;&#x8BA4;&#x7684;(0,0)&#x65F6;&#xFF0C;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x7684;&#x7EF4;&#x6570;&#xFF1A;[(img_size - window_size) / window_stride +1 )]*(&#x6BCF;&#x4E2A;&#x68C0;&#x6D4B;&#x7A97;&#x53E3;&#x4E2D;&#x7684;&#x7279;&#x5F81;&#x7EF4;&#x6570;)&#x3002;</li>
+</ul>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<p>&#x6211;&#x4EEC;&#x8BA1;&#x7B97;&#x4E0B;&#x56FE;&#x7684;hog&#x7279;&#x5F81;&#xFF1A;</p>
+<p><img src="assets/xingren.jpeg" alt="xingren"></p>
+<p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv 
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+<span class="hljs-comment"># 1.&#x8BFB;&#x53D6;&#x56FE;&#x50CF;</span>
+img = cv.imread(<span class="hljs-string">&apos;xingren.jpeg&apos;</span>)
+gray= cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+
+<span class="hljs-comment"># 2.Hog&#x7279;&#x5F81;&#x63D0;&#x53D6;</span>
+<span class="hljs-comment"># 2.1 &#x53C2;&#x6570;&#x8BBE;&#x7F6E;</span>
+winSize = (<span class="hljs-number">64</span>,<span class="hljs-number">128</span>)
+blockSize = (<span class="hljs-number">16</span>,<span class="hljs-number">16</span>)
+blockStride = (<span class="hljs-number">8</span>,<span class="hljs-number">8</span>)
+cellSize = (<span class="hljs-number">8</span>,<span class="hljs-number">8</span>)
+nbins = <span class="hljs-number">9</span>
+
+<span class="hljs-comment"># 2.2 &#x5B9E;&#x4F8B;&#x5316;hog&#x5BF9;&#x8C61;</span>
+hog = cv.HOGDescriptor(winSize,blockSize,blockStride,cellSize,nbins)
+
+<span class="hljs-comment"># 2.3 &#x8BA1;&#x7B97;Hog&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x7B26;</span>
+hogDes = hog.compute(img,winStride=(<span class="hljs-number">8</span>,<span class="hljs-number">8</span>))
+
+<span class="hljs-comment"># 2.4 &#x8F93;&#x51FA;&#x63CF;&#x8FF0;&#x7B26;&#x7684;&#x5927;&#x5C0F;</span>
+print(hogDes.size)
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x4E3A;&#xFF1A;57380&#xFF0C;&#x8BE5;&#x56FE;&#x7684;&#x5927;&#x5C0F;&#x4E3A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mn>2</mn><mn>8</mn><mo>&#x2217;</mo><mn>2</mn><mn>5</mn><mn>6</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(128*256)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathrm">1</span><span class="mord mathrm">2</span><span class="mord mathrm">8</span><span class="mbin">&#x2217;</span><span class="mord mathrm">2</span><span class="mord mathrm">5</span><span class="mord mathrm">6</span><span class="mclose">)</span></span></span></span> &#xFF0C;&#x7A97;&#x53E3;&#x5927;&#x5C0F;&#x4E3A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>6</mn><mn>4</mn><mo>&#x2217;</mo><mn>1</mn><mn>2</mn><mn>8</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(64*128)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathrm">6</span><span class="mord mathrm">4</span><span class="mbin">&#x2217;</span><span class="mord mathrm">1</span><span class="mord mathrm">2</span><span class="mord mathrm">8</span><span class="mclose">)</span></span></span></span> ,block&#x5757;&#x5927;&#x5C0F;&#x4E3A;(16,16)&#xFF0C;&#x5757;&#x7684;&#x79FB;&#x52A8;&#x6B65;&#x957F;&#x4E3A; (8,8)&#xFF0C;cell&#x5355;&#x5143;&#x5927;&#x5C0F;&#x4E3A;(8,8)&#x65F6;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;&#x7684;&#x7279;&#x5F81;&#x7EF4;&#x5EA6;&#x4E3A;3780&#xFF0C;&#x7A97;&#x53E3;&#x79FB;&#x52A8;&#x6B65;&#x957F;&#x4E3A;(8,8)&#x65F6;&#xFF0C;&#x5219;&#x56FE;&#x50CF;&#x7684;&#x7279;&#x5F81;&#x7684;&#x7EF4;&#x5EA6;&#xFF1A;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mfrac><mrow><mn>1</mn><mn>2</mn><mn>8</mn><mo>&#x2212;</mo><mn>6</mn><mn>4</mn></mrow><mrow><mn>8</mn></mrow></mfrac><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#x2217;</mo><mo>(</mo><mfrac><mrow><mn>2</mn><mn>5</mn><mn>6</mn><mo>&#x2212;</mo><mn>1</mn><mn>2</mn><mn>8</mn></mrow><mrow><mn>8</mn></mrow></mfrac><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#x2217;</mo><mn>3</mn><mn>7</mn><mn>8</mn><mn>0</mn><mo>=</mo><mn>5</mn><mn>7</mn><mn>8</mn><mn>3</mn><mn>4</mn><mn>0</mn></mrow><annotation encoding="application/x-tex">
+(\frac{128-64}{8}+1)*(\frac{256-128}{8}+1)*3780 = 578340
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.32144em;"></span><span class="strut bottom" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="base displaystyle textstyle uncramped"><span class="mopen">(</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">8</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">2</span><span class="mord mathrm">8</span><span class="mbin">&#x2212;</span><span class="mord mathrm">6</span><span class="mord mathrm">4</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">&#x2217;</span><span class="mopen">(</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">8</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">2</span><span class="mord mathrm">5</span><span class="mord mathrm">6</span><span class="mbin">&#x2212;</span><span class="mord mathrm">1</span><span class="mord mathrm">2</span><span class="mord mathrm">8</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">&#x2217;</span><span class="mord mathrm">3</span><span class="mord mathrm">7</span><span class="mord mathrm">8</span><span class="mord mathrm">0</span><span class="mrel">=</span><span class="mord mathrm">5</span><span class="mord mathrm">7</span><span class="mord mathrm">8</span><span class="mord mathrm">3</span><span class="mord mathrm">4</span><span class="mord mathrm">0</span></span></span></span></span></p>
+<hr>
+<p><strong>&#x603B;&#x7ED3;</strong>&#xFF1A;</p>
+<ol>
+<li><p>LBP&#x7B97;&#x6CD5;:</p>
+<p><strong>&#x539F;&#x59CB;LBP&#x7279;&#x5F81;</strong>&#xFF1A;&#x5728;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo>&#x2217;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">3*3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.64444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">3</span><span class="mbin">&#x2217;</span><span class="mord mathrm">3</span></span></span></span>&#x7684;&#x7A97;&#x53E3;&#x5185;&#xFF0C;&#x4EE5;&#x7A97;&#x53E3;&#x4E2D;&#x5FC3;&#x50CF;&#x7D20;&#x4E3A;&#x9608;&#x503C;&#xFF0C;&#x5C06;&#x76F8;&#x90BB;&#x7684;8&#x4E2A;&#x50CF;&#x7D20;&#x7684;&#x7070;&#x5EA6;&#x503C;&#x4E0E;&#x5176;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF0C;&#x82E5;&#x5468;&#x56F4;&#x50CF;&#x7D20;&#x503C;&#x5927;&#x4E8E;&#x4E2D;&#x5FC3;&#x50CF;&#x7D20;&#x503C;&#xFF0C;&#x5219;&#x8BE5;&#x50CF;&#x7D20;&#x70B9;&#x7684;&#x4F4D;&#x7F6E;&#x88AB;&#x6807;&#x8BB0;&#x4E3A;1&#xFF0C;&#x5426;&#x5219;&#x4E3A;0&#x3002;&#x8FD9;&#x6837;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo>&#x2217;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">3*3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.64444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">3</span><span class="mbin">&#x2217;</span><span class="mord mathrm">3</span></span></span></span>&#x90BB;&#x57DF;&#x5185;&#x7684;8&#x4E2A;&#x70B9;&#x7ECF;&#x6BD4;&#x8F83;&#x53EF;&#x4EA7;&#x751F;8&#x4F4D;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#xFF0C;&#x5373;LBP&#x503C;&#x3002;</p>
+<p><strong>&#x5706;&#x5F62;LBP&#x7B97;&#x5B50;</strong>&#xFF1A;&#x8BA1;&#x7B97;&#x4E0D;&#x540C;&#x534A;&#x5F84;&#x90BB;&#x57DF;&#x5927;&#x5C0F;&#x548C;&#x4E0D;&#x540C;&#x50CF;&#x7D20;&#x70B9;&#x6570;&#x7684;&#x7279;&#x5F81;&#x503C;</p>
+<p><strong>&#x65CB;&#x8F6C;&#x4E0D;&#x53D8;LBP&#x7B97;&#x5B50;</strong>&#xFF1A;&#x4E0D;&#x65AD;&#x65CB;&#x8F6C;&#x5706;&#x5F62;&#x90BB;&#x57DF;&#x5F97;&#x5230;&#x4E00;&#x7CFB;&#x5217;&#x521D;&#x59CB;&#x5B9A;&#x4E49;&#x7684; LBP&#x503C;&#xFF0C;&#x53D6;&#x5176;&#x6700;&#x5C0F;&#x503C;&#x4F5C;&#x4E3A;&#x8BE5;&#x90BB;&#x57DF;&#x7684; LBP &#x503C;</p>
+<p><strong>Uniform Pattern LBP&#x7279;&#x5F81;</strong>&#xFF1A;&#x5F53;&#x67D0;&#x4E2A;LBP&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x5FAA;&#x73AF;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x4ECE;0&#x5230;1&#x6216;&#x4ECE;1&#x5230;0&#x6700;&#x591A;&#x6709;&#x4E24;&#x6B21;&#x8DF3;&#x53D8;&#x65F6;&#xFF0C;&#x8BE5;LBP&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5C31;&#x79F0;&#x4E3A;&#x4E00;&#x4E2A;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#x3002;&#x3002;&#x9664;&#x7B49;&#x4EF7;&#x6A21;&#x5F0F;&#x7C7B;&#x4EE5;&#x5916;&#x7684;&#x6A21;&#x5F0F;&#x90FD;&#x5F52;&#x4E3A;&#x53E6;&#x4E00;&#x7C7B;&#xFF0C;&#x79F0;&#x4E3A;&#x6DF7;&#x5408;&#x6A21;&#x5F0F;&#x7C7B;&#x3002;</p>
+<p>API:</p>
+<p>Skiimage.feature.Local_binary_pattern()</p>
+</li>
+<li><p>HOG&#x7B97;&#x6CD5;</p>
+<p>&#x601D;&#x60F3;&#xFF1A;&#x5728;&#x4E00;&#x526F;&#x56FE;&#x50CF;&#x4E2D;&#xFF0C;&#x5C40;&#x90E8;&#x76EE;&#x6807;&#x7684;&#x8868;&#x8C61;&#x548C;&#x5F62;&#x72B6;&#xFF08;appearance and shape&#xFF09;&#x80FD;&#x591F;&#x5229;&#x7528;&#x68AF;&#x5EA6;&#x6216;&#x8FB9;&#x7F18;&#x7684;&#x65B9;&#x5411;&#x5BC6;&#x5EA6;&#x5206;&#x5E03;&#x6765;&#x63CF;&#x8FF0;&#x3002;</p>
+<p><strong>HOG</strong>&#x7279;&#x5F81;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;&#x7684;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<p><strong>&#x989C;&#x8272;&#x7A7A;&#x95F4;&#x5F52;&#x4E00;&#x5316;&#x2014;&gt;&#x68AF;&#x5EA6;&#x8BA1;&#x7B97;&#x2014;&gt;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#x2014;&gt;&#x91CD;&#x53E0;&#x5757;&#x76F4;&#x65B9;&#x56FE;&#x5F52;&#x4E00;&#x5316;&#x2014;&gt;HOG&#x7279;&#x5F81;</strong></p>
+<p>&#x7B80;&#x5355;&#x63CF;&#x8FF0;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>1&#xFF09;&#x5C06;&#x8F93;&#x5165;&#x56FE;&#x50CF;&#x7070;&#x5EA6;&#x5316;&#xFF0C;&#x5373;&#x5C06;&#x5F69;&#x8272;&#x56FE;&#x8F6C;&#x6362;&#x4E3A;&#x7070;&#x5EA6;&#x56FE;</p>
+<p>2&#xFF09;&#x989C;&#x8272;&#x7A7A;&#x95F4;&#x5F52;&#x4E00;&#x5316;&#xFF1A;&#x91C7;&#x7528;Gamma&#x6821;&#x6B63;&#x6CD5;&#x5BF9;&#x8F93;&#x5165;&#x56FE;&#x50CF;&#x8FDB;&#x884C;&#x989C;&#x8272;&#x7A7A;&#x95F4;&#x7684;&#x6807;&#x51C6;&#x5316;&#xFF08;&#x5F52;&#x4E00;&#x5316;&#xFF09;,&#x76EE;&#x7684;&#x662F;&#x8C03;&#x8282;&#x56FE;&#x50CF;&#x7684;&#x5BF9;&#x6BD4;&#x5EA6;&#xFF0C;&#x964D;&#x4F4E;&#x56FE;&#x50CF;&#x5C40;&#x90E8;&#x7684;&#x9634;&#x5F71;&#x548C;&#x5149;&#x7167;&#x53D8;&#x5316;&#x6240;&#x9020;&#x6210;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x540C;&#x65F6;&#x53EF;&#x4EE5;&#x6291;&#x5236;&#x566A;&#x97F3;&#x7684;&#x5E72;&#x6270;</p>
+<p>3&#xFF09;&#x68AF;&#x5EA6;&#x8BA1;&#x7B97;&#xFF1A;&#x8BA1;&#x7B97;&#x56FE;&#x50CF;&#x6BCF;&#x4E2A;&#x50CF;&#x7D20;&#x7684;&#x68AF;&#x5EA6;&#xFF08;&#x5305;&#x62EC;&#x5927;&#x5C0F;&#x548C;&#x65B9;&#x5411;&#xFF09;&#xFF1B;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x6355;&#x83B7;&#x8F6E;&#x5ED3;&#x4FE1;&#x606F;&#xFF0C;&#x540C;&#x65F6;&#x8FDB;&#x4E00;&#x6B65;&#x5F31;&#x5316;&#x5149;&#x7167;&#x7684;&#x5E72;&#x6270;</p>
+<p>4&#xFF09;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x76F4;&#x65B9;&#x56FE;&#xFF1A;&#x5C06;&#x56FE;&#x50CF;&#x5212;&#x5206;&#x6210;&#x5C0F;cells&#xFF08;&#x4F8B;&#x5982;6*6&#x50CF;&#x7D20;/cell&#xFF09;,  &#x7EDF;&#x8BA1;&#x6BCF;&#x4E2A;cell&#x7684;&#x68AF;&#x5EA6;&#x76F4;&#x65B9;&#x56FE;&#xFF08;&#x4E0D;&#x540C;&#x68AF;&#x5EA6;&#x7684;&#x4E2A;&#x6570;&#xFF09;&#xFF0C;&#x5373;&#x53EF;&#x5F62;&#x6210;&#x6BCF;&#x4E2A;cell&#x7684;&#x63CF;&#x8FF0;&#x7B26;</p>
+<p>5&#xFF09;&#x91CD;&#x53E0;&#x76F4;&#x65B9;&#x56FE;&#x5F52;&#x4E00;&#x5316;&#xFF1A;&#x5C06;&#x6BCF;&#x51E0;&#x4E2A;cell&#x7EC4;&#x6210;&#x4E00;&#x4E2A;block&#xFF08;&#x4F8B;&#x5982;3*3&#x4E2A;cell/block&#xFF09;&#xFF0C;&#x4E00;&#x4E2A;block&#x5185;&#x6240;&#x6709;cell&#x7684;&#x7279;&#x5F81;descriptor&#x4E32;&#x8054;&#x8D77;&#x6765;&#x4FBF;&#x5F97;&#x5230;&#x8BE5;block&#x7684;HOG&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x7B26;&#x3002;</p>
+<p>6&#xFF09;HOG&#x7279;&#x5F81;&#xFF1A;&#x5C06;&#x56FE;&#x50CF;image&#x5185;&#x7684;&#x6240;&#x6709;block&#x7684;HOG&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x7B26;&#x4E32;&#x8054;&#x8D77;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8BE5;image&#x7684;HOG&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x7B26;&#xFF0C;&#x5C31;&#x5F97;&#x5230;&#x6700;&#x7EC8;&#x7684;&#x53EF;&#x4F9B;&#x5206;&#x7C7B;&#x4F7F;&#x7528;&#x7684;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x4E86;&#x3002;</p>
+</li>
+</ol>
+<p>API&#xFF1A;</p>
+<p>1&#xFF09;&#x5B9E;&#x4F8B;&#x5316;HOG&#x5BF9;&#x8C61;&#xFF1A;</p>
+<p>hog = cv.HOGDescriptor()</p>
+<p>2) &#x8BA1;&#x7B97;HOG&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x7B26;</p>
+<p>hogdes = hog.Compute()</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../图像特征提取与描述/section3.html" class="navigation navigation-prev " aria-label="Previous page: 4.4 Fast和ORB算法"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../视频操作/ReadMe.html" class="navigation navigation-next " aria-label="Next page: 5 视频操作"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"expandable-chapters":{},"katex":{},"splitter":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

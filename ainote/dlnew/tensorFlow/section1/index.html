@@ -1,0 +1,1460 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>tensorflow和keras简介 - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-tensorflow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              tensorflow和keras简介
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        tensorflow和keras简介
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="tensorflow和keras简介" class="md-nav__link md-nav__link--active">
+      tensorflow和keras简介
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-tensorflow" class="md-nav__link">
+    1.1 TensorFlow介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-tensorflow" class="md-nav__link">
+    1.2 TensorFlow的安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 张量及其操作
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 张量及其操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-tensor" class="md-nav__link">
+    1.3.1 张量Tensor
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.1 张量Tensor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.基本方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2numpy" class="md-nav__link">
+    2.转换成numpy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.常用函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4.变量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-tfkeras" class="md-nav__link">
+    1.4 tf.keras介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 tf.keras介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    1.4.1 常用模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    1.4.2 常用方法
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4.2 常用方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1tfkeras" class="md-nav__link">
+    1.导入tf.keras
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.数据输入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    3.模型构建
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    4.训练与评估
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5callbacks" class="md-nav__link">
+    5.回调函数（callbacks）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6.模型的保存和恢复
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-tensorflow" class="md-nav__link">
+    1.1 TensorFlow介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-tensorflow" class="md-nav__link">
+    1.2 TensorFlow的安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 张量及其操作
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 张量及其操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-tensor" class="md-nav__link">
+    1.3.1 张量Tensor
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.1 张量Tensor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.基本方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2numpy" class="md-nav__link">
+    2.转换成numpy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.常用函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4.变量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-tfkeras" class="md-nav__link">
+    1.4 tf.keras介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 tf.keras介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    1.4.1 常用模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    1.4.2 常用方法
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4.2 常用方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1tfkeras" class="md-nav__link">
+    1.导入tf.keras
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.数据输入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    3.模型构建
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    4.训练与评估
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5callbacks" class="md-nav__link">
+    5.回调函数（callbacks）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6.模型的保存和恢复
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="-tensorflow">深度学习框架-TensorFlow<a class="headerlink" href="#-tensorflow" title="Permanent link">&para;</a></h1>
+<p><strong>学习目标</strong></p>
+<ul>
+<li>了解Tensorflow2.0框架的用途及流程</li>
+<li>知道tf2.0的张量及其操作</li>
+<li>知道tf.keras中的相关模块及常用方法</li>
+</ul>
+<hr />
+<p><img src="../images/TF动态图.gif" style="zoom:50%;" /></p>
+<h2 id="11-tensorflow">1.1 TensorFlow介绍<a class="headerlink" href="#11-tensorflow" title="Permanent link">&para;</a></h2>
+<p>深度学习框架TensorFlow一经发布，就受到了广泛的关注，并在计算机视觉、音频处理、推荐系统和自然语言处理等场景下都被大面积推广使用，现在已发布2.3.0版本，接下来我们深入浅出的介绍Tensorflow的相关应用。</p>
+<p>TensorFlow的依赖视图如下所示：</p>
+<p><img alt="image-20200724164312710" src="../assets/image-20200724164312710.png" /></p>
+<ul>
+<li>TF托管在github平台，有google groups和contributors共同维护。</li>
+<li>TF提供了丰富的深度学习相关的API，支持Python和C/C++接口。</li>
+<li>TF提供了可视化分析工具Tensorboard，方便分析和调整模型。</li>
+<li>TF支持Linux平台，Windows平台，Mac平台，甚至手机移动设备等各种平台。</li>
+</ul>
+<p>TensorFlow 2.0 将专注于简单性和易用性，工作流程如下所示：</p>
+<p><img alt="" src="../../images/TF%E6%9C%80%E6%96%B0%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" /></p>
+<p><strong>1、使用tf.data加载数据。</strong> 使用tf.data实例化读取训练数据和测试数据</p>
+<p><strong>2、模型的建立与调试：</strong> 使用动态图模式 Eager Execution 和著名的神经网络高层 API 框架 Keras，结合可视化工具 TensorBoard，简易、快速地建立和调试模型；</p>
+<p><strong>3、模型的训练：</strong> 支持 CPU / 单 GPU / 单机多卡 GPU / 多机集群 / TPU 训练模型，充分利用海量数据和计算资源进行高效训练；</p>
+<p><strong>4、预训练模型调用：</strong> 通过 TensorFlow Hub，可以方便地调用预训练完毕的已有成熟模型。</p>
+<p><strong>5、模型的部署：</strong> 通过 TensorFlow Serving、TensorFlow Lite、TensorFlow.js 等组件，可以将TensorFlow 模型部署到服务器、移动端、嵌入式端等多种使用场景；</p>
+<h2 id="12-tensorflow">1.2 TensorFlow的安装<a class="headerlink" href="#12-tensorflow" title="Permanent link">&para;</a></h2>
+<p>安装 TensorFlow在64 位系统上测试这些系统支持 TensorFlow：</p>
+<ul>
+<li>Ubuntu 16.04 或更高版本</li>
+<li>Windows 7 或更高版本</li>
+<li>macOS 10.12.6 (Sierra) 或更高版本（不支持 GPU）</li>
+</ul>
+<p>进入虚拟环境当中再安装。推荐使用anoconda进行安装</p>
+<ul>
+<li>1、非GPU版本安装</li>
+</ul>
+<p>ubuntu安装</p>
+<div class="highlight"><pre><span></span><code>pip install tensorflow==2.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre></div>
+
+<ul>
+<li>2、GPU版本安装</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pip install tensorflow-gpu==2.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre></div>
+
+<p>注：如果需要下载GPU版本的（TensorFlow只提供windows和linux版本的，没有Macos版本的）。</p>
+<h2 id="13">1.3 张量及其操作<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<h3 id="131-tensor">1.3.1 张量Tensor<a class="headerlink" href="#131-tensor" title="Permanent link">&para;</a></h3>
+<p>张量是一个多维数组。 与NumPy ndarray对象类似，tf.Tensor对象也具有数据类型和形状。如下图所示：</p>
+<p><img alt="image-20200724165024626" src="../assets/image-20200724165024626.png" /></p>
+<p>此外，tf.Tensors可以保留在GPU中。 TensorFlow提供了丰富的操作库（tf.add，tf.matmul，tf.linalg.inv等），它们使用和生成tf.Tensor。在进行张量操作之前先导入相应的工具包：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</code></pre></div>
+
+<h4 id="1">1.基本方法<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p>首先让我们创建基础的张量：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建int32类型的0维张量，即标量</span>
+<span class="n">rank_0_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rank_0_tensor</span><span class="p">)</span>
+<span class="c1"># 创建float32类型的1维张量</span>
+<span class="n">rank_1_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rank_1_tensor</span><span class="p">)</span>
+<span class="c1"># 创建float16类型的二维张量</span>
+<span class="n">rank_2_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float16</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rank_2_tensor</span><span class="p">)</span>
+</code></pre></div>
+
+<p>输出结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mf">2.</span> <span class="mf">3.</span> <span class="mf">4.</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+<span class="p">[[</span><span class="mf">1.</span> <span class="mf">2.</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">3.</span> <span class="mf">4.</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">5.</span> <span class="mf">6.</span><span class="p">]],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float16</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="image-20200728152807074" src="../assets/image-20200728152807074.png" /></p>
+<p>我们也可以创建更高维的张量：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建float32类型的张量</span>
+<span class="n">rank_3_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span>
+  <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+   <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span>
+  <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+   <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">]],</span>
+  <span class="p">[[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">],</span>
+   <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">29</span><span class="p">]],])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">rank_3_tensor</span><span class="p">)</span>
+</code></pre></div>
+
+<p>该输出结果我们有更多的方式将其展示出来：</p>
+<p><img alt="image-20200728153219630" src="../assets/image-20200728153219630.png" /></p>
+<h4 id="2numpy">2.转换成numpy<a class="headerlink" href="#2numpy" title="Permanent link">&para;</a></h4>
+<p>我们可将张量转换为numpy中的ndarray的形式，转换方法有两种，以张量rank_2_tensor为例：</p>
+<ul>
+<li>np.array</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rank_2_tensor</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>Tensor.numpy()</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">rank_2_tensor</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</code></pre></div>
+
+<h4 id="3">3.常用函数<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<p>我们可以对张量做一些基本的数学运算，包括加法、元素乘法和矩阵乘法等：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 定义张量a和b</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span> 
+
+<span class="k">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># 计算张量的和</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># 计算张量的元素乘法</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># 计算乘法</span>
+</code></pre></div>
+
+<p>输出结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+<span class="p">[[</span><span class="mi">2</span> <span class="mi">3</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int32</span><span class="p">)</span> 
+
+<span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+<span class="p">[[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">3</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int32</span><span class="p">)</span> 
+
+<span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+<span class="p">[[</span><span class="mi">3</span> <span class="mi">3</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">7</span> <span class="mi">7</span><span class="p">]],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int32</span><span class="p">)</span> 
+</code></pre></div>
+
+<p>另外张量也可用于各种聚合运算：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">()</span>  <span class="c1"># 求和</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">()</span> <span class="c1"># 平均值</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">()</span>  <span class="c1"># 最大值</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">reduce_min</span><span class="p">()</span>  <span class="c1"># 最小值</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span> <span class="c1"># 最大值的索引</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span> <span class="c1"># 最小值的索引</span>
+</code></pre></div>
+
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+<span class="c1"># 最大值</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="c1"># 最大值索引</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="c1"># 计算均值</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</code></pre></div>
+
+<p>输出为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span> <span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int64</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="4">4.变量<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
+<p>变量是一种特殊的张量，形状是不可变，但可以更改其中的参数。定义时的方法是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">my_variable</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+</code></pre></div>
+
+<p>我们也可以获取它的形状，类型及转换为ndarray:</p>
+<div class="highlight"><pre><span></span><code><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Shape: &quot;</span><span class="p">,</span><span class="n">my_variable</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;DType: &quot;</span><span class="p">,</span><span class="n">my_variable</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;As NumPy: &quot;</span><span class="p">,</span> <span class="n">my_variable</span><span class="o">.</span><span class="n">numpy</span><span class="p">)</span>
+</code></pre></div>
+
+<p>输出为：</p>
+<div class="highlight"><pre><span></span><code>Shape:  (2, 2)
+DType:  &lt;dtype: &#39;float32&#39;&gt;
+As NumPy:  &lt;bound method BaseResourceVariable.numpy of &lt;tf.Variable &#39;Variable:0&#39; shape=(2, 2) dtype=float32, numpy=
+array([[1., 2.],
+       [3., 4.]], dtype=float32)&gt;&gt;
+</code></pre></div>
+
+<h2 id="14-tfkeras">1.4 tf.keras介绍<a class="headerlink" href="#14-tfkeras" title="Permanent link">&para;</a></h2>
+<p>tf.keras是TensorFlow 2.0的高阶API接口，为TensorFlow的代码提供了新的风格和设计模式，大大提升了TF代码的简洁性和复用性，官方也推荐使用tf.keras来进行模型设计和开发。</p>
+<p><img alt="image-20200728162342076" src="../assets/image-20200728162342076.png" /></p>
+<h3 id="141">1.4.1 常用模块<a class="headerlink" href="#141" title="Permanent link">&para;</a></h3>
+<p>tf.keras中常用模块如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>概述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>activations</td>
+<td>激活函数</td>
+</tr>
+<tr>
+<td>applications</td>
+<td>预训练网络模块</td>
+</tr>
+<tr>
+<td>Callbacks</td>
+<td>在模型训练期间被调用</td>
+</tr>
+<tr>
+<td>datasets</td>
+<td>tf.keras数据集模块，包括boston_housing，cifar10，fashion_mnist，imdb ，mnist</td>
+</tr>
+<tr>
+<td>layers</td>
+<td>Keras层API</td>
+</tr>
+<tr>
+<td>losses</td>
+<td>各种损失函数</td>
+</tr>
+<tr>
+<td>metircs</td>
+<td>各种评价指标</td>
+</tr>
+<tr>
+<td>models</td>
+<td>模型创建模块，以及与模型相关的API</td>
+</tr>
+<tr>
+<td>optimizers</td>
+<td>优化方法</td>
+</tr>
+<tr>
+<td>preprocessing</td>
+<td>Keras数据的预处理模块</td>
+</tr>
+<tr>
+<td>regularizers</td>
+<td>正则化，L1,L2等</td>
+</tr>
+<tr>
+<td>utils</td>
+<td>辅助功能实现</td>
+</tr>
+</tbody>
+</table>
+<h3 id="142">1.4.2 常用方法<a class="headerlink" href="#142" title="Permanent link">&para;</a></h3>
+<p>深度学习实现的主要流程：1.数据获取，2，数据处理，3.模型创建与训练，4 模型测试与评估，5.模型预测</p>
+<p><img alt="image-20200804113054212" src="../assets/image-20200804113054212.png" /></p>
+<h4 id="1tfkeras">1.导入tf.keras<a class="headerlink" href="#1tfkeras" title="Permanent link">&para;</a></h4>
+<p>使用 <code>tf.keras</code>，首先需要在代码开始时导入<code>tf.keras</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+</code></pre></div>
+
+<h4 id="2">2.数据输入<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<p>对于小的数据集，可以直接使用numpy格式的数据进行训练、评估模型，对于大型数据集或者要进行跨设备训练时使用tf.data.datasets来进行数据输入。</p>
+<h4 id="3_1">3.模型构建<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>简单模型使用Sequential进行构建</li>
+<li>复杂模型使用函数式编程来构建</li>
+<li>自定义layers</li>
+</ul>
+<h4 id="4_1">4.训练与评估<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>配置训练过程：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 配置优化方法，损失函数和评价指标</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="mf">0.001</span><span class="p">),</span>
+              <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+</code></pre></div>
+
+<ul>
+<li>模型训练</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 指明训练数据集，训练epoch,批次大小和验证集数据</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="o">/</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+                        <span class="n">batch_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+          <span class="n">validation_data</span><span class="o">=</span><span class="n">val_dataset</span><span class="p">,</span>
+          <span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>模型评估</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 指明评估数据集和批次大小</span>
+<span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>模型预测</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 对新的样本进行预测</span>
+<span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="5callbacks">5.回调函数（callbacks）<a class="headerlink" href="#5callbacks" title="Permanent link">&para;</a></h4>
+<p>回调函数用在模型训练过程中，来控制模型训练行为，可以自定义回调函数，也可使用tf.keras.callbacks 内置的 callback ：</p>
+<p>ModelCheckpoint：定期保存 checkpoints。
+LearningRateScheduler：动态改变学习速率。
+EarlyStopping：当验证集上的性能不再提高时，终止训练。
+TensorBoard：使用 TensorBoard 监测模型的状态。</p>
+<h4 id="6">6.模型的保存和恢复<a class="headerlink" href="#6" title="Permanent link">&para;</a></h4>
+<ul>
+<li>只保存参数</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 只保存模型的权重</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s1">&#39;./my_model&#39;</span><span class="p">)</span>
+<span class="c1"># 加载模型的权重</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;my_model&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>保存整个模型</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 保存模型架构与权重在h5文件中</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;my_model.h5&#39;</span><span class="p">)</span>
+<span class="c1"># 加载模型：包括架构和对应的权重</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;my_model.h5&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<p><strong>总结</strong></p>
+<ul>
+<li>
+<p>了解Tensorflow2.0框架的用途及流程</p>
+<p>1.使用tf.data加载数据</p>
+<p>2、模型的建立与调试</p>
+<p>3、模型的训练</p>
+<p>4、预训练模型调用</p>
+<p>5、模型的部署</p>
+</li>
+<li>
+<p>知道tf2.0的张量及其操作</p>
+<p>张量是多维数组。</p>
+<p>1、创建方法：tf.constant()</p>
+<p>2、转换为numpy: np.array()或tensor.asnumpy()</p>
+<p>3、常用函数：加法，乘法，及各种聚合运算</p>
+<p>4、变量：tf.Variable()</p>
+</li>
+<li>
+<p>知道tf.keras中的相关模块及常用方法</p>
+<p>常用模块：models,losses,application等</p>
+<p>常用方法：</p>
+<div class="codehilite"><pre><span></span><code>1、导入tf.keras
+
+2、数据输入
+
+3、模型构建
+
+4、训练与评估
+
+5、回调函数
+
+6、模型的保存与恢复
+</code></pre></div>
+
+
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                计算机视觉（CV）
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../section2/" title="快速入门模型" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                快速入门模型
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

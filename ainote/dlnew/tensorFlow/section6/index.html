@@ -1,0 +1,1743 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>4.6 TF常用功能模块 - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#46-tf" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              4.6 TF常用功能模块
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    学习目标
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#461-fitcallbacks" class="md-nav__link">
+    4.6.1  fit的callbacks详解
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6.1  fit的callbacks详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4611-modelcheckpoint" class="md-nav__link">
+    4.6.1.1 ModelCheckpoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4612-tensorboard" class="md-nav__link">
+    4.6.1.2 Tensorboard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#462-tfdata" class="md-nav__link">
+    4.6.2 tf.data ：数据集的构建与预处理
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6.2 tf.data ：数据集的构建与预处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4621" class="md-nav__link">
+    4.6.2.1 数据集对象的建立
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6.2.1 数据集对象的建立">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1tfdatadatasetfrom_tensor_slices" class="md-nav__link">
+    1、tf.data.Dataset.from_tensor_slices()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4622" class="md-nav__link">
+    4.6.2.2 数据集对象的预处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4643" class="md-nav__link">
+    4.6.4.3 使用案例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4643_1" class="md-nav__link">
+    4.6.4.3 数据集元素的获取与使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4644-tfdata" class="md-nav__link">
+    4.6.4.4 使用tf.data的并行化策略提高训练流程效率
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#465" class="md-nav__link">
+    4.6.5 案例：实现猫狗图像分类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#466-imagedatagenerator" class="md-nav__link">
+    4.6.6 ImageDataGenerator介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6.6 ImageDataGenerator介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1、训练的时候读取本地图片以及类别
+  </a>
+  
+    <nav class="md-nav" aria-label="1、训练的时候读取本地图片以及类别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2、使用方法介绍
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#467-imagedatageneratorvgg" class="md-nav__link">
+    4.6.7 案例：ImageDataGenerator与迁移学习结合（基于VGG）
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6.7 案例：ImageDataGenerator与迁移学习结合（基于VGG）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4671" class="md-nav__link">
+    4.6.7.1 案例效果
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4672" class="md-nav__link">
+    4.6.7.2 数据集以及迁移需求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4673" class="md-nav__link">
+    4.6.7.3 思路和步骤
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4674" class="md-nav__link">
+    4.6.7.4  训练的时候读取本地图片以及类别
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4675-vgg-globalaveragepooling2d" class="md-nav__link">
+    4.6.7.5 VGG模型的修改添加全连接层-GlobalAveragePooling2D
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4676-freeze-vgg" class="md-nav__link">
+    4.6.7.6 freeze VGG模型结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4677" class="md-nav__link">
+    4.6.7.7 编译和训练
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4678" class="md-nav__link">
+    4.6.7.8 进行预测
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#466" class="md-nav__link">
+    4.6.6 总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="46-tf">4.6 TF常用功能模块<a class="headerlink" href="#46-tf" title="Permanent link">&para;</a></h1>
+<h2 id="_1">学习目标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>目标</li>
+<li>掌握Checkpoint使用</li>
+<li>掌握TensorBoard使用</li>
+<li>掌握data模块使用</li>
+<li>掌握ImageDataGenerator的使用</li>
+<li>应用</li>
+<li>无</li>
+</ul>
+<h2 id="461-fitcallbacks">4.6.1  fit的callbacks详解<a class="headerlink" href="#461-fitcallbacks" title="Permanent link">&para;</a></h2>
+<p>回调是在训练过程的给定阶段应用的一组函数。可以使用回调来获取培训期间内部状态和模型统计信息的视图。您可以将回调列表（作为关键字参数<code>callbacks</code>）传递给或类的<code>fit()</code>方法。然后将在训练的每个阶段调用回调的相关方法。</p>
+<ul>
+<li>定制化保存模型</li>
+<li>保存events文件</li>
+</ul>
+<h3 id="4611-modelcheckpoint">4.6.1.1 ModelCheckpoint<a class="headerlink" href="#4611-modelcheckpoint" title="Permanent link">&para;</a></h3>
+<p>from tensorflow.python.keras.callbacks import ModelCheckpoint</p>
+<ul>
+<li>keras.callbacks.ModelCheckpoint(filepath, monitor='val_loss', save_best_only=False, save_weights_only=False, mode='auto', period=1)</li>
+<li>Save the model after every epoch：每隔多少次迭代保存模型</li>
+<li>filepath: 保存模型字符串<ul>
+<li>如果设置 weights.{epoch:02d}-{val_loss:.2f}.hdf5格式，将会每隔epoch number数量并且将验证集的损失保存在该位置</li>
+<li>如果设置weights.{epoch:02d}-{val_acc:.2f}.hdf5，将会按照val_acc的值进行保存模型</li>
+</ul>
+</li>
+<li>monitor: quantity to monitor.设置为'val_acc'或者'val_loss'</li>
+<li>save_best_only: if save_best_only=True, 只保留比上次模型更好的结果</li>
+<li>save_weights_only: if True, 只保存去那种(model.save_weights(filepath)), else the full model is saved (model.save(filepath)).</li>
+<li>mode: one of {auto, min, max}. 如果save_best_only=True, 对于val_acc, 要设置max, 对于val_loss要设置min</li>
+<li>period: 迭代保存checkpoints的间隔</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">check</span> <span class="o">=</span> <span class="n">ModelCheckpoint</span><span class="p">(</span><span class="s1">&#39;./ckpt/singlenn_{epoch:02d}-{val_acc:.2f}.h5&#39;</span><span class="p">,</span>
+                                <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_acc&#39;</span><span class="p">,</span>
+                                <span class="n">save_best_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                <span class="n">save_weights_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+                                <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">SingleNN</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_label</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">check</span><span class="p">],</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</code></pre></div>
+
+<p>注意：</p>
+<p>1、使用ModelCheckpoint一定要在fit当中指定验证集才能使用，否则报错误。</p>
+<p>2、其中val_acc还是val_accuracy需要在这里指定</p>
+<div class="highlight"><pre><span></span><code>model.compile(optimizer=tf.keras.optimizers.Adam(),
+              loss=tf.keras.losses.sparse_categorical_crossentropy,
+              metrics=[&#39;accuracy&#39;])
+
+model.compile(optimizer=tf.keras.optimizers.Adam(),
+              loss=tf.keras.losses.sparse_categorical_crossentropy,
+              metrics=[&#39;acc&#39;])
+</code></pre></div>
+
+<h3 id="4612-tensorboard">4.6.1.2 Tensorboard<a class="headerlink" href="#4612-tensorboard" title="Permanent link">&para;</a></h3>
+<ul>
+<li>添加Tensorboard观察损失等情况</li>
+<li>keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=0, batch_size=32, write_graph=True, write_grads=False, write_images=False, embeddings_freq=0, embeddings_layer_names=None, embeddings_metadata=None, embeddings_data=None, update_freq='epoch')</li>
+<li>log_dir:保存事件文件目录</li>
+<li>write_graph=True：是否显示图结构</li>
+<li>write_images=False：是否显示图片</li>
+<li>write_grads=True:是否显示梯度<code>histogram_freq</code> 必须大于0</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 添加tensoboard观察</span>
+ <span class="n">tensorboard</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;./graph&#39;</span><span class="p">,</span> <span class="n">histogram_freq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                  <span class="n">write_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">write_images</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">SingleNN</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_label</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">tensorboard</span><span class="p">])</span>
+</code></pre></div>
+
+<ul>
+<li>打开终端查看：</li>
+</ul>
+<div class="highlight"><pre><span></span><code># 指定存在文件的目录，打开下面命令
+tensorboard --logdir=&quot;./&quot;
+</code></pre></div>
+
+<p>这是CNN mnist100案例中的效果：</p>
+<ul>
+<li>1、损失和准确率</li>
+</ul>
+<p><img alt="" src="../../images/epoch10%E6%AD%A5%E7%BB%93%E6%9E%9C.jpg" /></p>
+<ul>
+<li>2、图结构显示：</li>
+</ul>
+<p><img src="../images/图结构.jpg" style="zoom:50%;" /></p>
+<ul>
+<li>3、权重参数显示</li>
+</ul>
+<p><img alt="" src="../../images/%E6%9D%83%E9%87%8D%E5%8F%82%E6%95%B0%E6%98%BE%E7%A4%BA.jpg" /></p>
+<h3 id="462-tfdata">4.6.2 tf.data ：数据集的构建与预处理<a class="headerlink" href="#462-tfdata" title="Permanent link">&para;</a></h3>
+<ul>
+<li>问题引入：</li>
+</ul>
+<p>在大部分时候，我们希望使用自己的数据集来训练模型。然而，面对一堆格式不一的原始数据文件，将其预处理并读入程序的过程往往十分繁琐，甚至比模型的设计还要耗费精力。比如，为了读入一批图像文件，我们可能需要纠结于 python 的各种图像处理包（比如 pillow ），自己设计 Batch 的生成方式，最后还可能在运行的效率上不尽如人意。为此，TensorFlow 提供了 tf.data 这一模块，包括了一套灵活的数据集构建 API，能够帮助我们快速、高效地构建数据输入的流水线，尤其适用于数据量巨大的场景。</p>
+<h4 id="4621">4.6.2.1 数据集对象的建立<a class="headerlink" href="#4621" title="Permanent link">&para;</a></h4>
+<ul>
+<li>tf.data 的核心是 tf.data.Dataset 类，提供了对数据集的高层封装。</li>
+<li>**tf.data.Dataset 由一系列的可迭代访问的元素（element）组成，每个元素包含一个或多个张量。**比如说，对于一个由图像组成的数据集，每个元素可以是一个形状为 长×宽×通道数 的图片张量，也可以是由图片张量和图片标签张量组成的元组（Tuple）。</li>
+</ul>
+<h5 id="1tfdatadatasetfrom_tensor_slices">1、tf.data.Dataset.from_tensor_slices()<a class="headerlink" href="#1tfdatadatasetfrom_tensor_slices" title="Permanent link">&para;</a></h5>
+<p>最基础的建立 tf.data.Dataset 的方法是使用 tf.data.Dataset.from_tensor_slices() ，适用于数据量较小（能够整个装进内存）的情况。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">2016</span><span class="p">,</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2019</span><span class="p">])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">12000</span><span class="p">,</span> <span class="mi">14000</span><span class="p">,</span> <span class="mi">15000</span><span class="p">,</span> <span class="mi">16500</span><span class="p">,</span> <span class="mi">17500</span><span class="p">])</span>
+
+<span class="c1"># 也可以使用NumPy数组，效果相同</span>
+<span class="c1"># X = np.array([2015, 2016, 2017, 2018, 2019])</span>
+<span class="c1"># Y = np.array([12000, 14000, 15000, 16500, 17500])</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span> 
+</code></pre></div>
+
+<p>输出</p>
+<div class="highlight"><pre><span></span><code>2013 12000
+2014 14000
+2015 15000
+2016 16500
+2017 17500
+</code></pre></div>
+
+<p>同样类似地，我们可以载入前章的 MNIST 数据集：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span> 
+
+<span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">train_label</span><span class="p">),</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="c1"># [60000, 28, 28, 1]</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mnist_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">train_data</span><span class="p">,</span> <span class="n">train_label</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">mnist_dataset</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">label</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</code></pre></div>
+
+<h4 id="4622">4.6.2.2 数据集对象的预处理<a class="headerlink" href="#4622" title="Permanent link">&para;</a></h4>
+<p>tf.data.Dataset 类为我们提供了多种数据集预处理方法。最常用的如：</p>
+<ul>
+<li>1、Dataset.map(f) ：</li>
+<li>对数据集中的每个元素应用函数 f ，得到一个新的数据集（这部分往往结合 tf.io 进行读写和解码文件， tf.image 进行图像处理）；</li>
+<li>2、Dataset.shuffle(buffer_size) ：</li>
+<li>将数据集打乱（设定一个固定大小的缓冲区（Buffer），取出前 buffer_size 个元素放入，并从缓冲区中随机采样，采样后的数据用后续数据替换）；</li>
+<li>3、Dataset.batch(batch_size) ：</li>
+<li>将数据集分成批次，即对每 batch_size 个元素，使用 tf.stack() 在第 0 维合并，成为一个元素。</li>
+<li>4、Dataset.prefetch() ：</li>
+<li>
+<p>预取出数据集中的若干个元素</p>
+</li>
+<li>
+<p>5、除此以外，还有 Dataset.repeat() （重复数据集的元素）、 Dataset.reduce() （与 Map 相对的聚合操作）、 Dataset.take ()等，可参考 API 文档 进一步了解。</p>
+</li>
+</ul>
+<h4 id="4643">4.6.4.3 使用案例<a class="headerlink" href="#4643" title="Permanent link">&para;</a></h4>
+<p>1、使用 Dataset.map() 将所有图片旋转 90 度：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">rot90</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span>
+
+<span class="n">mnist_dataset</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rot90</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">mnist_dataset</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">label</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p>2、使用 Dataset.batch() 将数据集划分批次，每个批次的大小为 4：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 获取批次数据</span>
+<span class="n">mnist_dataset</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">mnist_dataset</span><span class="p">:</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p>3、使用 Dataset.shuffle() 将数据打散后再设置批次，缓存大小设置为 10000</p>
+<ul>
+<li>设定一个固定大小为 buffer_size 的缓冲区（Buffer）；初始化时，取出数据集中的前 buffer_size 个元素放入缓冲区；</li>
+<li>每次需要从数据集中取元素时，即从缓冲区中随机采样一个元素并取出，然后从后续的元素中取出一个放回到之前被取出的位置，以维持缓冲区的大小。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">mnist_dataset</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">mnist_dataset</span><span class="p">:</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p>注：Dataset.shuffle() 时缓冲区大小 buffer_size 的设置，每次的数据都会被随机打散。当 buffer_size 设置为 1 时，其实等价于没有进行任何打散。</p>
+<ul>
+<li>当数据集的标签顺序分布极为不均匀（例如二元分类时数据集前 N 个的标签为 0，后 N 个的标签为 1）时，较小的缓冲区大小会使得训练时取出的 Batch 数据很可能全为同一标签，从而影响训练效果。一般而言，数据集的顺序分布若较为随机，则缓冲区的大小可较小，否则则需要设置较大的缓冲区。</li>
+</ul>
+<h4 id="4643_1">4.6.4.3 数据集元素的获取与使用<a class="headerlink" href="#4643_1" title="Permanent link">&para;</a></h4>
+<p>1、构建好数据并预处理后，我们需要从其中迭代获取数据以用于训练。tf.data.Dataset 是一个 Python 的可迭代对象，因此可以使用 For 循环迭代获取数据，即：</p>
+<div class="highlight"><pre><span></span><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="o">...</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="o">...</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+    <span class="c1"># 对张量a, b, c等进行操作，例如送入模型进行训练</span>
+</code></pre></div>
+
+<p>2、可以使用 iter() 显式创建一个 Python 迭代器并使用 next() 获取下一个元素，即：</p>
+<div class="highlight"><pre><span></span><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="o">...</span><span class="p">))</span>
+<span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">a_0</span><span class="p">,</span> <span class="n">b_0</span><span class="p">,</span> <span class="n">c_0</span><span class="p">,</span> <span class="o">...</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="n">a_1</span><span class="p">,</span> <span class="n">b_1</span><span class="p">,</span> <span class="n">c_1</span><span class="p">,</span> <span class="o">...</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+</code></pre></div>
+
+<p>3、Keras 支持使用 tf.data.Dataset 直接作为输入。当调用 tf.keras.Model 的 fit() 和 evaluate() 方法时，可以将参数中的输入数据 x 指定为一个元素格式为 (输入数据, 标签数据) 的 Dataset ，并忽略掉参数中的标签数据 y 。例如，对于上述的 MNIST 数据集，常规的 Keras 训练方式是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">train_label</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+</code></pre></div>
+
+<p>使用 tf.data.Dataset 后，我们可以直接传入 Dataset ：</p>
+<div class="highlight"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">mnist_dataset</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>如果已经通过 Dataset.batch() 方法划分了数据集的批次，所以这里fit中也无需提供批次的大小。</strong></p>
+<h4 id="4644-tfdata">4.6.4.4 使用tf.data的并行化策略提高训练流程效率<a class="headerlink" href="#4644-tfdata" title="Permanent link">&para;</a></h4>
+<p>当训练模型时，我们希望充分利用计算资源，减少 CPU/GPU 的空载时间。然而有时，数据集的准备处理非常耗时，使得我们在每进行一次训练前都需要花费大量的时间准备待训练的数据，而此时 GPU 只能空载而等待数据，造成了计算资源的浪费。</p>
+<p>tf.data 的数据集对象为我们提供了 Dataset.prefetch() 方法，使得我们可以让数据集对象 Dataset 在训练时预取出若干个元素，使得在 GPU 训练的同时 CPU 可以准备数据，从而提升训练流程的效率</p>
+<p><img src="../images/prefetch.jpg" style="zoom:50%;" /></p>
+<p>使用：</p>
+<div class="highlight"><pre><span></span><code><span class="n">mnist_dataset</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>
+<p>参数 buffer_size 既可手工设置，也可设置为 tf.data.experimental.AUTOTUNE 从而由 TensorFlow 自动选择合适的数值。</p>
+</li>
+<li>
+<p>2、还有一种方式也能够提高利用CPU资源</p>
+</li>
+<li>Dataset.map() 也可以利用多 GPU 资源，并行化地对数据项进行变换，从而提高效率。</li>
+</ul>
+<p>通过设置 Dataset.map() 的 num_parallel_calls 参数实现数据转换的并行化。上面的是未并行化的图示，下面是两核并行的图示，时间会缩小</p>
+<p><img src="../images/map并行化.jpg" style="zoom:40%;" /></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 添加参数使用，num_parallel_calls 设置为 tf.data.experimental.AUTOTUNE 以让 TensorFlow 自动选择合适的数值</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+        <span class="n">map_func</span><span class="o">=</span><span class="n">_decode_and_resize</span><span class="p">,</span> 
+        <span class="n">num_parallel_calls</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+</code></pre></div>
+
+<p>通过 prefetch() 的使用和在 map() 过程中加入 num_parallel_calls 参数，模型训练的时间可缩减至原来的一半甚至更低。</p>
+<p><img src="../images/两者一起使用.jpg" style="zoom:30%;" /></p>
+<p>注：纵轴为每 epoch 训练所需时间，单位：秒</p>
+<h3 id="465">4.6.5 案例：实现猫狗图像分类<a class="headerlink" href="#465" title="Permanent link">&para;</a></h3>
+<p>数据集来自 kaggle 上的一个竞赛：<a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition">Dogs vs. Cats</a>，训练集有25000张，猫狗各占一半。测试集12500张，没有标定是猫还是狗。</p>
+<p><img src="../images/猫狗.jpg" style="zoom:30%;" /></p>
+<ul>
+<li>目的：猫狗图片二分类任务为示例</li>
+<li>使用 tf.data 结合 tf.io 和 tf.image 建立Dataset 数据集</li>
+<li>数据集可取这里下载：<a href="https://www.floydhub.com/fastai/datasets/cats-vs-dogs">https://www.floydhub.com/fastai/datasets/cats-vs-dogs</a></li>
+<li>步骤：</li>
+<li>1、数据集的获取和构建</li>
+<li>2、模型构建和封装</li>
+<li>3、训练以及测试过程实现</li>
+</ul>
+<p>1、数据集的获取和构建</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CatOrDog</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;猫狗分类</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span>
+        <span class="c1"># 训练目录</span>
+    <span class="n">train_cats_dir</span> <span class="o">=</span> <span class="s1">&#39;/root/cv_project/tf_example/cats_vs_dogs/train/cats/&#39;</span>
+    <span class="n">train_dogs_dir</span> <span class="o">=</span> <span class="s1">&#39;/root/cv_project/tf_example/cats_vs_dogs/train/dogs/&#39;</span>
+    <span class="c1"># 验证目录</span>
+    <span class="n">test_cats_dir</span> <span class="o">=</span> <span class="s1">&#39;/root/cv_project/tf_example/cats_vs_dogs/valid/cats/&#39;</span>
+    <span class="n">test_dogs_dir</span> <span class="o">=</span> <span class="s1">&#39;/root/cv_project/tf_example/cats_vs_dogs/valid/dogs/&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 1、读取训练集的猫狗文件</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_cat_filenames</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">train_cats_dir</span> <span class="o">+</span> <span class="n">filename</span>
+                                                <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">train_cats_dir</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_dog_filenames</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">train_dogs_dir</span> <span class="o">+</span> <span class="n">filename</span>
+                                                <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">train_dogs_dir</span><span class="p">)])</span>
+        <span class="c1"># 2、猫狗文件列表合并，并且初始化猫狗的目标值，0为猫，1为狗</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_filenames</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">train_cat_filenames</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_dog_filenames</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_labels</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_cat_filenames</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_dog_filenames</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)],</span>
+            <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<p>定义数据的获取方法，通过tf.data指定</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">get_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;获取dataset批次数据</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">train_filenames</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_labels</span><span class="p">))</span>
+        <span class="c1"># 进行数据的map, 随机，批次和预存储</span>
+        <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+            <span class="n">map_func</span><span class="o">=</span><span class="n">_decode_and_resize</span><span class="p">,</span>
+            <span class="n">num_parallel_calls</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+        <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+        <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+        <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">train_dataset</span>
+
+<span class="c1"># 图片处理函数，读取，解码并且进行输入形状修改</span>
+<span class="k">def</span> <span class="nf">_decode_and_resize</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="n">image_string</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">image_decoded</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">decode_jpeg</span><span class="p">(</span><span class="n">image_string</span><span class="p">)</span>
+    <span class="n">image_resized</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image_decoded</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span> <span class="o">/</span> <span class="mf">255.0</span>
+    <span class="k">return</span> <span class="n">image_resized</span><span class="p">,</span> <span class="n">label</span>
+</code></pre></div>
+
+<p>2、模型构建和封装</p>
+<p>通过构造两层卷积+两个全连接层的网络</p>
+<div class="highlight"><pre><span></span><code>        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)</span>
+        <span class="p">])</span>
+</code></pre></div>
+
+<p>3、训练以及测试过程实现</p>
+<p>模型训练过程,这里就免去指定ckpt以及tensorboard的callbacks了，可以自己去指定实验</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">train_dataset</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;训练过程</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+            <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">learning_rate</span><span class="p">),</span>
+            <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">sparse_categorical_crossentropy</span><span class="p">,</span>
+            <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">sparse_categorical_accuracy</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">num_epochs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s2">&quot;./ckpt/cat_or_dogs.h5&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>测试过程</p>
+<ul>
+<li>1、需要提供一个读取测试数据及的dataset数据集</li>
+<li>2、进行model的预测，可以先进行模型保存之后，再次读取进行预测</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># 1、构建测试数据集</span>
+        <span class="n">test_cat_filenames</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">test_cats_dir</span> <span class="o">+</span> <span class="n">filename</span>
+                                          <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">test_cats_dir</span><span class="p">)])</span>
+        <span class="n">test_dog_filenames</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">test_dogs_dir</span> <span class="o">+</span> <span class="n">filename</span>
+                                          <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">CatOrDog</span><span class="o">.</span><span class="n">test_dogs_dir</span><span class="p">)])</span>
+        <span class="n">test_filenames</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">test_cat_filenames</span><span class="p">,</span> <span class="n">test_dog_filenames</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">test_labels</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">test_cat_filenames</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">test_dog_filenames</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)],</span>
+            <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="c1"># 2、构建dataset</span>
+        <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">test_filenames</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">))</span>
+        <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">test_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_decode_and_resize</span><span class="p">)</span>
+        <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">test_dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+
+        <span class="c1"># 3、加载模型进行评估</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;./ckpt/cat_or_dogs.h5&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s2">&quot;./ckpt/cat_or_dogs.h5&quot;</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">metrics_names</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">))</span>
+</code></pre></div>
+
+<h3 id="466-imagedatagenerator">4.6.6 ImageDataGenerator介绍<a class="headerlink" href="#466-imagedatagenerator" title="Permanent link">&para;</a></h3>
+<p>当我们需要做数据增强的时候，我们需要通过实时数据增强生成张量图像数据批次。数据将不断循环（按批次）。下面就介绍一个强大的工具，能够对于提供过来的本地图片读取的数据还是其他工具读取的图片数据进行在线数据怎强。</p>
+<h4 id="1">1、训练的时候读取本地图片以及类别<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">ImageDataGenerator</span><span class="p">(</span>
+    <span class="n">featurewise_center</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">samplewise_center</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">featurewise_std_normalization</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">samplewise_std_normalization</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">zca_whitening</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">zca_epsilon</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span> <span class="n">rotation_range</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width_shift_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">height_shift_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">brightness_range</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">shear_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">zoom_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">channel_shift_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">fill_mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cval</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">horizontal_flip</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">vertical_flip</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">rescale</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">preprocessing_function</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>
+<p>完整参数介绍参考TensorFlow官网文档：<a href="https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator#view-aliases">https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator#view-aliases</a></p>
+</li>
+<li>
+<p>train_generator = ImageDataGenerator()</p>
+</li>
+<li><strong>生产图片的批次张量值并且提供数据增强功能</strong></li>
+<li>rescale=1.0 / 255,:标准化</li>
+<li>zca_whitening=False: # zca白化的作用是针对图片进行PCA降维操作，减少图片的冗余信息 </li>
+<li>rotation_range=20:默认0， 旋转角度，在这个角度范围随机生成一个值</li>
+<li>width_shift_range=0.2,:默认0，水平平移</li>
+<li>height_shift_range=0.2:默认0， 垂直平移</li>
+<li>shear_range=0.2:# 平移变换</li>
+<li>horizontal_flip=True:水平翻转</li>
+<li>zoom_range:随机缩放的范围</li>
+</ul>
+<h5 id="2">2、使用方法介绍<a class="headerlink" href="#2" title="Permanent link">&para;</a></h5>
+<ul>
+<li>使用flow(x, y, batch_size)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">cifar10</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="n">datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
+        <span class="n">featurewise_center</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">featurewise_std_normalization</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">rotation_range</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">width_shift_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">height_shift_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">horizontal_flip</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="n">batches</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">datagen</span><span class="o">.</span><span class="n">flow</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>
+<p>使用train_generator.flow_from_directory(</p>
+<ul>
+<li>
+<p>directory=path,# 读取目录</p>
+</li>
+<li>
+<p>target_size=(h,w),# 目标形状</p>
+</li>
+<li>
+<p>batch_size=size,# 批数量大小</p>
+</li>
+<li>
+<p>class_mode='binary', # 目标值格式，One of "categorical", "binary", "sparse",</p>
+</li>
+<li>
+<p>"categorical" ：2D one-hot encoded labels</p>
+</li>
+<li>
+<p>"binary" will be 1D binary labels</p>
+</li>
+<li>
+<p>shuffle=True</p>
+</li>
+<li>
+<p>这个API固定了读取的目录格式，参考：</p>
+</li>
+<li>
+<p><code>python
+  data/
+      train/
+          dogs/
+              dog001.jpg
+              dog002.jpg
+              ...
+          cats/
+              cat001.jpg
+              cat002.jpg
+              ...
+      validation/
+          dogs/
+              dog001.jpg
+              dog002.jpg
+              ...
+          cats/
+              cat001.jpg
+              cat002.jpg
+              ...</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="467-imagedatageneratorvgg">4.6.7 案例：ImageDataGenerator与迁移学习结合（基于VGG）<a class="headerlink" href="#467-imagedatageneratorvgg" title="Permanent link">&para;</a></h3>
+<h4 id="4671">4.6.7.1 案例效果<a class="headerlink" href="#4671" title="Permanent link">&para;</a></h4>
+<p><img src="../images/modelckpt.png" style="zoom:50%;" /></p>
+<div class="highlight"><pre><span></span><code><span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+ <span class="mi">1</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">=&gt;............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">3</span><span class="p">:</span><span class="mi">20</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.6811</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.1562</span>
+ <span class="mi">2</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">===&gt;..........................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">3</span><span class="p">:</span><span class="mo">01</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.5769</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.2500</span>
+ <span class="mi">3</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">=====&gt;........................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">2</span><span class="p">:</span><span class="mi">44</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.4728</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.3958</span>
+ <span class="mi">4</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">========&gt;.....................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">2</span><span class="p">:</span><span class="mi">27</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.3843</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.4531</span>
+ <span class="mi">5</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">==========&gt;...................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">2</span><span class="p">:</span><span class="mi">14</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.3045</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.4938</span>
+ <span class="mi">6</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">============&gt;.................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">1</span><span class="p">:</span><span class="mi">58</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.2557</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.5156</span>
+ <span class="mi">7</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">===============&gt;..............</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">1</span><span class="p">:</span><span class="mi">33</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.1790</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.5759</span>
+ <span class="mi">8</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">=================&gt;............</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">1</span><span class="p">:</span><span class="mi">18</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.1153</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.6211</span>
+ <span class="mi">9</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">===================&gt;..........</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">1</span><span class="p">:</span><span class="mo">02</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.0567</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.6562</span>
+<span class="mi">10</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">======================&gt;.......</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">46</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.0043</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.6875</span> 
+<span class="mi">11</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">========================&gt;.....</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">31</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.9580</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.7159</span>
+<span class="mi">12</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">==========================&gt;...</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">15</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.9146</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.7344</span>
+<span class="mi">13</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">249</span><span class="n">s</span> <span class="mi">19</span><span class="n">s</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.8743</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.7519</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.3906</span> <span class="o">-</span> <span class="n">val_acc</span><span class="p">:</span> <span class="mf">0.9000</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+ <span class="mi">1</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">=&gt;............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">2</span><span class="p">:</span><span class="mi">56</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.3862</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">1.0000</span>
+ <span class="mi">2</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">===&gt;..........................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">2</span><span class="p">:</span><span class="mi">44</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.3019</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">1.0000</span>
+ <span class="mi">3</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">=====&gt;........................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">2</span><span class="p">:</span><span class="mi">35</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.2613</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">1.0000</span>
+ <span class="mi">4</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">========&gt;.....................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">2</span><span class="p">:</span><span class="mo">01</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.2419</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9844</span>
+ <span class="mi">5</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">==========&gt;...................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">1</span><span class="p">:</span><span class="mi">49</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.2644</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9688</span>
+ <span class="mi">6</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">============&gt;.................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">1</span><span class="p">:</span><span class="mi">36</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.2494</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9688</span>
+ <span class="mi">7</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">===============&gt;..............</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">1</span><span class="p">:</span><span class="mi">24</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.2362</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9732</span>
+ <span class="mi">8</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">=================&gt;............</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.2234</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9766</span>
+ <span class="mi">9</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">===================&gt;..........</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">58</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.2154</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9757</span> 
+<span class="mi">10</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">======================&gt;.......</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">44</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.2062</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9781</span>
+<span class="mi">11</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">========================&gt;.....</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">29</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.2007</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9801</span>
+<span class="mi">12</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">==========================&gt;...</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">14</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1990</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9792</span>
+
+
+<span class="mi">13</span><span class="o">/</span><span class="mi">13</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">243</span><span class="n">s</span> <span class="mi">19</span><span class="n">s</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1923</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9809</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.1929</span> <span class="o">-</span> <span class="n">val_acc</span><span class="p">:</span> <span class="mf">0.9300</span>
+</code></pre></div>
+
+<h4 id="4672">4.6.7.2 数据集以及迁移需求<a class="headerlink" href="#4672" title="Permanent link">&para;</a></h4>
+<p>数据集是某场景下5个类别图片的识别</p>
+<p><img alt="" src="../../images/5%E4%B8%AA%E7%B1%BB%E5%88%AB%E8%AF%86%E5%88%AB.png" /></p>
+<p>我们利用现有的VGG模型去进行微调</p>
+<h4 id="4673">4.6.7.3 思路和步骤<a class="headerlink" href="#4673" title="Permanent link">&para;</a></h4>
+<ul>
+<li>读取本地的图片数据以及类别</li>
+<li>keras.preprocessing.image import ImageDataGenerator提供了读取转换功能</li>
+<li>模型的结构修改（添加我们自定的分类层）</li>
+<li>freeze掉原始VGG模型</li>
+<li>编译以及训练和保存模型方式</li>
+<li>输入数据进行预测</li>
+</ul>
+<h4 id="4674">4.6.7.4  训练的时候读取本地图片以及类别<a class="headerlink" href="#4674" title="Permanent link">&para;</a></h4>
+<ul>
+<li>基于上面工具的读取代码</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">train_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
+            <span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span>
+            <span class="n">shear_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+            <span class="n">zoom_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+            <span class="n">horizontal_flip</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">test_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">)</span>
+
+<span class="n">train_generator</span> <span class="o">=</span> <span class="n">train_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+                                                    <span class="s1">&#39;data/train&#39;</span><span class="p">,</span>
+                                                    <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span>
+                                                    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                                                    <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+
+<span class="n">validation_generator</span> <span class="o">=</span> <span class="n">test_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+                                                        <span class="s1">&#39;data/validation&#39;</span><span class="p">,</span>
+                                                        <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span>
+                                                        <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                                                        <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+<span class="c1"># 使用fit_generator</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span>
+<span class="n">train_generator</span><span class="p">,</span>
+<span class="n">steps_per_epoch</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+<span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="n">validation_data</span><span class="o">=</span><span class="n">validation_generator</span><span class="p">,</span>
+<span class="n">validation_steps</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+</code></pre></div>
+
+<p>代码：</p>
+<p>首先导入包</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.applications.vgg16</span> <span class="kn">import</span> <span class="n">VGG16</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TF_CPP_MIN_LOG_LEVEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span>
+</code></pre></div>
+
+<p>我们定义一个迁移学习的类，然后进行相关属性设置和读取代码</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TransferModel</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># 定义训练和测试图片的变化方法，标准化以及数据增强</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_generator</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span>
+                                                  <span class="n">shear_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                                                  <span class="n">zoom_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                                                  <span class="n">horizontal_flip</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_generator</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">)</span>
+
+        <span class="c1"># 指定训练数据和测试数据的目录</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_dir</span> <span class="o">=</span> <span class="s2">&quot;./data/train&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span> <span class="o">=</span> <span class="s2">&quot;./data/test&quot;</span>
+
+        <span class="c1"># 定义图片训练相关网络参数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+
+    <span class="k">def</span> <span class="nf">read_img_to_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        读取本地图片以及类别</span>
+<span class="sd">        :return:训练数据和测试数据迭代器</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">train_gen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_generator</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">train_dir</span><span class="p">,</span>
+                                                             <span class="n">target_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_size</span><span class="p">,</span>
+                                                             <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+                                                             <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span>
+                                                             <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">test_gen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_generator</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span><span class="p">,</span>
+                                                           <span class="n">target_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_size</span><span class="p">,</span>
+                                                           <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+                                                           <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span>
+                                                           <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">train_gen</span><span class="p">,</span> <span class="n">test_gen</span>
+</code></pre></div>
+
+<p>打印结果为</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">keras_preprocessing</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">DirectoryIterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x12f52cf28</span><span class="o">&gt;</span>
+</code></pre></div>
+
+<h4 id="4675-vgg-globalaveragepooling2d">4.6.7.5 VGG模型的修改添加全连接层-GlobalAveragePooling2D<a class="headerlink" href="#4675-vgg-globalaveragepooling2d" title="Permanent link">&para;</a></h4>
+<ul>
+<li>notop模型：</li>
+<li><strong>是否包含最后的3个全连接层（whether to include the 3 fully-connected layers at the top of the network）。用来做fine-tuning专用，专门开源了这类模型。</strong> </li>
+</ul>
+<p>‘weights='imagenet'’，意思是VGG在imagenet比赛中预训练的权重，使用resnet训练</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 在__init__中添加</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">base_model</span> <span class="o">=</span> <span class="n">VGG16</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">,</span> <span class="n">include_top</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p>base_model会有相关属性，模型的输入结构：inputs，模型的输出结构，我们修改需要得到已有VGG的输入和自定义模型的输出构建成一个新的模型。</p>
+<p>模型源码：</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">if</span> <span class="n">include_top</span><span class="p">:</span>
+        <span class="c1"># Classification block</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;flatten&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4096</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fc1&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4096</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fc2&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;predictions&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pooling</span> <span class="o">==</span> <span class="s1">&#39;avg&#39;</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">GlobalAveragePooling2D</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">pooling</span> <span class="o">==</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">GlobalMaxPooling2D</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li><strong>一个GlobalAveragePooling2D + 两个全连接层</strong></li>
+<li>在图像分类任务中，模型经过最后CNN层后的尺寸为[bath_size, img_width, img_height, channels]，通常的做法是：接一个flatten layer，将尺寸变为[batch_size, w * h * channels]再至少接一个FC layer，这样做的最大问题是：<strong>模型参数多，且容易过拟合。</strong></li>
+<li><strong>利用pooling layer来替代最后的FC layer</strong></li>
+</ul>
+<p>解释如下：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Conv2D</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">MaxPooling2D</span><span class="p">,</span> <span class="n">GlobalAveragePooling2D</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2048</span><span class="p">])</span>  
+<span class="c1"># 假定最后一层CNN的层输出为(None, 8, 8, 2048)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">GlobalAveragePooling2D</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;avg_pool&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># shape=(?, 2048)</span>
+<span class="c1"># 取每一个特征图的平均值作为输出，用以替代全连接层</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;predictions&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># shape=(?, 1000)</span>
+<span class="c1"># 1000为类别</span>
+</code></pre></div>
+
+<ul>
+<li>5类图片识别模型修改</li>
+</ul>
+<p>我们需要拿到基础VGG模型，并且VGG提供所有层参数训练好的模型和没有全连接层参数的模型notop模型</p>
+<div class="highlight"><pre><span></span><code>from tensorflow.keras import Model
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">refine_base_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        微调VGG结构，5blocks后面+全局平均池化（减少迁移学习的参数数量）+两个全连接层</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1、获取原notop模型得出</span>
+        <span class="c1"># [?, ?, ?, 512]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># 2、在输出后面增加我们结构</span>
+        <span class="c1"># [?, ?, ?, 512]----&gt;[?, 1 * 1 * 512]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">GlobalAveragePooling2D</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># 3、定义新的迁移模型</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y_predict</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># model定义新模型</span>
+        <span class="c1"># VGG 模型的输入， 输出：y_predict</span>
+        <span class="n">transfer_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">y_predict</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">transfer_model</span>
+</code></pre></div>
+
+<h4 id="4676-freeze-vgg">4.6.7.6 freeze VGG模型结构<a class="headerlink" href="#4676-freeze-vgg" title="Permanent link">&para;</a></h4>
+<p>目的：让VGG结构当中的权重参数不参与训练,只训练我们添加的最后两层全连接网络的权重参数</p>
+<ul>
+<li>通过使用每一层的layer.trainable=False</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">freeze_vgg_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        freeze掉VGG的结构</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">layers</span><span class="p">:</span>
+            <span class="n">layer</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="bp">False</span>
+</code></pre></div>
+
+<h4 id="4677">4.6.7.7 编译和训练<a class="headerlink" href="#4677" title="Permanent link">&para;</a></h4>
+<ul>
+<li>编译</li>
+</ul>
+<p>同样还是进行编译， 在迁移学习中算法：学习率初始化较小的值，0.001,0.0001，因为已经在已训练好的模型基础之上更新，所以不需要太大学习率去学习</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">compile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        编译模型</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(),</span>
+                      <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">sparse_categorical_crossentropy</span><span class="p">,</span>
+                      <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">fit_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">train_gen</span><span class="p">,</span> <span class="n">test_gen</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        训练模型，model.fit_generator()不是选择model.fit()</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 每一次迭代准确率记录的h5文件</span>
+        <span class="n">modelckpt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">ModelCheckpoint</span><span class="p">(</span><span class="s1">&#39;./ckpt/transfer_{epoch:02d}-{val_accuracy:.2f}.h5&#39;</span><span class="p">,</span>
+                                                       <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">,</span>
+                                                       <span class="n">save_best_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                       <span class="n">save_weights_only</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                                       <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+                                                       <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">train_gen</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="n">test_gen</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">modelckpt</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="bp">None</span>
+</code></pre></div>
+
+<ul>
+<li>main函数</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">tm</span> <span class="o">=</span> <span class="n">TransferModel</span><span class="p">()</span>
+
+    <span class="n">train_gen</span><span class="p">,</span> <span class="n">test_gen</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">read_img_to_generator</span><span class="p">()</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">refine_vgg_model</span><span class="p">()</span>
+
+    <span class="n">tm</span><span class="o">.</span><span class="n">freeze_vgg_model</span><span class="p">()</span>
+    <span class="n">tm</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">tm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_gen</span><span class="p">,</span> <span class="n">test_gen</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="4678">4.6.7.8 进行预测<a class="headerlink" href="#4678" title="Permanent link">&para;</a></h4>
+<p>预测的步骤就是读取图片以及处理到模型中预测，加载我们训练的模型</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;预测输入图片的类别</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1、加载模型训练好的权重</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s2">&quot;./ckpt/transfer_01-0.84.h5&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 2、读取图片处理图片数据，形状，数据归一化</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;./data/test/dinosaurs/402.jpg&quot;</span><span class="p">)</span>
+        <span class="n">image_decoded</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">decode_jpeg</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="n">image_resized</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image_decoded</span><span class="p">,</span> <span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">])</span> <span class="o">/</span> <span class="mf">255.0</span>
+        <span class="c1"># 3维--&gt;4维的形状改变</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">image_resized</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">image_resized</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">image_resized</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">image_resized</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;修改之后的形状：&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="c1"># 3、输入数据做预测</span>
+        <span class="n">y_predict</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_predict</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+
+        <span class="k">return</span> <span class="bp">None</span>
+</code></pre></div>
+
+<p>建立图片类别的字典</p>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">label_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;bus&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;dinosaurs&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="s1">&#39;elephants&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="s1">&#39;flowers&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="s1">&#39;horse&#39;</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<h3 id="466">4.6.6 总结<a class="headerlink" href="#466" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Checkpoint使用</li>
+<li>TensorBoard使用</li>
+<li>tf.data模块使用</li>
+<li>ImageDataGenerator的使用</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

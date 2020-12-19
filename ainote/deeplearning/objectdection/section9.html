@@ -1,0 +1,1080 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>SSD算法原理 | </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../objectdection/section10.html" />
+    
+    
+    <link rel="prev" href="../objectdection/section8.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="5.9"
+        data-chapter-title="SSD算法原理"
+        data-filepath="objectdection/section9.md"
+        data-basepath=".."
+        data-revision="Sun Oct 11 2020 09:58:20 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        计算机视觉与深度学习课程
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="introduction/index.html">
+            
+                
+                    <a href="../introduction/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        计算机视觉简介
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="introduction/section1.html">
+            
+                
+                    <a href="../introduction/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        计算机视觉概念
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="introduction/section2.html">
+            
+                
+                    <a href="../introduction/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        计算机视觉任务
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="tensorFlow/index.html">
+            
+                
+                    <a href="../tensorFlow/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        tensorflow入门
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="tensorFlow/section1.html">
+            
+                
+                    <a href="../tensorFlow/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        TensorFlow和Keras简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="tensorFlow/section2.html">
+            
+                
+                    <a href="../tensorFlow/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        快速入门模型
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="deeplearning/index.html">
+            
+                
+                    <a href="../deeplearning/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        深度神经网络
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="deeplearning/section1.html">
+            
+                
+                    <a href="../deeplearning/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        神经网络简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="deeplearning/section2.html">
+            
+                
+                    <a href="../deeplearning/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        常见的损失函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="deeplearning/section3.html">
+            
+                
+                    <a href="../deeplearning/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        深度学习的优化方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="deeplearning/section4.html">
+            
+                
+                    <a href="../deeplearning/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        深度学习的正则化
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="deeplearning/section5.html">
+            
+                
+                    <a href="../deeplearning/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        神经网络案例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="deeplearning/section6.html">
+            
+                
+                    <a href="../deeplearning/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        卷积神经网络CNN
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="imageClassification/index.html">
+            
+                
+                    <a href="../imageClassification/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        图像分类
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="imageClassification/section1.html">
+            
+                
+                    <a href="../imageClassification/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        图像分类简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="imageClassification/section2.html">
+            
+                
+                    <a href="../imageClassification/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        AlexNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="imageClassification/section3.html">
+            
+                
+                    <a href="../imageClassification/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        VGG
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="imageClassification/section4.html">
+            
+                
+                    <a href="../imageClassification/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        GoogLeNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="imageClassification/section5.html">
+            
+                
+                    <a href="../imageClassification/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        ResNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="imageClassification/section6.html">
+            
+                
+                    <a href="../imageClassification/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        图像增强方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="imageClassification/section7.html">
+            
+                
+                    <a href="../imageClassification/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        模型微调
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="objectdection/index.html">
+            
+                
+                    <a href="../objectdection/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        目标检测(Object Detection)
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="objectdection/section1.html">
+            
+                
+                    <a href="../objectdection/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        目标检测概述
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="objectdection/section2.html">
+            
+                
+                    <a href="../objectdection/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="objectdection/section3.html">
+            
+                
+                    <a href="../objectdection/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        SPPNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="objectdection/section4.html">
+            
+                
+                    <a href="../objectdection/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Fast R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="objectdection/section5.html">
+            
+                
+                    <a href="../objectdection/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Faster R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="objectdection/section6.html">
+            
+                
+                    <a href="../objectdection/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        Faster RCNN接口分析
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="objectdection/section7.html">
+            
+                
+                    <a href="../objectdection/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        YOLO算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="objectdection/section8.html">
+            
+                
+                    <a href="../objectdection/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        YOLOV2&amp;V3
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.9" data-path="objectdection/section9.html">
+            
+                
+                    <a href="../objectdection/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        SSD算法原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="objectdection/section10.html">
+            
+                
+                    <a href="../objectdection/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        案例：KITTI人、车检测案例-数据集处理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="objectdection/section11.html">
+            
+                
+                    <a href="../objectdection/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        案例：KITTI人、车检测案例-训练、检测
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="imageSegmentation/index.html">
+            
+                
+                    <a href="../imageSegmentation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        目标分割(Object Segmentation)
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="imageSegmentation/section1.html">
+            
+                
+                    <a href="../imageSegmentation/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        目标分割介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="imageSegmentation/section2.html">
+            
+                
+                    <a href="../imageSegmentation/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        FCN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="imageSegmentation/section3.html">
+            
+                
+                    <a href="../imageSegmentation/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        SegNet与U-Net
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="imageSegmentation/section6.html">
+            
+                
+                    <a href="../imageSegmentation/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Mask RCNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="imageSegmentation/section7.html">
+            
+                
+                    <a href="../imageSegmentation/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Mask RCNN分割案例1
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="imageSegmentation/section8.html">
+            
+                
+                    <a href="../imageSegmentation/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Mask RCNN分割案例2
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" ></a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="59-ssd&#x7B97;&#x6CD5;&#x539F;&#x7406;">5.9 SSD&#x7B97;&#x6CD5;&#x539F;&#x7406;</h1>
+<h3 id="&#x5B66;&#x4E60;&#x76EE;&#x6807;">&#x5B66;&#x4E60;&#x76EE;&#x6807;</h3>
+<ul>
+<li>&#x76EE;&#x6807;<ul>
+<li>&#x77E5;&#x9053;SSD&#x7684;&#x7ED3;&#x6784;</li>
+<li>&#x8BF4;&#x660E;Detector &amp; classifier&#x7684;&#x4F5C;&#x7528;</li>
+<li>&#x8BF4;&#x660E;SSD&#x7684;&#x4F18;&#x70B9;</li>
+</ul>
+</li>
+<li>&#x5E94;&#x7528;<ul>
+<li>&#x65E0;</li>
+</ul>
+</li>
+</ul>
+<h3 id="591-ssd">5.9.1 SSD</h3>
+<h4 id="5911-&#x7B80;&#x4ECB;">5.9.1.1 &#x7B80;&#x4ECB;</h4>
+<p>SSD&#x7B97;&#x6CD5;&#x6E90;&#x4E8E;2016&#x5E74;&#x53D1;&#x8868;&#x7684;&#x7B97;&#x6CD5;&#x8BBA;&#x6587;&#xFF0C;&#x8BBA;&#x6587;&#x7F51;&#x5740;&#xFF1A;<a href="https://arxiv.org/abs/1512.02325" target="_blank">https://arxiv.org/abs/1512.02325</a></p>
+<p>SSD&#x7684;&#x7279;&#x70B9;&#x5728;&#x4E8E;:</p>
+<ul>
+<li>SSD&#x7ED3;&#x5408;&#x4E86;YOLO&#x4E2D;&#x7684;&#x56DE;&#x5F52;&#x601D;&#x60F3;&#x548C;Faster-RCNN&#x4E2D;&#x7684;Anchor&#x673A;&#x5236;&#xFF0C;&#x4F7F;&#x7528;&#x5168;&#x56FE;&#x5404;&#x4E2A;&#x4F4D;&#x7F6E;&#x7684;&#x591A;&#x5C3A;&#x5EA6;&#x533A;&#x57DF;&#x8FDB;&#x884C;&#x56DE;&#x5F52;&#xFF0C;&#x65E2;&#x4FDD;&#x6301;&#x4E86;YOLO&#x901F;&#x5EA6;&#x5FEB;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x4E5F;&#x4FDD;&#x8BC1;&#x4E86;&#x7A97;&#x53E3;&#x9884;&#x6D4B;&#x7684;&#x8DDF;Faster-RCNN&#x4E00;&#x6837;&#x6BD4;&#x8F83;&#x7CBE;&#x51C6;&#x3002;</li>
+<li>SSD&#x7684;&#x6838;&#x5FC3;&#x662F;&#x5728;&#x4E0D;&#x540C;&#x5C3A;&#x5EA6;&#x7684;&#x7279;&#x5F81;&#x7279;&#x5F81;&#x56FE;&#x4E0A;&#x91C7;&#x7528;&#x5377;&#x79EF;&#x6838;&#x6765;&#x9884;&#x6D4B;&#x4E00;&#x7CFB;&#x5217;Default Bounding Boxes&#x7684;&#x7C7B;&#x522B;&#x3001;&#x5750;&#x6807;&#x504F;&#x79FB;&#x3002;</li>
+</ul>
+<blockquote>
+<p>&#x7F51;&#x7EDC;&#x53D1;&#x5C55;&#x987A;&#x5E8F;fasterrcnn-&gt;yolov1-&gt;ssd-&gt;yolov2-&gt;fpn-&gt;maskrcnn-&gt;yolov3(18)</p>
+</blockquote>
+<h4 id="5912-&#x7ED3;&#x6784;">5.9.1.2 &#x7ED3;&#x6784;</h4>
+<p>&#x4EE5;VGG-16&#x4E3A;&#x57FA;&#x7840;&#xFF0C;&#x4F7F;&#x7528;VGG&#x7684;&#x524D;&#x4E94;&#x4E2A;&#x5377;&#x79EF;&#xFF0C;&#x540E;&#x9762;&#x589E;&#x52A0;&#x4ECE;CONV6&#x5F00;&#x59CB;&#x7684;5&#x4E2A;&#x5377;&#x79EF;&#x7ED3;&#x6784;&#xFF0C;&#x8F93;&#x5165;&#x56FE;&#x7247;&#x8981;&#x6C42;300*300&#x3002;</p>
+<p><img src="../images/SSD.png" style="zoom:80%;"></p>
+<h4 id="5913-&#x6D41;&#x7A0B;">5.9.1.3 &#x6D41;&#x7A0B;</h4>
+<p><img src="../images/SSD&#x539F;&#x7406;&#x8FC7;&#x7A0B;&#x56FE;.png" style="zoom:80%;"></p>
+<p>SSD&#x4E2D;&#x5F15;&#x5165;&#x4E86;Defalut Box&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x4E0E;Faster R-CNN&#x7684;anchor box&#x673A;&#x5236;&#x7C7B;&#x4F3C;&#xFF0C;&#x5C31;&#x662F;&#x9884;&#x8BBE;&#x4E00;&#x4E9B;&#x76EE;&#x6807;&#x9884;&#x9009;&#x6846;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x662F;&#x5728;<strong>&#x4E0D;&#x540C;&#x5C3A;&#x5EA6;feature map&#x6240;&#x6709;&#x7279;&#x5F81;&#x70B9;&#x4E0A;&#x4F7F;&#x7528;PriorBox&#x5C42;</strong></p>
+<h4 id="5914-detector--classifier">5.9.1.4 Detector &amp; classifier</h4>
+<p><img src="../images/detector&amp;classifier.png" style="zoom:80%;"></p>
+<p>Detector &amp; classifier&#x7684;&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#xFF1A;</p>
+<ul>
+<li>1.PriorBox&#x5C42;&#xFF1A;&#x751F;&#x6210;default boxes&#xFF0C;&#x9ED8;&#x8BA4;&#x5148;&#x9A8C;&#x6846;</li>
+<li>SSD&#x501F;&#x9274;&#x4E86;Faster R-CNN&#x4E2D;anchor&#x7684;&#x7406;&#x5FF5;&#xFF0C;<strong>&#x6BCF;&#x4E2A;&#x5355;&#x5143;&#x8BBE;&#x7F6E;&#x5C3A;&#x5EA6;&#x6216;&#x8005;&#x957F;&#x5BBD;&#x6BD4;&#x4E0D;&#x540C;&#x7684;&#x5148;&#x9A8C;&#x6846;&#xFF0C;&#x9884;&#x6D4B;&#x65F6;&#x5019;&#x7684;&#x8FB9;&#x754C;&#x6846;&#xFF08;bounding boxes&#xFF09;&#x662F;&#x4EE5;&#x8FD9;&#x4E9B;&#x5148;&#x9A8C;&#x6846;&#x4E3A;&#x57FA;&#x51C6;&#x7684;&#xFF0C;&#x5728;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#x51CF;&#x5C11;&#x8BAD;&#x7EC3;&#x96BE;&#x5EA6;&#x3002;</strong></li>
+<li>2.Conv3 x 3:&#x751F;&#x6210;localization&#xFF0C; 4&#x4E2A;&#x4F4D;&#x7F6E;&#x504F;&#x79FB;</li>
+<li>3.Conv3 x 3:confidence&#xFF0C;21&#x4E2A;&#x7C7B;&#x522B;&#x7F6E;&#x4FE1;&#x5EA6;(&#x8981;&#x533A;&#x5206;&#x51FA;&#x80CC;&#x666F;)</li>
+</ul>
+<p><img src="../images/SSD&#x4E09;&#x4E2A;&#x7ED3;&#x6784;&#x90E8;&#x5206;.png" style="zoom:70%;"></p>
+<h4 id="5915-priorbox&#x5C42;default-boxes">5.9.1.5 PriorBox&#x5C42;-default boxes</h4>
+<p>default boxes&#xFF08;priorobx/&#x5148;&#x9A8C;&#x6846;&#xFF09;&#x7C7B;&#x4F3C;&#x4E8E;RPN&#x5F53;&#x4E2D;&#x7684;&#x6ED1;&#x52A8;&#x7A97;&#x53E3;&#x751F;&#x6210;&#x7684;&#x5019;&#x9009;&#x6846;&#xFF0C;SSD&#x4E2D;&#x4E5F;&#x662F;&#x5BF9;&#x7279;&#x5F81;&#x56FE;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x751F;&#x6210;&#x82E5;&#x5E72;&#x4E2A;&#x6846;&#x3002;</p>
+<p><img src="../images/prior_box.png" alt=""></p>
+<ul>
+<li>&#x5148;&#x9A8C;&#x6846;&#x7279;&#x70B9;&#x5206;&#x6790;&#xFF1A;<ul>
+<li>priorbox&#xFF1A;&#x76F8;&#x5F53;&#x4E8E;faster rcnn&#x91CC;&#x7684;anchors&#xFF0C;&#x9884;&#x8BBE;&#x4E00;&#x4E9B;box&#xFF0C;&#x7F51;&#x7EDC;&#x6839;&#x636E;box&#xFF0C;&#x901A;&#x8FC7;&#x5206;&#x7C7B;&#x548C;&#x56DE;&#x5F52;&#x7ED9;&#x51FA;&#x88AB;&#x68C0;&#x6D4B;&#x5230;&#x7269;&#x4F53;&#x7684;&#x7C7B;&#x522B;&#x548C;&#x4F4D;&#x7F6E;&#x3002;&#x6BCF;&#x4E2A;window&#x90FD;&#x4F1A;&#x88AB;&#x5206;&#x7C7B;&#xFF0C;&#x5E76;&#x56DE;&#x5F52;&#x5230;&#x4E00;&#x4E2A;&#x66F4;&#x51C6;&#x7684;&#x4F4D;&#x7F6E;&#x548C;&#x5C3A;&#x5BF8;&#x4E0A;</li>
+</ul>
+</li>
+</ul>
+<p><img src="../images/defaultboxex&#x751F;&#x6210;.png" style="zoom:67%;"></p>
+<p>&#x6839;&#x636E;&#x8F93;&#x5165;&#x7684;&#x4E0D;&#x540C;aspect ratio &#x548C; scale &#x4EE5;&#x53CA; num_prior&#x6765;&#x8FD4;&#x56DE;&#x7279;&#x5B9A;&#x7684;default box&#xFF0C;&#x4EE5;feature map&#x4E0A;&#x6BCF;&#x4E2A;&#x70B9;&#x7684;&#x4E2D;&#x70B9;&#x4E3A;&#x4E2D;&#x5FC3;&#xFF0C;&#x751F;&#x6210;&#x4E00;&#x4E9B;&#x5217;&#x540C;&#x5FC3;&#x7684;prior box</p>
+<ul>
+<li>&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#xFF1A;<ul>
+<li>1&#x3001;&#x6B63;&#x65B9;&#x5F62;prior box&#x6700;&#x5C0F;&#x8FB9;&#x957F;&#x4E3A;&#x548C;&#x6700;&#x5927;&#x8FB9;&#x957F;&#x4E3A;&#xFF1A;</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">z</mi><mi mathvariant="normal">e</mi></mtext><mo separator="true">,</mo><msqrt><mrow><mtext><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">z</mi><mi mathvariant="normal">e</mi></mtext><mo>&#x2217;</mo><mtext><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">z</mi><mi mathvariant="normal">e</mi></mtext></mrow></msqrt></mrow><annotation encoding="application/x-tex">\text{minsize},  \sqrt{\text{minsize} * \text{maxsize}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.91893em;"></span><span class="strut bottom" style="height:1.11337em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord text textstyle uncramped"><span class="mord mathrm">minsize</span></span><span class="mpunct">,</span><span class="mord sqrt"><span class="sqrt-sign" style="top:-0.07892999999999994em;"><span class="style-wrap reset-textstyle textstyle uncramped">&#x221A;</span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord text textstyle cramped"><span class="mord mathrm">minsize</span></span><span class="mbin">&#x2217;</span><span class="mord text textstyle cramped"><span class="mord mathrm">maxsize</span></span></span></span><span style="top:-0.83893em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></li>
+<li>2&#x3001;&#x6BCF;&#x5728;prototxt&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;aspect ratio&#xFF0C;&#x4F1A;&#x751F;&#x6210;2&#x4E2A;&#x957F;&#x65B9;&#x5F62;&#xFF0C;&#x957F;&#x5BBD;&#x4E3A;&#xFF1A;</li>
+<li>&#x957F;&#xFF1A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mrow><mtext><mi mathvariant="normal">a</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi></mtext></mrow></msqrt><mo>&#x2217;</mo><mtext><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">z</mi><mi mathvariant="normal">e</mi></mtext></mrow><annotation encoding="application/x-tex">\sqrt{\text{aspectratio}} * \text{minsize}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8217100000000002em;"></span><span class="strut bottom" style="height:1.0400000000000003em;vertical-align:-0.21829000000000004em;"></span><span class="base textstyle uncramped"><span class="mord sqrt"><span class="sqrt-sign" style="top:0.01829000000000003em;"><span class="style-wrap reset-textstyle textstyle uncramped">&#x221A;</span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord text textstyle cramped"><span class="mord mathrm">aspectratio</span></span></span></span><span style="top:-0.7417100000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">&#x2217;</span><span class="mord text textstyle uncramped"><span class="mord mathrm">minsize</span></span></span></span></span></li>
+<li>&#x5BBD;&#xFF1A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msqrt><mrow><mtext><mi mathvariant="normal">a</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi></mtext></mrow></msqrt></mrow></mfrac><mo>&#x2217;</mo><mtext><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">z</mi><mi mathvariant="normal">e</mi></mtext></mrow><annotation encoding="application/x-tex">\frac{1}{\sqrt{\text{aspectratio}}} * \text{minsize}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.845108em;"></span><span class="strut bottom" style="height:1.695108em;vertical-align:-0.8500000000000001em;"></span><span class="base textstyle uncramped"><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.560697em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord sqrt mtight"><span class="sqrt-sign mtight" style="top:0.12757571428571435em;"><span class="style-wrap reset-scriptstyle textstyle uncramped mtight"><span class="mtight">&#x221A;</span></span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1.4285714285714286em;">&#x200B;</span></span><span class="mord scriptstyle cramped mtight"><span class="mord text scriptstyle cramped mtight"><span class="mord mathrm mtight">aspectratio</span></span></span></span><span style="top:-0.9581385714285716em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1.4285714285714286em;">&#x200B;</span></span><span class="reset-scriptstyle textstyle uncramped sqrt-line mtight"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1.4285714285714286em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.394em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">&#x2217;</span><span class="mord text textstyle uncramped"><span class="mord mathrm">minsize</span></span></span></span></span></li>
+</ul>
+</li>
+</ul>
+<p>&#x5982;&#x4E0B;&#x56FE;&#x5C55;&#x793A;&#x7684;&#x5C31;&#x662F;&#x5B83;&#x7684;&#x957F;&#x5BBD;&#x8BBE;&#x7F6E;&#xFF1A;</p>
+<p><img src="../images/&#x957F;&#x5BBD;&#x5927;&#x5C0F;.jpg" style="zoom:50%;"></p>
+<ul>
+<li>3&#x3001;&#x6700;&#x7EC8;&#x6BCF;&#x4E2A;feature map&#x5BF9;&#x5E94;box&#x7684;min_size&#x548C;max_size&#x7531;&#x4EE5;&#x4E0B;&#x516C;&#x5F0F;&#x51B3;&#x5B9A;&#xFF1A;</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>s</mi><mrow><mi>k</mi></mrow></msub><mo>=</mo><msub><mi>s</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>+</mo><mfrac><mrow><msub><mi>s</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>&#x2212;</mo><msub><mi>s</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><mrow><mi>m</mi><mo>&#x2212;</mo><mn>1</mn></mrow></mfrac><mo>(</mo><mi>k</mi><mo>&#x2212;</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">
+s_{k} = s_{min} + \frac{s_{max} - s_{min}}{m-1}(k-1)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.2603300000000002em;"></span><span class="strut bottom" style="height:2.0296600000000002em;vertical-align:-0.7693300000000001em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">s</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord"><span class="mord mathit">s</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">m</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">+</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathit">m</span><span class="mbin">&#x2212;</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">s</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">m</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">&#x2212;</span><span class="mord"><span class="mord mathit">s</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">m</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mbin">&#x2212;</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span></span></span></p>
+<p>&#x516C;&#x5F0F;&#x4E2D;&#x7684;m&#x662F;&#x6307;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x65F6;&#x4F7F;&#x7528;feature map&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x5982;SSD300&#x4F7F;&#x7528;conv4-3&#x7B49;6&#x4E2A;&#x4E0D;&#x540C;&#x7EF4;&#x5EA6;&#xFF08;Detector &amp; classifier&#xFF09;&#x7684;feature maps&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#xFF0C;&#x6240;&#x4EE5; m=6&#x3002;&#x540C;&#x65F6;&#x539F;&#x6587;&#x8BBE;&#x5B9A;s_min=0.2 &#xFF0C;s_max=0.9&#x3002;</p>
+<ul>
+<li>&#x5BF9;&#x4E8E;conv4-3&#xFF1A;k=1, min_size=s1x300,max_size=s2x300...</li>
+</ul>
+<p>&#x6240;&#x4EE5;&#x5F97;&#x5230;&#x9ED8;&#x8BA4;&#x4E0B;&#x9762;&#x6BCF;&#x5C42;&#x7684;&#x6846;&#x5927;&#x5C0F;&#x53C2;&#x6570;&#xFF1A;</p>
+<ul>
+<li>&#x5982;&#x4E0B;&#x9762;&#x4E3A;&#x4E0D;&#x540C;&#x5927;&#x5C0F;bbox&#x5728;&#x6BCF;&#x4E2A;&#x4E0D;&#x540C;&#x5C42;&#x7684;&#x8BBE;&#x7F6E;(<strong>SSD&#x4F7F;&#x7528;&#x611F;&#x53D7;&#x91CE;&#x5C0F;&#x7684;feature map&#x68C0;&#x6D4B;&#x5C0F;&#x76EE;&#x6807;&#xFF0C;&#x4F7F;&#x7528;&#x611F;&#x53D7;&#x91CE;&#x5927;&#x7684;feature map&#x68C0;&#x6D4B;&#x66F4;&#x5927;&#x76EE;&#x6807;</strong>&#x3002;)</li>
+</ul>
+<p><img src="../images/ssdfeature_map.png" alt=""></p>
+<pre><code class="lang-python">1&#x3001;SSD&#x7F51;&#x7EDC;prior_box:&#x6253;&#x5370;&#x51FA;&#x6765;&#x7684;&#x5F62;&#x72B6;&#x4E3A;&#xFF1A;
+Tensor(&quot;concat_2:0&quot;, shape=(?, 7308, 8), dtype=float32)
+
+# &#x5176;&#x4E2D;&#x67D0;&#x4E00;&#x5C42;&#x7684;&#x7ED3;&#x6784;&#x8F93;&#x51FA;
+ layer {
+  name: &quot;conv6_2_mbox_priorbox&quot;
+  type: &quot;PriorBox&quot;
+  bottom: &quot;conv6_2&quot;
+  bottom: &quot;data&quot;
+  top: &quot;conv6_2_mbox_priorbox&quot;
+  prior_box_param {
+    min_size: 111.0
+    max_size: 162.0
+    aspect_ratio: 2.0
+    aspect_ratio: 3.0
+    flip: true
+    clip: false
+    variance: 0.10000000149
+    variance: 0.10000000149
+    variance: 0.20000000298
+    variance: 0.20000000298
+    step: 32.0
+    offset: 0.5
+}
+</code></pre>
+<h4 id="5915-prior-box&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;">5.9.1.5 prior box&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;</h4>
+<p>localization&#x4E0E;confidence&#x8FD9;&#x4E24;&#x8005;&#x7684;&#x610F;&#x4E49;&#x5982;&#x4E0B;&#xFF0C;&#x4E3B;&#x8981;&#x4F5C;&#x7528;&#x7528;&#x6765;&#x8FC7;&#x6EE4;&#xFF0C;&#x8BAD;&#x7EC3;</p>
+<p><img src="../images/&#x8FC7;&#x6EE4;&#x7F6E;&#x4FE1;&#x5EA6;.png" style="zoom:80%;"></p>
+<h4 id="1&#x3001;&#x8FB9;&#x754C;&#x6846;&#x7684;location&#x9884;&#x6D4B;&#x8FB9;&#x754C;&#x6846;&#x4F4D;&#x7F6E;&#x89E3;&#x7801;">1&#x3001;&#x8FB9;&#x754C;&#x6846;&#x7684;location&#x9884;&#x6D4B;&#x8FB9;&#x754C;&#x6846;&#x4F4D;&#x7F6E;&#x89E3;&#x7801;</h4>
+<p>&#x5305;&#x542B;4&#x4E2A;&#x503C; (center_x,c_centery,w,h)&#xFF0C;&#x5206;&#x522B;&#x8868;&#x793A;&#x8FB9;&#x754C;&#x6846;&#x7684;&#x4E2D;&#x5FC3;&#x5750;&#x6807;&#x4EE5;&#x53CA;&#x5BBD;&#x9AD8;&#x3002;&#x4F46;&#x662F;&#x771F;&#x5B9E;&#x9884;&#x6D4B;&#x503C;&#x5176;&#x5B9E;&#x53EA;&#x662F;&#x8FB9;&#x754C;&#x6846;&#x76F8;&#x5BF9;&#x4E8E;&#x5148;&#x9A8C;&#x6846;&#x7684;&#x8F6C;&#x6362;&#x503C;(&#x8BBA;&#x6587;&#x91CC;&#x9762;&#x8BF4;&#x662F;offset&#x7C7B;&#x4F3C;&#x4E8E;YOLO&#x90A3;&#x79CD;&#xFF09;</p>
+<p>&#x90A3;&#x4E48;&#x6CE8;&#x610F;&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x7684;&#x7F51;&#x7EDC;&#x6700;&#x7EC8;&#x7684;&#x9884;&#x6D4B;&#x503C;L&#x662F;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x503C;&#xFF0C;&#x4F1A;&#x9700;&#x8981;&#x7ECF;&#x8FC7;&#x4E00;&#x4E2A;&#x89E3;&#x7801;&#x8F6C;&#x6362;(decode)&#x3002;&#x5047;&#x8BBE;&#x4E0B;&#x9762;P&#x771F;&#x6B63;&#x7684;&#x5F97;&#x5230;&#x8F93;&#x51FA;&#x7684;&#x8FB9;&#x754C;&#x6846;&#xFF0C;d&#x4E3A;&#x5148;&#x9A8C;&#x6846;&#x7684;&#x4F4D;&#x7F6E;&#xFF1A;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>=</mo><mo>(</mo><msup><mi>p</mi><mrow><mi>c</mi><mi>x</mi></mrow></msup><mo separator="true">,</mo><msup><mi>p</mi><mrow><mi>c</mi><mi>y</mi></mrow></msup><mo separator="true">,</mo><msup><mi>p</mi><mrow><mi>w</mi></mrow></msup><mo separator="true">,</mo><msup><mi>p</mi><mrow><mi>h</mi></mrow></msup><mo>)</mo><mo separator="true">,</mo><mi>d</mi><mo>=</mo><mo>(</mo><msup><mi>d</mi><mrow><mi>c</mi><mi>x</mi></mrow></msup><mo separator="true">,</mo><msup><mi>d</mi><mrow><mi>c</mi><mi>y</mi></mrow></msup><mo separator="true">,</mo><msup><mi>d</mi><mrow><mi>w</mi></mrow></msup><mo separator="true">,</mo><msup><mi>d</mi><mrow><mi>h</mi></mrow></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">
+p = (p^{cx}, p^{cy}, p^{w}, p^{h}), d = (d^{cx}, d^{cy}, d^{w}, d^{h})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8991079999999999em;"></span><span class="strut bottom" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">p</span><span class="mrel">=</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">h</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mord mathit">d</span><span class="mrel">=</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">h</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span></span></span></span></span>
+&#x90A3;&#x4E48;&#x9884;&#x6D4B;&#x8FB9;&#x754C;&#x6846;&#x7684;&#x771F;&#x5B9E;&#x4F4D;&#x7F6E;&#x4E3A;&#xFF1A;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>p</mi><mrow><mi>c</mi><mi>x</mi></mrow></msup><mo>=</mo><msup><mi>d</mi><mrow><mi>w</mi></mrow></msup><msup><mi>l</mi><mrow><mi>c</mi><mi>x</mi></mrow></msup><mo>+</mo><msup><mi>d</mi><mrow><mi>c</mi><mi>x</mi></mrow></msup><mo separator="true">,</mo><msup><mi>p</mi><mrow><mi>c</mi><mi>y</mi></mrow></msup><mo>=</mo><msup><mi>d</mi><mrow><mi>y</mi></mrow></msup><msup><mi>l</mi><mrow><mi>c</mi><mi>y</mi></mrow></msup><mo>+</mo><msup><mi>d</mi><mrow><mi>c</mi><mi>y</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+p^{cx} = d^{w}l^{cx} +d^{cx}, p^{cy} = d^{y}l^{cy} +d^{cy}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.714392em;"></span><span class="strut bottom" style="height:0.9088320000000001em;vertical-align:-0.19444em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>p</mi><mrow><mi>w</mi></mrow></msup><mo>=</mo><msup><mi>d</mi><mrow><mi>w</mi></mrow></msup><mi>e</mi><mi>x</mi><mi>p</mi><mo>(</mo><msup><mi>l</mi><mrow><mi>w</mi></mrow></msup><mo>)</mo><mo separator="true">,</mo><msup><mi>p</mi><mrow><mi>h</mi></mrow></msup><mo>=</mo><msup><mi>d</mi><mrow><mi>h</mi></mrow></msup><mi>e</mi><mi>x</mi><mi>p</mi><mo>(</mo><msup><mi>l</mi><mrow><mi>h</mi></mrow></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">
+p^{w} = d^{w}exp(l^{w}), p^{h} = d^{h}exp(l^{h})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8991079999999999em;"></span><span class="strut bottom" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord mathit">e</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">h</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">h</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord mathit">e</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">h</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>&#x5F53;&#x7136;&#x53CD;&#x8FC7;&#x6765;&#x4E5F;&#x662F;&#x80FD;&#x591F;&#x5F97;&#x5230;&#x4E00;&#x79CD;&#x9884;&#x6D4B;&#x503C;&#x7684;&#x7F16;&#x7801;&#x5173;&#x7CFB;&#x7684;&#x3002;</p>
+<h4 id="2&#x3001;ssd-&#x9884;&#x6D4B;&#x8FB9;&#x754C;&#x6846;trick">2&#x3001;SSD &#x9884;&#x6D4B;&#x8FB9;&#x754C;&#x6846;trick</h4>
+<p>&#x8FD9;&#x91CC;&#x5C31;&#x662F;&#x8BBE;&#x7F6E;variance&#x8D85;&#x53C2;&#x6570;&#x6765;&#x8C03;&#x6574;&#x68C0;&#x6D4B;&#x503C;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#x8D85;&#x53C2;&#x6570;variance&#xFF0C;&#x7528;&#x6765;&#x5BF9;l&#x7684;4&#x4E2A;&#x503C;&#x8FDB;&#x884C;&#x653E;&#x7F29;&#xFF0C;&#x6B64;&#x65F6;&#x8FB9;&#x754C;&#x6846;&#x9700;&#x8981;&#x8FD9;&#x6837;&#x89E3;&#x7801;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>p</mi><mrow><mi>c</mi><mi>x</mi></mrow></msup><mo>=</mo><msup><mi>d</mi><mrow><mi>w</mi></mrow></msup><mo>(</mo><mi>v</mi><mi>a</mi><mi>r</mi><mi>i</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>e</mi><mo>[</mo><mn>0</mn><mo>]</mo><mo>&#x2217;</mo><msup><mi>l</mi><mrow><mi>c</mi><mi>x</mi></mrow></msup><mo>)</mo><mo>+</mo><msup><mi>d</mi><mrow><mi>c</mi><mi>x</mi></mrow></msup><mo separator="true">,</mo><msup><mi>p</mi><mrow><mi>c</mi><mi>y</mi></mrow></msup><mo>=</mo><msup><mi>d</mi><mrow><mi>y</mi></mrow></msup><mo>(</mo><mi>v</mi><mi>a</mi><mi>r</mi><mi>i</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>e</mi><mo>[</mo><mn>1</mn><mo>]</mo><mo>&#x2217;</mo><msup><mi>l</mi><mrow><mi>c</mi><mi>y</mi></mrow></msup><mo>)</mo><mo>+</mo><msup><mi>d</mi><mrow><mi>c</mi><mi>y</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+p^{cx} = d^{w}(variance[0]*l^{cx}) +d^{cx}, p^{cy} = d^{y}(variance[1]*l^{cy}) +d^{cy}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">a</span><span class="mord mathit">n</span><span class="mord mathit">c</span><span class="mord mathit">e</span><span class="mopen">[</span><span class="mord mathrm">0</span><span class="mclose">]</span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">a</span><span class="mord mathit">n</span><span class="mord mathit">c</span><span class="mord mathit">e</span><span class="mopen">[</span><span class="mord mathrm">1</span><span class="mclose">]</span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">c</span><span class="mord mathit mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>p</mi><mrow><mi>w</mi></mrow></msup><mo>=</mo><msup><mi>d</mi><mrow><mi>w</mi></mrow></msup><mi>e</mi><mi>x</mi><mi>p</mi><mo>(</mo><mi>v</mi><mi>a</mi><mi>r</mi><mi>i</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>e</mi><mo>[</mo><mn>2</mn><mo>]</mo><mo>&#x2217;</mo><msup><mi>l</mi><mrow><mi>w</mi></mrow></msup><mo>)</mo><mo separator="true">,</mo><msup><mi>p</mi><mrow><mi>h</mi></mrow></msup><mo>=</mo><msup><mi>d</mi><mrow><mi>h</mi></mrow></msup><mi>e</mi><mi>x</mi><mi>p</mi><mo>(</mo><mi>v</mi><mi>a</mi><mi>r</mi><mi>i</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>e</mi><mo>[</mo><mn>3</mn><mo>]</mo><mo>&#x2217;</mo><msup><mi>l</mi><mrow><mi>h</mi></mrow></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">
+p^{w} = d^{w}exp(variance[2]*l^{w}), p^{h} = d^{h}exp(variance[3]*l^{h})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8991079999999999em;"></span><span class="strut bottom" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord mathit">e</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">a</span><span class="mord mathit">n</span><span class="mord mathit">c</span><span class="mord mathit">e</span><span class="mopen">[</span><span class="mord mathrm">2</span><span class="mclose">]</span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">h</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">h</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord mathit">e</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">a</span><span class="mord mathit">n</span><span class="mord mathit">c</span><span class="mord mathit">e</span><span class="mopen">[</span><span class="mord mathrm">3</span><span class="mclose">]</span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">h</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<h4 id="3&#x3001;&#x4EE3;&#x7801;&#x5C55;&#x793A;&#x8FC7;&#x7A0B;">3&#x3001;&#x4EE3;&#x7801;&#x5C55;&#x793A;&#x8FC7;&#x7A0B;</h4>
+<p>&#x4EE3;&#x7801;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;&#x8F93;&#x51FA;&#x4E5F;&#x4F1A;&#x7ECF;&#x8FC7;&#x8FD9;&#x6837;&#x7684;&#x8BA1;&#x7B97;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decode</span><span class="hljs-params">(default_boxes, locs, variance=[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>])</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot; &#x5BF9;default_boxes&#x8FDB;&#x884C;&#x89E3;&#x7801;&#x5230;&#x5750;&#x6807;coordinates
+    Args:
+        default_boxes: tensor (num_default, 4)
+                       of format (cx, cy, w, h)
+        locs: tensor (batch_size, num_default, 4)
+              of format (cx, cy, w, h)
+        variance: variance for center point and size
+    Returns:
+        boxes: tensor (num_default, 4)
+               of format (xmin, ymin, xmax, ymax)
+    &quot;&quot;&quot;</span>
+    <span class="hljs-comment"># &#x89E3;&#x7801;&#x8FC7;&#x7A0B;</span>
+    locs = tf.concat([
+        locs[..., :<span class="hljs-number">2</span>] * variance[<span class="hljs-number">0</span>] *
+        default_boxes[:, <span class="hljs-number">2</span>:] + default_boxes[:, :<span class="hljs-number">2</span>],
+        tf.math.exp(locs[..., <span class="hljs-number">2</span>:] * variance[<span class="hljs-number">1</span>]) * default_boxes[:, <span class="hljs-number">2</span>:]], axis=-<span class="hljs-number">1</span>)
+
+    <span class="hljs-comment"># (cx, cy, w, h)-&gt;(xmin, ymin, xmax, ymax)</span>
+    boxes = transform_center_to_corner(locs)
+
+    <span class="hljs-keyword">return</span> boxes
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">encode</span><span class="hljs-params">(default_boxes, boxes, variance=[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>])</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot; Compute regression values
+    Args:
+        default_boxes: tensor (num_default, 4)
+                       of format (cx, cy, w, h)
+        boxes: tensor (num_default, 4)
+               of format (xmin, ymin, xmax, ymax)
+        variance: variance for center point and size
+    Returns:
+        locs: regression values, tensor (num_default, 4)
+    &quot;&quot;&quot;</span>
+    <span class="hljs-comment"># (xmin, ymin, xmax, ymax)-&gt;(cx, cy, w, h)</span>
+    transformed_boxes = transform_corner_to_center(boxes)
+
+    <span class="hljs-comment"># &#x7F16;&#x7801;&#x8FC7;&#x7A0B;</span>
+    locs = tf.concat([
+        (transformed_boxes[..., :<span class="hljs-number">2</span>] - default_boxes[:, :<span class="hljs-number">2</span>]
+         ) / (default_boxes[:, <span class="hljs-number">2</span>:] * variance[<span class="hljs-number">0</span>]),
+        tf.math.log(transformed_boxes[..., <span class="hljs-number">2</span>:] / default_boxes[:, <span class="hljs-number">2</span>:]) / variance[<span class="hljs-number">1</span>]],
+        axis=-<span class="hljs-number">1</span>)
+
+    <span class="hljs-keyword">return</span> locs
+</code></pre>
+<h3 id="&#x95EE;&#x9898;&#xFF1A;ssd&#x4E2D;&#x7684;&#x591A;&#x4E2A;detector--classifier&#x6709;&#x4EC0;&#x4E48;&#x4F5C;&#x7528;&#xFF1F;">&#x95EE;&#x9898;&#xFF1A;SSD&#x4E2D;&#x7684;&#x591A;&#x4E2A;Detector &amp; classifier&#x6709;&#x4EC0;&#x4E48;&#x4F5C;&#x7528;&#xFF1F;</h3>
+<p>SSD&#x7684;&#x6838;&#x5FC3;&#x662F;&#x5728;&#x4E0D;&#x540C;&#x5C3A;&#x5EA6;&#x7684;&#x7279;&#x5F81;&#x56FE;&#x4E0A;&#x6765;&#x8FDB;&#x884C;Detector &amp; classifier &#x5BB9;&#x6613;&#x4F7F;&#x5F97;SSD&#x89C2;&#x5BDF;&#x5230;&#x66F4;&#x5C0F;&#x7684;&#x7269;&#x4F53;</p>
+<h3 id="592-&#x8BAD;&#x7EC3;&#x4E0E;&#x6D4B;&#x8BD5;&#x6D41;&#x7A0B;">5.9.2 &#x8BAD;&#x7EC3;&#x4E0E;&#x6D4B;&#x8BD5;&#x6D41;&#x7A0B;</h3>
+<h4 id="5921-train&#x6D41;&#x7A0B;">5.9.2.1 train&#x6D41;&#x7A0B;</h4>
+<ul>
+<li>&#x8F93;&#x5165;-&gt;&#x8F93;&#x51FA;-&gt;&#x7ED3;&#x679C;&#x4E0E;ground truth&#x6807;&#x8BB0;&#x6837;&#x672C;&#x56DE;&#x5F52;&#x635F;&#x5931;&#x8BA1;&#x7B97;-&gt;&#x53CD;&#x5411;&#x4F20;&#x64AD;, &#x66F4;&#x65B0;&#x6743;&#x503C;</li>
+</ul>
+<h4 id="1-&#x6837;&#x672C;&#x6807;&#x8BB0;&#xFF1A;">1. &#x6837;&#x672C;&#x6807;&#x8BB0;&#xFF1A;</h4>
+<p>&#x5148;&#x5C06;prior box&#x4E0E;ground truth box&#x505A;&#x5339;&#x914D;&#x8FDB;&#x884C;&#x6807;&#x8BB0;&#x6B63;&#x8D1F;&#x6837;&#x672C;,&#x6BCF;&#x6B21;&#x5E76;&#x4E0D;&#x8BAD;&#x7EC3;8732&#x5F20;&#x8BA1;&#x7B97;&#x597D;&#x7684;default boxes, <strong>&#x5148;&#x8FDB;&#x884C;&#x7F6E;&#x4FE1;&#x5EA6;&#x7B5B;&#x9009;&#xFF0C;&#x5E76;&#x4E14;&#x8BAD;&#x7EC3;&#x6307;&#x5B9A;&#x7684;&#x6B63;&#x6837;&#x672C;&#x548C;&#x8D1F;&#x6837;&#x672C;,</strong> &#x5982;&#x4E0B;&#x89C4;&#x5219;</p>
+<ul>
+<li><p>&#x6B63;&#x6837;&#x672C;</p>
+<ul>
+<li>1.&#x4E0E;GT&#x91CD;&#x5408;&#x6700;&#x9AD8;&#x7684;boxes, &#x5176;&#x8F93;&#x51FA;&#x5BF9;&#x5E94;label&#x8BBE;&#x4E3A;&#x5BF9;&#x5E94;&#x7269;&#x4F53;. </li>
+<li>2.&#x7269;&#x4F53;GT&#x4E0E;anchor iou&#x6EE1;&#x8DB3;&#x5927;&#x4E8E;0.5</li>
+</ul>
+</li>
+<li><p>&#x8D1F;&#x6837;&#x672C;&#xFF1A;&#x5176;&#x5B83;&#x7684;&#x6837;&#x672C;&#x6807;&#x8BB0;&#x4E3A;&#x8D1F;&#x6837;&#x672C;</p>
+</li>
+</ul>
+<p><strong>&#x5728;&#x8BAD;&#x7EC3;&#x65F6;, default boxes&#x6309;&#x7167;&#x6B63;&#x8D1F;&#x6837;&#x672C;&#x63A7;&#x5236;positive&#xFF1A;negative=1&#xFF1A;3</strong></p>
+<h4 id="2-&#x635F;&#x5931;">2. &#x635F;&#x5931;</h4>
+<p>&#x7F51;&#x7EDC;&#x8F93;&#x51FA;&#x9884;&#x6D4B;&#x7684;predict box&#x4E0E;ground truth&#x56DE;&#x5F52;&#x53D8;&#x6362;&#x4E4B;&#x95F4;&#x7684;&#x635F;&#x5931;&#x8BA1;&#x7B97;</p>
+<ul>
+<li><p>&#x7F6E;&#x4FE1;&#x5EA6;&#x662F;&#x91C7;&#x7528; Softmax Loss(Faster R-CNN&#x662F;log loss)</p>
+</li>
+<li><p>&#x4F4D;&#x7F6E;&#x56DE;&#x5F52;&#x5219;&#x662F;&#x91C7;&#x7528; Smooth L1 loss (&#x4E0E;Faster R-CNN&#x4E00;&#x6837;) </p>
+<ul>
+<li>&#x6240;&#x4EE5;&#x4F4D;&#x7F6E;&#x8BEF;&#x5DEE;&#x4EC5;&#x9488;&#x5BF9;&#x6B63;&#x6837;&#x672C;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#x3002;&#x8981;&#x5148;&#x5BF9;ground truth&#x7684;g&#x8FDB;&#x884C;&#x7F16;&#x7801;&#x5F97;&#x5230;&#xFF08;&#x9884;&#x6D4B;&#x6846;&#x89E3;&#x7801;&#x7684;&#x53CD;&#x5411;&#x8FC7;&#x7A0B;&#xFF09;</li>
+</ul>
+</li>
+</ul>
+<p><img src="../images/SSD&#x8BAD;&#x7EC3;&#x635F;&#x5931;.png" style="zoom:67%;"></p>
+<p>&#x5176;&#x4E2D;</p>
+<ul>
+<li>N&#x662F;match&#x5230;GT&#xFF08;Ground Truth&#xFF09;&#x7684;prior box&#x6570;&#x91CF;</li>
+<li>alpha&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x8C03;&#x6574;confidence loss&#x548C;location loss&#x4E4B;&#x95F4;&#x7684;&#x6BD4;&#x4F8B;&#xFF0C;&#x9ED8;&#x8BA4;alpha=1</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>x</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow><mrow><mi>p</mi></mrow></msubsup></mrow><annotation encoding="application/x-tex">x_{i,j}^{p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.7823em;"></span><span class="strut bottom" style="height:1.1952720000000001em;vertical-align:-0.412972em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist"><span style="top:0.276864em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathit mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-0.480908em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight">p</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x4EE3;&#x8868;&#x7B2C;i&#x4E2A;prior box&#x5339;&#x914D;&#x5230;&#x4E86;&#x7B2C;j&#x4E2A;&#x5E76;&#x4E14;class&#x540C;&#x4E3A;p&#x7C7B;&#x522B;&#x7684;GT box<ul>
+<li>&#x5339;&#x914D;&#x8FC7;&#x7A0B;&#xFF1A;IoU&#x5224;&#x65AD;</li>
+</ul>
+</li>
+</ul>
+<h5 id="3&#x3001;&#x6570;&#x636E;&#x589E;&#x5F3A;">3&#x3001;&#x6570;&#x636E;&#x589E;&#x5F3A;</h5>
+<p>&#x91C7;&#x7528;&#x6570;&#x636E;&#x6269;&#x589E;&#xFF08;Data Augmentation&#xFF09;&#x53EF;&#x4EE5;&#x63D0;&#x5347;SSD&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x4E3B;&#x8981;&#x91C7;&#x7528;&#x7684;&#x6280;&#x672F;&#x6709;&#x6C34;&#x5E73;&#x7FFB;&#x8F6C;&#xFF08;horizontal flip&#xFF09;&#xFF0C;&#x968F;&#x673A;&#x88C1;&#x526A;&#x52A0;&#x989C;&#x8272;&#x626D;&#x66F2;&#xFF08;random crop &amp; color distortion&#xFF09;&#xFF0C;&#x968F;&#x673A;&#x91C7;&#x96C6;&#x5757;&#x57DF;&#xFF08;Randomly sample a patch&#xFF09;&#xFF08;&#x83B7;&#x53D6;&#x5C0F;&#x76EE;&#x6807;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#xFF09;&#x3002;SSD&#x4E0A;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x7684;&#x6548;&#x679C;&#x589E;&#x52A0;&#x660E;&#x663E;</p>
+<h4 id="5922-test&#x6D41;&#x7A0B;">5.9.2.2 test&#x6D41;&#x7A0B;</h4>
+<ul>
+<li>&#x9884;&#x6D4B;&#x8FC7;&#x7A0B;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#xFF0C;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x9884;&#x6D4B;&#x6846;&#xFF0C;&#x9996;&#x5148;&#x6839;&#x636E;&#x7C7B;&#x522B;&#x7F6E;&#x4FE1;&#x5EA6;&#x786E;&#x5B9A;&#x5176;&#x7C7B;&#x522B;&#xFF08;&#x7F6E;&#x4FE1;&#x5EA6;&#x6700;&#x5927;&#x8005;&#xFF09;&#x4E0E;&#x7F6E;&#x4FE1;&#x5EA6;&#x503C;&#xFF0C;&#x5E76;&#x8FC7;&#x6EE4;&#x6389;&#x5C5E;&#x4E8E;&#x80CC;&#x666F;&#x7684;&#x9884;&#x6D4B;&#x6846;&#x3002;&#x7136;&#x540E;&#x6839;&#x636E;&#x7F6E;&#x4FE1;&#x5EA6;&#x9608;&#x503C;&#xFF08;&#x5982;0.5&#xFF09;&#x8FC7;&#x6EE4;&#x6389;&#x9608;&#x503C;&#x8F83;&#x4F4E;&#x7684;&#x9884;&#x6D4B;&#x6846;&#x3002;&#x5BF9;&#x4E8E;&#x7559;&#x4E0B;&#x7684;&#x9884;&#x6D4B;&#x6846;&#x8FDB;&#x884C;&#x89E3;&#x7801;&#xFF0C;&#x6839;&#x636E;&#x5148;&#x9A8C;&#x6846;&#x5F97;&#x5230;&#x5176;&#x771F;&#x5B9E;&#x7684;&#x4F4D;&#x7F6E;&#x53C2;&#x6570;&#x3002;</li>
+</ul>
+<h3 id="593-ssd&#x5B9E;&#x9A8C;&#x4E0E;&#x603B;&#x7ED3;">5.9.3 SSD&#x5B9E;&#x9A8C;&#x4E0E;&#x603B;&#x7ED3;</h3>
+<h4 id="5921-&#x5B9E;&#x9A8C;">5.9.2.1 &#x5B9E;&#x9A8C;</h4>
+<ul>
+<li>1&#x3001;SSD&#x5728;VOC2007&#xFF0C;VOC2012&#x53CA;COCO&#x6570;&#x636E;&#x96C6;&#x4E0A;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x5982;&#x4E0B;&#x9762;&#x6240;&#x793A;&#x3002;&#x76F8;&#x6BD4;&#x4E4B;&#x4E0B;&#xFF0C;SSD512&#x7684;&#x6027;&#x80FD;&#x4F1A;&#x66F4;&#x597D;</li>
+</ul>
+<p><img src="../images/SSD&#x6548;&#x679C;.jpg" alt=""></p>
+<ul>
+<li>2&#x3001;&#x591A;&#x5C3A;&#x5EA6;&#x7279;&#x5F81;&#x56FE;&#x5BF9;SSD&#x7684;&#x5F71;&#x54CD; </li>
+</ul>
+<p><img src="../images/&#x591A;&#x5C3A;&#x5EA6;SSD.jpg" style="zoom:50%;"></p>
+<ul>
+<li>3&#x3001;SSD&#x4E0E;&#x5176;&#x5B83;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;&#x7684;&#x5BF9;&#x6BD4;&#x7ED3;&#x679C;&#xFF08;&#x5728;VOC2007&#x6570;&#x636E;&#x96C6;&#xFF09;&#x5982;&#x8868;2&#x6240;&#x793A;&#xFF0C;&#x57FA;&#x672C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;SSD&#x4E0E;Faster R-CNN&#x6709;&#x540C;&#x6837;&#x7684;&#x51C6;&#x786E;&#x5EA6;&#xFF0C;&#x5E76;&#x4E14;&#x4E0E;Yolo&#x5177;&#x6709;&#x540C;&#x6837;&#x8F83;&#x5FEB;&#x5730;&#x68C0;&#x6D4B;&#x901F;&#x5EA6;&#x3002;</li>
+</ul>
+<p><img src="../images/SSD&#x4E0E;&#x5176;&#x4ED6;&#x6BD4;&#x8F83;.jpg" style="zoom:50%;"></p>
+<h4 id="5933-&#x603B;&#x7ED3;">5.9.3.3 &#x603B;&#x7ED3;</h4>
+<p><img src="../images/&#x6240;&#x6709;&#x7B97;&#x6CD5;&#x5BF9;&#x6BD4;.png" style="zoom:70%;"></p>
+<p>&#x4ECE;&#x56FE;&#x4E2D;&#x770B;&#x51FA;SSD&#x7B97;&#x6CD5;&#x6709;&#x8F83;&#x9AD8;&#x7684;&#x51C6;&#x786E;&#x7387;&#x548C;&#x6027;&#x80FD;&#xFF0C;&#x517C;&#x987E;&#x4E86;**&#x901F;&#x5EA6;&#x548C;&#x7CBE;&#x5EA6;&#x3002;SSD&#x7B97;&#x6CD5;&#x7684;&#x4F18;&#x70B9;&#x5E94;&#x8BE5;&#x5F88;&#x660E;&#x663E;&#xFF1A;&#x8FD0;&#x884C;&#x901F;&#x5EA6;&#x53EF;&#x4EE5;&#x548C;YOLO&#x5AB2;&#x7F8E;&#xFF0C;&#x68C0;&#x6D4B;&#x7CBE;&#x5EA6;&#x53EF;&#x4EE5;&#x548C;Faster RCNN&#x5AB2;&#x7F8E;&#x3002;&#x5F53;&#x7136;&#x4E5F;&#x6709;&#x4E00;&#x4E9B;&#x7F3A;&#x70B9;&#xFF1A;</p>
+<ul>
+<li><p>1&#x3001;&#x9700;&#x8981;&#x4EBA;&#x5DE5;&#x8BBE;&#x7F6E;prior box&#x7684;min_size&#xFF0C;max_size&#x548C;aspect_ratio&#x503C;&#x3002;&#x7F51;&#x7EDC;&#x4E2D;prior box&#x7684;&#x57FA;&#x7840;&#x5927;&#x5C0F;&#x548C;&#x5F62;&#x72B6;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x5B66;&#x4E60;&#x83B7;&#x5F97;&#xFF0C;&#x800C;&#x662F;&#x9700;&#x8981;&#x624B;&#x5DE5;&#x8BBE;&#x7F6E;&#x3002;</p>
+</li>
+<li><p>2&#x3001;&#x867D;&#x7136;&#x91C7;&#x7528;&#x4E86;pyramdial feature hierarchy&#x7684;&#x601D;&#x8DEF;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x5C0F;&#x76EE;&#x6807;&#x7684;recall&#x4F9D;&#x7136;&#x4E00;&#x822C;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x8FBE;&#x5230;&#x8D85;&#x8D8A;Faster RCNN&#x592A;&#x591A;&#x3002;&#x4E3B;&#x8981;&#x53EF;&#x80FD;&#x662F;&#x8FD9;&#x662F;&#x7531;&#x4E8E;SSD&#x4F7F;&#x7528;conv4_3&#x4F4E;&#x7EA7;feature&#x53BB;&#x68C0;&#x6D4B;&#x5C0F;&#x76EE;&#x6807;&#xFF0C;&#x800C;&#x4F4E;&#x7EA7;&#x7279;&#x5F81;&#x5377;&#x79EF;&#x5C42;&#x6570;&#x5C11;&#xFF0C;&#x5B58;&#x5728;&#x7279;&#x5F81;&#x63D0;&#x53D6;&#x4E0D;&#x5145;&#x5206;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+</li>
+</ul>
+<blockquote>
+<p>&#x4E0B;&#x9762;&#x4E24;&#x4E2A;&#x4E3A;github&#x5B9E;&#x73B0;&#x7684;&#x7248;&#x672C;&#xFF1A;&#x6709;&#x5174;&#x8DA3;&#x53EF;&#x4EE5;&#x9605;&#x8BFB;&#x4F7F;&#x7528;</p>
+<p><a href="https://github.com/ChunML/ssd-tf2&#xFF1A;&#x6613;&#x4E8E;&#x9605;&#x8BFB;&#x548C;&#x7406;&#x89E3;&#x6A21;&#x578B;&#x6784;&#x5EFA;&#x548C;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;" target="_blank">https://github.com/ChunML/ssd-tf2&#xFF1A;&#x6613;&#x4E8E;&#x9605;&#x8BFB;&#x548C;&#x7406;&#x89E3;&#x6A21;&#x578B;&#x6784;&#x5EFA;&#x548C;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;</a></p>
+<p><a href="https://github.com/mattroos/ssd_tensorflow2&#xFF1A;&#x642D;&#x5EFA;&#x591A;&#x79CD;&#x7ED3;&#x6784;&#x6A21;&#x578B;" target="_blank">https://github.com/mattroos/ssd_tensorflow2&#xFF1A;&#x642D;&#x5EFA;&#x591A;&#x79CD;&#x7ED3;&#x6784;&#x6A21;&#x578B;</a></p>
+</blockquote>
+<h3 id="594-&#x603B;&#x7ED3;">5.9.4 &#x603B;&#x7ED3;</h3>
+<ul>
+<li>SSD&#x7684;&#x7ED3;&#x6784;</li>
+<li>Detector &amp; classifier&#x7684;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#x4EE5;&#x53CA;&#x4F5C;&#x7528;</li>
+<li>SSD&#x7684;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x6807;&#x8BB0;</li>
+<li>GT&#x4E0E;default boxes&#x7684;&#x683C;&#x5F0F;&#x8F6C;&#x6362;&#x8FC7;&#x7A0B;</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../objectdection/section8.html" class="navigation navigation-prev " aria-label="Previous page: YOLOV2&amp;V3"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../objectdection/section10.html" class="navigation navigation-next " aria-label="Next page: 案例：KITTI人、车检测案例-数据集处理"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"expandable-chapters":{},"katex":{},"splitter":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

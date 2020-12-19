@@ -1,0 +1,923 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>图像增强方法 | </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../imageClassification/section7.html" />
+    
+    
+    <link rel="prev" href="../imageClassification/section5.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.6"
+        data-chapter-title="图像增强方法"
+        data-filepath="imageClassification/section6.md"
+        data-basepath=".."
+        data-revision="Sun Oct 11 2020 09:58:20 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        计算机视觉与深度学习课程
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="introduction/index.html">
+            
+                
+                    <a href="../introduction/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        计算机视觉简介
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="introduction/section1.html">
+            
+                
+                    <a href="../introduction/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        计算机视觉概念
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="introduction/section2.html">
+            
+                
+                    <a href="../introduction/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        计算机视觉任务
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="tensorFlow/index.html">
+            
+                
+                    <a href="../tensorFlow/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        tensorflow入门
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="tensorFlow/section1.html">
+            
+                
+                    <a href="../tensorFlow/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        TensorFlow和Keras简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="tensorFlow/section2.html">
+            
+                
+                    <a href="../tensorFlow/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        快速入门模型
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="deeplearning/index.html">
+            
+                
+                    <a href="../deeplearning/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        深度神经网络
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="deeplearning/section1.html">
+            
+                
+                    <a href="../deeplearning/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        神经网络简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="deeplearning/section2.html">
+            
+                
+                    <a href="../deeplearning/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        常见的损失函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="deeplearning/section3.html">
+            
+                
+                    <a href="../deeplearning/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        深度学习的优化方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="deeplearning/section4.html">
+            
+                
+                    <a href="../deeplearning/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        深度学习的正则化
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="deeplearning/section5.html">
+            
+                
+                    <a href="../deeplearning/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        神经网络案例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="deeplearning/section6.html">
+            
+                
+                    <a href="../deeplearning/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        卷积神经网络CNN
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="imageClassification/index.html">
+            
+                
+                    <a href="../imageClassification/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        图像分类
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="imageClassification/section1.html">
+            
+                
+                    <a href="../imageClassification/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        图像分类简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="imageClassification/section2.html">
+            
+                
+                    <a href="../imageClassification/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        AlexNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="imageClassification/section3.html">
+            
+                
+                    <a href="../imageClassification/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        VGG
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="imageClassification/section4.html">
+            
+                
+                    <a href="../imageClassification/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        GoogLeNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="imageClassification/section5.html">
+            
+                
+                    <a href="../imageClassification/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        ResNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.6" data-path="imageClassification/section6.html">
+            
+                
+                    <a href="../imageClassification/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        图像增强方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="imageClassification/section7.html">
+            
+                
+                    <a href="../imageClassification/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        模型微调
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="objectdection/index.html">
+            
+                
+                    <a href="../objectdection/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        目标检测(Object Detection)
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="objectdection/section1.html">
+            
+                
+                    <a href="../objectdection/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        目标检测概述
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="objectdection/section2.html">
+            
+                
+                    <a href="../objectdection/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="objectdection/section3.html">
+            
+                
+                    <a href="../objectdection/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        SPPNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="objectdection/section4.html">
+            
+                
+                    <a href="../objectdection/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Fast R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="objectdection/section5.html">
+            
+                
+                    <a href="../objectdection/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Faster R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="objectdection/section6.html">
+            
+                
+                    <a href="../objectdection/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        Faster RCNN接口分析
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="objectdection/section7.html">
+            
+                
+                    <a href="../objectdection/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        YOLO算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="objectdection/section8.html">
+            
+                
+                    <a href="../objectdection/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        YOLOV2&amp;V3
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="objectdection/section9.html">
+            
+                
+                    <a href="../objectdection/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        SSD算法原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="objectdection/section10.html">
+            
+                
+                    <a href="../objectdection/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        案例：KITTI人、车检测案例-数据集处理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="objectdection/section11.html">
+            
+                
+                    <a href="../objectdection/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        案例：KITTI人、车检测案例-训练、检测
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="imageSegmentation/index.html">
+            
+                
+                    <a href="../imageSegmentation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        目标分割(Object Segmentation)
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="imageSegmentation/section1.html">
+            
+                
+                    <a href="../imageSegmentation/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        目标分割介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="imageSegmentation/section2.html">
+            
+                
+                    <a href="../imageSegmentation/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        FCN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="imageSegmentation/section3.html">
+            
+                
+                    <a href="../imageSegmentation/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        SegNet与U-Net
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="imageSegmentation/section6.html">
+            
+                
+                    <a href="../imageSegmentation/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Mask RCNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="imageSegmentation/section7.html">
+            
+                
+                    <a href="../imageSegmentation/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Mask RCNN分割案例1
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="imageSegmentation/section8.html">
+            
+                
+                    <a href="../imageSegmentation/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Mask RCNN分割案例2
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" ></a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="46-&#x56FE;&#x50CF;&#x589E;&#x5F3A;">4.6 &#x56FE;&#x50CF;&#x589E;&#x5F3A;</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong></p>
+<ul>
+<li>&#x77E5;&#x9053;&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#x7684;&#x5E38;&#x7528;&#x65B9;&#x6CD5;</li>
+<li>&#x80FD;&#x591F;&#x5229;&#x7528;tf.keras&#x6765;&#x5B8C;&#x6210;&#x56FE;&#x50CF;&#x589E;&#x5F3A;</li>
+</ul>
+<hr>
+<p><img src="assets/image-20200810165426167.png" alt="image-20200810165426167"></p>
+<p>&#x5927;&#x89C4;&#x6A21;&#x6570;&#x636E;&#x96C6;&#x662F;&#x6210;&#x529F;&#x5E94;&#x7528;&#x6DF1;&#x5EA6;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x524D;&#x63D0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5BF9;&#x56FE;&#x50CF;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x65B9;&#x5F0F;&#x7684;&#x88C1;&#x526A;&#xFF0C;&#x4F7F;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x7269;&#x4F53;&#x51FA;&#x73B0;&#x5728;&#x4E0D;&#x540C;&#x4F4D;&#x7F6E;&#xFF0C;&#x4ECE;&#x800C;&#x51CF;&#x8F7B;&#x6A21;&#x578B;&#x5BF9;&#x7269;&#x4F53;&#x51FA;&#x73B0;&#x4F4D;&#x7F6E;&#x7684;&#x4F9D;&#x8D56;&#x6027;&#x3002;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x8C03;&#x6574;&#x4EAE;&#x5EA6;&#x3001;&#x8272;&#x5F69;&#x7B49;&#x56E0;&#x7D20;&#x6765;&#x964D;&#x4F4E;&#x6A21;&#x578B;&#x5BF9;&#x8272;&#x5F69;&#x7684;&#x654F;&#x611F;&#x5EA6;&#x3002;&#x53EF;&#x4EE5;&#x8BF4;&#xFF0C;&#x5728;&#x5F53;&#x5E74;AlexNet&#x7684;&#x6210;&#x529F;&#x4E2D;&#xFF0C;&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#x6280;&#x672F;&#x529F;&#x4E0D;&#x53EF;&#x6CA1;</p>
+<h2 id="1&#x5E38;&#x7528;&#x7684;&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#x65B9;&#x6CD5;">1.&#x5E38;&#x7528;&#x7684;&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#x65B9;&#x6CD5;</h2>
+<p>&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#xFF08;image augmentation&#xFF09;&#x6307;&#x901A;&#x8FC7;&#x526A;&#x5207;&#x3001;&#x65CB;&#x8F6C;/&#x53CD;&#x5C04;/&#x7FFB;&#x8F6C;&#x53D8;&#x6362;&#x3001;&#x7F29;&#x653E;&#x53D8;&#x6362;&#x3001;&#x5E73;&#x79FB;&#x53D8;&#x6362;&#x3001;&#x5C3A;&#x5EA6;&#x53D8;&#x6362;&#x3001;&#x5BF9;&#x6BD4;&#x5EA6;&#x53D8;&#x6362;&#x3001;&#x566A;&#x58F0;&#x6270;&#x52A8;&#x3001;&#x989C;&#x8272;&#x53D8;&#x6362;&#x7B49;&#x4E00;&#x79CD;&#x6216;&#x591A;&#x79CD;&#x7EC4;&#x5408;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x53D8;&#x6362;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x589E;&#x52A0;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5927;&#x5C0F;&#x3002;&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#x7684;&#x610F;&#x4E49;&#x662F;&#x901A;&#x8FC7;&#x5BF9;&#x8BAD;&#x7EC3;&#x56FE;&#x50CF;<strong>&#x505A;&#x4E00;&#x7CFB;&#x5217;&#x968F;&#x673A;&#x6539;&#x53D8;</strong>&#xFF0C;&#x6765;&#x4EA7;&#x751F;&#x76F8;&#x4F3C;&#x4F46;&#x53C8;&#x4E0D;&#x540C;&#x7684;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#xFF0C;&#x4ECE;&#x800C;&#x6269;&#x5927;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x7684;&#x89C4;&#x6A21;&#xFF0C;&#x800C;&#x4E14;&#x968F;&#x673A;&#x6539;&#x53D8;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x53EF;&#x4EE5;&#x964D;&#x4F4E;&#x6A21;&#x578B;&#x5BF9;&#x67D0;&#x4E9B;&#x5C5E;&#x6027;&#x7684;&#x4F9D;&#x8D56;&#xFF0C;&#x4ECE;&#x800C;&#x63D0;&#x9AD8;&#x6A21;&#x578B;&#x7684;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x3002;</p>
+<p>&#x5E38;&#x89C1;&#x7684;&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x4E24;&#x7C7B;&#xFF1A;&#x51E0;&#x4F55;&#x53D8;&#x6362;&#x7C7B;&#x548C;&#x989C;&#x8272;&#x53D8;&#x6362;&#x7C7B;</p>
+<ul>
+<li>&#x51E0;&#x4F55;&#x53D8;&#x6362;&#x7C7B;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x5BF9;&#x56FE;&#x50CF;&#x8FDB;&#x884C;&#x51E0;&#x4F55;&#x53D8;&#x6362;&#x64CD;&#x4F5C;&#xFF0C;&#x5305;&#x62EC;<strong>&#x7FFB;&#x8F6C;&#xFF0C;&#x65CB;&#x8F6C;&#xFF0C;&#x88C1;&#x526A;&#xFF0C;&#x53D8;&#x5F62;&#xFF0C;&#x7F29;&#x653E;</strong>&#x7B49;&#x3002;</li>
+</ul>
+<p><img src="assets/image-20200810171853023.png" alt="image-20200810171853023"></p>
+<ul>
+<li>&#x989C;&#x8272;&#x53D8;&#x6362;&#x7C7B;&#xFF0C;&#x6307;&#x901A;&#x8FC7;&#x6A21;&#x7CCA;&#x3001;&#x989C;&#x8272;&#x53D8;&#x6362;&#x3001;&#x64E6;&#x9664;&#x3001;&#x586B;&#x5145;&#x7B49;&#x65B9;&#x5F0F;&#x5BF9;&#x56FE;&#x50CF;&#x8FDB;&#x884C;&#x5904;&#x7406;</li>
+</ul>
+<p><img src="assets/image-20200810172119008.png" alt="image-20200810172119008"></p>
+<p>&#x5B9E;&#x73B0;&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;tf.image&#x6765;&#x5B8C;&#x6210;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;tf.keras.imageGenerator&#x6765;&#x5B8C;&#x6210;&#x3002;</p>
+<h2 id="2tfimage&#x8FDB;&#x884C;&#x56FE;&#x50CF;&#x589E;&#x5F3A;">2.tf.image&#x8FDB;&#x884C;&#x56FE;&#x50CF;&#x589E;&#x5F3A;</h2>
+<p>&#x5BFC;&#x5165;&#x6240;&#x9700;&#x7684;&#x5DE5;&#x5177;&#x5305;&#x5E76;&#x8BFB;&#x53D6;&#x8981;&#x5904;&#x7406;&#x7684;&#x56FE;&#x50CF;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x5BFC;&#x5165;&#x5DE5;&#x5177;&#x5305;</span>
+<span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-comment"># &#x8BFB;&#x53D6;&#x56FE;&#x50CF;&#x5E76;&#x663E;&#x793A;</span>
+cat = plt.imread(<span class="hljs-string">&apos;./cat.jpg&apos;</span>)
+plt.imshow(cat)
+</code></pre>
+<h3 id="21-&#x7FFB;&#x8F6C;&#x548C;&#x88C1;&#x526A;">2.1 &#x7FFB;&#x8F6C;&#x548C;&#x88C1;&#x526A;</h3>
+<p>&#x5DE6;&#x53F3;&#x7FFB;&#x8F6C;&#x56FE;&#x50CF;&#x662F;&#x6700;&#x65E9;&#x4E5F;&#x662F;&#x6700;&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x79CD;&#x56FE;&#x50CF;&#x589E;&#x5E7F;&#x65B9;&#x6CD5;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>tf.image.random_flip_left_right</code>&#x6765;&#x5B9E;&#x73B0;&#x56FE;&#x50CF;&#x5DE6;&#x53F3;&#x7FFB;&#x8F6C;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x5DE6;&#x53F3;&#x7FFB;&#x8F6C;&#x5E76;&#x663E;&#x793A;</span>
+cat1 = tf.image.random_flip_left_right(cat)
+plt.imshow(cat1)
+</code></pre>
+<p><img src="assets/image-20200810180117736.png" alt="image-20200810180117736"></p>
+<p>&#x521B;&#x5EFA;<code>tf.image.random_flip_up_down</code>&#x5B9E;&#x4F8B;&#x6765;&#x5B9E;&#x73B0;&#x56FE;&#x50CF;&#x7684;&#x4E0A;&#x4E0B;&#x7FFB;&#x8F6C;&#xFF0C;&#x4E0A;&#x4E0B;&#x7FFB;&#x8F6C;&#x4F7F;&#x7528;&#x7684;&#x8F83;&#x5C11;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x4E0A;&#x4E0B;&#x7FFB;&#x8F6C;</span>
+cat2 = tf.image.random_flip_up_down(cat)
+plt.imshow(cat2)
+</code></pre>
+<p><img src="assets/image-20200810180317539.png" alt="image-20200810180317539"></p>
+<p>&#x968F;&#x673A;&#x88C1;&#x526A;&#x51FA;&#x4E00;&#x5757;&#x9762;&#x79EF;&#x4E3A;&#x539F;&#x9762;&#x79EF; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mn>0</mn><mi mathvariant="normal">%</mi><mo>&#x223C;</mo><mn>1</mn><mn>0</mn><mn>0</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">10\% \sim 100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">%</span><span class="mrel">&#x223C;</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span><span class="mord mathrm">%</span></span></span></span> &#x7684;&#x533A;&#x57DF;&#xFF0C;&#x4E14;&#x8BE5;&#x533A;&#x57DF;&#x7684;&#x5BBD;&#x548C;&#x9AD8;&#x4E4B;&#x6BD4;&#x968F;&#x673A;&#x53D6;&#x81EA; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>5</mn><mo>&#x223C;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">0.5 \sim 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.64444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">0</span><span class="mord mathrm">.</span><span class="mord mathrm">5</span><span class="mrel">&#x223C;</span><span class="mord mathrm">2</span></span></span></span> &#xFF0C;&#x7136;&#x540E;&#x518D;&#x5C06;&#x8BE5;&#x533A;&#x57DF;&#x7684;&#x5BBD;&#x548C;&#x9AD8;&#x5206;&#x522B;&#x7F29;&#x653E;&#x5230;200&#x50CF;&#x7D20;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x968F;&#x673A;&#x88C1;&#x526A;</span>
+cat3 = tf.image.random_crop(cat,(<span class="hljs-number">200</span>,<span class="hljs-number">200</span>,<span class="hljs-number">3</span>))
+plt.imshow(cat3)
+</code></pre>
+<p><img src="assets/image-20200810180523815.png" alt="image-20200810180523815"></p>
+<h3 id="22-&#x989C;&#x8272;&#x53D8;&#x6362;">2.2 &#x989C;&#x8272;&#x53D8;&#x6362;</h3>
+<p>&#x53E6;&#x4E00;&#x7C7B;&#x589E;&#x5E7F;&#x65B9;&#x6CD5;&#x662F;&#x989C;&#x8272;&#x53D8;&#x6362;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4ECE;4&#x4E2A;&#x65B9;&#x9762;&#x6539;&#x53D8;&#x56FE;&#x50CF;&#x7684;&#x989C;&#x8272;&#xFF1A;&#x4EAE;&#x5EA6;&#x3001;&#x5BF9;&#x6BD4;&#x5EA6;&#x3001;&#x9971;&#x548C;&#x5EA6;&#x548C;&#x8272;&#x8C03;&#x3002;&#x63A5;&#x4E0B;&#x6765;&#x5C06;&#x56FE;&#x50CF;&#x7684;&#x4EAE;&#x5EA6;&#x968F;&#x673A;&#x53D8;&#x5316;&#x4E3A;&#x539F;&#x56FE;&#x4EAE;&#x5EA6;&#x7684; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn><mn>0</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">50\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">5</span><span class="mord mathrm">0</span><span class="mord mathrm">%</span></span></span></span>&#xFF08;&#x5373; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>&#x2212;</mo><mn>0</mn><mi mathvariant="normal">.</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">1-0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span><span class="mbin">&#x2212;</span><span class="mord mathrm">0</span><span class="mord mathrm">.</span><span class="mord mathrm">5</span></span></span></span>&#xFF09;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&#x223C;</mo><mn>1</mn><mn>5</mn><mn>0</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\sim 150\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="base textstyle uncramped"><span class="mrel">&#x223C;</span><span class="mord mathrm">1</span><span class="mord mathrm">5</span><span class="mord mathrm">0</span><span class="mord mathrm">%</span></span></span></span>&#xFF08;&#x5373; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>+</mo><mn>0</mn><mi mathvariant="normal">.</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">1+0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span><span class="mbin">+</span><span class="mord mathrm">0</span><span class="mord mathrm">.</span><span class="mord mathrm">5</span></span></span></span>&#xFF09;&#x3002;</p>
+<pre><code class="lang-python">cat4=tf.image.random_brightness(cat,<span class="hljs-number">0.5</span>)
+plt.imshow(cat4)
+</code></pre>
+<p><img src="assets/image-20200810180658306.png" alt="image-20200810180658306"></p>
+<p>&#x7C7B;&#x4F3C;&#x5730;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x968F;&#x673A;&#x53D8;&#x5316;&#x56FE;&#x50CF;&#x7684;&#x8272;&#x8C03;</p>
+<pre><code class="lang-python">cat5 = tf.image.random_hue(cat,<span class="hljs-number">0.5</span>)
+plt.imshow(cat5)
+</code></pre>
+<p><img src="assets/image-20200810180810294.png" alt="image-20200810180810294"></p>
+<h2 id="3-&#x4F7F;&#x7528;imagedatagenerator&#x8FDB;&#x884C;&#x56FE;&#x50CF;&#x589E;&#x5F3A;">3 &#x4F7F;&#x7528;ImageDataGenerator()&#x8FDB;&#x884C;&#x56FE;&#x50CF;&#x589E;&#x5F3A;</h2>
+<p>ImageDataGenerator()&#x662F;keras.preprocessing.image&#x6A21;&#x5757;&#x4E2D;&#x7684;&#x56FE;&#x7247;&#x751F;&#x6210;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;batch&#x4E2D;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#xFF0C;&#x6269;&#x5145;&#x6570;&#x636E;&#x96C6;&#x5927;&#x5C0F;&#xFF0C;&#x589E;&#x5F3A;&#x6A21;&#x578B;&#x7684;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x3002;&#x6BD4;&#x5982;&#x65CB;&#x8F6C;&#xFF0C;&#x53D8;&#x5F62;&#x7B49;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-python">keras.preprocessing.image.ImageDataGenerator(
+               rotation_range=<span class="hljs-number">0</span>, <span class="hljs-comment">#&#x6574;&#x6570;&#x3002;&#x968F;&#x673A;&#x65CB;&#x8F6C;&#x7684;&#x5EA6;&#x6570;&#x8303;&#x56F4;&#x3002;</span>
+               width_shift_range=<span class="hljs-number">0.0</span>, <span class="hljs-comment">#&#x6D6E;&#x70B9;&#x6570;&#x3001;&#x5BBD;&#x5EA6;&#x5E73;&#x79FB;</span>
+               height_shift_range=<span class="hljs-number">0.0</span>, <span class="hljs-comment">#&#x6D6E;&#x70B9;&#x6570;&#x3001;&#x9AD8;&#x5EA6;&#x5E73;&#x79FB;</span>
+               brightness_range=<span class="hljs-keyword">None</span>, <span class="hljs-comment"># &#x4EAE;&#x5EA6;&#x8C03;&#x6574;</span>
+               shear_range=<span class="hljs-number">0.0</span>, <span class="hljs-comment"># &#x88C1;&#x526A;</span>
+               zoom_range=<span class="hljs-number">0.0</span>, <span class="hljs-comment">#&#x6D6E;&#x70B9;&#x6570; &#x6216; [lower, upper]&#x3002;&#x968F;&#x673A;&#x7F29;&#x653E;&#x8303;&#x56F4;</span>
+               horizontal_flip=<span class="hljs-keyword">False</span>, <span class="hljs-comment"># &#x5DE6;&#x53F3;&#x7FFB;&#x8F6C;</span>
+               vertical_flip=<span class="hljs-keyword">False</span>, <span class="hljs-comment"># &#x5782;&#x76F4;&#x7FFB;&#x8F6C;</span>
+               rescale=<span class="hljs-keyword">None</span> <span class="hljs-comment"># &#x5C3A;&#x5EA6;&#x8C03;&#x6574;</span>
+            )
+</code></pre>
+<p>&#x6765;&#x770B;&#x4E0B;&#x6C34;&#x5E73;&#x7FFB;&#x8F6C;&#x7684;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x83B7;&#x53D6;&#x6570;&#x636E;&#x96C6;</span>
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+<span class="hljs-comment"># &#x5C06;&#x6570;&#x636E;&#x8F6C;&#x6362;&#x4E3A;4&#x7EF4;&#x7684;&#x5F62;&#x5F0F;</span>
+x_train = X_train.reshape(X_train.shape[<span class="hljs-number">0</span>],<span class="hljs-number">28</span>,<span class="hljs-number">28</span>,<span class="hljs-number">1</span>)
+x_test = X_test.reshape(X_test.shape[<span class="hljs-number">0</span>],<span class="hljs-number">28</span>,<span class="hljs-number">28</span>,<span class="hljs-number">1</span>)
+<span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#x65B9;&#x5F0F;&#xFF1A;&#x6C34;&#x5E73;&#x7FFB;&#x8F6C;</span>
+datagen = ImageDataGenerator(horizontal_flip=<span class="hljs-keyword">True</span>)
+<span class="hljs-comment"># &#x67E5;&#x770B;&#x589E;&#x5F3A;&#x540E;&#x7684;&#x7ED3;&#x679C;</span>
+<span class="hljs-keyword">for</span> X_batch,y_batch <span class="hljs-keyword">in</span> datagen.flow(x_train,y_train,batch_size=<span class="hljs-number">9</span>):
+    plt.figure(figsize=(<span class="hljs-number">8</span>,<span class="hljs-number">8</span>)) <span class="hljs-comment"># &#x8BBE;&#x5B9A;&#x6BCF;&#x4E2A;&#x56FE;&#x50CF;&#x663E;&#x793A;&#x7684;&#x5927;&#x5C0F;</span>
+    <span class="hljs-comment"># &#x4EA7;&#x751F;&#x4E00;&#x4E2A;3*3&#x7F51;&#x683C;&#x7684;&#x56FE;&#x50CF;</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,<span class="hljs-number">9</span>):
+        plt.subplot(<span class="hljs-number">330</span>+<span class="hljs-number">1</span>+i) 
+        plt.title(y_batch[i])
+        plt.axis(<span class="hljs-string">&apos;off&apos;</span>)
+        plt.imshow(X_batch[i].reshape(<span class="hljs-number">28</span>,<span class="hljs-number">28</span>),cmap=<span class="hljs-string">&apos;gray&apos;</span>)
+    plt.show()
+    <span class="hljs-keyword">break</span>
+</code></pre>
+<p><img src="assets/image-20200810192939233.png" alt="image-20200810192939233"></p>
+<hr>
+<p><strong>&#x603B;&#x7ED3;</strong></p>
+<ul>
+<li>&#x5E38;&#x7528;&#x7684;&#x56FE;&#x50CF;&#x589E;&#x5F3A;&#x65B9;&#x6CD5;&#xFF1A;&#x51E0;&#x4F55;&#x548C;&#x989C;&#x8272;</li>
+<li>&#x5728;tf,keras&#x4E2D;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#xFF1A;tf.image&#x548C;ImageDataGenerator()&#x5B8C;&#x6210;&#x56FE;&#x50CF;&#x589E;&#x5F3A;</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../imageClassification/section5.html" class="navigation navigation-prev " aria-label="Previous page: ResNet"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../imageClassification/section7.html" class="navigation navigation-next " aria-label="Next page: 模型微调"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"expandable-chapters":{},"katex":{},"splitter":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

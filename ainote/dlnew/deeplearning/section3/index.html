@@ -1,0 +1,1432 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>深度学习的优化方法 - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#23" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              深度学习的优化方法
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        深度学习的优化方法
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="深度学习的优化方法" class="md-nav__link md-nav__link--active">
+      深度学习的优化方法
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.梯度下降算法【回顾】
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2bp" class="md-nav__link">
+    2.反向传播算法（BP算法）
+  </a>
+  
+    <nav class="md-nav" aria-label="2.反向传播算法（BP算法）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 前向传播与反向传播
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 链式法则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23_1" class="md-nav__link">
+    2.3 反向传播算法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.梯度下降优化方法
+  </a>
+  
+    <nav class="md-nav" aria-label="3.梯度下降优化方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-momentum" class="md-nav__link">
+    3.1 动量算法（Momentum）
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 动量算法（Momentum）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    指数加权平均
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    动量梯度下降算法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-adagrad" class="md-nav__link">
+    3.2 AdaGrad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-rmsprop" class="md-nav__link">
+    3.3 RMSprop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-adam" class="md-nav__link">
+    3.4 Adam
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4.学习率退火
+  </a>
+  
+    <nav class="md-nav" aria-label="4.学习率退火">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 分段常数衰减
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 指数衰减
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-1t" class="md-nav__link">
+    4.3 1/t衰减
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.梯度下降算法【回顾】
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2bp" class="md-nav__link">
+    2.反向传播算法（BP算法）
+  </a>
+  
+    <nav class="md-nav" aria-label="2.反向传播算法（BP算法）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 前向传播与反向传播
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 链式法则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23_1" class="md-nav__link">
+    2.3 反向传播算法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.梯度下降优化方法
+  </a>
+  
+    <nav class="md-nav" aria-label="3.梯度下降优化方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-momentum" class="md-nav__link">
+    3.1 动量算法（Momentum）
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 动量算法（Momentum）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    指数加权平均
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    动量梯度下降算法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-adagrad" class="md-nav__link">
+    3.2 AdaGrad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-rmsprop" class="md-nav__link">
+    3.3 RMSprop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-adam" class="md-nav__link">
+    3.4 Adam
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4.学习率退火
+  </a>
+  
+    <nav class="md-nav" aria-label="4.学习率退火">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 分段常数衰减
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 指数衰减
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-1t" class="md-nav__link">
+    4.3 1/t衰减
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="23">2.3 深度学习的优化方法<a class="headerlink" href="#23" title="Permanent link">&para;</a></h1>
+<p><strong>学习目标</strong></p>
+<ul>
+<li>知道梯度下降算法</li>
+<li>理解神经网络的链式法则</li>
+<li>掌握反向传播算法（BP算法）</li>
+<li>知道梯度下降算法的优化方法</li>
+<li>了解学习率退火</li>
+</ul>
+<hr />
+<p><img alt="image-20200731113227192" src="../assets/image-20200731113227192.png" /></p>
+<h2 id="1">1.梯度下降算法【回顾】<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>梯度下降法简单来说就是一种寻找使损失函数最小化的方法。大家在机器学习阶段已经学过该算法，所以我们在这里就简单的回顾下，从数学上的角度来看，梯度的方向是函数增长速度最快的方向，那么梯度的反方向就是函数减少最快的方向，所以有：</p>
+<p><img alt="image-20200731113915710" src="../assets/image-20200731113915710.png" /></p>
+<p>其中，η是学习率，如果学习率太小，那么每次训练之后得到的效果都太小，增大训练的时间成本。如果，学习率太大，那就有可能直接跳过最优解，进入无限的训练中。解决的方法就是，学习率也需要随着训练的进行而变化。</p>
+<p><img alt="image-20200731142541549" src="../assets/image-20200731142541549.png" /></p>
+<p>在上图中我们展示了一维和多维的损失函数，损失函数呈碗状。在训练过程中损失函数对权重的偏导数就是损失函数在该位置点的梯度。我们可以看到，沿着负梯度方向移动，就可以到达损失函数底部，从而使损失函数最小化。这种利用损失函数的梯度迭代地寻找局部最小值的过程就是梯度下降的过程。</p>
+<p>根据在进行迭代时使用的样本量，将梯度下降算法分为以下三类：</p>
+<p><img alt="image-20200731162157513" src="../assets/image-20200731162157513.png" /></p>
+<p>实际中使用较多的是小批量的梯度下降算法，在tf.keras中通过以下方法实现：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">nesterov</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SGD&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>例子：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 实例化优化方法：SGD </span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># 定义要调整的参数</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># 定义损失函数：无参但有返回值</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="n">var</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>  
+<span class="c1"># 计算梯度，并对参数进行更新，步长为 `- learning_rate * grad`</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">[</span><span class="n">var</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="c1"># 展示参数更新结果</span>
+<span class="n">var</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</code></pre></div>
+
+<p>更新结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1-0.1*1=0.9</span>
+<span class="mf">0.9</span>
+</code></pre></div>
+
+<p>在进行模型训练时，有三个基础的概念：</p>
+<p><img alt="image-20200805161222933" src="../assets/image-20200805161222933.png" /></p>
+<p>实际上，梯度下降的几种方式的根本区别就在于 Batch Size不同,，如下表所示：</p>
+<p><img alt="image-20200805161408473" src="../assets/image-20200805161408473.png" /></p>
+<p>注：上表中 Mini-Batch 的 Batch 个数为 N / B + 1 是针对未整除的情况。整除则是 N / B。</p>
+<p>假设数据集有 50000 个训练样本，现在选择 Batch Size = 256 对模型进行训练。</p>
+<ul>
+<li>每个 Epoch 要训练的图片数量：50000</li>
+<li>训练集具有的 Batch 个数：50000/256+1=196</li>
+<li>每个 Epoch 具有的 Iteration 个数：196</li>
+<li>10个 Epoch 具有的 Iteration 个数：1960</li>
+</ul>
+<h2 id="2bp">2.反向传播算法（BP算法）<a class="headerlink" href="#2bp" title="Permanent link">&para;</a></h2>
+<p>利用反向传播算法对神经网络进行训练。该方法与梯度下降算法相结合，对网络中所有权重计算损失函数的梯度，并利用梯度值来更新权值以最小化损失函数。在介绍BP算法前，我们先看下前向传播与链式法则的内容。</p>
+<h3 id="21">2.1 前向传播与反向传播<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>前向传播指的是数据输入的神经网络中，逐层向前传输，一直到运算到输出层为止。</p>
+<p><img alt="image-20200731145337538" src="../assets/image-20200731145337538.png" /></p>
+<p>在网络的训练过程中经过前向传播后得到的最终结果跟训练样本的真实值总是存在一定误差，这个误差便是损失函数。想要减小这个误差，就用损失函数ERROR，从后往前，依次求各个参数的偏导，这就是反向传播（Back Propagation）。</p>
+<h3 id="22">2.2 链式法则<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>反向传播算法是利用链式法则进行梯度求解及权重更新的。对于复杂的复合函数，我们将其拆分为一系列的加减乘除或指数，对数，三角函数等初等函数，通过链式法则完成复合函数的求导。为简单起见，这里以一个神经网络中常见的复合函数的例子来说明 这个过程. 令复合函数 𝑓(𝑥; 𝑤, 𝑏) 为:</p>
+<p><img alt="image-20200731150923042" src="../assets/image-20200731150923042.png" /></p>
+<p>其中x是输入数据，w是权重，b是偏置。我们可以将该复合函数分解为：</p>
+<p><img alt="image-20200731151410206" src="../assets/image-20200731151410206.png" /></p>
+<p>并进行图形化表示，如下所示：</p>
+<p><img alt="image-20200731151506040" src="../assets/image-20200731151506040.png" /></p>
+<p>整个复合函数 𝑓(𝑥; 𝑤, 𝑏) 关于参数 𝑤 和 𝑏 的导数可以通过 𝑓(𝑥; 𝑤, 𝑏) 与参数 𝑤 和 𝑏 之间路径上所有的导数连乘来得到，即：</p>
+<p><img alt="image-20200731151908429" src="../assets/image-20200731151908429.png" /></p>
+<p>以w为例，当 𝑥 = 1, 𝑤 = 0, 𝑏 = 0 时，可以得到：</p>
+<p><img alt="image-20200731152031514" src="../assets/image-20200731152031514.png" />注意：常用函数的导数：</p>
+<p><img alt="image-20200731154956624" src="../assets/image-20200731154956624.png" /></p>
+<h3 id="23_1">2.3 反向传播算法<a class="headerlink" href="#23_1" title="Permanent link">&para;</a></h3>
+<p>反向传播算法利用链式法则对神经网络中的各个节点的权重进行更新。我们通过一个例子来给大家介绍整个流程，假设当前前向传播的过程如下图所以：</p>
+<p><img alt="image-20200731165044782" src="../assets/image-20200731165044782.png" /></p>
+<ul>
+<li>计算损失函数，并进行反向传播：</li>
+</ul>
+<p><img alt="image-20200731165142151" src="../assets/image-20200731165142151.png" /></p>
+<ul>
+<li>计算梯度值：</li>
+</ul>
+<p><img alt="image-20200731165239799" src="../assets/image-20200731165239799.png" /></p>
+<div class="codehilite"><pre><span></span><code>输出层梯度值：
+</code></pre></div>
+
+
+<p><img alt="image-20200731170615069" src="../assets/image-20200731170615069.png" /></p>
+<div class="codehilite"><pre><span></span><code>隐藏层梯度值：
+</code></pre></div>
+
+
+<p><img alt="image-20200731170640284" src="../assets/image-20200731170640284.png" /></p>
+<div class="codehilite"><pre><span></span><code>偏置的梯度值：
+</code></pre></div>
+
+
+<p><img alt="image-20200731170704568" src="../assets/image-20200731170704568.png" /></p>
+<ul>
+<li>参数更新：</li>
+</ul>
+<p>输出层权重：</p>
+<p><img alt="image-20200731170409620" src="../assets/image-20200731170409620.png" /></p>
+<p>隐藏层权重：</p>
+<p><img alt="image-20200731170433975" src="../assets/image-20200731170433975.png" /></p>
+<p>偏置更新：</p>
+<p><img alt="image-20200731170452900" src="../assets/image-20200731170452900.png" /></p>
+<p>重复上述过程完成模型的训练，整个流程如下表所示：</p>
+<p><img alt="image-20200731165739133" src="../assets/image-20200731165739133.png" /></p>
+<h2 id="3">3.梯度下降优化方法<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>梯度下降算法在进行网络训练时，会遇到鞍点，局部极小值这些问题，那我们怎么改进SGD呢？在这里我们介绍几个比较常用的</p>
+<p><img alt="image-20200731172116305" src="../assets/image-20200731172116305.png" /></p>
+<h3 id="31-momentum">3.1 动量算法（Momentum）<a class="headerlink" href="#31-momentum" title="Permanent link">&para;</a></h3>
+<p>动量算法主要解决鞍点问题。在介绍动量法之前，我们先来看下指数加权平均数的计算方法。</p>
+<h4 id="_1">指数加权平均<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>假设给定一个序列，例如北京一年每天的气温值，图中蓝色的点代表真实数据，</p>
+<p><img alt="image-20200731180309908" src="../assets/image-20200731180309908.png" /></p>
+<p>这时温度值波动比较大，那我们就使用加权平均值来进行平滑，如下图红线就是平滑后的结果：</p>
+<p><img alt="image-20200731180446519" src="../assets/image-20200731180446519.png" /></p>
+<p>计算方法如下所示：</p>
+<p><img alt="image-20200731180511927" src="../assets/image-20200731180511927.png" /></p>
+<p>其中Yt为 t 时刻时的真实值，St为t加权平均后的值，β为权重值。红线即是指数加权平均后的结果。</p>
+<p>上图中β设为0.9，那么指数加权平均的计算结果为：</p>
+<p><img alt="image-20200731181131781" src="../assets/image-20200731181131781.png" /></p>
+<p>那么第100天的结果就可以表示为：</p>
+<p><img alt="image-20200731181214093" src="../assets/image-20200731181214093.png" /></p>
+<h4 id="_2">动量梯度下降算法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>动量梯度下降（Gradient Descent with Momentum）计算梯度的指数加权平均数，并利用该值来更新参数值。动量梯度下降法的整个过程为，其中β通常设置为0.9：</p>
+<p><img alt="image-20200731181606446" src="../assets/image-20200731181606446.png" /></p>
+<p>与原始的梯度下降算法相比，它的下降趋势更平滑。</p>
+<p><img alt="image-20200731181716627" src="../assets/image-20200731181716627.png" /></p>
+<p>在tf.keras中使用Momentum算法仍使用功能SGD方法，但要设置momentum参数，实现过程如下：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 实例化优化方法：SGD 指定参数beta=0.9</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="c1"># 定义要调整的参数，初始值</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">val0</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="c1"># 定义损失函数</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="n">var</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>         
+<span class="c1">#第一次更新：计算梯度，并对参数进行更新，步长为 `- learning_rate * grad`</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">[</span><span class="n">var</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">val1</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="c1"># 第二次更新：计算梯度，并对参数进行更新，因为加入了momentum,步长会增加</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">[</span><span class="n">var</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">val2</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="c1"># 打印两次更新的步长</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;第一次更新步长={}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">val0</span> <span class="o">-</span> <span class="n">val1</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;第二次更新步长={}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">val1</span> <span class="o">-</span> <span class="n">val2</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span>
+</code></pre></div>
+
+<p>结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="err">第一次更新步长</span><span class="o">=</span><span class="mf">0.10000002384185791</span>
+<span class="err">第二次更新步长</span><span class="o">=</span><span class="mf">0.18000000715255737</span>
+</code></pre></div>
+
+<p>另外还有一种动量算法Nesterov accelerated gradient(NAG)，使用了根据动量项**预先估计**的参数，在Momentum的基础上进一步加快收敛，提高响应性，该算法实现依然使用SGD方法，要设置nesterov设置为true.</p>
+<h3 id="32-adagrad">3.2 AdaGrad<a class="headerlink" href="#32-adagrad" title="Permanent link">&para;</a></h3>
+<p>AdaGrad算法会使用一个小批量随机梯度<span><span class="MathJax_Preview"><span><span class="MathJax_Preview">g_t</span><script type="math/tex">g_t</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">g_t</span><script type="math/tex">g_t</script></span></script></span>按元素平方的累加变量st。在首次迭代时，AdaGrad将s0中每个元素初始化为0。在t次迭代，首先将小批量随机梯度gt按元素平方后累加到变量st：</p>
+<p><img alt="image-20200731191318753" src="../assets/image-20200731191318753.png" /></p>
+<p>其中⊙是按元素相乘。接着，我们将目标函数自变量中每个元素的学习率通过按元素运算重新调整一下：</p>
+<p><img alt="image-20200731191333879" src="../assets/image-20200731191333879.png" /></p>
+<p>其中α是学习率，ϵ是为了维持数值稳定性而添加的常数，如<span><span class="MathJax_Preview"><span><span class="MathJax_Preview">10^{-6}</span><script type="math/tex">10^{-6}</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">10^{-6}</span><script type="math/tex">10^{-6}</script></span></script></span>。这里开方、除法和乘法的运算都是按元素运算的。这些按元素运算使得目标函数自变量中每个元素都分别拥有自己的学习率。</p>
+<p>在tf.keras中的实现方法是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adagrad</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">initial_accumulator_value</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-07</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>例子是：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 实例化优化方法：SGD</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adagrad</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">initial_accumulator_value</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-07</span>
+<span class="p">)</span>
+<span class="c1"># 定义要调整的参数</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># 定义损失函数：无参但有返回值</span>
+<span class="k">def</span> <span class="nf">loss</span><span class="p">():</span> <span class="k">return</span> <span class="p">(</span><span class="n">var</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
+
+<span class="c1"># 计算梯度，并对参数进行更新，</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">[</span><span class="n">var</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="c1"># 展示参数更新结果</span>
+<span class="n">var</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="33-rmsprop">3.3 RMSprop<a class="headerlink" href="#33-rmsprop" title="Permanent link">&para;</a></h3>
+<p>AdaGrad算法在迭代后期由于学习率过小,能较难找到最优解。为了解决这一问题，RMSProp算法对AdaGrad算法做了一点小小的修改。</p>
+<p>不同于AdaGrad算法里状态变量st是截至时间步t所有小批量随机梯度gt按元素平方和，RMSProp（Root Mean Square Prop）算法将这些梯度按元素平方做指数加权移动平均</p>
+<p><img alt="image-20200731191604236" src="../assets/image-20200731191604236.png" /></p>
+<p>其中ϵ是一样为了维持数值稳定一个常数。最终自变量每个元素的学习率在迭代过程中就不再一直降低。RMSProp 有助于减少抵达最小值路径上的摆动，并允许使用一个更大的学习率 α，从而加快算法学习速度。</p>
+<p>在tf.keras中实现时，使用的方法是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-07</span><span class="p">,</span> <span class="n">centered</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;RMSprop&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>例子：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 实例化优化方法RMSprop</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># 定义要调整的参数</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># 定义损失函数：无参但有返回值</span>
+<span class="k">def</span> <span class="nf">loss</span><span class="p">():</span> <span class="k">return</span> <span class="p">(</span><span class="n">var</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
+
+<span class="c1"># 计算梯度，并对参数进行更新，</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">[</span><span class="n">var</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="c1"># 展示参数更新结果</span>
+<span class="n">var</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</code></pre></div>
+
+<p>输出结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="mf">0.6837723</span>
+</code></pre></div>
+
+<h3 id="34-adam">3.4 Adam<a class="headerlink" href="#34-adam" title="Permanent link">&para;</a></h3>
+<p>Adam 优化算法（Adaptive Moment Estimation，自适应矩估计）将 Momentum 和 RMSProp 算法结合在一起。Adam算法在RMSProp算法基础上对小批量随机梯度也做了指数加权移动平均。</p>
+<p>假设用每一个 mini-batch 计算 dW、db，第t次迭代时：</p>
+<p><img alt="image-20200731192044416" src="../assets/image-20200731192044416.png" /></p>
+<p>其中l为某一层，t为移动平均第次的值</p>
+<p>Adam 算法的参数更新：</p>
+<p><img alt="image-20200731192115502" src="../assets/image-20200731192115502.png" /></p>
+<p>建议的参数设置的值：</p>
+<ul>
+<li>学习率α：<strong>需要尝试一系列的值，来寻找比较合适的</strong></li>
+<li>β1：常用的缺省值为 0.9</li>
+<li>β2：建议为 0.999</li>
+<li>ϵ：默认值1e-8</li>
+</ul>
+<p>在tf.keras中实现的方法是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">beta_1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">beta_2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-07</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>例子：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 实例化优化方法Adam</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># 定义要调整的参数</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># 定义损失函数：无参但有返回值</span>
+<span class="k">def</span> <span class="nf">loss</span><span class="p">():</span> <span class="k">return</span> <span class="p">(</span><span class="n">var</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
+
+<span class="c1"># 计算梯度，并对参数进行更新，</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">[</span><span class="n">var</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="c1"># 展示参数更新结果</span>
+<span class="n">var</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</code></pre></div>
+
+<p>结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="mf">0.90000033</span>
+</code></pre></div>
+
+<h2 id="4">4.学习率退火<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>在训练神经网络时，一般情况下学习率都会随着训练而变化，这主要是由于，在神经网络训练的后期，如果学习率过高，会造成loss的振荡，但是如果学习率减小的过快，又会造成收敛变慢的情况。</p>
+<h3 id="41">4.1 分段常数衰减<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>分段常数衰减是在事先定义好的训练次数区间上，设置不同的学习率常数。刚开始学习率大一些，之后越来越小，区间的设置需要根据样本量调整，一般样本量越大区间间隔应该越小。</p>
+<p><img alt="image-20200731194235135" src="../assets/image-20200731194235135.png" /></p>
+<p>在tf.keras中对应的方法是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">schedules</span><span class="o">.</span><span class="n">PiecewiseConstantDecay</span><span class="p">(</span><span class="n">boundaries</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+</code></pre></div>
+
+<p>参数：</p>
+<ul>
+<li>Boundaries: 设置分段更新的step值</li>
+<li>Values: 针对不用分段的学习率值</li>
+</ul>
+<p>例子：对于前100000步，学习率为1.0，对于接下来的100000-110000步，学习率为0.5，之后的步骤学习率为0.1</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 设置的分段的step值</span>
+<span class="n">boundaries</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">110000</span><span class="p">]</span>
+<span class="c1"># 不同的step对应的学习率</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="c1"># 实例化进行学习的更新</span>
+<span class="n">learning_rate_fn</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">schedules</span><span class="o">.</span><span class="n">PiecewiseConstantDecay</span><span class="p">(</span>
+    <span class="n">boundaries</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="42">4.2 指数衰减<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p>指数衰减可以用如下的数学公式表示, </p>
+<p><img alt="image-20200731194743362" src="../assets/image-20200731194743362.png" /></p>
+<p>其中，t表示迭代次数，α0,k是超参数</p>
+<p><img alt="image-20200731194846756" src="../assets/image-20200731194846756.png" /></p>
+<p>在tf.keras中的实现是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">schedules</span><span class="o">.</span><span class="n">ExponentialDecay</span><span class="p">(</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">decay_steps</span><span class="p">,</span>
+                                               <span class="n">decay_rate</span><span class="p">)</span>
+</code></pre></div>
+
+<p>具体的实现是：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">decayed_learning_rate</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">initial_learning_rate</span> <span class="o">*</span> <span class="n">decay_rate</span> <span class="o">^</span> <span class="p">(</span><span class="n">step</span> <span class="o">/</span> <span class="n">decay_steps</span><span class="p">)</span>
+</code></pre></div>
+
+<p>参数：</p>
+<p>Initial_learning_rate: 初始学习率，α0</p>
+<p>decay_steps: k值</p>
+<p>decay_rate: 指数的底</p>
+<h3 id="43-1t">4.3 1/t衰减<a class="headerlink" href="#43-1t" title="Permanent link">&para;</a></h3>
+<p>1/t衰减可以用如下的数学公式表示：</p>
+<p><img alt="image-20200731194945284" src="../assets/image-20200731194945284.png" /></p>
+<p>其中，t表示迭代次数，α0,k是超参数</p>
+<p><img alt="image-20200731195057017" src="../assets/image-20200731195057017.png" /></p>
+<p>在tf.keras中的实现是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">schedules</span><span class="o">.</span><span class="n">InverseTimeDecay</span><span class="p">(</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">decay_steps</span><span class="p">,</span>
+                                               <span class="n">decay_rate</span><span class="p">)</span>
+</code></pre></div>
+
+<p>具体的实现是：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">decayed_learning_rate</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">initial_learning_rate</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">decay_rate</span> <span class="o">*</span> <span class="n">step</span> <span class="o">/</span> <span class="n">decay_step</span><span class="p">)</span>
+</code></pre></div>
+
+<p>参数：</p>
+<p>Initial_learning_rate: 初始学习率，α0</p>
+<p>decay_step/decay_steps: k值</p>
+<hr />
+<p><strong>总结</strong></p>
+<ul>
+<li>知道梯度下降算法</li>
+</ul>
+<p>一种寻找使损失函数最小化的方法：批量梯度下降，随机梯度下降，小批量梯度下降</p>
+<ul>
+<li>理解神经网络的链式法则</li>
+</ul>
+<p>复合函数的求导</p>
+<ul>
+<li>掌握反向传播算法（BP算法）</li>
+</ul>
+<p>神经网络进行参数更新的方法</p>
+<ul>
+<li>知道梯度下降算法的优化方法</li>
+</ul>
+<p>动量算法，adaGrad,RMSProp,Adam</p>
+<ul>
+<li>了解学习率退火</li>
+</ul>
+<p>分段常数衰减，指数衰减，1/t衰减</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../section2/" title="常见的损失函数" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                常见的损失函数
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../section4/" title="深度学习的正则化" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                深度学习的正则化
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

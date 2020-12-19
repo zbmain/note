@@ -1,0 +1,1198 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>SSD算法 - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#46-ssd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              SSD算法
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        SSD算法
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="SSD算法" class="md-nav__link md-nav__link--active">
+      SSD算法
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-ssd" class="md-nav__link">
+    1、 SSD网络结构
+  </a>
+  
+    <nav class="md-nav" aria-label="1、 SSD网络结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-backbone" class="md-nav__link">
+    1.1 backbone
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-extra" class="md-nav__link">
+    1.2 extra部分
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-loccls" class="md-nav__link">
+    1.3 loc和cls
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 loc和cls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-priorbox" class="md-nav__link">
+    1.3.1 PriorBox层先验框的生成方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-loc" class="md-nav__link">
+    1.3.2 loc的预测结果
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.模型训练
+  </a>
+  
+    <nav class="md-nav" aria-label="2.模型训练">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 正负样本标记
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 损失函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 困难样本挖掘
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.模型预测
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-ssd" class="md-nav__link">
+    1、 SSD网络结构
+  </a>
+  
+    <nav class="md-nav" aria-label="1、 SSD网络结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-backbone" class="md-nav__link">
+    1.1 backbone
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-extra" class="md-nav__link">
+    1.2 extra部分
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-loccls" class="md-nav__link">
+    1.3 loc和cls
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 loc和cls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-priorbox" class="md-nav__link">
+    1.3.1 PriorBox层先验框的生成方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-loc" class="md-nav__link">
+    1.3.2 loc的预测结果
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.模型训练
+  </a>
+  
+    <nav class="md-nav" aria-label="2.模型训练">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 正负样本标记
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 损失函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 困难样本挖掘
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.模型预测
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="46-ssd">4.6 SSD算法<a class="headerlink" href="#46-ssd" title="Permanent link">&para;</a></h1>
+<p><strong>学习目标</strong></p>
+<ul>
+<li>知道SSD的多尺度特征图的网络</li>
+<li>知道SSD中先验框的生成方式</li>
+<li>知道SSD的损失函数的设计</li>
+</ul>
+<hr />
+<p>目标检测算法主要分为两类：</p>
+<ul>
+<li>
+<p>Two-stage方法：如R-CNN系列算法，主要思路就是通过Selective Search或者CNN网络产生一系列的稀疏矩阵的候选区域，然后对这些候选区域进行分类和回归，two-stage的方法优势在于准确率度高；</p>
+</li>
+<li>
+<p>One-stage方法：如YOLO系列方法，主要思路就是均匀地在图片上不同位置进行密集采样，采样时使用不同尺度和长宽比box，然后利用CNN提取特征后直接进行分类和回归，整个过程只需要一步，所以优势在于速度快。我们接下来介绍的SSD方法也是单阶段的算法。</p>
+</li>
+</ul>
+<p><img alt="image-20200924145753617" src="../assets/image-20200924145753617.png" /></p>
+<p>SSD算法的全名是Single Shot MultiBox Detector，Single shot指明了SSD算法属于one-stage方法，MultiBox指明了SSD是多框预测。对于Faster R-CNN，先通过CNN得到候选框，然后进行分类和回归，而YOLO和SSD可以一步完成检测，SSD的特点是：</p>
+<ul>
+<li>
+<p>SSD提取了不同尺度的特征图来做检测，大尺度特征图可以用来检测小物体，而小特征图用来检测大物体；</p>
+</li>
+<li>
+<p>SSD采用了不同尺度和长宽比的先验框，在faster r-cnn和yoloV2,V3中称为Anchors。</p>
+</li>
+</ul>
+<h2 id="1-ssd">1、 SSD网络结构<a class="headerlink" href="#1-ssd" title="Permanent link">&para;</a></h2>
+<p>SSD是YOLO V1出来后，YOLO V2出来前的一款One-stage目标检测器。SSD用到了多尺度的特征图，在之后的YOLO V3的darknet53中，也是用到了多尺度特征图的思想。较浅层的特征图上，每个cell的感受野不是很大，所以适合检测较小的物体，而在较深的特征图上，每个cell的感受野就比较大了，适合检测较大的物体。</p>
+<p>SSD采用VGG16作为基础模型，然后在VGG16的基础上新增了卷积层来获得更多的特征图以用于检测。如下图所示：</p>
+<p><img alt="image-20200924152411286" src="../assets/image-20200924152411286.png" /></p>
+<p>整个特征图分为三部分：</p>
+<ul>
+<li>backbone: VGGnet用于图片特征提取的网络</li>
+<li>Extra: 用于引出多尺度特征图的网络</li>
+<li>Loc和cls: 用于框位置回归和目标分类的网络</li>
+</ul>
+<h3 id="11-backbone">1.1 backbone<a class="headerlink" href="#11-backbone" title="Permanent link">&para;</a></h3>
+<p>网络采用VGG16作为基础模型，使用imagenet数据进行预训练后，将conv4-1前一层的maxpooling中池化模式padding改为same(图中对应pytorch中的ceil_mode),使得输出为38x38，Conv4-3就是多尺度特征中的第一个38x38的特征图，因为该层比较靠前，所以在其后面增加了一个L2 Normalization层，对每个像素点在channle维度做归一化。VGG16最后的两个全连接层转换成 3x3 卷积层 conv6和  卷积层conv7，同时将最后的池化层由原来的stride=2的 2x2 变成stride=1的 3x3的池化层。</p>
+<p><img alt="image-20200925094446776" src="../assets/image-20200925094446776.png" /></p>
+<p>其中conv6使用的Dilated Convolutions，可以翻译为扩张卷积或空洞卷积。与普通的卷积相比，增加了一个扩张率(dilation rate)参数，主要用来表示扩张的大小。扩张卷积与普通卷积的相同点在于，卷积核的大小是一样的，在神经网络中参数数量不变，区别在于扩张卷积具有更大的感受野。如下图所示：</p>
+<p><img alt="image-20200924161215689" src="../assets/image-20200924161215689.png" /></p>
+<p>(a) 普通卷积，1-dilated convolution，卷积核的感受野为<span><span class="MathJax_Preview">3 \times 3 = 9</span><script type="math/tex">3 \times 3 = 9</script></span>。
+ (b) 扩张卷积，2-dilated convolution，卷积核的感受野为<span><span class="MathJax_Preview">7 \times 7 = 49</span><script type="math/tex">7 \times 7 = 49</script></span>。
+ &copy; 扩张卷积，4-dilated convolution，卷积核的感受野为<span><span class="MathJax_Preview">15 \times 15 = 225</span><script type="math/tex">15 \times 15 = 225</script></span>。</p>
+<p>扩张卷积的感受野的计算方法是：</p>
+<p><img alt="image-20200924160950347" src="../assets/image-20200924160950347.png" /></p>
+<p>在tensorflow中实现使用的是：(与普通卷积不同的是指定dilation_rate即可)</p>
+<div class="highlight"><pre><span></span><code>layers.Conv2D(1024, 3, padding=&#39;same&#39;,dilation_rate=6, activation=&#39;relu&#39;),
+</code></pre></div>
+
+<p>从上图中可以看出，卷积核的参数个数保持不变，感受野的大小随着“dilation rate”参数的增加呈指数增长。</p>
+<h3 id="12-extra">1.2 extra部分<a class="headerlink" href="#12-extra" title="Permanent link">&para;</a></h3>
+<p>为了进行后续的多尺度特征提取，在Backbone后面添加了卷积网络，如下图所示：</p>
+<p><img alt="image-20200925093742990" src="../assets/image-20200925093742990.png" /></p>
+<p>新增的Conv8_2，Conv9_2，Conv10_2，Conv11_2提取用于检测的特征图，特征图的大小如下表所示：</p>
+<p><img alt="image-20200925094021645" src="../assets/image-20200925094021645.png" /></p>
+<p>红框中的内容是进行多尺度分析的特征图，在加上backbone部分的Conv4_3和Conv7获取的特征图，共提取了6个特征图，其大小分别是 (38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)，我们将其送入到loc和cls中进行目标检测。</p>
+<h3 id="13-loccls">1.3 loc和cls<a class="headerlink" href="#13-loccls" title="Permanent link">&para;</a></h3>
+<p>在backbone和 Extras 在提取的6个特征图的基础上，进行位置信息和分类信息的提取，其结构如下图所示：</p>
+<p><img alt="image-20200925101902085" src="../assets/image-20200925101902085.png" /></p>
+<p>该部分主要有3个支路构成，</p>
+<ul>
+<li>PriorBox层，用来生成先验框，也就是在fasterRCNN中的anchorbox，假设先验框种类有3个（一个单元上有3个先验框），一共产生5x5x3=75个先验框</li>
+<li>Localization: 采用一次 <span><span class="MathJax_Preview">3\times3</span><script type="math/tex">3\times3</script></span> 卷积来进行完成，每个先验框有四个坐标，共有5x5x3x4个预测结果</li>
+<li>类别置信度confdence：采用一次 <span><span class="MathJax_Preview">3\times3</span><script type="math/tex">3\times3</script></span> 卷积来进行完成，每个先验框有21个类别预测结果（VOC数据集），共有5x5x3x21个预测结果</li>
+</ul>
+<p>整个过程如下图所示：</p>
+<p><img alt="image-20200925112434246" src="../assets/image-20200925112434246.png" /></p>
+<h4 id="131-priorbox">1.3.1 PriorBox层先验框的生成方法<a class="headerlink" href="#131-priorbox" title="Permanent link">&para;</a></h4>
+<p>在这里我们着重介绍PriorBox层先验框的生成方法：</p>
+<p>SSD一共有6个不同尺度的特征图，每个特征图上设置的先验框数量不同的（同一个特征图上每个单元设置的先验框是相同的，这里的数目指的是一个单元的先验框数目）。</p>
+<p>先验框的设置：包括尺度（或者说大小）和长宽比两个方面。</p>
+<p><img alt="image-20200925111218652" src="../assets/image-20200925111218652.png" /></p>
+<ul>
+<li>先验框的尺度</li>
+</ul>
+<p>先验框的尺度遵守一个线性递增规则：随着特征图大小降低，先验框尺度线性增加，每个先验框的尺度有下式决定：</p>
+<p><span><span class="MathJax_Preview">s_k = s_{min} + \frac{s_{max} - s_{min}}{m-1}(k-1), k\in[1,m]</span><script type="math/tex">s_k = s_{min} + \frac{s_{max} - s_{min}}{m-1}(k-1), k\in[1,m]</script></span></p>
+<p>其中：</p>
+<p><span><span class="MathJax_Preview">m</span><script type="math/tex">m</script></span> 指的特征图个数，这里设为5 ，因为第一层（Conv4_3层）是单独设置的。<span><span class="MathJax_Preview">s_k</span><script type="math/tex">s_k</script></span>表示先验框大小相对于图片的比例，而 <span><span class="MathJax_Preview">s_{min}</span><script type="math/tex">s_{min}</script></span> 和 <span><span class="MathJax_Preview">s_{max}</span><script type="math/tex">s_{max}</script></span>表示比例的最小值与最大值，取值为0.2和0.9。</p>
+<p>1、对于第一个特征图，其先验框的尺度比例一般设置为 <span><span class="MathJax_Preview">s_{min}/2=0.1</span><script type="math/tex">s_{min}/2=0.1</script></span> ，尺度为 <span><span class="MathJax_Preview">300\times 0.1=30</span><script type="math/tex">300\times 0.1=30</script></span>。</p>
+<p>2、对于后面的特征图，先验框尺度按照 <span><span class="MathJax_Preview">s_k</span><script type="math/tex">s_k</script></span> 线性增加，增长步长为:</p>
+<p><span><span class="MathJax_Preview">\lfloor\frac{\lfloor s_{max}\rfloor - \lfloor s_{min}\rfloor}{m-1}\rfloor=0.17</span><script type="math/tex">\lfloor\frac{\lfloor s_{max}\rfloor - \lfloor s_{min}\rfloor}{m-1}\rfloor=0.17</script></span></p>
+<p>3、根据上式，我们可以计算出各个尺度 <span><span class="MathJax_Preview">s_k</span><script type="math/tex">s_k</script></span> 的取值为0.20, 0.37,0. 54, 0.71, 0.88</p>
+<p>4、然后再乘以原图的大小300，再综合第一个特征图的先验框尺寸，则可得各个特征图的先验框尺寸为30,60,111, 162,213,264。</p>
+<ul>
+<li>先验框的长宽比</li>
+</ul>
+<p>一般选取 <span><span class="MathJax_Preview">a_r\in {1,2,3,\frac{1}{2},\frac{1}{3}}</span><script type="math/tex">a_r\in {1,2,3,\frac{1}{2},\frac{1}{3}}</script></span>，对于特定的长宽比，按如下公式计算先验框的宽度与高度（后面的 <span><span class="MathJax_Preview">s_k</span><script type="math/tex">s_k</script></span>均指的是先验框实际尺度，而不是尺度比例）:</p>
+<p><span><span class="MathJax_Preview">w^a_{k}=s_k\sqrt{a_r},\space h^a_{k}=s_k/\sqrt{a_r}</span><script type="math/tex">w^a_{k}=s_k\sqrt{a_r},\space h^a_{k}=s_k/\sqrt{a_r}</script></span></p>
+<p>默认情况下，每个特征图会有一个 <span><span class="MathJax_Preview">a_r=1</span><script type="math/tex">a_r=1</script></span>且尺度为 <span><span class="MathJax_Preview">s_k</span><script type="math/tex">s_k</script></span> 的先验框，除此之外，还会设置一个尺度为 <span><span class="MathJax_Preview">s'_{k}=\sqrt{s_k s_{k+1}}</span><script type="math/tex">s'_{k}=\sqrt{s_k s_{k+1}}</script></span>且 <span><span class="MathJax_Preview">a_r=1</span><script type="math/tex">a_r=1</script></span>的先验框，这样每个特征图都设置了两个长宽比为1但大小不同的正方形先验框。</p>
+<p>因此，每个特征图一共有 6 个先验框 <span><span class="MathJax_Preview">{1,2,3,\frac{1}{2},\frac{1}{3},1'}</span><script type="math/tex">{1,2,3,\frac{1}{2},\frac{1}{3},1'}</script></span> ，但是在实现时，Conv4_3，Conv10_2和Conv11_2层仅使用4个先验框，它们不使用长宽比为 <span><span class="MathJax_Preview">3,\frac{1}{3}</span><script type="math/tex">3,\frac{1}{3}</script></span> 的先验框。</p>
+<p><img alt="image-20200925101351649" src="../assets/image-20200925101351649.png" /></p>
+<p>令 <span><span class="MathJax_Preview">n_k</span><script type="math/tex">n_k</script></span>为该特征图所采用的先验框数目，那么类别置信度需要的卷积核数量为 <span><span class="MathJax_Preview">n_k</span><script type="math/tex">n_k</script></span>，而边界框位置需要的卷积核数量为 <span><span class="MathJax_Preview">n_k\times 4</span><script type="math/tex">n_k\times 4</script></span>。由于每个先验框都会预测一个边界框，</p>
+<p><img alt="image-20201022110012877" src="../assets/image-20201022110012877.png" /></p>
+<p>所以SSD一共可以预测 <span><span class="MathJax_Preview">38\times38\times4+19\times19\times6+10\times10\times6+5\times5\times6+3\times3\times4+1\times1\times4=8732</span><script type="math/tex">38\times38\times4+19\times19\times6+10\times10\times6+5\times5\times6+3\times3\times4+1\times1\times4=8732</script></span>个边界框，对于一个300x300的图像就有8732个预测结果，是非常的多的，所以说SSD本质上是密集采样。</p>
+<h4 id="132-loc">1.3.2 loc的预测结果<a class="headerlink" href="#132-loc" title="Permanent link">&para;</a></h4>
+<p>网络预测输出的边界框与真实的边界框之间存在转换关系，具体如下：</p>
+<ul>
+<li>先验框位置：</li>
+</ul>
+<p><span><span class="MathJax_Preview">l= (l^{cx}, l^{cy}, l^{w}, l^{h})</span><script type="math/tex">l= (l^{cx}, l^{cy}, l^{w}, l^{h})</script></span></p>
+<ul>
+<li>真实框的位置：</li>
+</ul>
+<p><span><span class="MathJax_Preview">p = (p^{cx}, p^{cy}, p^{w}, p^{h})</span><script type="math/tex">p = (p^{cx}, p^{cy}, p^{w}, p^{h})</script></span></p>
+<p>那么网络输出结果<span><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span>与边界框的位置存在关系：</p>
+<p><span><span class="MathJax_Preview">p^{cx} =l^{w}d^{cx} +l^{cx}, p^{cy} = l^{y}d^{cy} +l^{cy}</span><script type="math/tex">p^{cx} =l^{w}d^{cx} +l^{cx}, p^{cy} = l^{y}d^{cy} +l^{cy}</script></span></p>
+<p><span><span class="MathJax_Preview">p^{w} = l^{w}exp(d^{w}), p^{h} = l^{h}exp(d^{h})</span><script type="math/tex">p^{w} = l^{w}exp(d^{w}), p^{h} = l^{h}exp(d^{h})</script></span></p>
+<h2 id="2">2.模型训练<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 正负样本标记<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>在训练过程中，首先需要确定训练图片中的 ground truth 与哪一个先验框来进行匹配，与之匹配的先验框所对应的边界框将负责预测它。</p>
+<p>SSD的先验框和ground truth匹配原则： </p>
+<ul>
+<li>正样本    </li>
+</ul>
+<p>1、对于图片中的每个gt，找到与其IOU最大的先验框，该先验框与其匹配，这样可以保证每个gt一定与某个先验框匹配。</p>
+<p>2、对于剩余未匹配的先验框，若某个gt的IOU大于某个阈值(一般0.5)，那么该先验框与这个gt匹配</p>
+<ul>
+<li>负样本</li>
+</ul>
+<p>其它的先验框标记为负样本</p>
+<p>注意：</p>
+<div class="codehilite"><pre><span></span><code>1、某个gt可以和多个先验框匹配，而每个先验框只能和一个gt进行匹配
+
+2、如果多个gt和某一个先验框的IOU均大于阈值，那么先验框只与IOU最大的那个进行匹配
+</code></pre></div>
+
+
+<h3 id="22">2.2 损失函数<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>SSD的损失函数是位置损失（ loc）与类别置信度损失（conf）的加权和： </p>
+<p><span><span class="MathJax_Preview">L(x, c, l, g) = \frac{1}{N}(L_{conf}(x,c) + \alpha L_{loc}(x,l,g))</span><script type="math/tex">L(x, c, l, g) = \frac{1}{N}(L_{conf}(x,c) + \alpha L_{loc}(x,l,g))</script></span></p>
+<p>其中<span><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span> 是先验框的正样本数量，<span><span class="MathJax_Preview">c</span><script type="math/tex">c</script></span>为类别置信度预测值， <span><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span>为先验框的所对应边界框的位置预测值，而 <span><span class="MathJax_Preview">g</span><script type="math/tex">g</script></span>是ground truth的位置参数，权重系数 <span><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> 设置为1。</p>
+<ol>
+<li>位置损失函数：</li>
+</ol>
+<p>针对所有的正样本，采用 Smooth L1 Loss损失</p>
+<p><img alt="image-20200925115259125" src="../assets/image-20200925115259125.png" /></p>
+<ol>
+<li>分类损失函数</li>
+</ol>
+<p>对于分类损失，与fasterRCNN一样采用交叉熵损失。</p>
+<h3 id="23">2.3 困难样本挖掘<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>困难样本挖掘的思想是使用网络对样本进行处理，把其中预测错误的负样本(hard negative)放入负样本集合再继续训练网络模型。</p>
+<p><img alt="image-20200925120543740" src="../assets/image-20200925120543740.png" /></p>
+<p>在SSD中处理方式是：</p>
+<ul>
+<li>
+<p>使用1：3的正负样本比例训练网络，</p>
+</li>
+<li>
+<p>对输入的预测结果按照类别置信度进行降序排序，取出前k个负样本</p>
+</li>
+<li>将这k个负样本加入下次迭代的负样本中对网络进行训练。</li>
+</ul>
+<h2 id="3">3.模型预测<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>预测过程比较简单，</p>
+<p><img alt="image-20200925120120452" src="../assets/image-20200925120120452.png" /></p>
+<p>主要步骤如下：</p>
+<ul>
+<li>
+<p>对于每个预测框，首先根据类别置信度确定其类别（置信度最大者）与置信度值，并过滤掉属于背景的预测框。</p>
+</li>
+<li>
+<p>然后根据置信度阈值（如0.5）过滤掉阈值较低的预测框。</p>
+</li>
+<li>
+<p>对于留下的预测框进行解码，根据先验框得到其真实的位置参数（解码后一般还需要做clip，防止预测框位置超出图片）。</p>
+</li>
+<li>
+<p>解码之后，一般需要根据置信度进行降序排列，然后仅保留top-k（如400）个预测框。</p>
+</li>
+<li>
+<p>进行NMS算法，过滤掉那些重叠度较大的预测框。</p>
+</li>
+<li>
+<p>最后剩余的预测框就是检测结果了。</p>
+</li>
+</ul>
+<hr />
+<p><strong>总结</strong></p>
+<ul>
+<li>知道SSD的多尺度特征图的网络</li>
+</ul>
+<p>SSD提取了6个不同特征图进行目标检测</p>
+<ul>
+<li>知道SSD中先验框的生成方式</li>
+</ul>
+<p>SSD在不同尺度的特征图上生成的先验框的尺度和长宽比是不一样的</p>
+<ul>
+<li>知道SSD的损失函数的设计</li>
+</ul>
+<p>分类和回归损失函数的加权和</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../05.yolo-demo/" title="YOLOV3案例" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                YOLOV3案例
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                目标分割介绍
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1752 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>神经网络简介 - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#21" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              神经网络简介
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        神经网络简介
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="神经网络简介" class="md-nav__link md-nav__link--active">
+      神经网络简介
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 深度学习简介
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2 什么是神经网络
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3 神经元是如何工作的？
+  </a>
+  
+    <nav class="md-nav" aria-label="3 神经元是如何工作的？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 激活函数
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 激活函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311sigmoidlogistics" class="md-nav__link">
+    3.1.1.Sigmoid/logistics函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312tanh" class="md-nav__link">
+    3.1.2.tanh(双曲正切曲线)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313relu" class="md-nav__link">
+    3.1.3.RELU
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#314leakrelu" class="md-nav__link">
+    3.1.4.LeakReLu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#315-softmax" class="md-nav__link">
+    3.1.5. SoftMax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#316" class="md-nav__link">
+    3.1.6. 其他激活函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#317" class="md-nav__link">
+    3.1.7.如何选择激活函数
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.7.如何选择激活函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    隐藏层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    输出层
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 参数初始化
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 参数初始化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321" class="md-nav__link">
+    3.2.1.随机初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322" class="md-nav__link">
+    3.2.2.标准初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323xavier" class="md-nav__link">
+    3.2.3.Xavier初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#324he" class="md-nav__link">
+    3.2.4.He初始化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4 神经网络的搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="4 神经网络的搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41sequential" class="md-nav__link">
+    4.1通过Sequential构建
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-function-api" class="md-nav__link">
+    4.2 利用function API构建
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-model" class="md-nav__link">
+    4.3 通过model的子类构建
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5 神经网络的优缺点
+  </a>
+  
+    <nav class="md-nav" aria-label="5 神经网络的优缺点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    1.优点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    2.缺点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 深度学习简介
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2 什么是神经网络
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3 神经元是如何工作的？
+  </a>
+  
+    <nav class="md-nav" aria-label="3 神经元是如何工作的？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 激活函数
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 激活函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311sigmoidlogistics" class="md-nav__link">
+    3.1.1.Sigmoid/logistics函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312tanh" class="md-nav__link">
+    3.1.2.tanh(双曲正切曲线)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313relu" class="md-nav__link">
+    3.1.3.RELU
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#314leakrelu" class="md-nav__link">
+    3.1.4.LeakReLu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#315-softmax" class="md-nav__link">
+    3.1.5. SoftMax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#316" class="md-nav__link">
+    3.1.6. 其他激活函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#317" class="md-nav__link">
+    3.1.7.如何选择激活函数
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.7.如何选择激活函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    隐藏层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    输出层
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 参数初始化
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 参数初始化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321" class="md-nav__link">
+    3.2.1.随机初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322" class="md-nav__link">
+    3.2.2.标准初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323xavier" class="md-nav__link">
+    3.2.3.Xavier初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#324he" class="md-nav__link">
+    3.2.4.He初始化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4 神经网络的搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="4 神经网络的搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41sequential" class="md-nav__link">
+    4.1通过Sequential构建
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-function-api" class="md-nav__link">
+    4.2 利用function API构建
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-model" class="md-nav__link">
+    4.3 通过model的子类构建
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5 神经网络的优缺点
+  </a>
+  
+    <nav class="md-nav" aria-label="5 神经网络的优缺点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    1.优点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    2.缺点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="21">2.1 深度学习简介<a class="headerlink" href="#21" title="Permanent link">&para;</a></h1>
+<p><strong>学习目标</strong></p>
+<ul>
+<li>知道深度学习与机器学习的关系</li>
+<li>知道神经网络是什么</li>
+<li>知道常见的激活函数</li>
+<li>知道参数初始化的常见方法</li>
+<li>能够利用tf.keras构建神经网络模型</li>
+<li>了解神经网络的优缺点</li>
+</ul>
+<hr />
+<p><img alt="image-20200729111216460" src="../assets/image-20200729111216460.png" /></p>
+<h2 id="1">1 深度学习简介<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>在介绍深度学习之前，我们先看下这幅图：人工智能&gt;机器学习&gt;深度学习</p>
+<p><img alt="image-20200729144825613" src="../assets/image-20200729144825613.png" /></p>
+<p>深度学习是机器学习的一个子集，也就是说深度学习是实现机器学习的一种方法。与机器学习算法的主要区别如下图所示：</p>
+<p><img alt="image-20200729145632853" src="../assets/image-20200729145632853.png" /></p>
+<p>传统机器学习算术依赖人工设计特征，并进行特征提取，而深度学习方法不需要人工，而是依赖算法自动提取特征，这也是深度学习被看做黑盒子，可解释性差的原因。</p>
+<p>随着计算机软硬件的飞速发展，现阶段通过**拥有众多层数神经网络(Neural Network)**来模拟人脑来解释数据，包括图像，文本，音频等内容。目前来看常用的神经网络包括：</p>
+<ul>
+<li><strong>卷积神经网络(Convolutional Neural Network)</strong></li>
+<li><strong>循环神经网络(Recurrent Neural Network)</strong></li>
+<li><strong>生成对抗网络(Generative Adversarial Networks)</strong></li>
+<li>**深度强化学习(Deep Reinforcement Learning)**等。</li>
+</ul>
+<h2 id="2">2 什么是神经网络<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p><strong>人工神经网络（ Artificial Neural Network， 简写为ANN）也简称为神经网络（NN）</strong>，是一种模仿生物神经网络结构和功能的 <strong>计算模型</strong>。人脑可以看做是一个生物神经网络，由众多的神经元连接而成。各个神经元传递复杂的电信号，树突接收到输入信号，然后对信号进行处理，通过轴突输出信号。下图是生物神经元示意图：</p>
+<p><img alt="image-20200729151245685" src="../assets/image-20200729151245685.png" /></p>
+<p>那怎么构建人工神经网络中的神经元呢？</p>
+<p><img alt="image-20200729153520497" src="../assets/image-20200729153520497.png" /></p>
+<p>受生物神经元的启发，人工神经元接收来自其他神经元或外部源的输入，每个输入都有一个相关的权值(w)，它是根据该输入对当前神经元的重要性来确定的，对该输入加权并与其他输入求和后，经过一个激活函数f，计算得到该神经元的输出。</p>
+<p>那接下来我们就利用神经元来构建神经网络，相邻层之间的神经元相互连接，并给每一个连接分配一个强度，如下图所示：</p>
+<p><img alt="image-20200729152656655" src="../assets/image-20200729152656655.png" /></p>
+<p>神经网络中信息只向一个方向移动，即从输入节点向前移动，通过隐藏节点，再向输出节点移动，网络中没有循环或者环。其中的基本构件是：</p>
+<ul>
+<li><strong>输入层</strong>：即输入x的那一层</li>
+<li><strong>输出层</strong>：即输出y的那一层</li>
+<li><strong>隐藏层</strong>：输入层和输出层之间都是隐藏层</li>
+</ul>
+<p>特点是：</p>
+<ul>
+<li>同一层的神经元之间没有连接。</li>
+<li>第N层的每个神经元和第N-1层的所有神经元相连(这就是full connected的含义)，第N-1层神经元的输出就是第N层神经元的输入。</li>
+<li>每个连接都有一个权值。</li>
+</ul>
+<h2 id="3">3 神经元是如何工作的？<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>人工神经元接收到一个或多个输入，对他们进行加权并相加，总和通过一个非线性函数产生输出。</p>
+<p><img alt="image-20200730105108174" src="../assets/image-20200730105108174.png" /></p>
+<ul>
+<li>所有的输入xi，与相应的权重wi相乘并求和：</li>
+</ul>
+<p><img alt="image-20200729160735019" src="../assets/image-20200729160735019.png" /></p>
+<ul>
+<li>将求和结果送入到激活函数中，得到最终的输出结果：</li>
+</ul>
+<p><img alt="image-20200729160954682" src="../assets/image-20200729160954682.png" /></p>
+<h3 id="31">3.1 激活函数<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>在神经元中引入了激活函数，它的本质是向神经网络中引入非线性因素的，通过激活函数，神经网络就可以拟合各种曲线。如果不用激活函数，每一层输出都是上层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，引入非线性函数作为激活函数，那输出不再是输入的线性组合，可以逼近任意函数。常用的激活函数有：</p>
+<ul>
+<li>
+<h4 id="311sigmoidlogistics">3.1.1.Sigmoid/logistics函数<a class="headerlink" href="#311sigmoidlogistics" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>数学表达式为：</p>
+<p><img alt="image-20200729162918484" src="../assets/image-20200729162918484.png" /></p>
+<p>曲线如下图所示：</p>
+<p><img alt="image-20200729162821316" src="../assets/image-20200729162821316.png" /></p>
+<p>sigmoid 在定义域内处处可导，且两侧导数逐渐趋近于0。如果X的值很大或者很小的时候，那么函数的梯度（函数的斜率）会非常小，在反向传播的过程中，导致了向低层传递的梯度也变得非常小。此时，网络参数很难得到有效训练。这种现象被称为梯度消失。一般来说， sigmoid 网络在 5 层之内就会产生梯度消失现象。而且，该激活函数并不是以0为中心的，所以在实践中这种激活函数使用的很少。sigmoid函数一般只用于二分类的输出层。</p>
+<p>实现方法：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow.keras</span> <span class="kn">as</span> <span class="nn">keras</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1"># 定义x的取值范围</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># 直接使用tensorflow实现</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 绘图</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</code></pre></div>
+
+<p>输出结果为：</p>
+<p><img alt="image-20200730095904782" src="../assets/image-20200730095904782.png" /></p>
+<ul>
+<li>
+<h4 id="312tanh">3.1.2.tanh(双曲正切曲线)<a class="headerlink" href="#312tanh" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>数学表达式如下：</p>
+<p><img alt="image-20200729163320949" src="../assets/image-20200729163320949.png" /></p>
+<p>曲线如下图所示：</p>
+<p><img alt="image-20200729163403186" src="../assets/image-20200729163403186.png" /></p>
+<p>tanh也是一种非常常见的激活函数。与sigmoid相比，它是以0为中心的，使得其收敛速度要比sigmoid快，减少迭代次数。然而，从图中可以看出，tanh两侧的导数也为0，同样会造成梯度消失。</p>
+<p>若使用时可在隐藏层使用tanh函数，在输出层使用sigmoid函数。</p>
+<p>实现方法为：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow.keras</span> <span class="kn">as</span> <span class="nn">keras</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1"># 定义x的取值范围</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># 直接使用tensorflow实现</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 绘图</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</code></pre></div>
+
+<p>绘制结果为：</p>
+<p><img alt="image-20200730100042178" src="../assets/image-20200730100042178.png" /></p>
+<ul>
+<li>
+<h4 id="313relu">3.1.3.RELU<a class="headerlink" href="#313relu" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>数学表达式为：</p>
+<p><img alt="image-20200729163905308" src="../assets/image-20200729163905308.png" /></p>
+<p>曲线如下图所示：</p>
+<p><img alt="image-20200729164209522" src="../assets/image-20200729164209522.png" /></p>
+<p>ReLU是目前最常用的激活函数。 从图中可以看到，当x&lt;0时，ReLU导数为0，而当x&gt;0时，则不存在饱和问题。所以，ReLU 能够在x&gt;0时保持梯度不衰减，从而缓解梯度消失问题。然而，随着训练的推进，部分输入会落入小于0区域，导致对应权重无法更新。这种现象被称为“神经元死亡”。</p>
+<p>与sigmoid相比，RELU的优势是：</p>
+<ul>
+<li>采用sigmoid函数，计算量大（指数运算），反向传播求误差梯度时，求导涉及除法，计算量相对大，而采用Relu激活函数，整个过程的计算量节省很多。</li>
+<li>sigmoid函数反向传播时，很容易就会出现梯度消失的情况，从而无法完成深层网络的训练。</li>
+<li>Relu会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</li>
+</ul>
+<p>实现方法为：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow.keras</span> <span class="kn">as</span> <span class="nn">keras</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1"># 定义x的取值范围</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># 直接使用tensorflow实现</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 绘图</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</code></pre></div>
+
+<p>绘制结果为：</p>
+<p><img alt="image-20200730100208622" src="../assets/image-20200730100208622.png" /></p>
+<ul>
+<li>
+<h4 id="314leakrelu">3.1.4.LeakReLu<a class="headerlink" href="#314leakrelu" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>该激活函数是对RELU的改进，数学表达式为：</p>
+<p><img alt="image-20200729164723848" src="../assets/image-20200729164723848.png" /></p>
+<p>曲线如下所示：</p>
+<p><img alt="image-20200729164751927" src="../assets/image-20200729164751927.png" /></p>
+<p>实现方法为：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow.keras</span> <span class="kn">as</span> <span class="nn">keras</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1"># 定义x的取值范围</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># 直接使用tensorflow实现</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 绘图</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</code></pre></div>
+
+<ul>
+<li>
+<h4 id="315-softmax">3.1.5. SoftMax<a class="headerlink" href="#315-softmax" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>softmax用于多分类过程中，它是二分类函数sigmoid在多分类上的推广，目的是将多分类的结果以概率的形式展现出来。</p>
+<p>计算方法如下图所示：</p>
+<p><img alt="image-20200729165845632" src="../assets/image-20200729165845632.png" /></p>
+<p>使用方法：</p>
+<p><img alt="image-20200729170047952" src="../assets/image-20200729170047952.png" /></p>
+<p><strong>softmax直白来说就是将网络输出的logits通过softmax函数，就映射成为(0,1)的值，而这些值的累和为1（满足概率的性质），那么我们将它理解成概率，选取概率最大（也就是值对应最大的）接点，作为我们的预测目标类别。</strong></p>
+<p>实现，以上图中数字9的分类结果为例给大家进行演示：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相应的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow.keras</span> <span class="kn">as</span> <span class="nn">keras</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1"># 数字中的score</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">1.3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">3.75</span><span class="p">])</span>
+<span class="c1"># 将其送入到softmax中计算分类结果</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+<span class="c1"># 将结果进行打印</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+
+<p>分类结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+<span class="p">[</span><span class="mf">0.02167152</span> <span class="mf">0.01810157</span> <span class="mf">0.02061459</span> <span class="mf">0.06510484</span> <span class="mf">0.02925349</span> <span class="mf">0.01884031</span>
+ <span class="mf">0.05330333</span> <span class="mf">0.01865285</span> <span class="mf">0.75445753</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="316">3.1.6. 其他激活函数<a class="headerlink" href="#316" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20200729170746541" src="../assets/image-20200729170746541.png" /></p>
+<h4 id="317">3.1.7.如何选择激活函数<a class="headerlink" href="#317" title="Permanent link">&para;</a></h4>
+<h5 id="_1">隐藏层<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h5>
+<ul>
+<li>优先选择RELU激活函数</li>
+<li>如果ReLu效果不好，那么尝试其他激活，如Leaky ReLu等。</li>
+<li>如果你使用了Relu， 需要注意一下Dead Relu问题，  避免出现大的梯度从而导致过多的神经元死亡。</li>
+<li>不要使用sigmoid激活函数，可以尝试使用tanh激活函数</li>
+</ul>
+<h5 id="_2">输出层<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h5>
+<ul>
+<li>二分类问题选择sigmoid激活函数</li>
+<li>多分类问题选择softmax激活函数</li>
+<li>回归问题选择identity激活函数</li>
+</ul>
+<h3 id="32">3.2 参数初始化<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>对于某一个神经元来说，需要初始化的参数有两类：一类是权重W，还有一类是偏置b,偏置b初始化为0即可。而权重W的初始化比较重要，我们着重来介绍常见的初始化方式。</p>
+<p><img alt="image-20200729160628355" src="../assets/image-20200729160628355.png" /></p>
+<h4 id="321">3.2.1.随机初始化<a class="headerlink" href="#321" title="Permanent link">&para;</a></h4>
+<p>随机初始化从均值为0，标准差是1的高斯分布中取样，使用一些很小的值对参数W进行初始化。</p>
+<h4 id="322">3.2.2.标准初始化<a class="headerlink" href="#322" title="Permanent link">&para;</a></h4>
+<p>权重参数初始化从区间均匀随机取值。即在(-1/√d,1/√d)均匀分布中生成当前神经元的权重，其中d为每个神经元的输入数量。</p>
+<h4 id="323xavier">3.2.3.Xavier初始化<a class="headerlink" href="#323xavier" title="Permanent link">&para;</a></h4>
+<p>该方法的基本思想是各层的激活值和梯度的方差在传播过程中保持一致，也叫做Glorot初始化。在tf.keras中实现的方法有两种：</p>
+<ul>
+<li>正态化Xavier初始化：</li>
+</ul>
+<p>Glorot 正态分布初始化器，也称为 Xavier 正态分布初始化器。它从以 0 为中心，标准差为 <code>stddev = sqrt(2 / (fan_in + fan_out))</code> 的正态分布中抽取样本， 其中 <code>fan_in</code> 是输入神经元的个数， <code>fan_out</code> 是输出的神经元个数。</p>
+<p>实现方法为：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 进行实例化</span>
+<span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">glorot_normal</span><span class="p">()</span>
+<span class="c1"># 采样得到权重值</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="c1"># 打印结果</span>
+<span class="k">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</code></pre></div>
+
+<p>输出结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+<span class="p">[[</span> <span class="mf">0.71967787</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.56188506</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.7327265</span> <span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.05581591</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.05519835</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.11283273</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.8377778</span> <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.5832906</span> <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.10221979</span><span class="p">]],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>标准化Xavier初始化</li>
+</ul>
+<p>Glorot 均匀分布初始化器，也称为 Xavier 均匀分布初始化器。它从 [-limit，limit] 中的均匀分布中抽取样本， 其中 <code>limit</code> 是 <code>sqrt(6 / (fan_in + fan_out))</code>， 其中 <code>fan_in</code> 是输入神经元的个数， <code>fan_out</code> 是输出的神经元个数。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 进行实例化</span>
+<span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">glorot_uniform</span><span class="p">()</span>
+<span class="c1"># 采样得到权重值</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="c1"># 打印结果</span>
+<span class="k">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</code></pre></div>
+
+<p>输出结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+<span class="p">[[</span><span class="o">-</span><span class="mf">0.59119344</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.06239486</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.65161395</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.30347362</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.5407096</span> <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.35138106</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.41150713</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.32143414</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.57354397</span><span class="p">]],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="324he">3.2.4.He初始化<a class="headerlink" href="#324he" title="Permanent link">&para;</a></h4>
+<p>he初始化，也称为Kaiming初始化，出自大神何恺明之手，它的基本思想是正向传播时，激活值的方差保持不变；反向传播时，关于状态值的梯度的方差保持不变。在tf.keras中也有两种：</p>
+<ul>
+<li>正态化的he初始化</li>
+</ul>
+<p>He 正态分布初始化是以 0 为中心，标准差为 <code>stddev = sqrt(2 / fan_in)</code> 的截断正态分布中抽取样本， 其中 <code>fan_in</code>是输入神经元的个数，在tf.keras中的实现方法为：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 进行实例化</span>
+<span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">he_normal</span><span class="p">()</span>
+<span class="c1"># 采样得到权重值</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="c1"># 打印结果</span>
+<span class="k">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</code></pre></div>
+
+<p>输出结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+<span class="p">[[</span><span class="o">-</span><span class="mf">0.1488019</span> <span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.12102155</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.0163257</span> <span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.36920077</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.89464396</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.28749225</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.5467023</span> <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.27031776</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.1831588</span> <span class="p">]],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>标准化的he初始化</li>
+</ul>
+<p>He 均匀方差缩放初始化器。它从 [-limit，limit] 中的均匀分布中抽取样本， 其中 <code>limit</code> 是 <code>sqrt(6 / fan_in)</code>， 其中 <code>fan_in</code> 输入神经元的个数。实现为：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 进行实例化</span>
+<span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">he_uniform</span><span class="p">()</span>
+<span class="c1"># 采样得到权重值</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="c1"># 打印结果</span>
+<span class="k">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</code></pre></div>
+
+<p>输出结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+<span class="p">[[</span> <span class="mf">0.80033934</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.18773115</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.6726284</span> <span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.23672342</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.6323329</span> <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.6048162</span> <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.1637358</span> <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.60797024</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.46316862</span><span class="p">]],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="4">4 神经网络的搭建<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>接下来我们来构建如下图所示的神经网络模型：</p>
+<p><img alt="image-20200730140705995" src="../assets/image-20200730140705995.png" /></p>
+<p>tf.Keras中构建模有两种方式，一种是通过Sequential构建，一种是通过Model类构建。前者是按一定的顺序对层进行堆叠，而后者可以用来构建较复杂的网络模型。首先我们介绍下用来构建网络的全连接层：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span>
+    <span class="n">units</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>主要参数：</p>
+<ul>
+<li>units: 当前层中包含的神经元个数</li>
+<li>Activation: 激活函数，relu,sigmoid等</li>
+<li>use_bias: 是否使用偏置，默认使用偏置</li>
+<li>Kernel_initializer: 权重的初始化方式，默认是Xavier初始化</li>
+<li>bias_initializer: 偏置的初始化方式，默认为0</li>
+</ul>
+<h3 id="41sequential">4.1通过Sequential构建<a class="headerlink" href="#41sequential" title="Permanent link">&para;</a></h3>
+<p>Sequential() 提供一个层的列表，就能快速地建立一个神经网络模型，实现方法如下所示：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入相关的工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+<span class="c1"># 定义一个Sequential模型，包含3层</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="c1"># 第一层：激活函数为relu,权重初始化为he_normal</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span>
+                     <span class="n">kernel_initializer</span><span class="o">=</span><span class="s2">&quot;he_normal&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;layer1&quot;</span><span class="p">,</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,)),</span>
+        <span class="c1"># 第二层：激活函数为relu,权重初始化为he_normal</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span>
+                     <span class="n">kernel_initializer</span><span class="o">=</span><span class="s2">&quot;he_normal&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;layer2&quot;</span><span class="p">),</span>
+        <span class="c1"># 第三层（输出层）：激活函数为sigmoid,权重初始化为he_normal</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
+                     <span class="n">kernel_initializer</span><span class="o">=</span><span class="s2">&quot;he_normal&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;layer3&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_Sequential&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>接下来我们使用：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 展示模型结果</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></div>
+
+<p>如下所示：</p>
+<div class="highlight"><pre><span></span><code><span class="n">Model</span><span class="p">:</span> <span class="s2">&quot;my_Sequential&quot;</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">Layer</span> <span class="p">(</span><span class="nb">type</span><span class="p">)</span>                 <span class="n">Output</span> <span class="n">Shape</span>              <span class="n">Param</span> <span class="c1">#   </span>
+<span class="o">=================================================================</span>
+<span class="n">layer1</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>               <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>                 <span class="mi">12</span>        
+<span class="n">_________________________________________________________________</span>
+<span class="n">layer2</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>               <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                 <span class="mi">8</span>         
+<span class="n">_________________________________________________________________</span>
+<span class="n">layer3</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>               <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                 <span class="mi">6</span>         
+<span class="o">=================================================================</span>
+<span class="n">Total</span> <span class="n">params</span><span class="p">:</span> <span class="mi">26</span>
+<span class="n">Trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">26</span>
+<span class="n">Non</span><span class="o">-</span><span class="n">trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+</code></pre></div>
+
+<p>通过这种sequential的方式只能构建简单的序列模型，较复杂的模型没有办法实现。</p>
+<h3 id="42-function-api">4.2 利用function API构建<a class="headerlink" href="#42-function-api" title="Permanent link">&para;</a></h3>
+<p>tf.keras 提供了 Functional API，建立更为复杂的模型，使用方法是将层作为可调用的对象并返回张量，并将输入向量和输出向量提供给 <code>tf.keras.Model</code> 的 <code>inputs</code> 和 <code>outputs</code> 参数，实现方法如下：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 定义模型的输入</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+<span class="c1"># 第一层：激活函数为relu，其他默认</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;layer1&quot;</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="c1"># 第二层：激活函数为relu，其他默认</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;layer2&quot;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 第三层（输出层）：激活函数为sigmoid</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;layer3&quot;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 使用Model来创建模型，指明输入和输出</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_model&quot;</span><span class="p">)</span> 
+</code></pre></div>
+
+<p>同样通过：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 展示模型结果</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></div>
+
+<p>结果如下所示：</p>
+<div class="highlight"><pre><span></span><code><span class="n">Model</span><span class="p">:</span> <span class="s2">&quot;my_model&quot;</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">Layer</span> <span class="p">(</span><span class="nb">type</span><span class="p">)</span>                 <span class="n">Output</span> <span class="n">Shape</span>              <span class="n">Param</span> <span class="c1">#   </span>
+<span class="o">=================================================================</span>
+<span class="nb">input</span> <span class="p">(</span><span class="n">InputLayer</span><span class="p">)</span>           <span class="p">[(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>               <span class="mi">0</span>         
+<span class="n">_________________________________________________________________</span>
+<span class="n">layer1</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>               <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>                 <span class="mi">12</span>        
+<span class="n">_________________________________________________________________</span>
+<span class="n">layer2</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>               <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                 <span class="mi">8</span>         
+<span class="n">_________________________________________________________________</span>
+<span class="n">layer3</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>               <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                 <span class="mi">6</span>         
+<span class="o">=================================================================</span>
+<span class="n">Total</span> <span class="n">params</span><span class="p">:</span> <span class="mi">26</span>
+<span class="n">Trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">26</span>
+<span class="n">Non</span><span class="o">-</span><span class="n">trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+</code></pre></div>
+
+<p>另外也可以通过：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 模型展示</span>
+<span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">plot_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">show_shapes</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="image-20200730144742181" src="../assets/image-20200730144742181.png" /></p>
+<h3 id="43-model">4.3 通过model的子类构建<a class="headerlink" href="#43-model" title="Permanent link">&para;</a></h3>
+<p>通过model的子类构建模型，此时需要在__init__中定义神经网络的层，在call方法中定义网络的前向传播过程，实现方法如下：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 导入工具包</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="c1"># 定义model的子类</span>
+<span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># 在init方法中定义网络的层结构</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># 第一层：激活函数为relu,权重初始化为he_normal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span>
+                     <span class="n">kernel_initializer</span><span class="o">=</span><span class="s2">&quot;he_normal&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;layer1&quot;</span><span class="p">,</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,))</span>
+        <span class="c1"># 第二层：激活函数为relu,权重初始化为he_normal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span> <span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span>
+                     <span class="n">kernel_initializer</span><span class="o">=</span><span class="s2">&quot;he_normal&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;layer2&quot;</span><span class="p">)</span>
+        <span class="c1"># 第三层（输出层）：激活函数为sigmoid,权重初始化为he_normal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span> <span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
+                     <span class="n">kernel_initializer</span><span class="o">=</span><span class="s2">&quot;he_normal&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;layer3&quot;</span><span class="p">)</span>
+    <span class="c1"># 在call方法中万完成前向传播</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 实例化模型</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">()</span>
+<span class="c1"># 设置一个输入，调用模型（否则无法使用summay()）</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+
+<p>同样的我们也可以通过summay方法来查看模型构建的结果</p>
+<h2 id="5">5 神经网络的优缺点<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">1.优点<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>精度高，性能优于其他的机器学习方法，甚至在某些领域超过了人类</li>
+<li>可以近似任意的非线性函数</li>
+<li>随之计算机硬件的发展，近年来在学界和业界受到了热捧，有大量的框架和库可供调用</li>
+</ul>
+<h3 id="2_1">2.缺点<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>黑箱，很难解释模型是怎么工作的</li>
+<li>训练时间长，需要大量的计算力</li>
+<li>网络结构复杂，需要调整超参数</li>
+<li>小数据集上表现不佳，容易发生过拟合</li>
+</ul>
+<hr />
+<p><strong>总结</strong></p>
+<ul>
+<li>知道深度学习与机器学习的关系</li>
+</ul>
+<p>深度学习是机器学习的一个子集，主要区别在是否包含特征工程</p>
+<ul>
+<li>知道神经网络是什么</li>
+</ul>
+<p>一种模仿生物神经网络结构和功能的 <strong>计算模型</strong></p>
+<ul>
+<li>知道常见的激活函数</li>
+</ul>
+<p>默认使用relu，二分类是sigmoid, 多分类是softmaxs</p>
+<ul>
+<li>知道参数初始化的常见方法</li>
+</ul>
+<p>随机初始化，标准初始化，Xavier初始化，He初始化</p>
+<ul>
+<li>能够利用tf.keras构建神经网络模型</li>
+</ul>
+<p>Sequential的方法，Model的函数式编程，构建model的子类实现</p>
+<ul>
+<li>了解神经网络的优缺点</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../tensorFlow/section2/" title="快速入门模型" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                快速入门模型
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../section2/" title="常见的损失函数" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                常见的损失函数
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

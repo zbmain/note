@@ -1,0 +1,992 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>VGG | </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../imageClassification/section4.html" />
+    
+    
+    <link rel="prev" href="../imageClassification/section2.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.3"
+        data-chapter-title="VGG"
+        data-filepath="imageClassification/section3.md"
+        data-basepath=".."
+        data-revision="Sun Oct 11 2020 09:58:20 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        计算机视觉与深度学习课程
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="introduction/index.html">
+            
+                
+                    <a href="../introduction/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        计算机视觉简介
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="introduction/section1.html">
+            
+                
+                    <a href="../introduction/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        计算机视觉概念
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="introduction/section2.html">
+            
+                
+                    <a href="../introduction/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        计算机视觉任务
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="tensorFlow/index.html">
+            
+                
+                    <a href="../tensorFlow/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        tensorflow入门
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="tensorFlow/section1.html">
+            
+                
+                    <a href="../tensorFlow/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        TensorFlow和Keras简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="tensorFlow/section2.html">
+            
+                
+                    <a href="../tensorFlow/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        快速入门模型
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="deeplearning/index.html">
+            
+                
+                    <a href="../deeplearning/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        深度神经网络
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="deeplearning/section1.html">
+            
+                
+                    <a href="../deeplearning/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        神经网络简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="deeplearning/section2.html">
+            
+                
+                    <a href="../deeplearning/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        常见的损失函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="deeplearning/section3.html">
+            
+                
+                    <a href="../deeplearning/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        深度学习的优化方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="deeplearning/section4.html">
+            
+                
+                    <a href="../deeplearning/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        深度学习的正则化
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="deeplearning/section5.html">
+            
+                
+                    <a href="../deeplearning/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        神经网络案例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="deeplearning/section6.html">
+            
+                
+                    <a href="../deeplearning/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        卷积神经网络CNN
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="imageClassification/index.html">
+            
+                
+                    <a href="../imageClassification/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        图像分类
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="imageClassification/section1.html">
+            
+                
+                    <a href="../imageClassification/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        图像分类简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="imageClassification/section2.html">
+            
+                
+                    <a href="../imageClassification/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        AlexNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.3" data-path="imageClassification/section3.html">
+            
+                
+                    <a href="../imageClassification/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        VGG
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="imageClassification/section4.html">
+            
+                
+                    <a href="../imageClassification/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        GoogLeNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="imageClassification/section5.html">
+            
+                
+                    <a href="../imageClassification/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        ResNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="imageClassification/section6.html">
+            
+                
+                    <a href="../imageClassification/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        图像增强方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="imageClassification/section7.html">
+            
+                
+                    <a href="../imageClassification/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        模型微调
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="objectdection/index.html">
+            
+                
+                    <a href="../objectdection/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        目标检测(Object Detection)
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="objectdection/section1.html">
+            
+                
+                    <a href="../objectdection/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        目标检测概述
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="objectdection/section2.html">
+            
+                
+                    <a href="../objectdection/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="objectdection/section3.html">
+            
+                
+                    <a href="../objectdection/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        SPPNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="objectdection/section4.html">
+            
+                
+                    <a href="../objectdection/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Fast R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="objectdection/section5.html">
+            
+                
+                    <a href="../objectdection/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Faster R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="objectdection/section6.html">
+            
+                
+                    <a href="../objectdection/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        Faster RCNN接口分析
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="objectdection/section7.html">
+            
+                
+                    <a href="../objectdection/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        YOLO算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="objectdection/section8.html">
+            
+                
+                    <a href="../objectdection/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        YOLOV2&amp;V3
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="objectdection/section9.html">
+            
+                
+                    <a href="../objectdection/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        SSD算法原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="objectdection/section10.html">
+            
+                
+                    <a href="../objectdection/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        案例：KITTI人、车检测案例-数据集处理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="objectdection/section11.html">
+            
+                
+                    <a href="../objectdection/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        案例：KITTI人、车检测案例-训练、检测
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="imageSegmentation/index.html">
+            
+                
+                    <a href="../imageSegmentation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        目标分割(Object Segmentation)
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="imageSegmentation/section1.html">
+            
+                
+                    <a href="../imageSegmentation/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        目标分割介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="imageSegmentation/section2.html">
+            
+                
+                    <a href="../imageSegmentation/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        FCN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="imageSegmentation/section3.html">
+            
+                
+                    <a href="../imageSegmentation/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        SegNet与U-Net
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="imageSegmentation/section6.html">
+            
+                
+                    <a href="../imageSegmentation/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Mask RCNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="imageSegmentation/section7.html">
+            
+                
+                    <a href="../imageSegmentation/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Mask RCNN分割案例1
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="imageSegmentation/section8.html">
+            
+                
+                    <a href="../imageSegmentation/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Mask RCNN分割案例2
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" ></a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="43-vgg">4.3 VGG</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong></p>
+<ul>
+<li>&#x77E5;&#x9053;VGG&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#x7684;&#x7279;&#x70B9;</li>
+<li>&#x80FD;&#x591F;&#x5229;&#x7528;VGG&#x5B8C;&#x6210;&#x56FE;&#x50CF;&#x5206;&#x7C7B;</li>
+</ul>
+<hr>
+<p><img src="assets/image-20200807163620748.png" alt="image-20200807163620748"></p>
+<p>2014&#x5E74;&#xFF0C;&#x725B;&#x6D25;&#x5927;&#x5B66;&#x8BA1;&#x7B97;&#x673A;&#x89C6;&#x89C9;&#x7EC4;&#xFF08;Visual Geometry Group&#xFF09;&#x548C;Google DeepMind&#x516C;&#x53F8;&#x7684;&#x7814;&#x7A76;&#x5458;&#x4E00;&#x8D77;&#x7814;&#x53D1;&#x51FA;&#x4E86;&#x65B0;&#x7684;&#x6DF1;&#x5EA6;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF1A;VGGNet&#xFF0C;&#x5E76;&#x53D6;&#x5F97;&#x4E86;ILSVRC2014&#x6BD4;&#x8D5B;&#x5206;&#x7C7B;&#x9879;&#x76EE;&#x7684;&#x7B2C;&#x4E8C;&#x540D;&#xFF0C;&#x4E3B;&#x8981;&#x8D21;&#x732E;&#x662F;&#x4F7F;&#x7528;&#x5F88;&#x5C0F;&#x7684;&#x5377;&#x79EF;&#x6838;(3&#xD7;3)&#x6784;&#x5EFA;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#xFF0C;&#x80FD;&#x591F;&#x53D6;&#x5F97;&#x8F83;&#x597D;&#x7684;&#x8BC6;&#x522B;&#x7CBE;&#x5EA6;&#xFF0C;&#x5E38;&#x7528;&#x6765;&#x63D0;&#x53D6;&#x56FE;&#x50CF;&#x7279;&#x5F81;&#x7684;VGG-16&#x548C;VGG-19&#x3002;</p>
+<h2 id="1vgg&#x7684;&#x7F51;&#x7EDC;&#x67B6;&#x6784;">1.VGG&#x7684;&#x7F51;&#x7EDC;&#x67B6;&#x6784;</h2>
+<p>VGG&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x662F;&#x52A0;&#x6DF1;&#x7248;&#x7684;AlexNet&#xFF0C;&#x6574;&#x4E2A;&#x7F51;&#x7EDC;&#x7531;&#x5377;&#x79EF;&#x5C42;&#x548C;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#x53E0;&#x52A0;&#x800C;&#x6210;&#xFF0C;&#x548C;AlexNet&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;VGG&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x90FD;&#x662F;&#x5C0F;&#x5C3A;&#x5BF8;&#x7684;&#x5377;&#x79EF;&#x6838;(3&#xD7;3)&#xFF0C;&#x5176;&#x7F51;&#x7EDC;&#x67B6;&#x6784;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="assets/image-20200807171521047.png" alt="image-20200807171521047"></p>
+<p>VGGNet&#x4F7F;&#x7528;&#x7684;&#x5168;&#x90E8;&#x90FD;&#x662F;3x3&#x7684;&#x5C0F;&#x5377;&#x79EF;&#x6838;&#x548C;2x2&#x7684;&#x6C60;&#x5316;&#x6838;&#xFF0C;&#x901A;&#x8FC7;&#x4E0D;&#x65AD;&#x52A0;&#x6DF1;&#x7F51;&#x7EDC;&#x6765;&#x63D0;&#x5347;&#x6027;&#x80FD;&#x3002;VGG&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x91CD;&#x590D;&#x4F7F;&#x7528;&#x7B80;&#x5355;&#x7684;&#x57FA;&#x7840;&#x5757;&#x6765;&#x6784;&#x5EFA;&#x6DF1;&#x5EA6;&#x6A21;&#x578B;&#x3002;</p>
+<p><img src="assets/image-20200807171928876.png" alt="image-20200807171928876">&#x5728;tf.keras&#x4E2D;&#x5B9E;&#x73B0;VGG&#x6A21;&#x578B;&#xFF0C;&#x9996;&#x5148;&#x6765;&#x5B9E;&#x73B0;VGG&#x5757;&#xFF0C;&#x5B83;&#x7684;&#x7EC4;&#x6210;&#x89C4;&#x5F8B;&#x662F;&#xFF1A;&#x8FDE;&#x7EED;&#x4F7F;&#x7528;&#x591A;&#x4E2A;&#x76F8;&#x540C;&#x7684;&#x586B;&#x5145;&#x4E3A;1&#x3001;&#x5377;&#x79EF;&#x6838;&#x5927;&#x5C0F;&#x4E3A;$3\times 3$&#x7684;&#x5377;&#x79EF;&#x5C42;&#x540E;&#x63A5;&#x4E0A;&#x4E00;&#x4E2A;&#x6B65;&#x5E45;&#x4E3A;2&#x3001;&#x7A97;&#x53E3;&#x5F62;&#x72B6;&#x4E3A;$2\times 2$&#x7684;&#x6700;&#x5927;&#x6C60;&#x5316;&#x5C42;&#x3002;&#x5377;&#x79EF;&#x5C42;&#x4FDD;&#x6301;&#x8F93;&#x5165;&#x7684;&#x9AD8;&#x548C;&#x5BBD;&#x4E0D;&#x53D8;&#xFF0C;&#x800C;&#x6C60;&#x5316;&#x5C42;&#x5219;&#x5BF9;&#x5176;&#x51CF;&#x534A;&#x3002;&#x6211;&#x4EEC;&#x4F7F;&#x7528;<code>vgg_block</code>&#x51FD;&#x6570;&#x6765;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x57FA;&#x7840;&#x7684;VGG&#x5757;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x5377;&#x79EF;&#x5C42;&#x7684;&#x6570;&#x91CF;<code>num_convs</code>&#x548C;&#x6BCF;&#x5C42;&#x7684;&#x5377;&#x79EF;&#x6838;&#x4E2A;&#x6570;num_filters&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x5B9A;&#x4E49;VGG&#x7F51;&#x7EDC;&#x4E2D;&#x7684;&#x5377;&#x79EF;&#x5757;&#xFF1A;&#x5377;&#x79EF;&#x5C42;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x5377;&#x79EF;&#x5C42;&#x4E2D;&#x5377;&#x79EF;&#x6838;&#x7684;&#x4E2A;&#x6570;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">vgg_block</span><span class="hljs-params">(num_convs, num_filters)</span>:</span>
+    <span class="hljs-comment"># &#x6784;&#x5EFA;&#x5E8F;&#x5217;&#x6A21;&#x578B;</span>
+    blk = tf.keras.models.Sequential()
+    <span class="hljs-comment"># &#x904D;&#x5386;&#x6240;&#x6709;&#x7684;&#x5377;&#x79EF;&#x5C42;</span>
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(num_convs):
+        <span class="hljs-comment"># &#x6BCF;&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#xFF1A;num_filter&#x4E2A;&#x5377;&#x79EF;&#x6838;&#xFF0C;&#x5377;&#x79EF;&#x6838;&#x5927;&#x5C0F;&#x4E3A;3*3&#xFF0C;padding&#x662F;same&#xFF0C;&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x662F;relu</span>
+        blk.add(tf.keras.layers.Conv2D(num_filters,kernel_size=<span class="hljs-number">3</span>,
+                                    padding=<span class="hljs-string">&apos;same&apos;</span>,activation=<span class="hljs-string">&apos;relu&apos;</span>))
+    <span class="hljs-comment"># &#x5377;&#x79EF;&#x5757;&#x6700;&#x540E;&#x662F;&#x4E00;&#x4E2A;&#x6700;&#x5927;&#x6C60;&#x5316;&#xFF0C;&#x7A97;&#x53E3;&#x5927;&#x5C0F;&#x4E3A;2*2&#xFF0C;&#x6B65;&#x957F;&#x4E3A;2</span>
+    blk.add(tf.keras.layers.MaxPool2D(pool_size=<span class="hljs-number">2</span>, strides=<span class="hljs-number">2</span>))
+    <span class="hljs-keyword">return</span> blk
+</code></pre>
+<p>VGG16&#x7F51;&#x7EDC;&#x6709;5&#x4E2A;&#x5377;&#x79EF;&#x5757;&#xFF0C;&#x524D;2&#x5757;&#x4F7F;&#x7528;&#x4E24;&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#xFF0C;&#x800C;&#x540E;3&#x5757;&#x4F7F;&#x7528;&#x4E09;&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#x3002;&#x7B2C;&#x4E00;&#x5757;&#x7684;&#x8F93;&#x51FA;&#x901A;&#x9053;&#x662F;64&#xFF0C;&#x4E4B;&#x540E;&#x6BCF;&#x6B21;&#x5BF9;&#x8F93;&#x51FA;&#x901A;&#x9053;&#x6570;&#x7FFB;&#x500D;&#xFF0C;&#x76F4;&#x5230;&#x53D8;&#x4E3A;512&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x5B9A;&#x4E49;5&#x4E2A;&#x5377;&#x79EF;&#x5757;&#xFF0C;&#x6307;&#x660E;&#x6BCF;&#x4E2A;&#x5377;&#x79EF;&#x5757;&#x4E2D;&#x7684;&#x5377;&#x79EF;&#x5C42;&#x4E2A;&#x6570;&#x53CA;&#x76F8;&#x5E94;&#x7684;&#x5377;&#x79EF;&#x6838;&#x4E2A;&#x6570;</span>
+conv_arch = ((<span class="hljs-number">2</span>, <span class="hljs-number">64</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">128</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">256</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">512</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">512</span>))
+</code></pre>
+<p>&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x7F51;&#x7EDC;&#x4F7F;&#x7528;&#x4E86;13&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#x548C;3&#x4E2A;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#xFF0C;&#x6240;&#x4EE5;&#x7ECF;&#x5E38;&#x88AB;&#x79F0;&#x4E3A;VGG-16,&#x901A;&#x8FC7;&#x5236;&#x5B9A;conv_arch&#x5F97;&#x5230;&#x6A21;&#x578B;&#x67B6;&#x6784;&#x540E;&#x6784;&#x5EFA;VGG16&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x5B9A;&#x4E49;VGG&#x7F51;&#x7EDC;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">vgg</span><span class="hljs-params">(conv_arch)</span>:</span>
+    <span class="hljs-comment"># &#x6784;&#x5EFA;&#x5E8F;&#x5217;&#x6A21;&#x578B;</span>
+    net = tf.keras.models.Sequential()
+    <span class="hljs-comment"># &#x6839;&#x636E;conv_arch&#x751F;&#x6210;&#x5377;&#x79EF;&#x90E8;&#x5206;</span>
+    <span class="hljs-keyword">for</span> (num_convs, num_filters) <span class="hljs-keyword">in</span> conv_arch:
+        net.add(vgg_block(num_convs, num_filters))
+    <span class="hljs-comment"># &#x5377;&#x79EF;&#x5757;&#x5E8F;&#x5217;&#x540E;&#x6DFB;&#x52A0;&#x5168;&#x8FDE;&#x63A5;&#x5C42;</span>
+    net.add(tf.keras.models.Sequential([
+        <span class="hljs-comment"># &#x5C06;&#x7279;&#x5F81;&#x56FE;&#x5C55;&#x6210;&#x4E00;&#x7EF4;&#x5411;&#x91CF;</span>
+        tf.keras.layers.Flatten(),
+        <span class="hljs-comment"># &#x5168;&#x8FDE;&#x63A5;&#x5C42;&#xFF1A;4096&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#xFF0C;&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x662F;relu</span>
+        tf.keras.layers.Dense(<span class="hljs-number">4096</span>, activation=<span class="hljs-string">&apos;relu&apos;</span>),
+        <span class="hljs-comment"># &#x968F;&#x673A;&#x5931;&#x6D3B;</span>
+        tf.keras.layers.Dropout(<span class="hljs-number">0.5</span>),
+        <span class="hljs-comment"># &#x5168;&#x8FDE;&#x63A5;&#x5C42;&#xFF1A;4096&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#xFF0C;&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x662F;relu</span>
+        tf.keras.layers.Dense(<span class="hljs-number">4096</span>, activation=<span class="hljs-string">&apos;relu&apos;</span>),
+        <span class="hljs-comment"># &#x968F;&#x673A;&#x5931;&#x6D3B;</span>
+        tf.keras.layers.Dropout(<span class="hljs-number">0.5</span>),
+        <span class="hljs-comment"># &#x5168;&#x8FDE;&#x63A5;&#x5C42;&#xFF1A;10&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#xFF0C;&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x662F;softmax</span>
+        tf.keras.layers.Dense(<span class="hljs-number">10</span>, activation=<span class="hljs-string">&apos;softmax&apos;</span>)]))
+    <span class="hljs-keyword">return</span> net
+<span class="hljs-comment"># &#x7F51;&#x7EDC;&#x5B9E;&#x4F8B;&#x5316;</span>
+net = vgg(conv_arch)
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x9AD8;&#x548C;&#x5BBD;&#x5747;&#x4E3A;224&#x7684;&#x5355;&#x901A;&#x9053;&#x6570;&#x636E;&#x6837;&#x672C;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x6A21;&#x578B;&#x7684;&#x67B6;&#x6784;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x6784;&#x9020;&#x8F93;&#x5165;X&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x9001;&#x5165;&#x5230;net&#x7F51;&#x7EDC;&#x4E2D;</span>
+X = tf.random.uniform((<span class="hljs-number">1</span>,<span class="hljs-number">224</span>,<span class="hljs-number">224</span>,<span class="hljs-number">1</span>))
+y = net(X)
+<span class="hljs-comment"># &#x901A;&#x8FC7;net.summay()&#x67E5;&#x770B;&#x7F51;&#x7EDC;&#x7684;&#x5F62;&#x72B6;</span>
+net.summay()
+</code></pre>
+<p>&#x7F51;&#x7EDC;&#x67B6;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-python">Model: <span class="hljs-string">&quot;sequential_15&quot;</span>
+_________________________________________________________________
+Layer (type)                 Output Shape              Param <span class="hljs-comment">#   </span>
+=================================================================
+sequential_16 (Sequential)   (<span class="hljs-number">1</span>, <span class="hljs-number">112</span>, <span class="hljs-number">112</span>, <span class="hljs-number">64</span>)         <span class="hljs-number">37568</span>     
+_________________________________________________________________
+sequential_17 (Sequential)   (<span class="hljs-number">1</span>, <span class="hljs-number">56</span>, <span class="hljs-number">56</span>, <span class="hljs-number">128</span>)          <span class="hljs-number">221440</span>    
+_________________________________________________________________
+sequential_18 (Sequential)   (<span class="hljs-number">1</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>, <span class="hljs-number">256</span>)          <span class="hljs-number">1475328</span>   
+_________________________________________________________________
+sequential_19 (Sequential)   (<span class="hljs-number">1</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">512</span>)          <span class="hljs-number">5899776</span>   
+_________________________________________________________________
+sequential_20 (Sequential)   (<span class="hljs-number">1</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>, <span class="hljs-number">512</span>)            <span class="hljs-number">7079424</span>   
+_________________________________________________________________
+sequential_21 (Sequential)   (<span class="hljs-number">1</span>, <span class="hljs-number">10</span>)                   <span class="hljs-number">119586826</span> 
+=================================================================
+Total params: <span class="hljs-number">134</span>,<span class="hljs-number">300</span>,<span class="hljs-number">362</span>
+Trainable params: <span class="hljs-number">134</span>,<span class="hljs-number">300</span>,<span class="hljs-number">362</span>
+Non-trainable params: <span class="hljs-number">0</span>
+__________________________________________________________________
+</code></pre>
+<h2 id="2&#x624B;&#x5199;&#x6570;&#x5B57;&#x52BF;&#x8BC6;&#x522B;">2.&#x624B;&#x5199;&#x6570;&#x5B57;&#x52BF;&#x8BC6;&#x522B;</h2>
+<p>&#x56E0;&#x4E3A;ImageNet&#x6570;&#x636E;&#x96C6;&#x8F83;&#x5927;&#x8BAD;&#x7EC3;&#x65F6;&#x95F4;&#x8F83;&#x957F;&#xFF0C;&#x6211;&#x4EEC;&#x4ECD;&#x7528;&#x524D;&#x9762;&#x7684;MNIST&#x6570;&#x636E;&#x96C6;&#x6765;&#x6F14;&#x793A;VGGNet&#x3002;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5C06;&#x56FE;&#x50CF;&#x9AD8;&#x548C;&#x5BBD;&#x6269;&#x5927;&#x5230;VggNet&#x4F7F;&#x7528;&#x7684;&#x56FE;&#x50CF;&#x9AD8;&#x548C;&#x5BBD;224&#x3002;&#x8FD9;&#x4E2A;&#x901A;&#x8FC7;<code>tf.image.resize_with_pad</code>&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<h3 id="21-&#x6570;&#x636E;&#x8BFB;&#x53D6;">2.1 &#x6570;&#x636E;&#x8BFB;&#x53D6;</h3>
+<p>&#x9996;&#x5148;&#x83B7;&#x53D6;&#x6570;&#x636E;,&#x5E76;&#x8FDB;&#x884C;&#x7EF4;&#x5EA6;&#x8C03;&#x6574;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-comment"># &#x83B7;&#x53D6;&#x624B;&#x5199;&#x6570;&#x5B57;&#x6570;&#x636E;&#x96C6;</span>
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+<span class="hljs-comment"># &#x8BAD;&#x7EC3;&#x96C6;&#x6570;&#x636E;&#x7EF4;&#x5EA6;&#x7684;&#x8C03;&#x6574;&#xFF1A;N H W C</span>
+train_images = np.reshape(train_images,(train_images.shape[<span class="hljs-number">0</span>],train_images.shape[<span class="hljs-number">1</span>],train_images.shape[<span class="hljs-number">2</span>],<span class="hljs-number">1</span>))
+<span class="hljs-comment"># &#x6D4B;&#x8BD5;&#x96C6;&#x6570;&#x636E;&#x7EF4;&#x5EA6;&#x7684;&#x8C03;&#x6574;&#xFF1A;N H W C</span>
+test_images = np.reshape(test_images,(test_images.shape[<span class="hljs-number">0</span>],test_images.shape[<span class="hljs-number">1</span>],test_images.shape[<span class="hljs-number">2</span>],<span class="hljs-number">1</span>))
+</code></pre>
+<p>&#x7531;&#x4E8E;&#x4F7F;&#x7528;&#x5168;&#x90E8;&#x6570;&#x636E;&#x8BAD;&#x7EC3;&#x65F6;&#x95F4;&#x8F83;&#x957F;&#xFF0C;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x83B7;&#x53D6;&#x90E8;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x5C06;&#x56FE;&#x50CF;&#x8C03;&#x6574;&#x4E3A;224*224&#x5927;&#x5C0F;&#xFF0C;&#x8FDB;&#x884C;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x5B9A;&#x4E49;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x968F;&#x673A;&#x62BD;&#x53D6;&#x90E8;&#x5206;&#x6837;&#x672C;&#x6F14;&#x793A;</span>
+<span class="hljs-comment"># &#x83B7;&#x53D6;&#x8BAD;&#x7EC3;&#x96C6;&#x6570;&#x636E;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_train</span><span class="hljs-params">(size)</span>:</span>
+    <span class="hljs-comment"># &#x968F;&#x673A;&#x751F;&#x6210;&#x8981;&#x62BD;&#x6837;&#x7684;&#x6837;&#x672C;&#x7684;&#x7D22;&#x5F15;</span>
+    index = np.random.randint(<span class="hljs-number">0</span>, np.shape(train_images)[<span class="hljs-number">0</span>], size)
+    <span class="hljs-comment"># &#x5C06;&#x8FD9;&#x4E9B;&#x6570;&#x636E;resize&#x6210;22*227&#x5927;&#x5C0F;</span>
+    resized_images = tf.image.resize_with_pad(train_images[index],<span class="hljs-number">224</span>,<span class="hljs-number">224</span>)
+    <span class="hljs-comment"># &#x8FD4;&#x56DE;&#x62BD;&#x53D6;&#x7684;</span>
+    <span class="hljs-keyword">return</span> resized_images.numpy(), train_labels[index]
+<span class="hljs-comment"># &#x83B7;&#x53D6;&#x6D4B;&#x8BD5;&#x96C6;&#x6570;&#x636E; </span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_test</span><span class="hljs-params">(size)</span>:</span>
+    <span class="hljs-comment"># &#x968F;&#x673A;&#x751F;&#x6210;&#x8981;&#x62BD;&#x6837;&#x7684;&#x6837;&#x672C;&#x7684;&#x7D22;&#x5F15;</span>
+    index = np.random.randint(<span class="hljs-number">0</span>, np.shape(test_images)[<span class="hljs-number">0</span>], size)
+    <span class="hljs-comment"># &#x5C06;&#x8FD9;&#x4E9B;&#x6570;&#x636E;resize&#x6210;224*224&#x5927;&#x5C0F;</span>
+    resized_images = tf.image.resize_with_pad(test_images[index],<span class="hljs-number">224</span>,<span class="hljs-number">224</span>)
+    <span class="hljs-comment"># &#x8FD4;&#x56DE;&#x62BD;&#x6837;&#x7684;&#x6D4B;&#x8BD5;&#x6837;&#x672C;</span>
+    <span class="hljs-keyword">return</span> resized_images.numpy(), test_labels[index]
+</code></pre>
+<p>&#x8C03;&#x7528;&#x4E0A;&#x8FF0;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x83B7;&#x53D6;&#x53C2;&#x4E0E;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x548C;&#x6D4B;&#x8BD5;&#x7684;&#x6570;&#x636E;&#x96C6;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x83B7;&#x53D6;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x548C;&#x6D4B;&#x8BD5;&#x6837;&#x672C;</span>
+train_images,train_labels = get_train(<span class="hljs-number">256</span>)
+test_images,test_labels = get_test(<span class="hljs-number">128</span>)
+</code></pre>
+<p>&#x4E3A;&#x4E86;&#x8BA9;&#x5927;&#x5BB6;&#x66F4;&#x597D;&#x7684;&#x7406;&#x89E3;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6570;&#x636E;&#x5C55;&#x793A;&#x51FA;&#x6765;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x6570;&#x636E;&#x5C55;&#x793A;&#xFF1A;&#x5C06;&#x6570;&#x636E;&#x96C6;&#x7684;&#x524D;&#x4E5D;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x5C55;&#x793A;</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">9</span>):
+    plt.subplot(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,i+<span class="hljs-number">1</span>)
+    <span class="hljs-comment"># &#x4EE5;&#x7070;&#x5EA6;&#x56FE;&#x663E;&#x793A;&#xFF0C;&#x4E0D;&#x8FDB;&#x884C;&#x63D2;&#x503C;</span>
+    plt.imshow(train_images[i].astype(np.int8).squeeze(), cmap=<span class="hljs-string">&apos;gray&apos;</span>, interpolation=<span class="hljs-string">&apos;none&apos;</span>)
+    <span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x56FE;&#x7247;&#x7684;&#x6807;&#x9898;&#xFF1A;&#x5BF9;&#x5E94;&#x7684;&#x7C7B;&#x522B;</span>
+    plt.title(<span class="hljs-string">&quot;&#x6570;&#x5B57;{}&quot;</span>.format(train_labels[i]))
+</code></pre>
+<p>&#x7ED3;&#x679C;&#x4E3A;&#xFF1A;</p>
+<p><img src="assets/image-20200807173025985.png" alt="image-20200807173025985"></p>
+<p>&#x6211;&#x4EEC;&#x5C31;&#x4F7F;&#x7528;&#x4E0A;&#x8FF0;&#x521B;&#x5EFA;&#x7684;&#x6A21;&#x578B;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#x548C;&#x8BC4;&#x4F30;&#x3002;</p>
+<h3 id="22-&#x6A21;&#x578B;&#x7F16;&#x8BD1;">2.2 &#x6A21;&#x578B;&#x7F16;&#x8BD1;</h3>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x6307;&#x5B9A;&#x4F18;&#x5316;&#x5668;&#xFF0C;&#x635F;&#x5931;&#x51FD;&#x6570;&#x548C;&#x8BC4;&#x4EF7;&#x6307;&#x6807;</span>
+optimizer = tf.keras.optimizers.SGD(learning_rate=<span class="hljs-number">0.01</span>, momentum=<span class="hljs-number">0.0</span>)
+
+net.compile(optimizer=optimizer,
+              loss=<span class="hljs-string">&apos;sparse_categorical_crossentropy&apos;</span>,
+              metrics=[<span class="hljs-string">&apos;accuracy&apos;</span>])
+</code></pre>
+<h3 id="23-&#x6A21;&#x578B;&#x8BAD;&#x7EC3;">2.3 &#x6A21;&#x578B;&#x8BAD;&#x7EC3;</h3>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#xFF1A;&#x6307;&#x5B9A;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#xFF0C;batchsize,epoch,&#x9A8C;&#x8BC1;&#x96C6;</span>
+net.fit(train_images,train_labels,batch_size=<span class="hljs-number">128</span>,epochs=<span class="hljs-number">3</span>,verbose=<span class="hljs-number">1</span>,validation_split=<span class="hljs-number">0.1</span>)
+</code></pre>
+<p>&#x8BAD;&#x7EC3;&#x8F93;&#x51FA;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-python">Epoch <span class="hljs-number">1</span>/<span class="hljs-number">3</span>
+<span class="hljs-number">2</span>/<span class="hljs-number">2</span> [==============================] - <span class="hljs-number">34</span>s <span class="hljs-number">17</span>s/step - loss: <span class="hljs-number">2.6026</span> - accuracy: <span class="hljs-number">0.0957</span> - val_loss: <span class="hljs-number">2.2982</span> - val_accuracy: <span class="hljs-number">0.0385</span>
+Epoch <span class="hljs-number">2</span>/<span class="hljs-number">3</span>
+<span class="hljs-number">2</span>/<span class="hljs-number">2</span> [==============================] - <span class="hljs-number">27</span>s <span class="hljs-number">14</span>s/step - loss: <span class="hljs-number">2.2604</span> - accuracy: <span class="hljs-number">0.1087</span> - val_loss: <span class="hljs-number">2.4905</span> - val_accuracy: <span class="hljs-number">0.1923</span>
+Epoch <span class="hljs-number">3</span>/<span class="hljs-number">3</span>
+<span class="hljs-number">2</span>/<span class="hljs-number">2</span> [==============================] - <span class="hljs-number">29</span>s <span class="hljs-number">14</span>s/step - loss: <span class="hljs-number">2.3650</span> - accuracy: <span class="hljs-number">0.1000</span> - val_loss: <span class="hljs-number">2.2994</span> - val_accuracy: <span class="hljs-number">0.1538</span>
+</code></pre>
+<h3 id="24-&#x6A21;&#x578B;&#x8BC4;&#x4F30;">2.4 &#x6A21;&#x578B;&#x8BC4;&#x4F30;</h3>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x6307;&#x5B9A;&#x6D4B;&#x8BD5;&#x6570;&#x636E;</span>
+net.evaluate(test_images,test_labels,verbose=<span class="hljs-number">1</span>)
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-number">4</span>/<span class="hljs-number">4</span> [==============================] - <span class="hljs-number">5</span>s <span class="hljs-number">1</span>s/step - loss: <span class="hljs-number">2.2955</span> - accuracy: <span class="hljs-number">0.1016</span>
+[<span class="hljs-number">2.2955007553100586</span>, <span class="hljs-number">0.1015625</span>]
+</code></pre>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x8BAD;&#x7EC3;&#x7F51;&#x7EDC;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x8BC4;&#x4F30;&#x7684;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code class="lang-python">[<span class="hljs-number">0.31822608125209806</span>, <span class="hljs-number">0.8855</span>]
+</code></pre>
+<hr>
+<p><strong>&#x603B;&#x7ED3;</strong></p>
+<ul>
+<li>&#x77E5;&#x9053;VGG&#x7684;&#x7F51;&#x7EDC;&#x67B6;&#x6784;</li>
+<li>&#x52A8;&#x624B;&#x5B9E;&#x73B0;&#x624B;&#x5199;&#x6570;&#x5B57;&#x7684;&#x8BC6;&#x522B;</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../imageClassification/section2.html" class="navigation navigation-prev " aria-label="Previous page: AlexNet"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../imageClassification/section4.html" class="navigation navigation-next " aria-label="Next page: GoogLeNet"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"expandable-chapters":{},"katex":{},"splitter":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

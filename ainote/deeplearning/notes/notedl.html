@@ -1,0 +1,88 @@
+<ul><li><strong>CV领域的几大任务</strong>：<ul><li>图像分类</li><li>目标检测</li><li>目标分割</li><li>目标追踪</li><li>图像标注</li></ul></li><li>TensorFlow安装2.3.0的版本，根据自身机器的条件选择安装CPU版本或者GPU版本</li><li><p>TensorFlow中重要的数据结构</p><ul><li><strong>张量Tensor</strong>：<ul><li>与numpy中的nd-array类似，只不过在TensorFlow中通过Tensor对象进行了封装</li></ul></li><li><strong>TensorFlow日志提醒</strong>：<ul><li>I：information，通知信息</li><li>W：warnning，警告</li><li>E：Error，程序 出现错误</li><li>屏蔽不重要的日志信息：</li><li>import os
+os.environ[&#39;TF<em>CPP</em>MIN<em>LOG</em>LEVEL&#39;] = &#39;2&#39;</li></ul></li><li>将张量转换成numpy中的nd-array：<ul><li>np.array(tensor)</li><li>tensor.numpy()</li></ul></li><li><strong>TensorFlow中的变量Variable操作</strong><ul><li>是一个特殊张量</li><li>它里面对应的数据是可以被修改的，注意形状不能被修改</li><li>使用场景：一般在模型中定义参数时使用Variable去定义，保证在模型的训练过程中能被调节</li></ul></li><li><strong>TensorFlow中常用常见的一些模块</strong>：<ul><li>activations：激活函数</li><li>applications：一些常用的预训练模型</li><li>callbacks：在模型训练过程中被调用的一些方法</li><li>datasets：数据集的封装和处理</li><li>layers：网络层</li><li>losses：损失函数</li><li>metrics：指定评估模型的指标</li><li>models：抽象类，用来构建模型</li><li>optimizers：优化器，模型优化的方法指定</li><li>preprocessing：数据预处理</li><li>regularizers：正则化方法</li><li>utils：其它辅助功能</li></ul></li><li><p>鸢尾花数据集案例</p><ul><li><p>使用机器学习的方法和深度学习的方法做了一个流程的对比</p></li></ul></li></ul></li><li><p><strong>深度学习与机器学习之间的区别和联系</strong></p><ul><li><p>深度学习是机器学习的一个发展方向，到目前为止发展最好的</p></li><li><p>机器学习做数据的预处理可能需要一些专业的知识，在深度学习里面，不用人工去做这些数据的预处理，深度学习模型特别是卷积神经网络能够自动提取特征，正式因为这样的操作，导致<strong>深度学习模型可解释性差，是一个黑盒操作</strong></p></li></ul></li><li><p><strong>神经网络</strong>：</p><ul><li><p>是一个仿照人类的神经系统用来表示数据的计算的方式的模型</p><ul><li><p><strong>单元结构</strong>：</p></li><li>神经元<ul><li>可以看作是简单的线性回归和激活函数操作</li></ul></li><li><strong>网络结构</strong>：</li><li>输入层：负责输入样本特征</li><li>隐藏层：完成一些特征的提取等计算操作<ul><li>卷积层</li><li>激活层</li><li>池化层</li></ul></li><li>输出层（全连接层）：负责输出模型的计算结果</li><li><p>注意：每个神经元之间的连线代表一个权重</p></li></ul></li><li><p>激活函数</p><ul><li><p>引入非线性激活函数的目的就是让深度学习模型能够在样本线性不可分的情况下达到好的效果</p></li><li><p>Sigmoid</p><ul><li><p>处处可导，关于点（0,0.5）对称</p></li><li>缺点：在函数的两侧容易造成梯度消失</li><li>一般用作输出层（全连接层）的激活函数</li><li>它的导数：f(x) (1 - f(x))</li><li><p>导数的取值范围：(0, 1/4]</p></li></ul></li><li><p>tanh：</p><ul><li><p>处处可导，关于原点对称，值域是（-1， 1）</p></li><li>缺点：在函数的两侧容易造成梯度消失</li><li>优点：相对于Sigmoid函数来说，能更快的让模型收敛</li><li>它的导数：1 -  （g(x)）^2</li><li><p>导数的取值范围：（0，1]</p></li></ul></li><li><p>Relu(rectified linear unit):</p><ul><li><p>现阶段使用的最为广泛的一种激活函数</p></li><li>缓解了Sigmoid和tanh中出现的梯度消失的问题</li><li>计算量更小，反向传播时，后一层的梯度可以基本上无损传播到前一层，防止过拟合</li><li>它的导数：</li><li>输入如果大于0，导数值为1</li><li><p>输入如果小于0，导数值为0</p></li></ul></li><li><p>leaky Relu:</p><ul><li><p>在RELU的基础上做了一些修改</p></li><li><p>如果训练深层神经网络模型的时，使用RELU达不到更好的效果，可以尝试使用它</p></li></ul></li><li><p>softmax：</p><ul><li><p>应用场景：一般用在输出层的不同类别概率结果输出</p></li></ul></li><li><p>激活函数的选择：</p><ul><li><p>隐藏层：一般优先选择使用RELU，如果效果不理想，在去选择使用LeakyRELU，缺陷是可能会导致大批量的神经元死亡，我们一般可以去初始化一个较小的学习率去缓解这个问题</p></li><li>输出层：</li><li><p>分类任务：</p><ul><li>二分类：使用Sigmoid</li><li>多分类：使用Softmax</li><li><p>回归问题：使用恒等映射 y = x</p></li></ul></li></ul></li><li><p>深度学习模型的参数初始化的意义及常用方式</p><ul><li><p>意义：让模型快速收敛</p></li><li><p>常用的方式：</p></li><li><p>1、随机初始化：使用标准正态分布随机出来的数值来初始化参数</p></li><li><p>2、注意：深度学习里面，参数一般指：权重、偏置、卷积核的模板中的权重</p></li><li><p>3、Xavier初始化（Glorot初始化）</p><p>/1、正态化初始化：tf.keras.initializers.glorot_normal()</p><ul><li><p>特点：它从以 0 为中心，标准差为 <code>stddev = sqrt(2 / (fan_in + fan_out))</code> 的正态分布中抽取样本</p></li><li>2、标准化Xavier初始化：tf.keras.initializers.glorot_uniform()</li><li>特点：从 [-limit，limit] 中的均匀分布中抽取样本， 其中 <code>limit</code> 是 <code>sqrt(6 / (fan_in + fan_out))</code></li><li><p>论文中指出这样的初始化方法配合tanh和softsign激活函数使用效果更好</p></li></ul></li><li><p>4、He初始化</p><ul><li><p>1、正态化He初始化：tf.keras.initializers.he_normal()</p></li><li>特性：以 0 为中心，标准差为 <code>stddev = sqrt(2 / fan_in)</code> 的截断正态分布中抽取样本</li><li>2、标准化的He初始化：tf.keras.initializers.he_uniform()</li><li>特点：它从 [-limit，limit] 中的均匀分布中抽取样本， 其中 <code>limit</code> 是 <code>sqrt(6 / fan_in)</code></li><li><p>论文中指出这样的初始化方法与RELU或者RELU系列的激活函数搭配使用效果更好</p></li></ul></li></ul></li><li><p>模型的构建</p></li><li><p>方式：1、通过Sequantial的方式去构建；2、通过继承Model抽象子类进行构建；3、通过函数式的方式构建
+<strong>深度学习的优缺点</strong>：</p></li></ul></li></ul></li><li><p>优点：精度高，可以近似任意函数</p></li><li>缺点：计算量大（对数据量的依赖和对算力的依赖），解释性比较差，小数据集的场景效果不好，容易过拟合</li></ul>
+
+<p><strong>常见损失函数</strong>：</p>
+
+<ul><li><strong>分类任务</strong>：<ul><li>多分类场景：交叉熵损失，tf.keras.losses.CategoricalCrossentropy()</li><li>二分类场景：二分类交叉熵损失（负的对数似然损失），tf.keras.losses.BinaryCrossentropy()</li></ul></li><li><strong>回归任务</strong>：<ul><li>MAE损失，tf.keras.losses.MeanAbsoluteError()，零点不可导</li><li>MSE损失，tf.keras.losses.MeanSquaredError()，预测值和真实值差距很大的时候容易发生梯度爆炸</li><li>smooth L1损失：tf.keras.losses.Huber()</li></ul></li></ul>
+
+<p><strong>常见的优化方法</strong>：</p>
+
+<ul><li><p><strong>SGD</strong>，随机梯度下降，在TensorFlow中SGD这个API一般指的是小批量梯度下降，tf.keras.optimizers.SGD(learning_rate=0.1)</p></li><li><p><strong>常用术语</strong>：</p><ul><li><p>epoch：表示将在整个数据集交给模型训练多少遍</p></li><li>batch_size：每次迭代交给模型训练的样本数，一般的取值：2^n</li><li><p>iteration（step）：表示训练完所有的epoch所需要的迭代的次数</p></li></ul></li><li><p><strong>反向传播（BP，backward propagation）</strong>：</p><ul><li><p>前向反馈，得到预测值</p></li><li><p>对比预测值和真实值之间的差距（损失函数）</p></li><li><p>使用反向传播去进行求导，更新前面神经网络层中的参数</p><ul><li><p><strong>链式求导法则</strong>：对复合函数的求导</p></li></ul></li><li><p><strong>梯度下降中（损失函数优化的过程中）经常会遇到这些问题</strong>：</p><ul><li><p>在平坦区域下降很慢</p></li><li><p>找到的是鞍点，非极值点</p></li><li><p>找到的是非全局最优解，而是局部最优解</p></li><li><p>解决方法：</p></li><li><p><strong>鞍点问题</strong>：使用<strong>动量算法优化</strong>，使用指数加权平均对原始的梯度进行一个加权平均操作，将之前计算出来的梯度也考虑了进来</p></li><li><p>API：tf.keras.optimizers.SGD(learning_rate=0.1, momentum=0.9)</p></li><li><p>Nesterov accelerated gradient(NAG)：tf.keras.optimizers.SGD(learning<em>rate=0.1, momentum=0.9)tf.keras.optimizers.SGD(learning</em>rate=0.1, momentum=0.9, nesterov=True)</p></li><li><p>在接近最优解时在最优解附近来回振荡，无法快速收敛：使用<strong>AdamGrad优化方法</strong>去解决，它的思想是越往后训练，学习率的值越小</p><ul><li><p>API：</p><p><code>python
+tf.keras.optimizers.Adagrad(
+learning_rate=0.001, initial_accumulator_value=0.1, epsilon=1e-07
+)
+</code></p></li></ul></li><li><p>解决AdaGrad后期学习率过小，无法快速收敛：<strong>RMSpro</strong>p进行优化（加权平均）</p><ul><li><p>API：</p><p><code>python
+tf.keras.optimizers.RMSprop(
+learning_rate=0.001, rho=0.9, momentum=0.0, epsilon=1e-07, centered=False,
+name=&#39;RMSprop&#39;, **kwargs
+)
+</code></p></li></ul></li><li><p><strong>Adam</strong>：综合了momentum和RMSprop的优势，即对学习率做了修正，又对梯度进行了修正</p><ul><li><p>没有经验性的调参建议，那么优先使用Adam</p></li></ul></li></ul></li><li><p>API：</p><p><code>python
+tf.keras.optimizers.Adam(
+    learning_rate=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-07
+)
+</code></p></li></ul></li><li><p>学习率退火（在模型训练的过程中，通过callbacks回调函数调用）</p><ul><li><strong>帮助我们在不同训练时机使用合适的学习率训练模型</strong></li><li>分段常数衰减</li><li>指数衰减</li><li><p>1/t衰减</p></li></ul></li><li><p>常用正则化方法：</p><ul><li><p><strong>L1、L2、L1L2正则化</strong></p></li><li><p><strong>Dropout</strong>：让模型在训练的过程中随机的让部分神经元失活（不参与到模型的计算），rate是神经元失活的概率，其它没有被失活的神经元的输入的值变成了   原始值/(1-rate)</p></li><li><p>Dropout API：layer = tf.keras.layers.Dropout(0,input_shape=(2,))</p></li><li><p>Early stopping：通过在模型训练过程中产生的指标，例如训练误差和验证误差进行一个观察，如果当训练误差不断减小的过程中，验证误差经历了达到最小后上升的过程，那么我们就可以断定当验证误差最小时，是当前条件下模型的最优表现，那么我们就可以设定对应的迭代阈值，让模型的训练及时停止</p><ul><li><p>API实现：</p><p><code>python
+tf.keras.callbacks.EarlyStopping(
+monitor=&#39;val_loss&#39;,  patience=5
+)
+</code></p></li><li><p>使用是在模型的训练过程中添加回调函数即可：</p></li><li><p><code>python
+model.fit(X, Y, epochs=10, batch_size=1, callbacks=[callback], verbose=1)
+</code></p></li></ul></li><li><p><strong>批标准化（BN， batch normalization）</strong>：</p><ul><li><p>在输入到下一层网络进行计算前，将前一层的每个神经元的输出进行标准化处理（计算每一个批次样本的均值和方差），对最后标准化的结果再做一个线性缩放，其中 $$\gamma$$ 和 $$\beta$$ 这两个参数也是需要在反向传播中和其它参数一起被优化</p></li><li><p>API：</p><p><code>python
+tf.keras.layers.BatchNormalization(
+epsilon=0.001, center=True, scale=True,
+beta_initializer=&#39;zeros&#39;, gamma_initializer=&#39;ones&#39;,
+)
+</code></p></li></ul></li></ul></li></ul>
+
+<p><strong>简易全连接层的神经网络案例</strong>：</p>
+
+<ul><li><p>1、<strong>数据加载</strong></p><ul><li><p>mnist手写数字图片数据，每一张图片都是28*28的大小，训练集有60000个样本，测试集有10000个样本</p></li><li><p><code>python
+from tensorflow.keras.datasets import mnist
+mnist.load_data()
+</code></p></li></ul></li><li><p>2、<strong>数据处理</strong></p><ul><li><p>首先，因为我们使用的是全连接层，所以要将特征向量展开成一维的特征向量，使用reshape改变特征向量的形状</p></li><li>然后将数据类型变成浮点型</li><li><p>最后对数据进行归一化，减少计算量</p></li></ul></li><li><p>3、<strong>模型构建</strong></p></li><li><p>4、<strong>模型训练</strong></p><ul><li><p>引入Tensorboard实现模型训练过程参数的可视化以及模型计算过程的可视化</p></li><li><p>先进入到对应的虚拟环境，然后使用命令行启动tensorboard服务，使用浏览器访问它提供的链接，即可看到可视化后的结果</p></li></ul></li><li><p>5、<strong>模型评估</strong></p><ul><li><p>model.evaluate()</p></li></ul></li><li><p>6、<strong>模型的保存与加载</strong></p><ul><li><p>保存：model.save()，一般以h5的格式保存模型文件</p></li><li><p>加载：tf.keras.models.load_model()</p></li></ul></li><li><p><strong>全连接网络的局限性</strong>：</p><ul><li><p>数据量大，造成模型的训练效率比较低下</p></li><li><p>无法正确表示特征之间的关联，对于模型去提取一些关键特征来说影响较大</p></li></ul></li><li><p><strong>卷积神经网络</strong>：</p><ul><li><p>提高模型的训练效率，同时更好的去提取和表征原始数据的特征</p></li><li><p><strong>主要组成结构</strong>：</p><ul><li><p>卷积层、池化层、全连接层、激活层</p></li><li><p>1、卷积层：提取特征</p></li><li><p>卷积核：就是前面OpenCV中提到的滤波器，是带有权重的一种计算结构</p></li><li><p>padding：当我们需要指定输出的feature map的大小是可以指定padding的大小，一般的选择是‘same’或者‘valid’。</p></li><li><p>stride：卷积核进行滑动扫描提取特征时的步长是多少</p></li><li><p>多通道卷积：对应通道的卷积核与特征图进行卷积操作，然后将所有通道的卷积结果按位置相加，即得最后的输出feature map</p></li><li><p>多卷积核卷积：最后得到的feature map的通道数只与卷积核的个数相等</p></li><li><p>输出的feature map大小的计算方式：</p><ul><li><p>输入的图片：H1 x  W1 X C1</p></li><li><p>卷积操作：</p></li><li><p>卷积核个数K</p></li><li>卷积核的大小F</li><li>步长S</li><li><p>零填充大小P</p></li><li><p>输出的feature map的大小：</p></li><li><p>高：H2 = （H1 - F + 2P）/ S    +  1</p></li><li>宽：W2 = （W1 - F + 2P）/ S    +  1</li><li><p>通道数：C2 = K </p></li><li><p>API 实现：</p><p><code>python
+tf.keras.layers.Conv2D(
+filters, kernel_size, strides=(1, 1), padding=&#39;valid&#39;, 
+activation=None
+)
+</code></p></li></ul></li><li><p>2、激活层：获取非线性输出，让模型具有非线性样本的处理能力</p></li><li><p>3、池化层：对提取后的特征进行降维</p></li><li><p>最大池化</p><ul><li><p>通过扫描窗口扫描特征图，在窗口内的最大值作为最终的输出结果</p></li><li><p>API：</p><p><code>python
+tf.keras.layers.MaxPool2D(
+pool_size=(2, 2), strides=None, padding=&#39;valid&#39;
+)
+</code></p></li></ul></li><li><p>平均池化</p><ul><li><p>通过扫描窗口扫描特征图，在窗口内的所有特征的平均值作为最终的输出结果</p></li><li><p>API：</p><p><code>python
+tf.keras.layers.AveragePooling2D(
+pool_size=(2, 2), strides=None, padding=&#39;valid&#39;
+)
+</code></p></li></ul></li><li><p>4、全连接层：一般用来输出结果，将最后得到的feature map展开成一维的特征向量，然后进行分类或者回归操作</p></li></ul></li></ul></li><li><p>图像分类</p><ul><li><p>目的：为了给输入的图片贴上类别标签</p></li><li>常用的数据集：mnist、cifar系列、ImageNet</li><li>经典分类模型：<ul><li>1、AlexNet：在深度学习中具有里程碑意义的模型，识别错误率比第二名少了大概10个百分点</li><li>2、VGG，现在使用也是非常广泛的一个模型</li><li>3、GoogLeNet，在分类里面效果出众，而且计算量小</li><li>4、ResNet，通过残差块发挥出深度的神经网络的性能</li></ul></li><li><p>AlexNet:</p><ul><li>特性：包含5层卷积，2层隐藏层全连接层，1层全连接输出</li><li>卷积核形状，第一层卷积大小是11x11，接下来分别使用5x5和3x3的卷积核大小进行卷积操作</li><li>将激活函数从sigmoid变成了RELU</li><li>添加了Dropout层，防止过拟合</li><li><p>引入了图像增强，让模型提取的特征更加丰富
+<strong>卷积核大小对特征提取的影响</strong>：</p></li></ul></li></ul></li><li><p>卷积核越大，提取特征后特征图的大小越小，忽略一些局部特征，得到的描述是全局的（宏观的）的特征，反之，提取的都是一些细节（局部）特征。</p></li></ul>
+
+<p><strong>神经网络的层数（深度）对模型的影响</strong>：</p>
+
+<ul><li>网络层数越深，那么提取出的信息和特征越多，效果越好，假设空间越大，那么一定会存在一个全局最优解，只要我们不断的去训练模型，一定会找到这个最优解</li><li>图像内容比较简单，特征较少，那么可以使用浅层的网络去训练，反之，使用深层网络去训练，可能才会得到好的效果</li></ul>
+
+<p><strong>参数和超参数的区别</strong>：</p>
+
+<ul><li>参数一般指的是随着模型的训练一块更新的一些参数，W， B， 批标准化中的 $$\gamma$$ 和 $$\beta$$ 。</li><li>超参数：指的是需要手动设置并调优的这些参数，学习率，正则化系数，网络的层数，卷积核的个数，卷积核的大小</li></ul>
+
+<p>感受野（receptived field）:</p>
+
+<ul><li>随着网络的加深，模型的感受野是越来越大的。在网络的浅层，模型提取的是一些细节特征（边界、纹理等），深层得到的是更加宏观的特征。</li></ul>
+
+<p>VGG：</p>
+
+<ul><li>模型中使用的都是一些比较小的卷积核，参数的量直接减少了，便于后面的计算</li></ul>
+
+<p>GoogLeNet：</p>
+
+<ul><li>使用了比较重要的结构：<strong>inception</strong>，这个结构中使用了大量的1X1的小卷积核，通过这样的方式，可以到达对输入特征进行降维的效果，增加了网络的宽度，缺点是忽略了特征之间的关联</li><li>2个辅助分类器，缓解梯度消失的状况，最后将3个结果做了一个加权，参与到最后的分类结果中，占的权重不一样</li><li>提升版本：<ul><li>V2：将inception中的5X5卷积拆分成两个3X3的卷积，减少了参数量</li><li>V3：将3X3的卷积拆分成1X3和3X1的卷积，减少了参数的数量</li><li>V4：使用到了残差结构</li></ul></li></ul>
+
+<p>ResNet（Residual Net）：</p>
+
+<ul><li>因为随着神经网路层数的加深，模型的表现不仅没有变好，反而变差了，发生了网络退化（不是由于梯度消失或者梯度爆炸引起的），而是模型在训练的过程中达到了饱和的状态</li></ul>
+
+<p><strong>图像增强</strong>：</p>
+
+<ul><li>通过一些手段（翻转、旋转、裁切、仿射变换等），让数据集的表现更加丰富，同时扩增原始数据集</li><li>tf.images或者tf.keras.imageGenerator</li></ul>
+
+<p>模型的微调（fine-tuning）:</p>
+
+<ul><li>预训练模型：在已知数据集上训练好的效果不错的模型</li><li>微调的方式：<ul><li>1、直接拿过来用，然后在现有模型的基础上添加自定义的全连接层，然后进行训练</li><li>2、不是全部拿过来，只要主干部分，舍弃源模型后面的全连接层，然后自定义添加全连接层进行训练</li></ul></li></ul>

@@ -1,0 +1,1468 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>4.10 综合案例：垃圾分类之模型构建与训练 - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#410" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              4.10 综合案例：垃圾分类之模型构建与训练
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    学习目标
+  </a>
+  
+    <nav class="md-nav" aria-label="学习目标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4101-efficientnet" class="md-nav__link">
+    4.10.1 EfficientNet模型介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="4.10.1 EfficientNet模型介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41011" class="md-nav__link">
+    4.10.1.1 摘要
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41012" class="md-nav__link">
+    4.10.1.2 原理介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="4.10.1.2 原理介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-" class="md-nav__link">
+    1、复合模型缩放-问题建模
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2、新的复合方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41013-efficientnet" class="md-nav__link">
+    4.10.1.3 Efficientnet 架构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41014" class="md-nav__link">
+    4.10.1.4 实验
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4102-efficientnet" class="md-nav__link">
+    4.10.2 垃圾分类开源EfficientNet实现介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="4.10.2 垃圾分类开源EfficientNet实现介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41021" class="md-nav__link">
+    4.10.2.1 模型目录
+  </a>
+  
+    <nav class="md-nav" aria-label="4.10.2.1 模型目录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tensorflow20-efficientnet" class="md-nav__link">
+    TensorFlow2.0 可进行迁移学习的实现版本不存在efficientnet，需要第三方实现的模型两种选择：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4103-trick" class="md-nav__link">
+    4.10.3 优化算法以及学习率trick
+  </a>
+  
+    <nav class="md-nav" aria-label="4.10.3 优化算法以及学习率trick">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41021-rectified-adamadam-with-warm-up" class="md-nav__link">
+    4.10.2.1 Rectified Adam(Adam with warm up)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41022-warmup" class="md-nav__link">
+    4.10.2.2 Warmup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41023-cosine-learning-rate-decay" class="md-nav__link">
+    4.10.2.3 余弦学习率衰减（Cosine Learning rate decay）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41024-tensorflow" class="md-nav__link">
+    4.10.2.4 TensorFlow实现
+  </a>
+  
+    <nav class="md-nav" aria-label="4.10.2.4 TensorFlow实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1tfkerascallbackscallback" class="md-nav__link">
+    1、tf.keras.callbacks.Callback
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4103-warmup" class="md-nav__link">
+    4.10.3 垃圾分类带有warmup的余弦退火学习率调度实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41031" class="md-nav__link">
+    4.10.3.1 流程分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41032" class="md-nav__link">
+    4.10.3.2 完整代码过程实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kerasbackend" class="md-nav__link">
+    问题：如何修改Keras使用的backend
+  </a>
+  
+    <nav class="md-nav" aria-label="问题：如何修改Keras使用的backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2warmup" class="md-nav__link">
+    2、实现warmup的余弦退火学习率计算方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4104" class="md-nav__link">
+    4.10.4 模型训练过程实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4105" class="md-nav__link">
+    4.10.5 总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="410">4.10 综合案例：垃圾分类之模型构建与训练<a class="headerlink" href="#410" title="Permanent link">&para;</a></h1>
+<h2 id="_1">学习目标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>目标</li>
+<li>掌握EfficientNet模型原理</li>
+<li>掌握warmup以及余弦退火学习率原理</li>
+<li>应用</li>
+<li>应用完成垃圾分类的训练过程</li>
+<li>应用完成余弦退火与warmup的实现</li>
+</ul>
+<h3 id="4101-efficientnet">4.10.1 EfficientNet模型介绍<a class="headerlink" href="#4101-efficientnet" title="Permanent link">&para;</a></h3>
+<p>先再来看一遍efficientnet的取得的成绩</p>
+<p><img alt="" src="../../images/efficientnet%E6%95%88%E6%9E%9C%E5%AF%B9%E6%AF%94.jpg" /></p>
+<p>可以看出 EfficientNet 系列完胜了其他所有的卷积网络。其中EfficientNet-B7实现了ImageNet的state-of-the-art率，达到了 84.4%。但是它的参数量相比 GPipe 减少了 8.4 倍，并且推理速度达到了 GPipe 的 6.1 倍。更加细节的数据可以参考后面的实验部分。</p>
+<p>论文地址：<a href="https://arxiv.org/pdf/1905.11946.pdf">https://arxiv.org/pdf/1905.11946.pdf</a></p>
+<h4 id="41011">4.10.1.1 摘要<a class="headerlink" href="#41011" title="Permanent link">&para;</a></h4>
+<p>作者系统地研究了模型缩放并且仔细验证了**网络深度、宽度和分辨率之间的平衡可以导致更好的性能表现**。提出了一种新的缩放方法——使用一个简单高效的复合系数来完成对深度/宽度/分辨率所有维度的统一缩放。在MobileNets和ResNet上展示了这种缩放方法的高效性。为了进一步研究，我们使用神经架构搜索设计了一个baseline网络。<strong>使用神经架构搜索来设计新的baseline并进行扩展以获得一系列模型，称EfficientNets。</strong></p>
+<p>引入：</p>
+<p><strong>一般ConvNets的精度随着它的size增加，有很多工作通过增加ConvNets的宽度、深度或者图像分辨率去提升网络的性能。尽管可以任意缩放二维或三维，但任意缩放需要繁琐的手动调整，并且仍然经常产生次优的精度和效率。</strong></p>
+<p>作者重新思考和研究了ConvNets的缩放问题，是否存在一种原则性的方法缩放ConvNets，从而实现更高的精度和效率？作者的实证研究表明，平衡网络宽度/深度/分辨率的所有维度是至关重要的，且可通过简单地按比例缩放每个维度来实现这种平衡。基于此，提出了一种简单而有效的复合缩放方法。</p>
+<h4 id="41012">4.10.1.2 原理介绍<a class="headerlink" href="#41012" title="Permanent link">&para;</a></h4>
+<p><img src="../images/efficientnetscaleing.jpg" style="zoom:50%;" /></p>
+<ul>
+<li>
+<p>这种复合缩放方法是有意义的，因为如果输入图像更大，则网络需要更多层来增加感知场，并且需要更多通道来捕获更大图像上的更细粒度图案。</p>
+</li>
+<li>
+<p>深度(<img alt="[公式]" src="https://www.zhihu.com/equation?tex=d" /> )： 更深的网络可以捕获更丰富、更复杂的特征，并且可以很好地泛化新任务。 然而由于梯度消失问题，更深层次的网络也更难训练。虽然跳层连接和批量归一化等可以缓解训练问题，但非常深的网络的准确度增益会减少：例如，ResNet-1000和ResNet-101有相似精度。</p>
+</li>
+<li>宽度( <img alt="[公式]" src="https://www.zhihu.com/equation?tex=w" /> )：更宽的网络往往能够捕获更细粒度的特征，并且更容易训练。 然而，极宽但浅的网络往往难以捕获更高级别的特征。</li>
+<li>分辨率( <img alt="[公式]" src="https://www.zhihu.com/equation?tex=r" /> )：使用更高分辨率的输入图像，网络可以捕获更细粒度的特征。</li>
+</ul>
+<h5 id="1-">1、复合模型缩放-问题建模<a class="headerlink" href="#1-" title="Permanent link">&para;</a></h5>
+<p>对于ConvNet（卷积网络）的第 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=i" /> 层可以定义为一个函数： <img alt="[公式]" src="https://www.zhihu.com/equation?tex=Y_%7Bi%7D+%3D+F_%7Bi%7D%28+X_%7Bi%7D%29" />。模型缩放跟ConvNet设计去寻找最优结构<img alt="[公式]" src="https://www.zhihu.com/equation?tex=+F_%7Bi%7D" />不一样，模型缩放是去寻找<img alt="[公式]" src="https://www.zhihu.com/equation?tex=+F_%7Bi%7D" />的最佳宽度 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%28C_%7Bi%7D+%29" /> 、长度 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%28L_%7Bi%7D+%29" /> 和分辨率 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%28H_%7Bi%7D+%2CW_%7Bi%7D%29" /> ，通过固定住<img alt="[公式]" src="https://www.zhihu.com/equation?tex=+F_%7Bi%7D" />，模型缩放简化了资源限制问题。在给定资源限制的情况下，去最大化模型的精度，就变成了以下优化问题：</p>
+<p><img src="../images/effi优化.jpg" style="zoom:50%;" /></p>
+<ul>
+<li>1、最上方为要优化的准确率</li>
+<li>2、中间N代表一个完整卷积网络</li>
+<li><span><span class="MathJax_Preview"><span><span class="MathJax_Preview">F_{i}^{L}</span><script type="math/tex">F_{i}^{L}</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">F_{i}^{L}</span><script type="math/tex">F_{i}^{L}</script></span></script></span>表示某layerF被重复了L次在卷积结构层i中（可以理解Resnet某个结构重复若干次）</li>
+<li><span><span class="MathJax_Preview"><span><span class="MathJax_Preview">X</span><script type="math/tex">X</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">X</span><script type="math/tex">X</script></span></script></span>为某i层的输入分别为H，W，C</li>
+</ul>
+<p>下面两张图表示每个维度的影响和三个维度的比率调整的影响</p>
+<p><img src="../images/每个维度的影响.jpg" style="zoom:50%;" /></p>
+<p><img src="../images/三个维度比率.jpg" style="zoom:50%;" /></p>
+<p>表示比较了不同网络深度和分辨率下的宽度缩放，如下图所示。在不改变深度（d = 1.0）和分辨率（r = 1.0）的情况下缩放网络宽度w，则精度会很快达到饱和。 随着更深（d = 2.0）和更高分辨率（r = 2.0），宽度缩放在相同的FLOPS成本下实现了更好的精度。</p>
+<h5 id="2">2、新的复合方法<a class="headerlink" href="#2" title="Permanent link">&para;</a></h5>
+<p>使用一个复合系数 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%5Cphi" /> 以原则方式统一缩放网络宽度、深度和分辨率</p>
+<p><img src="../images/新复合方法.jpg" style="zoom:50%;" /></p>
+<p>其中 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%5Calpha%EF%BC%8C%5Cbeta%EF%BC%8C%5Cgamma" /> 是可以通过小网格搜索确定的常数。 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%5Cphi" />是用户指定的系数，控制有多少资源可用于模型缩放，而<img alt="[公式]" src="https://www.zhihu.com/equation?tex=%5Calpha%EF%BC%8C%5Cbeta%EF%BC%8C%5Cgamma" />指定如何将这些额外资源分配给网络宽度，深度和分辨率。在本文中，作者约束 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%5Calpha%2C%5Cbeta%5E%7B2%7D%2C%5Cgamma%5E%7B2%7D%5Capprox2" /> ，使得对于任何新的 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%5Cphi" /> ，总FLOPS将大约增加 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=2%5E%7B%5Cphi%7D" /> 。</p>
+<blockquote>
+<p>拓展：常规卷积运算的FLOPS与 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=d%2Cw%5E%7B2%7D%2Cr%5E%7B2%7D" /> 成正比，即双倍网络深度将使FLOPS加倍。但网络宽度或分辨率加倍会使FLOPS增加四倍。</p>
+</blockquote>
+<h4 id="41013-efficientnet">4.10.1.3 Efficientnet 架构<a class="headerlink" href="#41013-efficientnet" title="Permanent link">&para;</a></h4>
+<p>所以通过上面的方法，作者找到了一个新的baseline（（MBConv），类似于MobileNetV2和MnasNet）来评估，称为EfficientNet-B0。</p>
+<p><img src="../images/B0架构.jpg" style="zoom:50%;" /></p>
+<ul>
+<li>步骤1：首先确定φ= 1，假设有两倍的可用资源，并根据公式2和3进行 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%5Calpha%EF%BC%8C%5Cbeta%EF%BC%8C%5Cgamma" /> 的小网格搜索。作者找到了EfficientNet-B0满足约束的最佳值 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%CE%B1%3D+1.2%EF%BC%8C%CE%B2%3D+1.1%EF%BC%8C%CE%B3%3D+1.15" /> </li>
+<li>步骤2：然后我们将 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%CE%B1%EF%BC%8C%CE%B2%EF%BC%8C%CE%B3" /> 固定为常数，并使用公式3扩展具有不同 <img alt="[公式]" src="https://www.zhihu.com/equation?tex=%5Cphi" /> 的基线网络，以获得EfficientNet-B1至B7（<strong>也就是根据自己的计算资源来选择合适大小的网络</strong>），细节如下</li>
+</ul>
+<p><img alt="" src="../../images/%E8%B5%84%E6%BA%90%E5%A4%A7%E5%B0%8F.jpg" /></p>
+<h4 id="41014">4.10.1.4 实验<a class="headerlink" href="#41014" title="Permanent link">&para;</a></h4>
+<ul>
+<li>对MobileNets 和 ResNets进行缩放</li>
+</ul>
+<p><img src="../images/其他模型缩放.jpg" style="zoom:50%;" /></p>
+<p>这个复合缩放方法提高了所有这些模型的准确性，表明了缩放方法对现有的卷积网络结构有效性。</p>
+<ul>
+<li>类激活图说明了具有复合缩放的模型倾向于关注具有更多对象细节的更相关区域，而其他模型要么缺少对象细节，要么无法捕获图像中的所有对象。</li>
+</ul>
+<p><img src="../images/类激活图.jpg" style="zoom:50%;" /></p>
+<ul>
+<li>在各比赛中做迁移学习得成就</li>
+</ul>
+<p><img alt="" src="../../images/%E6%A8%A1%E5%9E%8B%E8%BF%81%E7%A7%BB%E6%AF%94%E8%BE%83.jpg" /></p>
+<ul>
+<li>与公开可用模型相比，EfficientNet模型减少了平均4.7倍（最多21倍）的参数，同时实现了更高的精度。</li>
+<li>与最先进的模型相比，EfficientNet模型在8个数据集中有5个仍然超过了它们的准确度，且使用的参数减少了9.6倍。</li>
+</ul>
+<p>最终各种模型的精度 - 参数曲线，红色为EfficientNet的结果，明显比各个模型精度高，参数量少。</p>
+<p><img src="../images/effi模型精度比较.jpg" style="zoom:50%;" /></p>
+<p>注：最终的效果比率，都是在大量的设备和模型上计算得来的，资源消耗不可想象。Google有足够的资源和设备（TPU）去做。</p>
+<h3 id="4102-efficientnet">4.10.2 垃圾分类开源EfficientNet实现介绍<a class="headerlink" href="#4102-efficientnet" title="Permanent link">&para;</a></h3>
+<h4 id="41021">4.10.2.1 模型目录<a class="headerlink" href="#41021" title="Permanent link">&para;</a></h4>
+<h5 id="tensorflow20-efficientnet">TensorFlow2.0 可进行迁移学习的实现版本不存在efficientnet，需要第三方实现的模型两种选择：<a class="headerlink" href="#tensorflow20-efficientnet" title="Permanent link">&para;</a></h5>
+<p>1、可迁移学习的TF低版本能使用**（部分操作不支持默认Eager 模式）**</p>
+<p><a href="https://github.com/calmisential/Basic_CNNs_TensorFlow2">https://github.com/calmisential/Basic_CNNs_TensorFlow2</a></p>
+<p>我们选择的是这个版本，可以在与训练模型上迁移，使用简单</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">efficientnet</span> <span class="kn">import</span> <span class="n">EfficientNetB0</span>
+<span class="n">EfficientNetB0</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">include_top</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">336</span><span class="p">,</span> <span class="mi">336</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+
+<p>2、TF2.0实现版本不能使用在imagenet上的与训练模型，版本简单易懂，项目中也含有其他的模型</p>
+<p><a href="https://github.com/Tony607/efficientnet_keras_transfer_learning">https://github.com/Tony607/efficientnet_keras_transfer_learning</a></p>
+<p><img src="../images/模型目录介绍.jpg" style="zoom:50%;" /></p>
+<ul>
+<li>model.py: 模型的主结构</li>
+<li>其他文件为相关封装接口</li>
+</ul>
+<p>去工程中看看指定模型。其中参数include_top，指定了我们可以进行迁移学习：</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">if</span> <span class="n">include_top</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">KL</span><span class="o">.</span><span class="n">GlobalAveragePooling2D</span><span class="p">(</span><span class="n">data_format</span><span class="o">=</span><span class="n">global_params</span><span class="o">.</span><span class="n">data_format</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">global_params</span><span class="o">.</span><span class="n">dropout_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">KL</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">global_params</span><span class="o">.</span><span class="n">dropout_rate</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">KL</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">global_params</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">DenseKernalInitializer</span><span class="p">())(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">KL</span><span class="o">.</span><span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;softmax&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pooling</span> <span class="o">==</span> <span class="s1">&#39;avg&#39;</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">KL</span><span class="o">.</span><span class="n">GlobalAveragePooling2D</span><span class="p">(</span><span class="n">data_format</span><span class="o">=</span><span class="n">global_params</span><span class="o">.</span><span class="n">data_format</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">pooling</span> <span class="o">==</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">KL</span><span class="o">.</span><span class="n">GlobalMaxPooling2D</span><span class="p">(</span><span class="n">data_format</span><span class="o">=</span><span class="n">global_params</span><span class="o">.</span><span class="n">data_format</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="4103-trick">4.10.3 优化算法以及学习率trick<a class="headerlink" href="#4103-trick" title="Permanent link">&para;</a></h3>
+<h4 id="41021-rectified-adamadam-with-warm-up">4.10.2.1 Rectified Adam(Adam with warm up)<a class="headerlink" href="#41021-rectified-adamadam-with-warm-up" title="Permanent link">&para;</a></h4>
+<p>RAdam能根据方差分散度，动态地打开或者 关闭自适应学习率，并且提供了一种不需要可 调参数学习率预热的方法。 </p>
+<p><img src="../images/RAdam.jpg" style="zoom:40%;" /></p>
+<p>上述结果表明使用原始Adam必须预热，否则正态分布会变得扭曲</p>
+<h4 id="41022-warmup">4.10.2.2 Warmup<a class="headerlink" href="#41022-warmup" title="Permanent link">&para;</a></h4>
+<ul>
+<li>定义：学习率预热就是在刚开始训练的时候先使用一个较小的学习率，训练一些epoches或iterations，等模型稳定时再修改为预先设置的学习率进行训练。</li>
+</ul>
+<p>学习率是神经网络训练中最重要的超参数之一，针对学习率的技巧有很多。Warm up是在ResNet论文中提到的一种学习率预热的方法。</p>
+<ul>
+<li>原因：由于刚开始训练时模型的权重(weights)是随机初始化的，此时选择一个较大的学习率，可能会带来模型的不稳定。</li>
+<li>论文中使用一个110层的ResNet在cifar10上训练时，先用0.01的学习率训练直到训练误差低于80%(大概训练了400个iterations)，然后使用0.1的学习率进行训练。</li>
+</ul>
+<blockquote>
+<p>理解：刚开始模型对数据的“分布”理解为零，或者是说“均匀分布”；在第一轮训练的时候，每个数据点对模型来说都是新的，模型会很快地进行数据分布修正，如果这时候学习率就很大，极有可能导致开始的时候就对该数据“过拟合”，后面要通过多轮训练才能拉回来，浪费时间。</p>
+</blockquote>
+<h4 id="41023-cosine-learning-rate-decay">4.10.2.3 余弦学习率衰减（Cosine Learning rate decay）<a class="headerlink" href="#41023-cosine-learning-rate-decay" title="Permanent link">&para;</a></h4>
+<p>余弦学习率衰减的方式，Cosine Learning rate decay。公式如下：
+$$
+\eta_t=\frac{1}{2} (1+cos(\frac{t\pi}{T}))
+$$
+下图是逐步衰减学习率与余弦学习率衰减的方式对比：</p>
+<p><img src="../images/余弦衰减.jpg" style="zoom:40%;" /></p>
+<ul>
+<li>现象：当Step Decay方法的学习率已经较小的时候，Cos Decay方法的学习仍比较大，因而能够加速整个训练的过程。但是看图中b，很明显Step Decay再衰减之后，准确率就上来了，说明衰减之前的数量级效用已经不强了，这个时候Cos decay还是那个数量级，所以速度就比Step Decay慢了</li>
+<li>结果：</li>
+<li>1、cos的学习率的前期是warm-up阶段，这个时候是以线性增长的方式增长到初始学习率，然后开始执行cos的学习率变化，最终两种学习率达到一致。<strong>从准确性的角度来看，使用step的方式似乎学习的更快一些。而且其变化的拐点和其学习率的拐点是对应着的，即学习率降了之后，验证的准确性也跟着开始提升，而cos学习率的整个过程中准确性都很平稳，最终两者的准确性也是一致。</strong></li>
+<li>2、区别在于中间的学习过程。而且step的方式有一定的随机性，不知道要以多大的step来改变学习率，如果这个’step’可以根据某种方式量化</li>
+</ul>
+<blockquote>
+<p>定义：常用的Learning Rate Decay是Step Decay，即每隔N个Epoch，learning rate乘上一个固定decay系数。</p>
+<ul>
+<li>但是Step Decay不好的地方在于学习率衰减的时候，跳跃变化较大，带来了较大的冲量Momentum</li>
+</ul>
+</blockquote>
+<h4 id="41024-tensorflow">4.10.2.4 TensorFlow实现<a class="headerlink" href="#41024-tensorflow" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Keras 的 callbacks 中有 ReduceLROnPlateau() 和 LearningRateScheduler() 函数可以动态的调整学习率。但是前者只在验证误差停止衰减的时候减小学习率，后者只能在每个 Epoch 开始或结束的时候，改变学习率两者使用参考文档：<a href="https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/callbacks/LearningRateScheduler#class_learningratescheduler">https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/callbacks/LearningRateScheduler#class_learningratescheduler</a></p>
+</blockquote>
+<p>如果需要在训练的时候每批次更加细致的控制学习率，需要自定义回调方法</p>
+<h5 id="1tfkerascallbackscallback">1、tf.keras.callbacks.Callback<a class="headerlink" href="#1tfkerascallbackscallback" title="Permanent link">&para;</a></h5>
+<p>该类在<code>Model</code> 的<code>.fit()</code>方法中会调用一下回调方法</p>
+<ul>
+<li>on_batch_begin(  batch, logs=None)</li>
+<li>一批次数据开始时的处理</li>
+<li>on_batch_end(batch, logs=None)</li>
+<li>一批次数据处理结束</li>
+<li>on_epoch_begin和on_epoch_end</li>
+</ul>
+<h4 id="4103-warmup">4.10.3 垃圾分类带有warmup的余弦退火学习率调度实现<a class="headerlink" href="#4103-warmup" title="Permanent link">&para;</a></h4>
+<h4 id="41031">4.10.3.1 流程分析<a class="headerlink" href="#41031" title="Permanent link">&para;</a></h4>
+<ul>
+<li>分为两个结算</li>
+<li>warmup阶段</li>
+<li>余弦退火阶段</li>
+</ul>
+<p><img src="../images/余弦退火与wamup.jpg" style="zoom:40%;" /></p>
+<h4 id="41032">4.10.3.2 完整代码过程实现<a class="headerlink" href="#41032" title="Permanent link">&para;</a></h4>
+<p>参考文件，并运行测试</p>
+<ul>
+<li>步骤：</li>
+<li>1、自定义WarmUpCosineDecayScheduler调度器，实现批次前后的处理逻辑</li>
+<li>2、实现warmup的余弦退火学习率计算方法</li>
+</ul>
+<p>1、自定义WarmUpCosineDecayScheduler调度器，实现批次前后的处理逻辑</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TF_CPP_MIN_LOG_LEVEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span>
+
+<span class="k">class</span> <span class="nc">WarmUpCosineDecayScheduler</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">Callback</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;带有warmup的余弦退火学习率调度</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">learning_rate_base</span><span class="p">,</span>
+                 <span class="n">total_steps</span><span class="p">,</span>
+                 <span class="n">global_step_init</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">warmup_learning_rate</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                 <span class="n">warmup_steps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">hold_base_rate_steps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        初始化参数</span>
+<span class="sd">        :param learning_rate_base: 基础学习率</span>
+<span class="sd">        :param total_steps: 总共迭代的批次步数 epoch * num_samples / batch_size</span>
+<span class="sd">        :param global_step_init: 初始</span>
+<span class="sd">        :param warmup_learning_rate: 预热学习率默认0.0</span>
+<span class="sd">        :param warmup_steps:预热的步数默认0</span>
+<span class="sd">        :param hold_base_rate_steps:</span>
+<span class="sd">        :param verbose:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">WarmUpCosineDecayScheduler</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_base</span> <span class="o">=</span> <span class="n">learning_rate_base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_steps</span> <span class="o">=</span> <span class="n">total_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_step</span> <span class="o">=</span> <span class="n">global_step_init</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warmup_learning_rate</span> <span class="o">=</span> <span class="n">warmup_learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warmup_steps</span> <span class="o">=</span> <span class="n">warmup_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hold_base_rate_steps</span> <span class="o">=</span> <span class="n">hold_base_rate_steps</span>
+        <span class="c1"># 是否在每次训练结束打印学习率</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="c1"># 记录所有批次下来的每次准确的学习率，可以用于打印显示</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rates</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">on_batch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="c1"># 1、批次开始前当前步数+1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_step</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="c1"># 2、获取优化器上一次的学习率，并记录</span>
+        <span class="n">lr</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">lr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_batch_begin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="c1"># 1、通过参数以及记录的次数和上次学习率</span>
+        <span class="n">lr</span> <span class="o">=</span> <span class="n">cosine_decay_with_warmup</span><span class="p">(</span><span class="n">global_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">global_step</span><span class="p">,</span>
+                                      <span class="n">learning_rate_base</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_base</span><span class="p">,</span>
+                                      <span class="n">total_steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">total_steps</span><span class="p">,</span>
+                                      <span class="n">warmup_learning_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">warmup_learning_rate</span><span class="p">,</span>
+                                      <span class="n">warmup_steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">warmup_steps</span><span class="p">,</span>
+                                      <span class="n">hold_base_rate_steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hold_base_rate_steps</span><span class="p">)</span>
+        <span class="c1"># 2、设置优化器本次的学习率</span>
+        <span class="n">K</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span> <span class="n">lr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">批次数 </span><span class="si">%05d</span><span class="s1">: 设置学习率为&#39;</span>
+                  <span class="s1">&#39; </span><span class="si">%s</span><span class="s1">.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">global_step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lr</span><span class="p">))</span>
+</code></pre></div>
+
+<p>这里面涉及到一个设置当前优化器学习率的使用，会用到keras.backend这个模块。keras是一种基于模块的高级深度学习开发框架，它并没有仅依赖于某一种高速底层张量库，而是对各种底层张量库进行高层模块封装，让底层库完成诸如张量积、卷积操作。在keras中，各种底层库（Google开发的TensorFlow、蒙特利尔大学实验室开发的Theano、微软开发的CNTK）都可以作为后端（backend）引擎为keras模块提供服务。</p>
+<h4 id="kerasbackend">问题：如何修改Keras使用的backend<a class="headerlink" href="#kerasbackend" title="Permanent link">&para;</a></h4>
+<p>（1）通过修改keras配置文件来修改backend</p>
+<p>一旦运行过一次Keras，就会在$HOME/.keras下生成配置文件keras.json，该文件的"backend"字段的值即为keras所使用的后端库，默认情况下，该值为"tensorflow"。用户可以根据需要选择另外两个库"theano"、"cntk"，甚至自己写的底层库。</p>
+<p>（2）通过运行Python脚本时增加配置项指定backend</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> <span class="nv">KERAS_BACKEND</span><span class="o">=</span>theano python -c <span class="s2">&quot;from keras import backend&quot;</span>
+<span class="go">Using Theano backend.</span>
+</code></pre></div>
+
+<p>导入使用：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">keras</span> <span class="k">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+</code></pre></div>
+
+<p>其中两个方法可以设置张量的值：</p>
+<div class="highlight"><pre><span></span><code><span class="n">lr</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">lr</span><span class="p">)</span>
+<span class="n">K</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span> <span class="n">lr</span><span class="p">)</span>
+</code></pre></div>
+
+<h5 id="2warmup">2、实现warmup的余弦退火学习率计算方法<a class="headerlink" href="#2warmup" title="Permanent link">&para;</a></h5>
+<ul>
+<li>步骤：</li>
+<li>1、余弦退火学习率计算</li>
+<li>2、warmup之后的学习率计算<ul>
+<li>如果预留大于0，判断目前步数是否 &gt; warmup步数+预留步数，是的话返回刚才上面计算的学习率，不是的话使用warmup之后的基础学习率</li>
+</ul>
+</li>
+<li>3、warmup学习率计算，并判断大小</li>
+<li>4、如果最后当前到达的步数大于总步数，则归0，否则返回当前的计算出来的学习率（可能是warmup学习率也可能是余弦衰减结果）</li>
+</ul>
+<p><img src="../images/余弦退火与wamup.jpg" style="zoom:50%;" /></p>
+<p>代码如下</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">cosine_decay_with_warmup</span><span class="p">(</span><span class="n">global_step</span><span class="p">,</span>
+                             <span class="n">learning_rate_base</span><span class="p">,</span>
+                             <span class="n">total_steps</span><span class="p">,</span>
+                             <span class="n">warmup_learning_rate</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                             <span class="n">warmup_steps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                             <span class="n">hold_base_rate_steps</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    每批次带有warmup余弦退火学习率计算</span>
+<span class="sd">    :param global_step: 当前到达的步数</span>
+<span class="sd">    :param learning_rate_base: warmup之后的基础学习率</span>
+<span class="sd">    :param total_steps: 总需要批次数</span>
+<span class="sd">    :param warmup_learning_rate: warmup开始的学习率</span>
+<span class="sd">    :param warmup_steps:warmup学习率 步数</span>
+<span class="sd">    :param hold_base_rate_steps: 预留总步数和warmup步数间隔</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">total_steps</span> <span class="o">&lt;</span> <span class="n">warmup_steps</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;总步数必须大于warmup&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 1、余弦退火学习率计算</span>
+    <span class="c1"># 从warmup结束之后计算</span>
+    <span class="c1"># 0.5 * 0.01 * (1 + cos(pi*(1-5-0)/(10 - 5 - 0))</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">learning_rate_base</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span>
+        <span class="p">(</span><span class="n">global_step</span> <span class="o">-</span> <span class="n">warmup_steps</span> <span class="o">-</span> <span class="n">hold_base_rate_steps</span>
+         <span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">total_steps</span> <span class="o">-</span> <span class="n">warmup_steps</span> <span class="o">-</span> <span class="n">hold_base_rate_steps</span><span class="p">)))</span>
+
+    <span class="c1"># 2、warmup之后的学习率计算</span>
+    <span class="c1"># 如果预留大于0，判断目前步数是否 &gt; warmup步数+预留步数，是的话返回刚才上面计算的学习率，不是的话使用warmup之后的基础学习率</span>
+    <span class="k">if</span> <span class="n">hold_base_rate_steps</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">global_step</span> <span class="o">&gt;</span> <span class="n">warmup_steps</span> <span class="o">+</span> <span class="n">hold_base_rate_steps</span><span class="p">,</span>
+                                 <span class="n">learning_rate</span><span class="p">,</span> <span class="n">learning_rate_base</span><span class="p">)</span>
+    <span class="c1"># 3、warmup步数是大于0的</span>
+    <span class="k">if</span> <span class="n">warmup_steps</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">learning_rate_base</span> <span class="o">&lt;</span> <span class="n">warmup_learning_rate</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;warmup后学习率必须大于warmup开始学习率&#39;</span><span class="p">)</span>
+        <span class="c1"># 1、计算一个0.01和0.000006的差距/warmup_steps，得到warmup结束前增加多少</span>
+        <span class="n">slope</span> <span class="o">=</span> <span class="p">(</span><span class="n">learning_rate_base</span> <span class="o">-</span> <span class="n">warmup_learning_rate</span><span class="p">)</span> <span class="o">/</span> <span class="n">warmup_steps</span>
+        <span class="c1"># 2、计算warmup下一步第global_step的学习率</span>
+        <span class="n">warmup_rate</span> <span class="o">=</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">global_step</span> <span class="o">+</span> <span class="n">warmup_learning_rate</span>
+        <span class="c1"># 3、判断global_step小于warmup_steps的话，返回这个warmup当时的学习率，否则直接返回余弦退火计算的</span>
+        <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">global_step</span> <span class="o">&lt;</span> <span class="n">warmup_steps</span><span class="p">,</span> <span class="n">warmup_rate</span><span class="p">,</span>
+                                 <span class="n">learning_rate</span><span class="p">)</span>
+
+    <span class="c1"># 4、如果最后当前到达的步数大于总步数，则归0，否则返回当前的计算出来的学习率（可能是warmup学习率也可能是余弦衰减结果）</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">global_step</span> <span class="o">&gt;</span> <span class="n">total_steps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">)</span>
+</code></pre></div>
+
+<p>通过以下代码进行测试：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># 1、创建模型</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;rmsprop&#39;</span><span class="p">,</span>
+                  <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span>
+                  <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+
+    <span class="c1"># 2、参数设置</span>
+    <span class="n">sample_count</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># 样本数</span>
+    <span class="n">epochs</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># 总迭代次数</span>
+    <span class="n">warmup_epoch</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># warmup 迭代次数</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># 批次大小</span>
+    <span class="n">learning_rate_base</span> <span class="o">=</span> <span class="mf">0.0001</span>  <span class="c1"># warmup后的初始学习率</span>
+    <span class="n">total_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">epochs</span> <span class="o">*</span> <span class="n">sample_count</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span>  <span class="c1"># 总迭代批次步数</span>
+    <span class="n">warmup_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">warmup_epoch</span> <span class="o">*</span> <span class="n">sample_count</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span>  <span class="c1"># warmup总批次数</span>
+
+    <span class="c1"># 3、创建测试数据</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">sample_count</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">sample_count</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="c1"># 转换目标类别</span>
+    <span class="n">one_hot_labels</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># 5、创建余弦warmup调度器</span>
+    <span class="n">warm_up_lr</span> <span class="o">=</span> <span class="n">WarmUpCosineDecayScheduler</span><span class="p">(</span><span class="n">learning_rate_base</span><span class="o">=</span><span class="n">learning_rate_base</span><span class="p">,</span>
+                                            <span class="n">total_steps</span><span class="o">=</span><span class="n">total_steps</span><span class="p">,</span>
+                                            <span class="n">warmup_learning_rate</span><span class="o">=</span><span class="mf">4e-06</span><span class="p">,</span>  <span class="c1"># warmup开始学习率</span>
+                                            <span class="n">warmup_steps</span><span class="o">=</span><span class="n">warmup_steps</span><span class="p">,</span>
+                                            <span class="n">hold_base_rate_steps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                            <span class="p">)</span>
+
+    <span class="c1"># 训练模型</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">one_hot_labels</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">warm_up_lr</span><span class="p">])</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">warm_up_lr</span><span class="o">.</span><span class="n">learning_rates</span><span class="p">)</span>
+</code></pre></div>
+
+<p>结果：</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="mf">4e-06</span><span class="p">,</span> <span class="mf">4.513369e-06</span><span class="p">,</span> <span class="o">....</span><span class="p">,</span>  <span class="mf">7.281053e-05</span><span class="p">,</span> <span class="mf">7.0564354e-05</span><span class="p">,</span> <span class="mf">6.826705e-05</span><span class="p">,</span> <span class="mf">6.592433e-05</span><span class="p">,</span> <span class="mf">6.354202e-05</span><span class="p">,</span> <span class="mf">6.112605e-05</span><span class="p">,</span> <span class="mf">5.868241e-05</span><span class="p">,</span> <span class="mf">5.6217184e-05</span><span class="p">,</span> <span class="mf">5.3736505e-05</span><span class="p">,</span> <span class="mf">5.1246534e-05</span><span class="p">,</span> <span class="mf">4.8753467e-05</span><span class="p">,</span> <span class="mf">4.6263496e-05</span><span class="p">,</span> <span class="mf">4.3782813e-05</span><span class="p">,</span> <span class="mf">4.131759e-05</span><span class="p">,</span> <span class="mf">3.8873954e-05</span><span class="p">,</span> <span class="mf">3.6457976e-05</span><span class="p">,</span> <span class="mf">3.4075667e-05</span><span class="p">,</span> <span class="mf">3.173295e-05</span><span class="p">,</span> <span class="mf">2.9435645e-05</span><span class="p">,</span> <span class="mf">2.7189468e-05</span><span class="p">,</span> <span class="mf">2.5e-05</span><span class="p">,</span> <span class="mf">2.2872688e-05</span><span class="p">,</span> <span class="mf">2.0812817e-05</span><span class="p">,</span> <span class="mf">1.882551e-05</span><span class="p">,</span> <span class="mf">1.6915708e-05</span><span class="p">,</span> <span class="mf">1.5088159e-05</span><span class="p">,</span> <span class="mf">1.3347407e-05</span><span class="p">,</span> <span class="mf">1.1697778e-05</span><span class="p">,</span> <span class="mf">1.0143374e-05</span><span class="p">,</span> <span class="mf">8.688061e-06</span><span class="p">,</span> <span class="mf">7.335456e-06</span><span class="p">,</span> <span class="mf">6.0889215e-06</span><span class="p">,</span> <span class="mf">4.9515565e-06</span><span class="p">,</span> <span class="mf">3.9261895e-06</span><span class="p">,</span> <span class="mf">3.015369e-06</span><span class="p">,</span> <span class="mf">2.2213596e-06</span><span class="p">,</span> <span class="mf">1.5461356e-06</span><span class="p">,</span> <span class="mf">9.913756e-07</span><span class="p">,</span> <span class="mf">5.584587e-07</span><span class="p">,</span> <span class="mf">2.4846122e-07</span><span class="p">,</span> <span class="mf">6.215394e-08</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+</code></pre></div>
+
+<h3 id="4104">4.10.4 模型训练过程实现<a class="headerlink" href="#4104" title="Permanent link">&para;</a></h3>
+<ul>
+<li>步骤：</li>
+<li>1、建立读取数据的sequence</li>
+<li>2、建立模型，指定模型训练相关参数<ul>
+<li>模型修改</li>
+<li>模型训练优化器指定</li>
+</ul>
+</li>
+<li>3、指定训练的callbacks，并进行模型的训练</li>
+<li>4、训练指定</li>
+</ul>
+<p>其中代码运行逻辑</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">train_model</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</code></pre></div>
+
+<p>参数指定使用argparse工具：pip install argparse</p>
+<div class="highlight"><pre><span></span><code><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;data_url&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;./data/garbage_classify/train_data&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;data dir&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;train_url&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;./garbage_ckpt/&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;save model dir&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;num_classes&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;num_classes&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;input_size&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;input_size&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;max_epochs&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;max_epochs&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;deploy_script_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;deploy_script_path&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;test_data_url&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;test_data_url&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>其中nargs是为了在pycharm中运行时，不输入命令行参数值也能直接运行。否则需要命令行运行</p>
+<div class="highlight"><pre><span></span><code><span class="n">python</span> <span class="n">train</span><span class="o">.</span><span class="n">py</span> <span class="n">data_url</span> <span class="o">.....</span>
+</code></pre></div>
+
+<p>1、建立读取数据的sequence</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.callbacks</span> <span class="kn">import</span> <span class="n">TensorBoard</span><span class="p">,</span> <span class="n">Callback</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">GlobalAveragePooling2D</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span><span class="p">,</span> <span class="n">RMSprop</span>
+
+<span class="kn">from</span> <span class="nn">efficientnet</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">EfficientNet</span>
+<span class="kn">from</span> <span class="nn">data_gen</span> <span class="kn">import</span> <span class="n">data_from_sequence</span>
+<span class="kn">from</span> <span class="nn">utils.lr_scheduler</span> <span class="kn">import</span> <span class="n">WarmUpCosineDecayScheduler</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TF_CPP_MIN_LOG_LEVEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span>
+<span class="c1"># 注意关闭默认的eager模式</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">disable_eager_execution</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;训练模型</span>
+<span class="sd">    :param param: 传入的命令参数</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 1、建立读取数据的sequence</span>
+    <span class="n">train_sequence</span><span class="p">,</span> <span class="n">validation_sequence</span> <span class="o">=</span> <span class="n">data_from_sequence</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">data_url</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+                                                             <span class="n">param</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">input_size</span><span class="p">)</span>
+</code></pre></div>
+
+<p>2、建立模型，指定模型训练相关参数</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 2、建立模型，指定模型训练相关参数</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model_fn</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">learning_rate</span><span class="p">)</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="s1">&#39;categorical_crossentropy&#39;</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+<span class="c1"># 模型修改</span>
+<span class="c1"># 模型训练优化器指定</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="c1"># 判断模型是否加载历史模型</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">train_url</span><span class="p">):</span>
+    <span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">train_url</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">filenames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;加载完成!!!&quot;</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">model_fn</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;迁移学习修改模型函数</span>
+<span class="sd">    :param param:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_model</span> <span class="o">=</span> <span class="n">EfficientNet</span><span class="o">.</span><span class="n">EfficientNetB3</span><span class="p">(</span><span class="n">include_top</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">input_size</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">input_size</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                                             <span class="n">classes</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">num_classes</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">base_model</span><span class="o">.</span><span class="n">output</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">GlobalAveragePooling2D</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;avg_pool&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">base_model</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">predictions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+</code></pre></div>
+
+<p>3、指定训练的callbacks，并进行模型的训练</p>
+<div class="highlight"><pre><span></span><code><span class="n">sample_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_sequence</span><span class="p">)</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">batch_size</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">max_epochs</span>
+<span class="n">warmup_epoch</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">batch_size</span>
+<span class="n">learning_rate_base</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">learning_rate</span>
+<span class="n">total_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">epochs</span> <span class="o">*</span> <span class="n">sample_count</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span>
+<span class="n">warmup_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">warmup_epoch</span> <span class="o">*</span> <span class="n">sample_count</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span>
+
+<span class="n">warm_up_lr</span> <span class="o">=</span> <span class="n">WarmUpCosineDecayScheduler</span><span class="p">(</span><span class="n">learning_rate_base</span><span class="o">=</span><span class="n">learning_rate_base</span><span class="p">,</span>
+                                        <span class="n">total_steps</span><span class="o">=</span><span class="n">total_steps</span><span class="p">,</span>
+                                        <span class="n">warmup_learning_rate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                        <span class="n">warmup_steps</span><span class="o">=</span><span class="n">warmup_steps</span><span class="p">,</span>
+                                        <span class="n">hold_base_rate_steps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                        <span class="p">)</span>
+<span class="c1">#（3）模型保存相关参数</span>
+<span class="n">check</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">ModelCheckpoint</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">train_url</span><span class="o">+</span><span class="s1">&#39;weights_{epoch:02d}-{val_accuracy:.2f}.h5&#39;</span><span class="p">,</span>
+                                           <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">,</span>
+                                           <span class="n">save_best_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                           <span class="n">save_weights_only</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                           <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+                                           <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<p>4、训练</p>
+<p>这里使用model.fit_generator函数，因为填入参数的是一个迭代序列，指定工作线程数(multiprocessing.cpu_count() * 0.7。</p>
+<div class="highlight"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span>
+        <span class="n">train_sequence</span><span class="p">,</span>
+        <span class="n">steps_per_epoch</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">sample_count</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">),</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">max_epochs</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">check</span><span class="p">,</span> <span class="n">tensorboard</span><span class="p">,</span> <span class="n">warm_up_lr</span><span class="p">],</span>
+        <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_sequence</span><span class="p">,</span>
+        <span class="n">max_queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">workers</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">),</span>
+        <span class="n">use_multiprocessing</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+<h3 id="4105">4.10.5 总结<a class="headerlink" href="#4105" title="Permanent link">&para;</a></h3>
+<ul>
+<li>EfficientNet模型原理</li>
+<li>warmup以及余弦退火学习率原理</li>
+<li>完成垃圾分类的训练过程</li>
+<li>完成余弦退火与warmup的实现</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

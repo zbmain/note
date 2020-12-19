@@ -1,0 +1,2001 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>4.9 综合案例：垃圾分类介绍 - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#49" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              4.9 综合案例：垃圾分类介绍
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    学习目标
+  </a>
+  
+    <nav class="md-nav" aria-label="学习目标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#491" class="md-nav__link">
+    4.9.1 垃圾分类介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="4.9.1 垃圾分类介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1、垃圾分类问题的需求 ：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2、垃圾分类意义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3、垃圾分类难点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4911" class="md-nav__link">
+    4.9.1.1 垃圾分类比赛
+  </a>
+  
+    <nav class="md-nav" aria-label="4.9.1.1 垃圾分类比赛">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#140" class="md-nav__link">
+    1、垃圾种类40类
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#492" class="md-nav__link">
+    4.9.2 华为垃圾分类比赛介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="4.9.2 华为垃圾分类比赛介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    重要：比赛或者项目解题思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    比赛表现前5团队效果
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4921" class="md-nav__link">
+    4.9.2.1 赛题分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    1、问题描述:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    2、评价指标:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    3、挑战:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4922" class="md-nav__link">
+    4.9.2.2 对策
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    1、数据集情况
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    2、分类模型选择
+  </a>
+  
+    <nav class="md-nav" aria-label="2、分类模型选择">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    （1）现有模型以及准确率对比
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-trick" class="md-nav__link">
+    3、 图像分类问题常见trick（优化）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_4" class="md-nav__link">
+    （1）数据方面
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    （2）发掘与训练模型的潜力：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#493" class="md-nav__link">
+    4.9.3 项目构建（模块分析）
+  </a>
+  
+    <nav class="md-nav" aria-label="4.9.3 项目构建（模块分析）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4931" class="md-nav__link">
+    4.9.3.1 项目模块图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    项目运行过程数据记录以及最终效果
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    项目训练代码初始-训练流程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4932" class="md-nav__link">
+    4.9.3.2  步骤以及知识点应用分析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#494" class="md-nav__link">
+    4.9.4 数据读取与预处理
+  </a>
+  
+    <nav class="md-nav" aria-label="4.9.4 数据读取与预处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4941" class="md-nav__link">
+    4.9.4.1 项目预处理模代码流程介绍
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    代码流程介绍
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_5" class="md-nav__link">
+    1、本地数据的读取，进行图片路径读取，标签读取，对标签进行平滑处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_6" class="md-nav__link">
+    (1) 数据读取和类别转换以及标签平滑
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) 数据读取和类别转换以及标签平滑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-label-smoothing-regularization" class="md-nav__link">
+    1、标签平滑-Label Smoothing Regularization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    代码实现
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2tfkerassequence" class="md-nav__link">
+    2、tf.keras.Sequence类封装，返回序列数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garbagedatasequence-sequence" class="md-nav__link">
+    GarbageDataSequence-垃圾分类的Sequence代码解析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_7" class="md-nav__link">
+    （1）数据增强选择方法
+  </a>
+  
+    <nav class="md-nav" aria-label="（1）数据增强选择方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1mixup-training" class="md-nav__link">
+    1、混合训练（Mixup Training）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2random-erasing" class="md-nav__link">
+    2、Random Erasing原理:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3imagedatagenerator-" class="md-nav__link">
+    3、ImageDataGenerator-提供主要翻转方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#495" class="md-nav__link">
+    4.9.5 总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="49">4.9 综合案例：垃圾分类介绍<a class="headerlink" href="#49" title="Permanent link">&para;</a></h1>
+<h2 id="_1">学习目标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>目标</li>
+<li>知道垃圾分类相关比赛问题</li>
+<li>知道图像分类问题的常见优化(tricks)</li>
+<li>掌握常用分类问题的数据增强方式<ul>
+<li>mixup等</li>
+</ul>
+</li>
+<li>掌握标签平滑正则化</li>
+<li>了解分类常见模型以及模型算法优化</li>
+<li>应用</li>
+<li>应用Tensorflow完成垃圾分类数据的读取以及处理要求</li>
+</ul>
+<h3 id="491">4.9.1 垃圾分类介绍<a class="headerlink" href="#491" title="Permanent link">&para;</a></h3>
+<p>垃圾分类问题是2019年的社会热点问题，2019年6月25日，生活垃圾分类制度将入法。上海成为第一个中国垃圾分类试点城市。</p>
+<p>一般是指按一定规定或标准将垃圾分类储存、分类投放和分类搬运，从而转变成公共资源的一系列活动的总称。分类的目的是提高垃圾的资源价值和经济价值，力争物尽其用。  </p>
+<h5 id="1">1、垃圾分类问题的需求 ：<a class="headerlink" href="#1" title="Permanent link">&para;</a></h5>
+<p><img src="../images/垃圾分类需求.jpg" style="zoom:50%;" /></p>
+<p>小猪佩奇版本：</p>
+<p><img src="../images/小猪佩奇垃圾分类.jpg" style="zoom:40%;" /></p>
+<p>注：湿垃圾（厨余垃圾），干垃圾（其他垃圾）</p>
+<div class="highlight"><pre><span></span><code>分类知识小拓展：可回收物指适宜回收和资源利用的废弃物，包括废弃的玻璃、金属、塑料、纸类、织物、家具、电器电子产品和年花年桔等。厨余垃圾指家庭、个人产生的易腐性垃圾，包括剩菜、剩饭、菜叶、果皮、蛋壳、茶渣、汤渣、骨头、废弃食物以及厨房下脚料等。有害垃圾指对人体健康或者自然环境造成直接或者潜在危害且应当专门处理的废弃物，包括废电池、废荧光灯管等。其他垃圾指除以上三类垃圾之外的其他生活垃圾，比如纸尿裤、尘土、烟头、一次性快餐盒、破损花盆及碗碟、墙纸等。
+</code></pre></div>
+
+<h5 id="2">2、垃圾分类意义<a class="headerlink" href="#2" title="Permanent link">&para;</a></h5>
+<ul>
+<li>减少占地、减少污染、变废为宝</li>
+</ul>
+<h5 id="3">3、垃圾分类难点<a class="headerlink" href="#3" title="Permanent link">&para;</a></h5>
+<ul>
+<li>种类多，易分错：如口香糖？湿纸巾？瓜子皮？塑料袋？</li>
+<li>干，干，湿，可回收</li>
+<li>自动分捡</li>
+<li>人们通过手机拍照，用程序自动识别出垃圾的类别，不仅简化人们对垃圾分类的处理，而且提高垃圾分类的准确性。</li>
+</ul>
+<h4 id="4911">4.9.1.1 垃圾分类比赛<a class="headerlink" href="#4911" title="Permanent link">&para;</a></h4>
+<ul>
+<li>1、华为云人工智能大赛·垃圾分类挑战杯</li>
+<li>官网：<a href="https://competition.huaweicloud.com/information/1000007620/introduction">https://competition.huaweicloud.com/information/1000007620/introduction</a></li>
+</ul>
+<p><img src="../images/华为垃圾分类比赛.jpg" style="zoom:50%;" /></p>
+<h5 id="140">1、垃圾种类40类<a class="headerlink" href="#140" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>{
+    &quot;0&quot;: &quot;其他垃圾/一次性快餐盒&quot;,
+    &quot;1&quot;: &quot;其他垃圾/污损塑料&quot;,
+    &quot;2&quot;: &quot;其他垃圾/烟蒂&quot;,
+    &quot;3&quot;: &quot;其他垃圾/牙签&quot;,
+    &quot;4&quot;: &quot;其他垃圾/破碎花盆及碟碗&quot;,
+    &quot;5&quot;: &quot;其他垃圾/竹筷&quot;,
+    &quot;6&quot;: &quot;厨余垃圾/剩饭剩菜&quot;,
+    &quot;7&quot;: &quot;厨余垃圾/大骨头&quot;,
+    &quot;8&quot;: &quot;厨余垃圾/水果果皮&quot;,
+    &quot;9&quot;: &quot;厨余垃圾/水果果肉&quot;,
+    &quot;10&quot;: &quot;厨余垃圾/茶叶渣&quot;,
+    &quot;11&quot;: &quot;厨余垃圾/菜叶菜根&quot;,
+    &quot;12&quot;: &quot;厨余垃圾/蛋壳&quot;,
+    &quot;13&quot;: &quot;厨余垃圾/鱼骨&quot;,
+    &quot;14&quot;: &quot;可回收物/充电宝&quot;,
+    &quot;15&quot;: &quot;可回收物/包&quot;,
+    &quot;16&quot;: &quot;可回收物/化妆品瓶&quot;,
+    &quot;17&quot;: &quot;可回收物/塑料玩具&quot;,
+    &quot;18&quot;: &quot;可回收物/塑料碗盆&quot;,
+    &quot;19&quot;: &quot;可回收物/塑料衣架&quot;,
+    &quot;20&quot;: &quot;可回收物/快递纸袋&quot;,
+    &quot;21&quot;: &quot;可回收物/插头电线&quot;,
+    &quot;22&quot;: &quot;可回收物/旧衣服&quot;,
+    &quot;23&quot;: &quot;可回收物/易拉罐&quot;,
+    &quot;24&quot;: &quot;可回收物/枕头&quot;,
+    &quot;25&quot;: &quot;可回收物/毛绒玩具&quot;,
+    &quot;26&quot;: &quot;可回收物/洗发水瓶&quot;,
+    &quot;27&quot;: &quot;可回收物/玻璃杯&quot;,
+    &quot;28&quot;: &quot;可回收物/皮鞋&quot;,
+    &quot;29&quot;: &quot;可回收物/砧板&quot;,
+    &quot;30&quot;: &quot;可回收物/纸板箱&quot;,
+    &quot;31&quot;: &quot;可回收物/调料瓶&quot;,
+    &quot;32&quot;: &quot;可回收物/酒瓶&quot;,
+    &quot;33&quot;: &quot;可回收物/金属食品罐&quot;,
+    &quot;34&quot;: &quot;可回收物/锅&quot;,
+    &quot;35&quot;: &quot;可回收物/食用油桶&quot;,
+    &quot;36&quot;: &quot;可回收物/饮料瓶&quot;,
+    &quot;37&quot;: &quot;有害垃圾/干电池&quot;,
+    &quot;38&quot;: &quot;有害垃圾/软膏&quot;,
+    &quot;39&quot;: &quot;有害垃圾/过期药物&quot;
+}
+</code></pre></div>
+
+<ul>
+<li>2、其他比赛</li>
+<li>Apache Flink极客挑战赛——垃圾图片分类</li>
+<li><img src="../images/flink垃圾分类.jpg" style="zoom:20%;" /></li>
+<li>官方：<a href="https://tianchi.aliyun.com/competition/entrance/231743/information">https://tianchi.aliyun.com/competition/entrance/231743/information</a></li>
+</ul>
+<h3 id="492">4.9.2 华为垃圾分类比赛介绍<a class="headerlink" href="#492" title="Permanent link">&para;</a></h3>
+<p>本次比赛选取40种生活中常见的垃圾，选手根据公布的数据集进行模型训练，将训练好的模型发布到华为ModelArts平台上，在线预测华为的私有数据集，采用识别准确率作为评价指标。<strong>这次比赛中有很多容易混淆的类，比如饮料瓶和调料瓶、筷子和牙签、果皮和果肉等外形极为相似的垃圾，因此此次竞赛也可看作是细粒度图像分类任务。</strong></p>
+<h4 id="_2">重要：比赛或者项目解题思路<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>1、拿到数据后，首先做数据分析。统计数据样本分布，尺寸分布，图片形态等，基于分析可以做一些针对性的数据预处理算法，对后期的模型训练会有很大的帮助</li>
+<li>2、选择好的baseline。需要不断的尝试各种现有的网络结构，进行结果对比，挑选出适合该网络的模型结构，然后基于该模型进行不断的调参，调试出性能较好的参数</li>
+<li>3、做结果验证，将上述模型在验证集上做结果验证，找出错误样本，分析出错原因，然后针对性的调整网络和数据。</li>
+<li>3、基于新数据和模型，再次进行模型调优</li>
+</ul>
+<h4 id="5">比赛表现前5团队效果<a class="headerlink" href="#5" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>名次</th>
+<th>准确率</th>
+<th>推理(inference)时间(ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一名</td>
+<td>0.969636</td>
+<td>102.8</td>
+</tr>
+<tr>
+<td>第二名</td>
+<td>0.96251</td>
+<td>95.43</td>
+</tr>
+<tr>
+<td>第三名</td>
+<td>0.962045</td>
+<td>97.25</td>
+</tr>
+<tr>
+<td>第四名</td>
+<td>0.961735</td>
+<td>82.99</td>
+</tr>
+<tr>
+<td>第五名</td>
+<td>0.957397</td>
+<td>108.49</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4921">4.9.2.1 赛题分析<a class="headerlink" href="#4921" title="Permanent link">&para;</a></h4>
+<h4 id="1_1">1、问题描述:<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<p>经典图像分类问题。采用深圳市垃圾分类标准，输出该物品属于可回收物、 厨余垃圾、有害垃圾和其他垃圾中的二级分类，共43个类别。 </p>
+<h4 id="2_1">2、评价指标:<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<p>识别准确率 = 识别正确的图片数 / 图片总数 </p>
+<h4 id="3_1">3、挑战:<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>官方训练集有19459张图片，数据量小; </li>
+<li>类别较多(40)，且各类样本不平衡; </li>
+<li>图片大小、分辨率不一，垃圾物品有多种尺度; </li>
+<li>垃圾分类是细粒度、粗粒度兼有的一种分类问题，轮廓、纹理、对象位置分 布都需要考察</li>
+</ul>
+<h4 id="4922">4.9.2.2 对策<a class="headerlink" href="#4922" title="Permanent link">&para;</a></h4>
+<ul>
+<li>1、数据集分析和选择</li>
+<li>2、模型选择</li>
+<li>3、图像分类问题常见trick（优化）</li>
+</ul>
+<h4 id="1_2">1、数据集情况<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h4>
+<p>数据集下载以及组成</p>
+<p><img src="../images/垃圾分类数据集.jpg" style="zoom:50%;" /></p>
+<ul>
+<li>组成有train_data，然后同目录下有图片以及对应txt</li>
+<li>txt中的格式：img_1.jpg, 0-为图片以及对应目标</li>
+<li>注：官方还有V2版本的数据，拓展了类别共43类（我们后面的项目是在第一个版本的数据中做训练）</li>
+</ul>
+<h4 id="2_2">2、分类模型选择<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h4>
+<p>数据量小、类别多、推理时间短-&gt;综合考察计 算量、体积、精度，选择近期才发布的高质量 预训练模型(EfficientNet B5/B4)进行迁移 学习  </p>
+<h5 id="1_3">（1）现有模型以及准确率对比<a class="headerlink" href="#1_3" title="Permanent link">&para;</a></h5>
+<p>Top-1 准确率和 Top-5 准确率都是在 ImageNet 验证集上的结果。</p>
+<p><img alt="" src="../../images/efficientnet%E6%95%88%E6%9E%9C%E5%AF%B9%E6%AF%94.jpg" /></p>
+<table>
+<thead>
+<tr>
+<th>Architecture</th>
+<th>@top1*</th>
+<th>@top5*</th>
+<th>Weights</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EfficientNetB0</td>
+<td>0.7668</td>
+<td>0.9312</td>
+<td>+</td>
+</tr>
+<tr>
+<td>EfficientNetB1</td>
+<td>0.7863</td>
+<td>0.9418</td>
+<td>+</td>
+</tr>
+<tr>
+<td>EfficientNetB2</td>
+<td>0.7968</td>
+<td>0.9475</td>
+<td>+</td>
+</tr>
+<tr>
+<td>EfficientNetB3</td>
+<td>0.8083</td>
+<td>0.9531</td>
+<td>+</td>
+</tr>
+</tbody>
+</table>
+<p>Tensorflow在 ImageNet 上预训练过的用于图像分类的模型（TFAPI文档，官网会推荐安装）：</p>
+<p><img src="../images/TensorFlow2.0实现模型.jpg" style="zoom:50%;" /></p>
+<p><img src="../images/不同分类模型输入大小.jpg" style="zoom:30%;" /></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 输入大小</span>
+<span class="n">EfficientNetB0</span> <span class="o">-</span> <span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">EfficientNetB1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">EfficientNetB2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">260</span><span class="p">,</span> <span class="mi">260</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">EfficientNetB3</span> <span class="o">-</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">EfficientNetB4</span> <span class="o">-</span> <span class="p">(</span><span class="mi">380</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">EfficientNetB5</span> <span class="o">-</span> <span class="p">(</span><span class="mi">456</span><span class="p">,</span> <span class="mi">456</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">EfficientNetB6</span> <span class="o">-</span> <span class="p">(</span><span class="mi">528</span><span class="p">,</span> <span class="mi">528</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">EfficientNetB7</span> <span class="o">-</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+<blockquote>
+<p>注：项目降到模型部分会详细介绍模型</p>
+</blockquote>
+<h4 id="3-trick">3、 图像分类问题常见trick（优化）<a class="headerlink" href="#3-trick" title="Permanent link">&para;</a></h4>
+<h4 id="1_4">（1）数据方面<a class="headerlink" href="#1_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>分析：下图横坐标是类标号，纵坐标是每个类的样本数量。</li>
+<li>很容易看出，每个类之间的样本量差异很大，如果不做类均衡处理，很有可能会导致样本量多的类过拟合，样本量少的类欠拟合。</li>
+<li>常见的类均衡方法有：多数类欠采样，少数类过采样；数据增强；标签平滑；</li>
+<li><img src="../images/类别分析.jpg" style="zoom:40%;" /></li>
+<li>图片长宽比有一定的差异性，长宽比大多数集中于1，因此也适合一些模型输入尺寸设为1：1</li>
+<li>1、数据增强</li>
+<li>（1）并非所有数据增强方法都有效，要保证数据增强后目标仍可肉眼分辨，且不改变图像所属类别。</li>
+<li>（2）过多的数据增强也会延长模型训练时间，通常翻转的效果不错（随机水平翻转、随机垂直翻转、以一定概率随机旋转90°、180°、270°、随机crop(0-10%)等）</li>
+<li>其他如下：</li>
+<li>Color Jittering:对颜色的数据增强:图像亮度、饱和度、对比度变化</li>
+<li>Random Scale:尺度变换;</li>
+<li>Random Crop:采用随机图像差值方式，对图像进行裁剪、缩放</li>
+<li>Horizontal/Vertical Flip:水平/垂直翻转; </li>
+<li>Shift:平移变换; </li>
+<li>Rotation/Reflection:旋转/仿射变换; </li>
+<li>Noise:高斯噪声、模糊处理; </li>
+<li>2、外部数据：比赛不限制使用外部数据，也就是说可以通过自己拍照、网上爬取等方式获得更多的训练数据，但比较费时耗力。通常自己找的数据集质量也不够好，与华为公布的数据集分布不同，有些团队爬取一些额外数据，最终效果都不好，甚至降低了分数，因此放弃了这种方法。所以在一开始构造好数据分布很重要。（比赛与项目会有些差异，真正项目其实还是更多覆盖数据分布越好，比赛可能只是华为公开的数据集包括测试的数据分布一样的，导致不能拿过多的外部数据（容易过拟合））</li>
+<li>3、数据归一化</li>
+<li>4、标签平滑</li>
+<li>5、mixup</li>
+</ul>
+<h4 id="2_3">（2）发掘与训练模型的潜力：<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>1、使用多种模型进行对比实验</li>
+<li>2、选择改进的Adam优化方法 ：Adam with warm up优化器</li>
+<li>3、自定义学习率-余弦退火学习率</li>
+<li>自带warmup的学习率控制对迭代次数比较稳健(只要达到足够的迭代次数，最终结果都比 较接近)，大大降低调参复杂性，缩短实验周期 </li>
+</ul>
+<h3 id="493">4.9.3 项目构建（模块分析）<a class="headerlink" href="#493" title="Permanent link">&para;</a></h3>
+<h4 id="4931">4.9.3.1 项目模块图<a class="headerlink" href="#4931" title="Permanent link">&para;</a></h4>
+<p><img src="../images/项目结构.jpg" style="zoom:70%;" /></p>
+<ul>
+<li>data:存放数据的目录</li>
+<li>data_gen目录：批次数据预处理代码，包括数据增强、标签平滑、mixup功能</li>
+<li>deploy：模型导出以及部署模块</li>
+<li>efficientnet:efficientnet模型源码存放位置</li>
+<li>utils:封装的工具类，如warmup以及余弦退火学习率</li>
+<li>train.y与eval.py：训练网络部分包括数据流获取、网络构建、优化器</li>
+</ul>
+<h4 id="_3">项目运行过程数据记录以及最终效果<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>在16核、内存16G的机器上，只用CPU计算1 epoch耗时1.83小时（1小时50分钟）</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Epoch 1/30
+76/787 [=&gt;............................] - ETA: 1:49:16 - loss: 3.7690 - accuracy: 0.0189
+303/787 [==========&gt;...................] - ETA: 1:07:05 - loss: 3.7383 - accuracy: 0.025
+468/787 [================&gt;.............] - ETA: 43:30 - loss: 3.7253 - accuracy: 0.0262
+470/787 [================&gt;.............] - ETA: 43:13 - loss: 3.7251 - accuracy: 0.0261
+499/787 [==================&gt;...........] - ETA: 39:12 - loss: 3.7232 - accuracy: 0.0270
+576/787 [====================&gt;.........] - ETA: 28:35 - loss: 3.7188 - accuracy: 0.0290
+577/787 [====================&gt;.........] - ETA: 28:26 - loss: 3.7187 - accuracy: 0.0290
+602/787 [=====================&gt;........] - ETA: 25:01 - loss: 3.7170 - accuracy: 0.0295
+612/787 [======================&gt;.......] - ETA: 23:39 - loss: 3.7163 - accuracy: 0.0298
+...
+786/787 [============================&gt;.] - ETA: 8s - loss: 3.7085 - accuracy: 0.0319
+</code></pre></div>
+
+<h4 id="-">项目训练代码初始-训练流程<a class="headerlink" href="#-" title="Permanent link">&para;</a></h4>
+<p>下面简单的介绍一下整个工程中最关键的训练部分代码</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.callbacks</span> <span class="kn">import</span> <span class="n">ReduceLROnPlateau</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.callbacks</span> <span class="kn">import</span> <span class="n">TensorBoard</span><span class="p">,</span> <span class="n">Callback</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">GlobalAveragePooling2D</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span><span class="p">,</span> <span class="n">RMSprop</span>
+
+<span class="kn">from</span> <span class="nn">efficientnet</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">EfficientNet</span>
+<span class="kn">from</span> <span class="nn">efficientnet</span> <span class="kn">import</span> <span class="n">preprocess_input</span>
+<span class="kn">from</span> <span class="nn">data_gen</span> <span class="kn">import</span> <span class="n">data_flow</span>
+<span class="kn">from</span> <span class="nn">utils.warmup_cosine_decay_scheduler</span> <span class="kn">import</span> <span class="n">WarmUpCosineDecayScheduler</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TF_CPP_MIN_LOG_LEVEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span>
+<span class="c1"># efficientnet源码实现用TF1.X版本，所以要关闭默认的eager模式</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">disable_eager_execution</span><span class="p">()</span>
+
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;data_url&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;./data/garbage_classify/train_data&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;data dir&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;train_url&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;./garbage_ckpt/&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;save model dir&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;num_classes&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;num_classes&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;input_size&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;input_size&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;max_epochs&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;max_epochs&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;deploy_script_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;deploy_script_path&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;test_data_url&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;test_data_url&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">model_fn</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;迁移学习修改模型函数</span>
+<span class="sd">    :param param:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_model</span> <span class="o">=</span> <span class="n">EfficientNet</span><span class="o">.</span><span class="n">EfficientNetB3</span><span class="p">(</span><span class="n">include_top</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">input_size</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">input_size</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                                             <span class="n">classes</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">num_classes</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">base_model</span><span class="o">.</span><span class="n">output</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">GlobalAveragePooling2D</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;avg_pool&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">base_model</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">predictions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+
+<span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;训练模型</span>
+<span class="sd">    :param param: 传入的命令参数</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 1、建立读取数据的sequence</span>
+    <span class="n">train_sequence</span><span class="p">,</span> <span class="n">validation_sequence</span> <span class="o">=</span> <span class="n">data_flow</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">data_url</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+                                                    <span class="n">param</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">input_size</span><span class="p">,</span> <span class="n">preprocess_input</span><span class="p">)</span>
+
+    <span class="c1"># 2、建立模型，指定模型训练相关参数</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">model_fn</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">learning_rate</span><span class="p">)</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="s1">&#39;categorical_crossentropy&#39;</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+    <span class="c1"># 模型修改</span>
+    <span class="c1"># 模型训练优化器指定</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+    <span class="c1"># 判断模型是否加载历史模型</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">train_url</span><span class="p">):</span>
+        <span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">train_url</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">filenames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;加载完成!!!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 3、指定训练的callbacks，并进行模型的训练</span>
+    <span class="c1"># （1）Tensorboard</span>
+    <span class="n">tensorboard</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;./graph&#39;</span><span class="p">,</span> <span class="n">histogram_freq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                 <span class="n">write_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">write_images</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="c1"># （2）自定义warm up和余弦学习率衰减</span>
+    <span class="n">sample_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_sequence</span><span class="p">)</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">batch_size</span>
+    <span class="n">epochs</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">max_epochs</span>
+    <span class="n">warmup_epoch</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">batch_size</span>
+    <span class="n">learning_rate_base</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">learning_rate</span>
+    <span class="n">total_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">epochs</span> <span class="o">*</span> <span class="n">sample_count</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span>
+    <span class="n">warmup_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">warmup_epoch</span> <span class="o">*</span> <span class="n">sample_count</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span>
+
+    <span class="n">warm_up_lr</span> <span class="o">=</span> <span class="n">WarmUpCosineDecayScheduler</span><span class="p">(</span><span class="n">learning_rate_base</span><span class="o">=</span><span class="n">learning_rate_base</span><span class="p">,</span>
+                                            <span class="n">total_steps</span><span class="o">=</span><span class="n">total_steps</span><span class="p">,</span>
+                                            <span class="n">warmup_learning_rate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                            <span class="n">warmup_steps</span><span class="o">=</span><span class="n">warmup_steps</span><span class="p">,</span>
+                                            <span class="n">hold_base_rate_steps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                            <span class="p">)</span>
+    <span class="c1">#（3）模型保存相关参数</span>
+    <span class="n">check</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">ModelCheckpoint</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">train_url</span><span class="o">+</span><span class="s1">&#39;weights_{epoch:02d}-{val_acc:.2f}.h5&#39;</span><span class="p">,</span>
+                                               <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_acc&#39;</span><span class="p">,</span>
+                                               <span class="n">save_best_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                               <span class="n">save_weights_only</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                               <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+                                               <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># （4）训练</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span>
+        <span class="n">train_sequence</span><span class="p">,</span>
+        <span class="n">steps_per_epoch</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">train_sequence</span><span class="p">),</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">max_epochs</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">check</span><span class="p">,</span> <span class="n">tensorboard</span><span class="p">,</span> <span class="n">warm_up_lr</span><span class="p">],</span>
+        <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_sequence</span><span class="p">,</span>
+        <span class="n">max_queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">workers</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">),</span>
+        <span class="n">use_multiprocessing</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span>
+    <span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;模型训练结束!&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="4932">4.9.3.2  步骤以及知识点应用分析<a class="headerlink" href="#4932" title="Permanent link">&para;</a></h4>
+<ul>
+<li>1、数据读取以及预处理模块</li>
+<li>数据获取</li>
+<li>数据增强</li>
+<li>归一化</li>
+<li>随机擦除</li>
+<li>Mixup</li>
+<li>2、模型网络结构实现</li>
+<li>efficientnet模型介绍</li>
+<li>垃圾分类模型修改</li>
+<li>模型学习率优化-warmup与余弦退火学习率</li>
+<li>模型优化器-Adam优化器改进RAdam/NRdam</li>
+<li>3、模型训练保存与预测</li>
+<li>模型完整训练过程实现</li>
+<li>预估流程实现</li>
+<li>4、模型导出以及部署</li>
+<li>tf.saved_model模块使用</li>
+<li>TensorFlow serving模块使用</li>
+</ul>
+<blockquote>
+<p><strong>上面是垃圾分类项目要掌握的知识点，也是要去实现项目训练的关键</strong></p>
+</blockquote>
+<h3 id="494">4.9.4 数据读取与预处理<a class="headerlink" href="#494" title="Permanent link">&para;</a></h3>
+<h4 id="4941">4.9.4.1 项目预处理模代码流程介绍<a class="headerlink" href="#4941" title="Permanent link">&para;</a></h4>
+<p><img src="../images/预处理流程做的事情.jpg" style="zoom:30%;" /></p>
+<h4 id="_4">代码流程介绍<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>1、本地数据的读取，进行图片路径读取，标签读取，对标签进行平滑处理</li>
+<li>2、tf.keras.Sequence类封装，返回序列数据</li>
+</ul>
+<p>完整流程：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">data_from_sequence</span><span class="p">(</span><span class="n">train_data_dir</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">input_size</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;读取本地图片和标签数据，处理成sequence数据类型</span>
+<span class="sd">    :param train_data_dir: 训练数据目录</span>
+<span class="sd">    :param batch_size: 批次大小</span>
+<span class="sd">    :param num_classes: 垃圾分类总类别数</span>
+<span class="sd">    :param input_size: 输入模型的图片大小(300, 300)</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 1、获取txt文件，打乱一次文件</span>
+    <span class="n">label_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_data_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">train_data_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">)]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">label_files</span><span class="p">)</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">label_files</span><span class="p">)</span>
+
+    <span class="c1"># 2、读取txt文件，解析出</span>
+    <span class="n">img_paths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">label_files</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="n">line_split</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line_split</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> 文件中格式错误&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+            <span class="k">continue</span>
+        <span class="c1"># 获取图片名称和标签，转换格式</span>
+        <span class="n">img_name</span> <span class="o">=</span> <span class="n">line_split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line_split</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># 图片完整路径拼接，并获取到图片和标签列表中（顺序一一对应）</span>
+        <span class="n">img_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_data_dir</span><span class="p">,</span> <span class="n">img_name</span><span class="p">))</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="c1"># 3、进行标签类别处理，以及标签平滑</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">smooth_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+
+    <span class="c1"># 4、进行所有数据的分割，训练集和验证集</span>
+    <span class="n">train_img_paths</span><span class="p">,</span> <span class="n">validation_img_paths</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">validation_labels</span> <span class="o">=</span> \
+        <span class="n">train_test_split</span><span class="p">(</span><span class="n">img_paths</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;总共样本数: </span><span class="si">%d</span><span class="s1">, 训练样本数: </span><span class="si">%d</span><span class="s1">, 验证样本数据: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">img_paths</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_img_paths</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">validation_img_paths</span><span class="p">)))</span>
+
+    <span class="c1"># 5、sequence序列数据制作</span>
+    <span class="n">train_sequence</span> <span class="o">=</span> <span class="n">GarbageDataSequence</span><span class="p">(</span><span class="n">train_img_paths</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span>
+                                         <span class="p">[</span><span class="n">input_size</span><span class="p">,</span> <span class="n">input_size</span><span class="p">],</span> <span class="n">use_aug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="n">validation_sequence</span> <span class="o">=</span> <span class="n">GarbageDataSequence</span><span class="p">(</span><span class="n">validation_img_paths</span><span class="p">,</span> <span class="n">validation_labels</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span>
+                                              <span class="p">[</span><span class="n">input_size</span><span class="p">,</span> <span class="n">input_size</span><span class="p">],</span> <span class="n">use_aug</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">train_sequence</span><span class="p">,</span> <span class="n">validation_sequence</span>
+</code></pre></div>
+
+<h4 id="1_5">1、本地数据的读取，进行图片路径读取，标签读取，对标签进行平滑处理<a class="headerlink" href="#1_5" title="Permanent link">&para;</a></h4>
+<p>新建一个data_gen的目录，新建processing_data.py，实现下面这个将在模型训练中调用的数据处理主函数</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">data_gen.random_eraser</span> <span class="kn">import</span> <span class="n">get_random_eraser</span>
+
+
+<span class="k">def</span> <span class="nf">data_from_sequence</span><span class="p">(</span><span class="n">train_data_dir</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">input_size</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;读取本地图片和标签数据，处理成sequence数据类型</span>
+<span class="sd">    :param train_data_dir: 训练数据目录</span>
+<span class="sd">    :param batch_size: 批次大小</span>
+<span class="sd">    :param num_classes: 垃圾分类总类别数</span>
+<span class="sd">    :param input_size: 输入模型的图片大小(300, 300)</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 1、获取txt文件，打乱一次文件</span>
+    <span class="n">label_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_data_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">train_data_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">)]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">label_files</span><span class="p">)</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">label_files</span><span class="p">)</span>
+
+    <span class="c1"># 2、读取txt文件，解析出</span>
+    <span class="n">img_paths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">label_files</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="n">line_split</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line_split</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> 文件中格式错误&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+            <span class="k">continue</span>
+        <span class="c1"># 获取图片名称和标签，转换格式</span>
+        <span class="n">img_name</span> <span class="o">=</span> <span class="n">line_split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line_split</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># 图片完整路径拼接，并获取到图片和标签列表中（顺序一一对应）</span>
+        <span class="n">img_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_data_dir</span><span class="p">,</span> <span class="n">img_name</span><span class="p">))</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="c1"># 3、进行标签类别处理，以及标签平滑</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">smooth_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">None</span>
+</code></pre></div>
+
+<h4 id="1_6">(1) 数据读取和类别转换以及标签平滑<a class="headerlink" href="#1_6" title="Permanent link">&para;</a></h4>
+<p>to_categorical使用介绍：</p>
+<div class="highlight"><pre><span></span><code>In [5]: tf.keras.utils.to_categorical([1,2,3,4,5], num_classes=10)                                           
+Out[5]: 
+array([[0., 1., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 1., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 1., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 1., 0., 0., 0., 0.]], dtype=float32)
+</code></pre></div>
+
+<h5 id="1-label-smoothing-regularization">1、标签平滑-Label Smoothing Regularization<a class="headerlink" href="#1-label-smoothing-regularization" title="Permanent link">&para;</a></h5>
+<p>Label Smoothing就是一种抑制过拟合的手段。</p>
+<ul>
+<li>
+<p>思想：在训练时即假设标签可能存在错误，避免“过分”相信训练样本的标签。就是要告诉模型，样本的标签不一定正确，那么训练出来的模型对于少量的样本错误就会鲁棒性更强。</p>
+</li>
+<li>
+<p>过程：<strong>在每次迭代时，并不直接将(xi,yi)放入训练集，而是设置一个错误率ε，以1-ε的概率将(xi,yi)代入训练，以ε的概率将(xi,1-yi)代入训练</strong></p>
+</li>
+<li>
+<div class="codehilite"><pre><span></span><code>$$
+q_i=\begin{cases}1-\varepsilon,  \text{if i=y,}  \\\\\frac{\varepsilon}{K-1},  \text{others} \end{cases}
+$$
+</code></pre></div>
+
+
+</li>
+<li>
+<p>比如：我们的二分类猫/狗示例，0.1 的标签平滑意味着目标答案将是 0.90(90%确信)这是一个狗的图像，而 0.10(10%确信)这是一只猫，而不是先前的向 1 或 0 移动的结果。由于不太确定，它作为一种正则化形式，提高了它对新数据的预测能力。</p>
+</li>
+<li>
+<p>Label Smoothing的工作原理是对原来的[0 1]这种标注做一个改动，假设我们给定Label Smoothing的值为0.1：[0,1]×(1−0.1)+0.&frac12;=[0.05,0.95]</p>
+</li>
+<li>
+<p>公式原理讲解：</p>
+</li>
+<li>
+<p>正常交叉熵可以写作：</p>
+</li>
+</ul>
+<p>$$
+  H(y, p) = \sum_{k=1}^{K}{-y_{k}}log(p_{k})
+  $$</p>
+<ul>
+<li>
+<p>标签平滑化后变成：</p>
+<ul>
+<li>
+<div>
+<div class="MathJax_Preview">
+  y_{k}^{LS} = y_{k}(1 - \alpha) + \alpha / K
+  </div>
+<script type="math/tex; mode=display">
+  y_{k}^{LS} = y_{k}(1 - \alpha) + \alpha / K
+  </script>
+</div>
+</li>
+</ul>
+</li>
+<li>
+<p>理解：</p>
+</li>
+<li><strong>没有标签平滑计算的损失只考虑正确标签位置的损失，而不考虑其他标签位置的损失，这就会使得模型过于关注增大预测正确标签的概率，而不关注减 少预测错误标签的概率，最后导致的结果是模型在自己的训练集上拟合效果 非常良好，而在其他的测试集结果表现不好，即过拟合。</strong> </li>
+<li><strong>平滑过后的样本交叉熵损失就不仅考虑到了训练样本中正确的标签位置 (one-hot标签为1的位置)的损失，也稍微考虑到其他错误标签位置(one- hot标签为0的位置)的损失，导致最后的损失增大，导致模型的学习能力提 高，即要下降到原来的损失，就得学习的更好，也就是迫使模型往增大正确 分类概率并且同时减小错误分类概率的方向前进。</strong> </li>
+</ul>
+<p>来自于论文：论文:Rethinking the Inception Architecture for ComputerVision </p>
+<p><img src="../images/平滑效果比较.jpg" style="zoom:50%;" /></p>
+<p>注：前两列的模型未进行标签平滑处理，后两 列使用了标签平滑技术 </p>
+<ul>
+<li>
+<p>现象：可见标签平滑技术可以使得网络倒数第二层激活函数的表示的聚类更加紧密。 标签平滑提高了最终的精度</p>
+</li>
+<li>
+<p>通常用于：图片分类、机器翻译和语音识别。 </p>
+</li>
+</ul>
+<h5 id="_5">代码实现<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">smooth_labels</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">smooth_factor</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">smooth_factor</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">*=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">smooth_factor</span>
+        <span class="n">y</span> <span class="o">+=</span> <span class="n">smooth_factor</span> <span class="o">/</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+            <span class="s1">&#39;Invalid label smoothing factor: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">smooth_factor</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">y</span>
+</code></pre></div>
+
+<h4 id="2tfkerassequence">2、tf.keras.Sequence类封装，返回序列数据<a class="headerlink" href="#2tfkerassequence" title="Permanent link">&para;</a></h4>
+<p>首先介绍一下Sequence以及其他相关方法之间的关系。之前接触过有tf.data以及tf.keras.preprocessing.image中的ImageDataGenerator，前面可以构造自定义批次等等，后者提供了默认的数据增强方法实现批次数据迭代返回。但是对于很多任务来说我们需要做更多的有些自定义预处理，如标签平滑，随机擦出等等，在一个API中无法完全实现，现在我们会介绍一个能实现更自由的各个时间内修改数据集的工具Sequence</p>
+<ul>
+<li>
+<p>tf.keras.utils.Sequence</p>
+</li>
+<li>
+<p>1、每个人都<code>Sequence</code>必须实现<code>__getitem__</code>和<code>__len__</code>方法。如果您想在各个时期之间修改数据集，则可以实现 <code>on_epoch_end</code>。该方法<code>__getitem__</code>应返回完整的批次。也可以自定义其他方法供使用</p>
+</li>
+<li>2、特点：<code>Sequence</code>是进行多处理的更安全方法。这种结构保证了网络在每个时间段的每个样本上只会训练一次，而生成器则不会。</li>
+</ul>
+<p>官网使用案例：</p>
+<div class="highlight"><pre><span></span><code> <span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+  <span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">resize</span>
+  <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+  <span class="kn">import</span> <span class="nn">math</span>
+
+    <span class="c1"># Here, `x_set` is list of path to the images</span>
+    <span class="c1"># and `y_set` are the associated classes.</span>
+
+    <span class="k">class</span> <span class="nc">CIFAR10Sequence</span><span class="p">(</span><span class="n">Sequence</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_set</span><span class="p">,</span> <span class="n">y_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">x_set</span><span class="p">,</span> <span class="n">y_set</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+
+        <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+            <span class="n">batch_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">idx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">]</span>
+            <span class="n">batch_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">idx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">]</span>
+
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                <span class="n">resize</span><span class="p">(</span><span class="n">imread</span><span class="p">(</span><span class="n">file_name</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+                   <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">batch_x</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">batch_y</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="garbagedatasequence-sequence">GarbageDataSequence-垃圾分类的Sequence代码解析<a class="headerlink" href="#garbagedatasequence-sequence" title="Permanent link">&para;</a></h4>
+<p>构建了一个GarbageDataSequence类别， 继承基类Sequence</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">GarbageDataSequence</span><span class="p">(</span><span class="n">Sequence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;数据流生成器，每次迭代返回一个batch</span>
+<span class="sd">    可直接用于fit_generator的generator参数，能保证在多进程下的一个epoch中不会重复取相同的样本</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_paths</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">img_size</span><span class="p">,</span> <span class="n">use_aug</span><span class="p">):</span>
+        <span class="c1"># 异常判断</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_paths</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">img_paths</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_size</span> <span class="o">=</span> <span class="n">img_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_aug</span> <span class="o">=</span> <span class="n">use_aug</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eraser</span> <span class="o">=</span> <span class="n">get_random_eraser</span><span class="p">(</span><span class="n">s_h</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">pixel_level</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_y</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">center_img</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">255</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;改变图片尺寸到300x300，并且做填充使得图像处于中间位置</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="n">background</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="n">center_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="n">w</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">center_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="n">h</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">background</span><span class="p">[</span><span class="n">center_y</span><span class="p">:</span><span class="n">center_y</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">center_x</span><span class="p">:</span><span class="n">center_x</span> <span class="o">+</span> <span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span>
+        <span class="k">return</span> <span class="n">background</span>
+
+    <span class="k">def</span> <span class="nf">preprocess_img</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;图片的处理流程函数，数据增强、center_img处理</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1、图像读取，[180 , 200]-&gt; （200）max(180, 200)-&gt;[300/200 * 180, 300/200 * 200]</span>
+        <span class="c1"># 这样做为了不使图形直接变形，后续在统一长宽</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+        <span class="n">resize_scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">resize_scale</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">resize_scale</span><span class="p">)))</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="c1"># 2、数据增强：如果是训练集进行数据增强操作</span>
+        <span class="c1"># 先随机擦除，然后翻转</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_aug</span><span class="p">:</span>
+                <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eraser</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+                <span class="n">datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
+                    <span class="n">width_shift_range</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                    <span class="n">height_shift_range</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                    <span class="n">horizontal_flip</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                    <span class="n">vertical_flip</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">img</span> <span class="o">=</span> <span class="n">datagen</span><span class="o">.</span><span class="n">random_transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="c1"># 3、把图片大小调整到[300, 300, 3]，调整的方式为直接填充小的坐标。为了模型需要</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">center_img</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">img</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+
+        <span class="c1"># 1、处理图片大小、数据增强等过程</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_y</span><span class="p">)</span>
+        <span class="n">batch_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_y</span><span class="p">[</span><span class="n">idx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:</span> <span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">batch_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_y</span><span class="p">[</span><span class="n">idx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:</span> <span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>
+
+        <span class="n">batch_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">preprocess_img</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span> <span class="k">for</span> <span class="n">img_path</span> <span class="ow">in</span> <span class="n">batch_x</span><span class="p">])</span>
+        <span class="n">batch_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">batch_y</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="c1"># print(batch_y[1])</span>
+        <span class="c1"># 2、mixup进行构造新的样本分布数据</span>
+        <span class="c1"># batch_x, batch_y = self.mixup(batch_x, batch_y)</span>
+
+        <span class="c1"># 3、输入模型的归一化数据</span>
+        <span class="n">batch_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocess_input</span><span class="p">(</span><span class="n">batch_x</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span>
+
+    <span class="k">def</span> <span class="nf">on_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">preprocess_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;归一化处理样本特征值</span>
+<span class="sd">        :param x:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span>
+
+        <span class="n">MEAN_RGB</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.485</span> <span class="o">*</span> <span class="mi">255</span><span class="p">,</span> <span class="mf">0.456</span> <span class="o">*</span> <span class="mi">255</span><span class="p">,</span> <span class="mf">0.406</span> <span class="o">*</span> <span class="mi">255</span><span class="p">]</span>
+        <span class="n">STDDEV_RGB</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.229</span> <span class="o">*</span> <span class="mi">255</span><span class="p">,</span> <span class="mf">0.224</span> <span class="o">*</span> <span class="mi">255</span><span class="p">,</span> <span class="mf">0.225</span> <span class="o">*</span> <span class="mi">255</span><span class="p">]</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">MEAN_RGB</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">STDDEV_RGB</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">mixup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        数据混合mixup</span>
+<span class="sd">        :param batch_x: 要mixup的batch_X</span>
+<span class="sd">        :param batch_y: 要mixup的batch_y</span>
+<span class="sd">        :return: mixup后的数据</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+
+        <span class="n">X_l</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_l</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">X1</span> <span class="o">=</span> <span class="n">batch_x</span>
+        <span class="n">Y1</span> <span class="o">=</span> <span class="n">batch_y</span>
+        <span class="n">X2</span> <span class="o">=</span> <span class="n">batch_x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">Y2</span> <span class="o">=</span> <span class="n">batch_y</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X1</span> <span class="o">*</span> <span class="n">X_l</span> <span class="o">+</span> <span class="n">X2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">X_l</span><span class="p">)</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">Y1</span> <span class="o">*</span> <span class="n">y_l</span> <span class="o">+</span> <span class="n">Y2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_l</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">train_data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/garbage_classify/train_data&#39;</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+
+    <span class="n">train_sequence</span><span class="p">,</span> <span class="n">validation_sequence</span> <span class="o">=</span> <span class="n">data_from_sequence</span><span class="p">(</span><span class="n">train_data_dir</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">input_size</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;第 </span><span class="si">%d</span><span class="s2"> 批次数据&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">batch_data</span><span class="p">,</span> <span class="n">bacth_label</span> <span class="o">=</span> <span class="n">train_sequence</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">batch_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">bacth_label</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">batch_data</span><span class="p">,</span> <span class="n">bacth_label</span> <span class="o">=</span> <span class="n">validation_sequence</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="1_7">（1）数据增强选择方法<a class="headerlink" href="#1_7" title="Permanent link">&para;</a></h4>
+<p>构建了一套复杂且有效的数据增强框架，涵盖几何变换、随机擦除、Mixup策略。</p>
+<ul>
+<li>组合策略仅需少量参数调节即可适用于多种数据集，效果超过谷歌在Imagenet上搜索得到的Auto-augment策略 </li>
+<li>更有效的捕捉多种分辨率、多尺度、多粒度图片的轮廓、纹 理、位置分布等特征 </li>
+</ul>
+<h6 id="1mixup-training">1、混合训练（Mixup Training）<a class="headerlink" href="#1mixup-training" title="Permanent link">&para;</a></h6>
+<p>Mixup是一种非常规的数据增强方法，一个和数据无关的简单数据增强原则，其以线性插值的方式来构建新的训练样本和标签。 </p>
+<ul>
+<li>随机取两个样本，通过加权线性插值构建一个新的样本。</li>
+<li>新的样本的输入和真实概率分布为：</li>
+</ul>
+<div>
+<div class="MathJax_Preview">
+\hat{x} = \lambda x_i + (1-\lambda)x_j,
+\hat{y} = \lambda y_i + (1-\lambda)y_j
+</div>
+<script type="math/tex; mode=display">
+\hat{x} = \lambda x_i + (1-\lambda)x_j,
+\hat{y} = \lambda y_i + (1-\lambda)y_j
+</script>
+</div>
+<p><img src="../images/RandomCrop.jpg" style="zoom:50%;" /></p>
+<p>mixup策略实现，封装在</p>
+<div class="highlight"><pre><span></span><code>def mixup(self, batch_x, batch_y):
+    &quot;&quot;&quot;
+    数据混合mixup
+    :param batch_x: 要mixup的batch_X
+    :param batch_y: 要mixup的batch_y
+    :return: mixup后的数据
+    &quot;&quot;&quot;
+    size = self.batch_size
+    l = np.random.beta(self.alpha, self.alpha, size)
+
+    X_l = l.reshape(size, 1, 1, 1)
+    y_l = l.reshape(size, 1)
+
+    X1 = batch_x
+    Y1 = batch_y
+    X2 = batch_x[::-1]
+    Y2 = batch_y[::-1]
+
+    X = X1 * X_l + X2 * (1 - X_l)
+    Y = Y1 * y_l + Y2 * (1 - y_l)
+
+    return X, Y
+</code></pre></div>
+
+<h6 id="2random-erasing">2、Random Erasing原理:<a class="headerlink" href="#2random-erasing" title="Permanent link">&para;</a></h6>
+<p>训练时，随机擦除方法会在原图随机选择一个矩 形区域，将该区域的像素替换为随机值。这个过 程中，参与训练的图片会做不同程度的遮挡，这 样可以降低过拟合的风险并提高模型的鲁棒性。 随机擦除是独立于参数学习过程的，因此可以整 合到任何基于CNN的识别模型中。 </p>
+<p><img src="../images/RandomErasing.jpg" style="zoom:50%;" /></p>
+<p>封装在random_eraser.py文件中。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+
+
+<span class="k">def</span> <span class="nf">get_random_eraser</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">s_l</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">s_h</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">r_1</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">r_2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">v_l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">v_h</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pixel_level</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">eraser</span><span class="p">(</span><span class="n">input_img</span><span class="p">):</span>
+        <span class="n">img_h</span><span class="p">,</span> <span class="n">img_w</span><span class="p">,</span> <span class="n">img_c</span> <span class="o">=</span> <span class="n">input_img</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">p_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">p_1</span> <span class="o">&gt;</span> <span class="n">p</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">input_img</span>
+
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">s_l</span><span class="p">,</span> <span class="n">s_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">img_h</span> <span class="o">*</span> <span class="n">img_w</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">r_1</span><span class="p">,</span> <span class="n">r_2</span><span class="p">)</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s</span> <span class="o">/</span> <span class="n">r</span><span class="p">))</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">r</span><span class="p">))</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">img_w</span><span class="p">)</span>
+            <span class="n">top</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">img_h</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">left</span> <span class="o">+</span> <span class="n">w</span> <span class="o">&lt;=</span> <span class="n">img_w</span> <span class="ow">and</span> <span class="n">top</span> <span class="o">+</span> <span class="n">h</span> <span class="o">&lt;=</span> <span class="n">img_h</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">pixel_level</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">v_l</span><span class="p">,</span> <span class="n">v_h</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">img_c</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">v_l</span><span class="p">,</span> <span class="n">v_h</span><span class="p">)</span>
+
+        <span class="n">input_img</span><span class="p">[</span><span class="n">top</span><span class="p">:</span><span class="n">top</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span><span class="n">left</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">c</span>
+
+        <span class="k">return</span> <span class="n">input_img</span>
+
+    <span class="k">return</span> <span class="n">eraser</span>
+</code></pre></div>
+
+<blockquote>
+<p>注：这些代码不需要去实现，有很多现成实现好的方法</p>
+</blockquote>
+<h6 id="3imagedatagenerator-">3、ImageDataGenerator-提供主要翻转方法<a class="headerlink" href="#3imagedatagenerator-" title="Permanent link">&para;</a></h6>
+<p>如下使用，进行随机水平/垂直翻转。</p>
+<div class="highlight"><pre><span></span><code><span class="n">datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
+                <span class="n">horizontal_flip</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                <span class="n">vertical_flip</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="p">)</span>
+</code></pre></div>
+
+<p>最后实现测试结果：</p>
+<div class="highlight"><pre><span></span><code><span class="o">...</span>
+<span class="err">第</span> <span class="mi">10</span> <span class="err">批次数据</span>
+<span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="p">[[</span><span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="o">...</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="o">...</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="o">...</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span><span class="p">]</span>
+ <span class="o">...</span>
+ <span class="p">[</span><span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="o">...</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="o">...</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="o">...</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span> <span class="mf">0.0025</span><span class="p">]]</span>
+</code></pre></div>
+
+<h4 id="495">4.9.5 总结<a class="headerlink" href="#495" title="Permanent link">&para;</a></h4>
+<ul>
+<li>知道垃圾分类相关比赛问题</li>
+<li>知道图像分类问题的常见优化(tricks)</li>
+<li>常用分类问题的数据增强方式</li>
+<li>mixup</li>
+<li>随机擦除</li>
+<li>翻转</li>
+<li>标签平滑正则化</li>
+<li>分类常见模型以及模型算法优化</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

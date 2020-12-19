@@ -1,0 +1,1319 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>4.11 综合案例：模型导出与部署 - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#411" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              4.11 综合案例：模型导出与部署
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section4/" title="GoogLeNet" class="md-nav__link">
+      GoogLeNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageClassification/section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    学习目标
+  </a>
+  
+    <nav class="md-nav" aria-label="学习目标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4111-tensorflow" class="md-nav__link">
+    4.11.1 TensorFlow 模型导出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4112" class="md-nav__link">
+    4.11.2 使用案例
+  </a>
+  
+    <nav class="md-nav" aria-label="4.11.2 使用案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3keras" class="md-nav__link">
+    3、自定义的keras模型使用：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4113-tensorflow-serving" class="md-nav__link">
+    4.11.3 TensorFlow Serving
+  </a>
+  
+    <nav class="md-nav" aria-label="4.11.3 TensorFlow Serving">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41131-tensorflow-serving" class="md-nav__link">
+    4.11.3.1 安装Tensorflow Serving
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41132-tensorflow-serving-docker" class="md-nav__link">
+    4.11.3.2 TensorFlow Serving Docker 使用介绍
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41133-commodity" class="md-nav__link">
+    4.11.3.3 案例操作：commodity模型服务运行
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4115-tensorflow-serving" class="md-nav__link">
+    4.11.5 在客户端调用以 TensorFlow Serving 部署的模型
+  </a>
+  
+    <nav class="md-nav" aria-label="4.11.5 在客户端调用以 TensorFlow Serving 部署的模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41151-curl" class="md-nav__link">
+    4.11.5.1 直接使用curl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41152" class="md-nav__link">
+    4.11.5.2 编写客户端代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4115-hparams-" class="md-nav__link">
+    4.11.5 HParams-超参数调优
+  </a>
+  
+    <nav class="md-nav" aria-label="4.11.5 HParams-超参数调优">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41151-cifar100" class="md-nav__link">
+    4.11.5.1 案例：CIFAR100分类模型添加参数进行调优
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4116" class="md-nav__link">
+    4.11.6 总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="411">4.11 综合案例：模型导出与部署<a class="headerlink" href="#411" title="Permanent link">&para;</a></h1>
+<h2 id="_1">学习目标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>目标</li>
+<li>掌握TensorFlow模型的导出(saved_model格式)</li>
+<li>掌握Tensorflow模型的部署</li>
+<li>掌握TensorFlow模型的客户端调用</li>
+<li>掌握TensorFlow模型的超参数调优使用</li>
+<li>应用</li>
+<li>无</li>
+</ul>
+<h3 id="4111-tensorflow">4.11.1 TensorFlow 模型导出<a class="headerlink" href="#4111-tensorflow" title="Permanent link">&para;</a></h3>
+<p>在部署模型时，我们的第一步往往是将训练好的整个模型完整导出为一系列标准格式的文件，然后即可在不同的平台上部署模型文件。这时，TensorFlow 为我们提供了 SavedModel 这一格式。</p>
+<ul>
+<li>与前面介绍的 Checkpoint 不同，SavedModel 包含了一个 TensorFlow 程序的完整信息： <strong>不仅包含参数的权值，还包含计算的流程（即计算图）</strong> 。</li>
+<li>特点：当模型导出为 SavedModel 文件时，无需建立模型的源代码即可再次运行模型，这使得 SavedModel 尤其适用于模型的分享和部署。后文的 TensorFlow Serving（服务器端部署模型）、TensorFlow Lite（移动端部署模型）以及 TensorFlow.js 都会用到这一格式。</li>
+</ul>
+<p>除了CheckPointTensorFlow还会有其他格式，这里做统一介绍：部署在线服务（Serving）时官方推荐使用 SavedModel 格式，而部署到手机等移动端的模型一般使用 FrozenGraphDef 格式（最近推出的 TensorFlow Lite 也有专门的轻量级模型格式 *.lite，和 FrozenGraphDef 十分类似）。这些格式之间关系密切，可以使用 TensorFlow 提供的 API 来互相转换。下面简单介绍几种格式：</p>
+<ul>
+<li>1、GraphDef</li>
+<li>这种格式文件包含 protobuf 对象序列化后的数据，包含了计算图，可以从中得到所有运算符（operators）的细节，也包含张量（tensors）和 Variables 定义，但不包含 Variable 的值，因此只能从中恢复计算图，但一些训练的权值仍需要从 checkpoint 中恢复。</li>
+<li>2、*.pb</li>
+<li>
+<p>TensorFlow 一些例程中用到*.pb 文件作为预训练模型，这和上面 GraphDef 格式稍有不同，属于冻结（Frozen）后的 GraphDef 文件，简称 FrozenGraphDef 格式。这种文件格式不包含 Variables 节点。将 GraphDef 中所有 Variable 节点转换为常量（其值从 checkpoint 获取），就变为 FrozenGraphDef 格式。</p>
+</li>
+<li>
+<p>3、SavedModel</p>
+</li>
+<li>在使用 TensorFlow Serving 时，会用到这种格式的模型。该格式为 GraphDef 和 CheckPoint 的结合体，另外还有标记模型输入和输出参数的 SignatureDef。从 SavedModel 中可以提取 GraphDef 和 CheckPoint 对象。</li>
+<li>其中 saved_model.pb（或 saved_model.pbtxt）包含使用 MetaGraphDef protobuf 对象定义的计算图；assets 包含附加文件；variables 目录包含 tf.train.Saver() 对象调用 save() API 生成的文件。</li>
+</ul>
+<p>使用下面的代码即可将模型导出为 SavedModel：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;保存的目标文件夹名称&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>在需要载入 SavedModel 文件时，使用即可</p>
+<div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;保存的目标文件夹名称&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="4112">4.11.2 使用案例<a class="headerlink" href="#4112" title="Permanent link">&para;</a></h3>
+<p>1、将之前CIFAE100分类模型进行导出和导入，导出模型到 <code>saved/mlp/1</code> 文件夹中，mlp可以自己指定的一个模型名称，1为版本号，必须提供，后面开启服务需要有版本号</p>
+<div class="highlight"><pre><span></span><code>    <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TF_CPP_MIN_LOG_LEVEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Softmax</span><span class="p">()</span>
+    <span class="p">])</span>
+
+    <span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">train_label</span><span class="p">),</span> <span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">test_label</span><span class="p">)</span> <span class="o">=</span> \
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">cifar100</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">),</span>
+        <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">sparse_categorical_crossentropy</span><span class="p">,</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">sparse_categorical_accuracy</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">train_label</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+
+    <span class="n">tf</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;./saved/mlp/1&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>2、并且模型加载出来，测试性能就能够</p>
+<ul>
+<li>注意：这里加载模型可以不用初始化之前的模型（不需要），直接加载到model使用</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;./saved/mlp/1&quot;</span><span class="p">)</span>
+    <span class="n">sparse_categorical_accuracy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">SparseCategoricalAccuracy</span><span class="p">()</span>
+    <span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">train_label</span><span class="p">),</span> <span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">test_label</span><span class="p">)</span> <span class="o">=</span> \
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">cifar100</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+    <span class="n">sparse_categorical_accuracy</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">test_label</span><span class="p">,</span>
+                                             <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;test accuracy: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">sparse_categorical_accuracy</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
+</code></pre></div>
+
+<p>输出结果</p>
+<div class="highlight"><pre><span></span><code>test accuracy: 0.010000
+</code></pre></div>
+
+<h5 id="3keras">3、自定义的keras模型使用：<a class="headerlink" href="#3keras" title="Permanent link">&para;</a></h5>
+<p>使用继承 <code>tf.keras.Model</code> 类建立的 Keras 模型同样可以以相同方法导出，唯须注意 <code>call</code> 方法需要以 <code>@tf.function</code> 修饰，以转化为 SavedModel 支持的计算图，代码如下：</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dense1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dense2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="nd">@tf.function</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>         <span class="c1"># [batch_size, 28, 28, 1]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>    <span class="c1"># [batch_size, 784]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dense1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>          <span class="c1"># [batch_size, 100]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dense2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>          <span class="c1"># [batch_size, 10]</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="4113-tensorflow-serving">4.11.3 TensorFlow <strong>Serving</strong><a class="headerlink" href="#4113-tensorflow-serving" title="Permanent link">&para;</a></h3>
+<ul>
+<li>背景：当我们将模型训练完毕后，往往需要将模型在生产环境中部署。最常见的方式，是在服务器上提供一个 API，即客户机向服务器的某个 API 发送特定格式的请求，服务器收到请求数据后通过模型进行计算，并返回结果。如果仅仅是做一个 Demo，不考虑高并发和性能问题，其实配合Django、Flask等 Python 下的 Web 框架就能非常轻松地实现服务器 API。不过，如果是在真的实际生产环境中部署，这样的方式就显得力不从心了。这时，TensorFlow 为我们提供了 TensorFlow <strong>Serving</strong> 这一组件，能够帮助我们在实际生产环境中灵活且高性能地部署机器学习模型。</li>
+</ul>
+<p>TensorFlow Serving是一种灵活的高性能服务系统，适用于机器学习模型，专为生产环境而设计。TensorFlow Serving可以轻松部署新算法和实验，同时保持相同的服务器架构和API。TensorFlow Serving提供与TensorFlow模型的开箱即用集成，但可以轻松扩展以提供其他类型的模型和数据。</p>
+<p><img src="../images/serving%E5%9B%BE.png" style="zoom:50%;" /></p>
+<p>特点：TensorFlow <strong>Serving</strong> 支持热更新模型，其典型的模型文件夹结构如下：</p>
+<div class="highlight"><pre><span></span><code>/saved_model_files
+    /1      # 版本号为1的模型文件
+        /assets
+        /variables
+        saved_model.pb
+    ...
+    /N      # 版本号为N的模型文件
+        /assets
+        /variables
+        saved_model.pb
+</code></pre></div>
+
+<p>上面 1~N 的子文件夹代表不同版本号的模型。当指定 <code>--model_base_path</code> 时，只需要指定根目录的 <strong>绝对地址</strong> （不是相对地址）即可。例如，如果上述文件夹结构存放在 <code>home/snowkylin</code> 文件夹内，则 <code>--model_base_path</code> 应当设置为 <code>home/snowkylin/saved_model_files</code> （不附带模型版本号）。TensorFlow <strong>Serving</strong> 会自动选择版本号最大的模型进行载入。</p>
+<h4 id="41131-tensorflow-serving">4.11.3.1 安装Tensorflow Serving<a class="headerlink" href="#41131-tensorflow-serving" title="Permanent link">&para;</a></h4>
+<p>安装过程详细参考官网</p>
+<blockquote>
+<p><a href="https://www.tensorflow.org/serving/setup">https://www.tensorflow.org/serving/setup</a></p>
+</blockquote>
+<ul>
+<li>使用Docker安装进行，首先你的电脑当中已经安装过docker容器</li>
+<li>Centos：参考：<a href="https://www.cnblogs.com/wdliu/p/10194332.html">https://www.cnblogs.com/wdliu/p/10194332.html</a></li>
+</ul>
+<p>TensorFlow Serving 可以使用 apt-get 或 Docker 安装。在生产环境中，推荐 使用 Docker 部署 TensorFlow Serving 。</p>
+<h4 id="41132-tensorflow-serving-docker">4.11.3.2 TensorFlow Serving Docker 使用介绍<a class="headerlink" href="#41132-tensorflow-serving-docker" title="Permanent link">&para;</a></h4>
+<ol>
+<li>获取最新TF Serving docker镜像</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker pull tensorflow/serving
+</code></pre></div>
+
+<ol>
+<li>查看docker镜像</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker images
+</code></pre></div>
+
+<ol>
+<li>运行tf serving（即创建一个docker容器来运行）</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker run -p <span class="m">8501</span>:8501 -p <span class="m">8500</span>:8500 --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>/home/ubuntu/detectedmodel/commodity,target<span class="o">=</span>/models/commodity -e <span class="nv">MODEL_NAME</span><span class="o">=</span>commodity -t tensorflow/serving
+</code></pre></div>
+
+<p>说明：</p>
+<ul>
+<li><code>-p 8501:8501</code> 为端口映射，<code>-p 主机端口:docker容器程序(tf serving)使用端口</code>，访问主机8501端口就相当于访问了tf serving程序的8501端口</li>
+<li>tf serving 使用8501端口对外提供HTTP服务，使用8500对外提供gRPC服务，这里同时开放了两个端口的使用</li>
+<li><code>--mount type=bind,source=/home/ubuntu/detectedmodel/commodity,target=/models/commodity</code> 为文件映射，将主机(source)的模型文件映射到docker容器程序（target)的位置，以便tf serving使用模型，<code>target</code>参数为<code>/models/我的模型</code></li>
+<li><code>-e MODEL_NAME=commodity</code>设置了一个环境变量，名为<code>MODEL_NAME</code>，此变量被tf serving读取，用来按名字寻找模型，与上面target参数中<code>我的模型</code>对应</li>
+<li><code>-t</code> 为tf serving创建一个伪终端，供程序运行</li>
+<li><code>tensorflow/serving</code>为镜像名</li>
+</ul>
+<blockquote>
+<p>常见docker命令：</p>
+<p>docker ps:查看正在运行的容器</p>
+<p>docker images:查看已下载的景象</p>
+<p>docker stop 8779b492e4aa：停止正在运行的ID为8779b492e4aa的容器，IP可以通过docker ps查看</p>
+</blockquote>
+<h4 id="41133-commodity">4.11.3.3 案例操作：commodity模型服务运行<a class="headerlink" href="#41133-commodity" title="Permanent link">&para;</a></h4>
+<ul>
+<li>1、运行命令</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8501</span><span class="p">:</span><span class="mi">8501</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8500</span><span class="p">:</span><span class="mi">8500</span> <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">cv_project</span><span class="o">/</span><span class="n">tf_example</span>
+<span class="o">/</span><span class="n">saved</span><span class="o">/</span><span class="n">mlp</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">models</span><span class="o">/</span><span class="n">mlp</span> <span class="o">-</span><span class="n">e</span> <span class="n">MODEL_NAME</span><span class="o">=</span><span class="n">mlp</span> <span class="o">-</span><span class="n">t</span> <span class="n">tensorflow</span><span class="o">/</span><span class="n">serving</span> <span class="o">&amp;</span>
+</code></pre></div>
+
+<ul>
+<li>2、查看是否运行</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">itcast</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">docker</span> <span class="n">ps</span>
+<span class="n">CONTAINER</span> <span class="n">ID</span>        <span class="n">IMAGE</span>                <span class="n">COMMAND</span>                  <span class="n">CREATED</span>             <span class="n">STATUS</span>              <span class="n">POR</span>
+<span class="n">TS</span>                              <span class="n">NAMES</span>
+<span class="mi">1354</span><span class="n">f9aeab33</span>        <span class="n">tensorflow</span><span class="o">/</span><span class="n">serving</span>   <span class="s2">&quot;/usr/bin/tf_serving…&quot;</span>   <span class="mi">7</span> <span class="n">seconds</span> <span class="n">ago</span>       <span class="n">Up</span> <span class="mi">5</span> <span class="n">seconds</span>        <span class="mf">0.0</span>
+<span class="o">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">8500</span><span class="o">-</span><span class="mi">8501</span><span class="o">-&gt;</span><span class="mi">8500</span><span class="o">-</span><span class="mi">8501</span><span class="o">/</span><span class="n">tcp</span>   <span class="n">gifted_jackson</span>
+</code></pre></div>
+
+<h3 id="4115-tensorflow-serving">4.11.5 在客户端调用以 TensorFlow <strong>Serving</strong> 部署的模型<a class="headerlink" href="#4115-tensorflow-serving" title="Permanent link">&para;</a></h3>
+<p>TensorFlow <strong>Serving</strong> 支持以 gRPC 和 RESTful API 调用以 TensorFlow Serving 部署的模型。RESTful API 以标准的 HTTP POST 方法进行交互，请求和回复均为 JSON 对象。为了调用服务器端的模型，我们在客户端向服务器发送以下格式的请求：服务器 URI： <code>http://服务器地址:端口号/v1/models/模型名:predict</code></p>
+<p>请求内容：</p>
+<div class="highlight"><pre><span></span><code>{
+    &quot;signature_name&quot;: &quot;需要调用的函数签名（Sequential模式不需要）&quot;,
+    &quot;instances&quot;: 输入数据
+}
+</code></pre></div>
+
+<p>回复为：</p>
+<div class="highlight"><pre><span></span><code>{
+    &quot;predictions&quot;: 返回值
+}
+</code></pre></div>
+
+<h4 id="41151-curl">4.11.5.1 直接使用curl<a class="headerlink" href="#41151-curl" title="Permanent link">&para;</a></h4>
+<p>运行下面命令</p>
+<div class="highlight"><pre><span></span><code><span class="n">curl</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;instances&quot;: [image_data]}&#39;</span> \
+  <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8501</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">mlp</span><span class="p">:</span><span class="n">predict</span>
+</code></pre></div>
+
+<h4 id="41152">4.11.5.2 编写客户端代码<a class="headerlink" href="#41152" title="Permanent link">&para;</a></h4>
+<p>示例使用Python 的 Requests 库（你可能需要使用 <code>pip install requests</code> 安装该库）向本机的 TensorFlow <strong>Serving</strong> 服务器发送20张图像并返回预测结果，同时与测试集的真实标签进行比较。</p>
+<div class="highlight"><pre><span></span><code>def client():
+    import json
+    import numpy as np
+    import requests
+
+    (_, _), (test, test_label) = \
+        tf.keras.datasets.cifar100.load_data()
+    data = json.dumps({
+        &quot;instances&quot;: test[0:20].tolist()  # array转换成列表形式
+    })
+    headers = {&quot;content-type&quot;: &quot;application/json&quot;}
+    json_response = requests.post(
+        &#39;http://localhost:8501/v1/models/mlp:predict&#39;,
+        data=data, headers=headers)
+    predictions = np.array(json.loads(json_response.text)[&#39;predictions&#39;])
+    print(np.argmax(predictions, axis=-1))
+    print(test_label[0:20])
+
+
+if __name__ == &#39;__main__&#39;:
+    # main()
+    # test()
+    client()
+</code></pre></div>
+
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span> <span class="mi">67</span><span class="p">]</span>
+<span class="p">[[</span><span class="mi">49</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">33</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">72</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">51</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">71</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">92</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">15</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">14</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">23</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mi">0</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">71</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">75</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">81</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">69</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">40</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">43</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">92</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">97</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">70</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">53</span><span class="p">]]</span>
+</code></pre></div>
+
+<p>因为模型并没有训练多久，只迭代一次，所以效果不好，主要是完成整个流程。</p>
+<h3 id="4115-hparams-">4.11.5 HParams-超参数调优<a class="headerlink" href="#4115-hparams-" title="Permanent link">&para;</a></h3>
+<p>构建深度学习模型时，需要选择各种超参数，例如模型中的学习率，优化器，神经元个数等。这些决策会影响模型指标，例如准确性。因此，工作流程中的一个重要步骤是为您的问题确定最佳的超参数，这通常涉及实验。此过程称为“超参数优化”或“超参数调整”。TensorBoard中的HParams仪表板提供了多种工具，帮助确定最佳实验或最有希望的超参数集。</p>
+<p><strong>注：Note:</strong> The HParams summary APIs and dashboard UI are in a preview stage and will change over time.</p>
+<p>使用导入</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">tensorboard.plugins.hparams</span> <span class="kn">import</span> <span class="n">api</span> <span class="k">as</span> <span class="n">hp</span>
+</code></pre></div>
+
+<h4 id="41151-cifar100">4.11.5.1 案例：CIFAR100分类模型添加参数进行调优<a class="headerlink" href="#41151-cifar100" title="Permanent link">&para;</a></h4>
+<ul>
+<li>使用步骤</li>
+<li>1、通过hp设置HParams 实验超参数</li>
+<li>2、将试验参数添加到模型指定结构当中，或者编译训练的过程参数中</li>
+<li>3、使用超参数调优方法对不同的超参数集训练每个实验组合</li>
+</ul>
+<p>1、设置HParams 实验参数</p>
+<ul>
+<li>hp.Discrete:设置离散类型的参数值，比如神经元个数，优化方法</li>
+<li>通过HP_NUM_UNITS.domain.values获取所有的值</li>
+<li>hp.RealInterval:设置连续型类型的上下限，能够获取最大值最小值</li>
+<li>HP_DROPOUT.domain.min_value:获取最小值</li>
+<li>HP_DROPOUT.domain.max_value:获取最大值</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">HP_NUM_UNITS</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">HParam</span><span class="p">(</span><span class="s1">&#39;num_units&#39;</span><span class="p">,</span> <span class="n">hp</span><span class="o">.</span><span class="n">Discrete</span><span class="p">([</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">512</span><span class="p">]))</span>
+<span class="n">HP_DROPOUT</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">HParam</span><span class="p">(</span><span class="s1">&#39;dropout&#39;</span><span class="p">,</span> <span class="n">hp</span><span class="o">.</span><span class="n">RealInterval</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
+<span class="n">HP_OPTIMIZER</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">HParam</span><span class="p">(</span><span class="s1">&#39;optimizer&#39;</span><span class="p">,</span> <span class="n">hp</span><span class="o">.</span><span class="n">Discrete</span><span class="p">([</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="s1">&#39;sgd&#39;</span><span class="p">]))</span>
+</code></pre></div>
+
+<p>2、将试验参数添加到模型指定结构当中，或者编译训练的过程参数中</p>
+<ul>
+<li>(1)在需要设置超参数的位置填入hparams参数值</li>
+<li>(2)添加记录hparams的回调hp.KerasCallback('./logs/hparam_tuning/', hparams)</li>
+<li>其中目录自己设定即可</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">train_test_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hparams</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;训练验证模型</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1、定义模型中加入了一个dropout</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">hparams</span><span class="p">[</span><span class="n">HP_NUM_UNITS</span><span class="p">],</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">hparams</span><span class="p">[</span><span class="n">HP_DROPOUT</span><span class="p">]),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">)</span>
+
+        <span class="p">])</span>
+        <span class="c1"># 2、模型设置以及训练</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">hparams</span><span class="p">[</span><span class="n">HP_OPTIMIZER</span><span class="p">],</span>
+                      <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">sparse_categorical_crossentropy</span><span class="p">,</span>
+                      <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+
+        <span class="n">tensorboard</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;./graph&#39;</span><span class="p">,</span> <span class="n">histogram_freq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                     <span class="n">write_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">write_images</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="c1"># 添加记录hparams的回调hp.KerasCallback(&#39;./graph/&#39;, hparams)</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_label</span><span class="p">,</span>
+                  <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                  <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">tensorboard</span><span class="p">,</span> <span class="n">hp</span><span class="o">.</span><span class="n">KerasCallback</span><span class="p">(</span><span class="s1">&#39;./logs/hparam_tuning/&#39;</span><span class="p">,</span> <span class="n">hparams</span><span class="p">)],</span>
+                  <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_label</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="bp">None</span>
+</code></pre></div>
+
+<p>3、使用超参数调优方法对不同的超参数集训练每个实验组合</p>
+<p>使用网格搜索：尝试使用离散参数的所有组合或者连续型值参数的上限和下限。对于更复杂的场景，随机选择每个超参数值会更有效（随机搜索）。</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">hyper_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;超参数调优</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">session_num</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">num_units</span> <span class="ow">in</span> <span class="n">HP_NUM_UNITS</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">dropout_rate</span> <span class="ow">in</span> <span class="p">(</span><span class="n">HP_DROPOUT</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">min_value</span><span class="p">,</span> <span class="n">HP_DROPOUT</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">max_value</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">optimizer</span> <span class="ow">in</span> <span class="n">HP_OPTIMIZER</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+                <span class="n">hparams</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">HP_NUM_UNITS</span><span class="p">:</span> <span class="n">num_units</span><span class="p">,</span>
+                    <span class="n">HP_DROPOUT</span><span class="p">:</span> <span class="n">dropout_rate</span><span class="p">,</span>
+                    <span class="n">HP_OPTIMIZER</span><span class="p">:</span> <span class="n">optimizer</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;--- 开始 实验: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">session_num</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">({</span><span class="n">h</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">hparams</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hparams</span><span class="p">})</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">train_test_model</span><span class="p">(</span><span class="n">hparams</span><span class="p">)</span>
+                <span class="n">session_num</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="bp">None</span>
+</code></pre></div>
+
+<p>注：其中如果对于连续的值比如说你的模型中learning_rate,假设设置0.0001~0.1，可以这样迭代使用</p>
+<div class="highlight"><pre><span></span><code>for lr_tate in tf.linspace(
+      HP_LR.domain.min_value,
+      HP_LR.domain.max_value,
+      res): 
+</code></pre></div>
+
+<p>最终打印效果为：</p>
+<div class="highlight"><pre><span></span><code><span class="o">---</span> <span class="err">开始</span> <span class="err">实验</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">{</span><span class="s1">&#39;num_units&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="s1">&#39;adam&#39;</span><span class="p">}</span>
+<span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+   <span class="mi">32</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">..............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">21</span><span class="p">:</span><span class="mi">58</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.6257</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0000e+002020</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">22</span> <span class="mo">05</span><span class="p">:</span><span class="mo">02</span><span class="p">:</span><span class="mf">24.239954</span><span class="p">:</span> <span class="n">E</span> 
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">61</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">3.6983</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.1391</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.1219</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.2460</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">60</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.9337</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.2777</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">2.7689</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.3094</span>
+<span class="o">---</span> <span class="err">开始</span> <span class="err">实验</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">{</span><span class="s1">&#39;num_units&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="s1">&#39;sgd&#39;</span><span class="p">}</span>
+<span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+   <span class="mi">32</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">..............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">9</span><span class="p">:</span><span class="mi">12</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.5919</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0000e+002020</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">22</span> <span class="mo">05</span><span class="p">:</span><span class="mo">04</span><span class="p">:</span><span class="mf">26.409071</span><span class="p">:</span> <span class="n">E</span> 
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">55</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.3805</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0404</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">4.1078</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.0641</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">55</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">3.9086</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.1072</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.7098</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.1479</span>
+<span class="o">---</span> <span class="err">开始</span> <span class="err">实验</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">{</span><span class="s1">&#39;num_units&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="s1">&#39;adam&#39;</span><span class="p">}</span>
+<span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+   <span class="mi">32</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">..............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">11</span><span class="p">:</span><span class="mo">06</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.6464</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.03122020</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">22</span> <span class="mo">05</span><span class="p">:</span><span class="mo">06</span><span class="p">:</span><span class="mf">18.355198</span><span class="p">:</span> <span class="n">E</span> 
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">61</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">3.7051</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.1400</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.1361</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.2422</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">60</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.9754</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.2687</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">2.7621</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.3118</span>
+<span class="o">---</span> <span class="err">开始</span> <span class="err">实验</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">{</span><span class="s1">&#39;num_units&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="s1">&#39;sgd&#39;</span><span class="p">}</span>
+<span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+   <span class="mi">32</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">..............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">9</span><span class="p">:</span><span class="mo">03</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.5909</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0000e+002020</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">22</span> <span class="mo">05</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mf">20.864262</span><span class="p">:</span> <span class="n">E</span> 
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">55</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.3802</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0399</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">4.0482</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.0807</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">55</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">3.9227</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.1036</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.7022</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.1423</span>
+<span class="o">---</span> <span class="err">开始</span> <span class="err">实验</span><span class="p">:</span> <span class="mi">4</span>
+<span class="p">{</span><span class="s1">&#39;num_units&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="s1">&#39;adam&#39;</span><span class="p">}</span>
+<span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+   <span class="mi">32</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">..............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">11</span><span class="p">:</span><span class="mi">28</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.6099</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0000e+002020</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">22</span> <span class="mo">05</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mf">12.802252</span><span class="p">:</span> <span class="n">E</span> 
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">78</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">3.5546</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.1683</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.0440</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.2580</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">77</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.7925</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.3048</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">2.7049</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.3255</span>
+<span class="o">---</span> <span class="err">开始</span> <span class="err">实验</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">{</span><span class="s1">&#39;num_units&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="s1">&#39;sgd&#39;</span><span class="p">}</span>
+<span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+   <span class="mi">32</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">..............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">9</span><span class="p">:</span><span class="mi">22</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.5938</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0000e+002020</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">22</span> <span class="mo">05</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">50.161457</span><span class="p">:</span> <span class="n">E</span> 
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">68</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.3278</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0477</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.9872</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.0849</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">67</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">3.8071</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.1244</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.6097</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.1679</span>
+<span class="o">---</span> <span class="err">开始</span> <span class="err">实验</span><span class="p">:</span> <span class="mi">6</span>
+<span class="p">{</span><span class="s1">&#39;num_units&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="s1">&#39;adam&#39;</span><span class="p">}</span>
+<span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+   <span class="mi">32</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">..............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">11</span><span class="p">:</span><span class="mi">14</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.6129</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0000e+002020</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">22</span> <span class="mo">05</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mf">07.480836</span><span class="p">:</span> <span class="n">E</span> 
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">78</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">3.6139</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.1548</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">2.9943</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.2691</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">77</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.8460</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.2921</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">2.7325</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.3195</span>
+<span class="o">---</span> <span class="err">开始</span> <span class="err">实验</span><span class="p">:</span> <span class="mi">7</span>
+<span class="p">{</span><span class="s1">&#39;num_units&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="s1">&#39;sgd&#39;</span><span class="p">}</span>
+<span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+   <span class="mi">32</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">..............................</span><span class="p">]</span> <span class="o">-</span> <span class="n">ETA</span><span class="p">:</span> <span class="mi">9</span><span class="p">:</span><span class="mi">22</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.5689</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.03122020</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">22</span> <span class="mo">05</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mf">44.697445</span><span class="p">:</span> <span class="n">E</span> 
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">68</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">4.3251</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0469</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.9708</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.1038</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">67</span><span class="n">s</span> <span class="mi">1</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">3.8546</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.1173</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.6345</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.1653</span>
+</code></pre></div>
+
+<p>生成如下目录</p>
+<p><img src="../images/hparam.jpg" style="zoom:50%;" /></p>
+<p>4、最终可以通过Tensoboard开启读取对应目录的events文件看到对应结果</p>
+<div class="highlight"><pre><span></span><code><span class="n">tensorboard</span> <span class="o">--</span><span class="n">logdir</span> <span class="s1">&#39;./logs/hparam_tuning/&#39;</span>
+</code></pre></div>
+
+<p>可以在HPARAMS菜单中查看到下面的效果(官网截图)</p>
+<p><img src="../images/hparam效果.jpg" style="zoom:80%;" /></p>
+<p>并且其中有提供了两种主要的不同的查看方式：</p>
+<ul>
+<li>1、表视图(TABLE VIEW)：列出了运行时，他们的超参数，和他们的指标。</li>
+<li>2、平行坐标视图：每个运行为线通过每个hyperparemeter和度量的轴线去。单击并在任何轴上拖动鼠标以标记一个区域，该区域将仅突出显示通过该区域的运行。这对于确定哪些超参数组最重要很有用</li>
+</ul>
+<p><img alt="" src="../../images/hparam%E6%95%88%E6%9E%9C2.jpg" /></p>
+<h3 id="4116">4.11.6 总结<a class="headerlink" href="#4116" title="Permanent link">&para;</a></h3>
+<ul>
+<li>TensorFlow模型的导出(saved_model格式)</li>
+<li>Tensorflow模型的部署</li>
+<li>TensorFlow模型的客户端调用</li>
+<li>TensorFlow模型的超参数调优</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

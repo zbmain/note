@@ -1,0 +1,1366 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>GoogLeNet - 深度学习与CV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#34-googlenet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="深度学习与CV" class="md-header-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            深度学习与CV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              GoogLeNet
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="深度学习与CV" class="md-nav__button md-logo" aria-label="深度学习与CV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    深度学习与CV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      课程介绍
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="课程介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        课程介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section1/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/section2/" title="计算机视觉（CV）" class="md-nav__link">
+      计算机视觉（CV）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      tensorflow入门
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="tensorflow入门" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        tensorflow入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section1/" title="tensorflow和keras简介" class="md-nav__link">
+      tensorflow和keras简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tensorFlow/section2/" title="快速入门模型" class="md-nav__link">
+      快速入门模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      深度神经网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="深度神经网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        深度神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section1/" title="神经网络简介" class="md-nav__link">
+      神经网络简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section2/" title="常见的损失函数" class="md-nav__link">
+      常见的损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section3/" title="深度学习的优化方法" class="md-nav__link">
+      深度学习的优化方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section4/" title="深度学习的正则化" class="md-nav__link">
+      深度学习的正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section5/" title="神经网络案例" class="md-nav__link">
+      神经网络案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deeplearning/section6/" title="卷积神经网络CNN" class="md-nav__link">
+      卷积神经网络CNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      图像分类
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图像分类" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section1/" title="图像分类简介" class="md-nav__link">
+      图像分类简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section2/" title="AlexNet" class="md-nav__link">
+      AlexNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section3/" title="VGG" class="md-nav__link">
+      VGG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        GoogLeNet
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="GoogLeNet" class="md-nav__link md-nav__link--active">
+      GoogLeNet
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1inception" class="md-nav__link">
+    1.Inception 块
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2googlenet" class="md-nav__link">
+    2.GoogLeNet模型
+  </a>
+  
+    <nav class="md-nav" aria-label="2.GoogLeNet模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-b1" class="md-nav__link">
+    2.1 B1模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-b2" class="md-nav__link">
+    2.2 B2模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-b3" class="md-nav__link">
+    2.3 B3模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-b4" class="md-nav__link">
+    2.4 B4模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-b5" class="md-nav__link">
+    2.5 B5模块
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.手写数字识别
+  </a>
+  
+    <nav class="md-nav" aria-label="3.手写数字识别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 数据读取
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 模型编译
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 模型训练
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    2.4 模型评估
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4.延伸版本
+  </a>
+  
+    <nav class="md-nav" aria-label="4.延伸版本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-inceptionv2" class="md-nav__link">
+    4.1 InceptionV2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-inceptionv3" class="md-nav__link">
+    4.2 InceptionV3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section5/" title="ResNet" class="md-nav__link">
+      ResNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section6/" title="图像增强方法" class="md-nav__link">
+      图像增强方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../section7/" title="模型微调" class="md-nav__link">
+      模型微调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      目标检测
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标检测" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/01.overview/" title="目标检测概述" class="md-nav__link">
+      目标检测概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/02.RCNN/" title="RCNN系列网络" class="md-nav__link">
+      RCNN系列网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/03.RCNN-demo/" title="Faster RCNN案例" class="md-nav__link">
+      Faster RCNN案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/04.yolo/" title="YOLO系列算法" class="md-nav__link">
+      YOLO系列算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/05.yolo-demo/" title="YOLOV3案例" class="md-nav__link">
+      YOLOV3案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../objectdection/06.ssd/" title="SSD算法" class="md-nav__link">
+      SSD算法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      目标分割
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="目标分割" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        目标分割
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section1/" title="目标分割介绍" class="md-nav__link">
+      目标分割介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section2/" title="语义分割：FCN和UNet" class="md-nav__link">
+      语义分割：FCN和UNet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section3/" title="UNet案例" class="md-nav__link">
+      UNet案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageSegmentation/section4/" title="实例分割：Mask RCNN" class="md-nav__link">
+      实例分割：Mask RCNN
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1inception" class="md-nav__link">
+    1.Inception 块
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2googlenet" class="md-nav__link">
+    2.GoogLeNet模型
+  </a>
+  
+    <nav class="md-nav" aria-label="2.GoogLeNet模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-b1" class="md-nav__link">
+    2.1 B1模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-b2" class="md-nav__link">
+    2.2 B2模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-b3" class="md-nav__link">
+    2.3 B3模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-b4" class="md-nav__link">
+    2.4 B4模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-b5" class="md-nav__link">
+    2.5 B5模块
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.手写数字识别
+  </a>
+  
+    <nav class="md-nav" aria-label="3.手写数字识别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 数据读取
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 模型编译
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 模型训练
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    2.4 模型评估
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4.延伸版本
+  </a>
+  
+    <nav class="md-nav" aria-label="4.延伸版本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-inceptionv2" class="md-nav__link">
+    4.1 InceptionV2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-inceptionv3" class="md-nav__link">
+    4.2 InceptionV3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="34-googlenet">3.4 GoogLeNet<a class="headerlink" href="#34-googlenet" title="Permanent link">&para;</a></h1>
+<p><strong>学习目标</strong></p>
+<ul>
+<li>知道GoogLeNet网络结构的特点</li>
+<li>能够利用GoogLeNet完成图像分类</li>
+</ul>
+<hr />
+<p><img alt="image-20200810100250755" src="../assets/image-20200810100250755.png" /></p>
+<p>GoogLeNet的名字不是GoogleNet，而是GoogLeNet，这是为了致敬LeNet。GoogLeNet和AlexNet/VGGNet这类依靠加深网络结构的深度的思想不完全一样。GoogLeNet在加深度的同时做了结构上的创新，引入了一个叫做Inception的结构来代替之前的卷积加激活的经典组件。GoogLeNet在ImageNet分类比赛上的Top-5错误率降低到了6.7%。。</p>
+<h2 id="1inception">1.Inception 块<a class="headerlink" href="#1inception" title="Permanent link">&para;</a></h2>
+<p>GoogLeNet中的基础卷积块叫作Inception块，得名于同名电影《盗梦空间》（Inception）。Inception块在结构比较复杂，如下图所示：</p>
+<p><img alt="image-20200810101055766" src="../assets/image-20200810101055766.png" /></p>
+<p>Inception块里有4条并行的线路。前3条线路使用窗口大小分别是<span><span class="MathJax_Preview">1\times 1</span><script type="math/tex">1\times 1</script></span>、<span><span class="MathJax_Preview">3\times 3</span><script type="math/tex">3\times 3</script></span>和<span><span class="MathJax_Preview">5\times 5</span><script type="math/tex">5\times 5</script></span>的卷积层来抽取不同空间尺寸下的信息，其中中间2个线路会对输入先做<span><span class="MathJax_Preview">1\times 1</span><script type="math/tex">1\times 1</script></span>卷积来减少输入通道数，以降低模型复杂度。第4条线路则使用<span><span class="MathJax_Preview">3\times 3</span><script type="math/tex">3\times 3</script></span>最大池化层，后接<span><span class="MathJax_Preview">1\times 1</span><script type="math/tex">1\times 1</script></span>卷积层来改变通道数。4条线路都使用了合适的填充来使输入与输出的高和宽一致。最后我们将每条线路的输出在通道维上连结,并向后进行传输。</p>
+<p><strong><span><span class="MathJax_Preview">1\times 1</span><script type="math/tex">1\times 1</script></span>卷积</strong>：</p>
+<p>它的计算方法和其他卷积核一样，唯一不同的是它的大小是<span><span class="MathJax_Preview">1\times1</span><script type="math/tex">1\times1</script></span>，没有考虑在特征图局部信息之间的关系。</p>
+<p><img alt="image-20200810103657759" src="../assets/image-20200810103657759.png" /></p>
+<p>它的作用主要是：</p>
+<ul>
+<li>
+<p>实现跨通道的交互和信息整合</p>
+</li>
+<li>
+<p>卷积核通道数的降维和升维，减少网络参数</p>
+</li>
+</ul>
+<p>在tf.keras中实现Inception模块，各个卷积层卷积核的个数通过输入参数来控制，如下所示：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 定义Inception模块</span>
+<span class="k">class</span> <span class="nc">Inception</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+    <span class="c1"># 输入参数为各个卷积的卷积核个数</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span><span class="p">,</span> <span class="n">c4</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># 线路1：1 x 1卷积层，激活函数是RELU，padding是same</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p1_1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span>
+            <span class="n">c1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="c1"># 线路2，1 x 1卷积层后接3 x 3卷积层,激活函数是RELU，padding是same</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p2_1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span>
+            <span class="n">c2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p2_2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">c2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span>
+                                           <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span>
+        <span class="c1"># 线路3，1 x 1卷积层后接5 x 5卷积层,激活函数是RELU，padding是same</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p3_1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span>
+            <span class="n">c3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p3_2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">c3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span>
+                                           <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span>
+        <span class="c1"># 线路4，3 x 3最大池化层后接1 x 1卷积层,激活函数是RELU，padding是same</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p4_1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPool2D</span><span class="p">(</span>
+            <span class="n">pool_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p4_2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span>
+            <span class="n">c4</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span>
+    <span class="c1"># 完成前向传播过程</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># 线路1</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p1_1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1"># 线路2</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p2_2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p2_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="c1"># 线路3</span>
+        <span class="n">p3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p3_2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p3_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="c1"># 线路4</span>
+        <span class="n">p4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p4_2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p4_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="c1"># 在通道维上concat输出</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">p4</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">outputs</span>  
+</code></pre></div>
+
+<p>指定通道数，对Inception模块进行实例化：</p>
+<div class="highlight"><pre><span></span><code><span class="n">Inception</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> <span class="mi">32</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="2googlenet">2.GoogLeNet模型<a class="headerlink" href="#2googlenet" title="Permanent link">&para;</a></h2>
+<p>GoogLeNet主要由Inception模块构成，如下图所示：</p>
+<p><img alt="image-20200810110148039" src="../assets/image-20200810110148039.png" /></p>
+<p>整个网络架构我们分为五个模块，每个模块之间使用步幅为2的<span><span class="MathJax_Preview">3\times 3</span><script type="math/tex">3\times 3</script></span>最大池化层来减小输出高宽。</p>
+<p><img alt="image-20200810112516071" src="../assets/image-20200810112516071.png" /></p>
+<h3 id="21-b1">2.1 B1模块<a class="headerlink" href="#21-b1" title="Permanent link">&para;</a></h3>
+<p>第一模块使用一个64通道的<span><span class="MathJax_Preview">7\times 7</span><script type="math/tex">7\times 7</script></span>卷积层。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 定义模型的输入</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+<span class="c1"># b1 模块</span>
+<span class="c1"># 卷积层7*7的卷积核，步长为2，pad是same，激活函数RELU</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="c1"># 最大池化：窗口大小为3*3，步长为2，pad是same</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># b2 模块</span>
+</code></pre></div>
+
+<h3 id="22-b2">2.2 B2模块<a class="headerlink" href="#22-b2" title="Permanent link">&para;</a></h3>
+<p>第二模块使用2个卷积层：首先是64通道的<span><span class="MathJax_Preview">1\times 1</span><script type="math/tex">1\times 1</script></span>卷积层，然后是将通道增大3倍的<span><span class="MathJax_Preview">3\times 3</span><script type="math/tex">3\times 3</script></span>卷积层。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># b2 模块</span>
+<span class="c1"># 卷积层1*1的卷积核，步长为2，pad是same，激活函数RELU</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 卷积层3*3的卷积核，步长为2，pad是same，激活函数RELU</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 最大池化：窗口大小为3*3，步长为2，pad是same</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="23-b3">2.3 B3模块<a class="headerlink" href="#23-b3" title="Permanent link">&para;</a></h3>
+<p>第三模块串联2个完整的Inception块。第一个Inception块的输出通道数为<span><span class="MathJax_Preview">64+128+32+32=256</span><script type="math/tex">64+128+32+32=256</script></span>。第二个Inception块输出通道数增至<span><span class="MathJax_Preview">128+192+96+64=480</span><script type="math/tex">128+192+96+64=480</script></span>。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># b3 模块</span>
+<span class="c1"># Inception</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Inception</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> <span class="mi">32</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># Inception</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Inception</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">192</span><span class="p">),</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span> <span class="mi">64</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 最大池化：窗口大小为3*3，步长为2，pad是same</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="24-b4">2.4 B4模块<a class="headerlink" href="#24-b4" title="Permanent link">&para;</a></h3>
+<p>第四模块更加复杂。它串联了5个Inception块，其输出通道数分别是<span><span class="MathJax_Preview">192+208+48+64=512</span><script type="math/tex">192+208+48+64=512</script></span>、<span><span class="MathJax_Preview">160+224+64+64=512</span><script type="math/tex">160+224+64+64=512</script></span>、<span><span class="MathJax_Preview">128+256+64+64=512</span><script type="math/tex">128+256+64+64=512</script></span>、<span><span class="MathJax_Preview">112+288+64+64=528</span><script type="math/tex">112+288+64+64=528</script></span>和<span><span class="MathJax_Preview">256+320+128+128=832</span><script type="math/tex">256+320+128+128=832</script></span>。并且增加了辅助分类器，根据实验发现网络的中间层具有很强的识别能力，为了利用中间层抽象的特征，在某些中间层中添加含有多层的分类器，如下图所示：</p>
+<p><img alt="image-20200810140935549" src="../assets/image-20200810140935549.png" /></p>
+<p>实现如下所示：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">aux_classifier</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">filter_size</span><span class="p">):</span>
+    <span class="c1">#x:输入数据，filter_size:卷积层卷积核个数，全连接层神经元个数</span>
+    <span class="c1"># 池化层</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">AveragePooling2D</span><span class="p">(</span>
+        <span class="n">pool_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># 1x1 卷积层</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="n">filter_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># 展平</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># 全连接层1</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="n">filter_size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># softmax输出层</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</code></pre></div>
+
+<p>b4模块的实现：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># b4 模块</span>
+<span class="c1"># Inception</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Inception</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">208</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">48</span><span class="p">),</span> <span class="mi">64</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 辅助输出1</span>
+<span class="n">aux_output_1</span> <span class="o">=</span> <span class="n">aux_classifier</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">1024</span><span class="p">])</span>
+<span class="c1"># Inception</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Inception</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">224</span><span class="p">),</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="mi">64</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># Inception</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Inception</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="mi">64</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># Inception</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Inception</span><span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="p">(</span><span class="mi">144</span><span class="p">,</span> <span class="mi">288</span><span class="p">),</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="mi">64</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 辅助输出2</span>
+<span class="n">aux_output_2</span> <span class="o">=</span> <span class="n">aux_classifier</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">1024</span><span class="p">])</span>
+<span class="c1"># Inception</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Inception</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">320</span><span class="p">),</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="mi">128</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 最大池化</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="25-b5">2.5 B5模块<a class="headerlink" href="#25-b5" title="Permanent link">&para;</a></h3>
+<p>第五模块有输出通道数为<span><span class="MathJax_Preview">256+320+128+128=832</span><script type="math/tex">256+320+128+128=832</script></span>和<span><span class="MathJax_Preview">384+384+128+128=1024</span><script type="math/tex">384+384+128+128=1024</script></span>的两个Inception块。后面紧跟输出层，该模块使用全局平均池化层（GAP）来将每个通道的高和宽变成1。最后输出变成二维数组后接输出个数为标签类别数的全连接层。</p>
+<p><strong>全局平均池化层（GAP）</strong></p>
+<p>用来替代全连接层，将特征图每一通道中所有像素值相加后求平均，得到就是GAP的结果，在将其送入后续网络中进行计算</p>
+<p><img alt="image-20200810130708604" src="../assets/image-20200810130708604.png" /></p>
+<p>实现过程是：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># b5 模块</span>
+<span class="c1"># Inception</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Inception</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">320</span><span class="p">),</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="mi">128</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># Inception</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Inception</span><span class="p">(</span><span class="mi">384</span><span class="p">,</span> <span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mi">384</span><span class="p">),</span> <span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="mi">128</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># GAP</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">GlobalAvgPool2D</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 输出层</span>
+<span class="n">main_outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 使用Model来创建模型，指明输入和输出</span>
+</code></pre></div>
+
+<p>构建GoogLeNet模型并通过summary来看下模型的结构：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 使用Model来创建模型，指明输入和输出</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">main_outputs</span><span class="p">,</span><span class="n">aux_output_1</span><span class="err">，</span><span class="n">aux_output_2</span><span class="p">])</span> 
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">Model</span><span class="p">:</span> <span class="s2">&quot;functional_3&quot;</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">Layer</span> <span class="p">(</span><span class="nb">type</span><span class="p">)</span>                 <span class="n">Output</span> <span class="n">Shape</span>              <span class="n">Param</span> <span class="c1">#   </span>
+<span class="o">=================================================================</span>
+<span class="nb">input</span> <span class="p">(</span><span class="n">InputLayer</span><span class="p">)</span>           <span class="p">[(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>     <span class="mi">0</span>         
+<span class="n">_________________________________________________________________</span>
+<span class="n">conv2d_122</span> <span class="p">(</span><span class="n">Conv2D</span><span class="p">)</span>          <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>      <span class="mi">9472</span>      
+<span class="n">_________________________________________________________________</span>
+<span class="n">max_pooling2d_27</span> <span class="p">(</span><span class="n">MaxPooling</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>        <span class="mi">0</span>         
+<span class="n">_________________________________________________________________</span>
+<span class="n">conv2d_123</span> <span class="p">(</span><span class="n">Conv2D</span><span class="p">)</span>          <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>        <span class="mi">4160</span>      
+<span class="n">_________________________________________________________________</span>
+<span class="n">conv2d_124</span> <span class="p">(</span><span class="n">Conv2D</span><span class="p">)</span>          <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">192</span><span class="p">)</span>       <span class="mi">110784</span>    
+<span class="n">_________________________________________________________________</span>
+<span class="n">max_pooling2d_28</span> <span class="p">(</span><span class="n">MaxPooling</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">192</span><span class="p">)</span>       <span class="mi">0</span>         
+<span class="n">_________________________________________________________________</span>
+<span class="n">inception_19</span> <span class="p">(</span><span class="n">Inception</span><span class="p">)</span>     <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>       <span class="mi">163696</span>    
+<span class="n">_________________________________________________________________</span>
+<span class="n">inception_20</span> <span class="p">(</span><span class="n">Inception</span><span class="p">)</span>     <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>       <span class="mi">388736</span>    
+<span class="n">_________________________________________________________________</span>
+<span class="n">max_pooling2d_31</span> <span class="p">(</span><span class="n">MaxPooling</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>       <span class="mi">0</span>         
+<span class="n">_________________________________________________________________</span>
+<span class="n">inception_21</span> <span class="p">(</span><span class="n">Inception</span><span class="p">)</span>     <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>       <span class="mi">376176</span>    
+<span class="n">_________________________________________________________________</span>
+<span class="n">inception_22</span> <span class="p">(</span><span class="n">Inception</span><span class="p">)</span>     <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>       <span class="mi">449160</span>    
+<span class="n">_________________________________________________________________</span>
+<span class="n">inception_23</span> <span class="p">(</span><span class="n">Inception</span><span class="p">)</span>     <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>       <span class="mi">510104</span>    
+<span class="n">_________________________________________________________________</span>
+<span class="n">inception_24</span> <span class="p">(</span><span class="n">Inception</span><span class="p">)</span>     <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">528</span><span class="p">)</span>       <span class="mi">605376</span>    
+<span class="n">_________________________________________________________________</span>
+<span class="n">inception_25</span> <span class="p">(</span><span class="n">Inception</span><span class="p">)</span>     <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">832</span><span class="p">)</span>       <span class="mi">868352</span>    
+<span class="n">_________________________________________________________________</span>
+<span class="n">max_pooling2d_37</span> <span class="p">(</span><span class="n">MaxPooling</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">832</span><span class="p">)</span>         <span class="mi">0</span>         
+<span class="n">_________________________________________________________________</span>
+<span class="n">inception_26</span> <span class="p">(</span><span class="n">Inception</span><span class="p">)</span>     <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">832</span><span class="p">)</span>         <span class="mi">1043456</span>   
+<span class="n">_________________________________________________________________</span>
+<span class="n">inception_27</span> <span class="p">(</span><span class="n">Inception</span><span class="p">)</span>     <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>        <span class="mi">1444080</span>   
+<span class="n">_________________________________________________________________</span>
+<span class="n">global_average_pooling2d_2</span> <span class="p">(</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>              <span class="mi">0</span>         
+<span class="n">_________________________________________________________________</span>
+<span class="n">dense_10</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>             <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>                <span class="mi">10250</span>     
+<span class="o">=================================================================</span>
+<span class="n">Total</span> <span class="n">params</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span><span class="mi">983</span><span class="p">,</span><span class="mi">802</span>
+<span class="n">Trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span><span class="mi">983</span><span class="p">,</span><span class="mi">802</span>
+<span class="n">Non</span><span class="o">-</span><span class="n">trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">___________________________________________________________</span>
+</code></pre></div>
+
+<h2 id="3">3.手写数字识别<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>因为ImageNet数据集较大训练时间较长，我们仍用前面的MNIST数据集来演示GoogLeNet。读取数据的时将图像高和宽扩大到图像高和宽224。这个通过<code>tf.image.resize_with_pad</code>来实现。</p>
+<h3 id="21">2.1 数据读取<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>首先获取数据,并进行维度调整：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1"># 获取手写数字数据集</span>
+<span class="p">(</span><span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">),</span> <span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="c1"># 训练集数据维度的调整：N H W C</span>
+<span class="n">train_images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">train_images</span><span class="p">,(</span><span class="n">train_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">train_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">train_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># 测试集数据维度的调整：N H W C</span>
+<span class="n">test_images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">test_images</span><span class="p">,(</span><span class="n">test_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">test_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">test_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div>
+
+<p>由于使用全部数据训练时间较长，我们定义两个方法获取部分数据，并将图像调整为224*224大小，进行模型训练：(与VGG中是一样的)</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 定义两个方法随机抽取部分样本演示</span>
+<span class="c1"># 获取训练集数据</span>
+<span class="k">def</span> <span class="nf">get_train</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="c1"># 随机生成要抽样的样本的索引</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">train_images</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="p">)</span>
+    <span class="c1"># 将这些数据resize成22*227大小</span>
+    <span class="n">resized_images</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize_with_pad</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="n">index</span><span class="p">],</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">,)</span>
+    <span class="c1"># 返回抽取的</span>
+    <span class="k">return</span> <span class="n">resized_images</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">train_labels</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+<span class="c1"># 获取测试集数据 </span>
+<span class="k">def</span> <span class="nf">get_test</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="c1"># 随机生成要抽样的样本的索引</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">test_images</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="p">)</span>
+    <span class="c1"># 将这些数据resize成224*224大小</span>
+    <span class="n">resized_images</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize_with_pad</span><span class="p">(</span><span class="n">test_images</span><span class="p">[</span><span class="n">index</span><span class="p">],</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">,)</span>
+    <span class="c1"># 返回抽样的测试样本</span>
+    <span class="k">return</span> <span class="n">resized_images</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">test_labels</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</code></pre></div>
+
+<p>调用上述两个方法，获取参与模型训练和测试的数据集：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 获取训练样本和测试样本</span>
+<span class="n">train_images</span><span class="p">,</span><span class="n">train_labels</span> <span class="o">=</span> <span class="n">get_train</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+<span class="n">test_images</span><span class="p">,</span><span class="n">test_labels</span> <span class="o">=</span> <span class="n">get_test</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="32">3.2 模型编译<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 指定优化器，损失函数和评价指标</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="c1"># 模型有3个输出，所以指定损失函数对应的权重系数</span>
+<span class="n">net</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;sparse_categorical_crossentropy&#39;</span><span class="p">,</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span><span class="n">loss_weights</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.3</span><span class="p">])</span>
+</code></pre></div>
+
+<h3 id="33">3.3 模型训练<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 模型训练：指定训练数据，batchsize,epoch,验证集</span>
+<span class="n">net</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_images</span><span class="p">,</span><span class="n">train_labels</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">validation_split</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</code></pre></div>
+
+<p>训练过程：</p>
+<div class="highlight"><pre><span></span><code><span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+<span class="mi">2</span><span class="o">/</span><span class="mi">2</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">8</span><span class="n">s</span> <span class="mi">4</span><span class="n">s</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.9527</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.1174</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">3.3254</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.1154</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span>
+<span class="mi">2</span><span class="o">/</span><span class="mi">2</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">7</span><span class="n">s</span> <span class="mi">4</span><span class="n">s</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.8111</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0957</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">2.2718</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.2308</span>
+<span class="n">Epoch</span> <span class="mi">3</span><span class="o">/</span><span class="mi">3</span>
+<span class="mi">2</span><span class="o">/</span><span class="mi">2</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">7</span><span class="n">s</span> <span class="mi">4</span><span class="n">s</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.3055</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0957</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">2.2669</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.2308</span>
+</code></pre></div>
+
+<h3 id="24">2.4 模型评估<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 指定测试数据</span>
+<span class="n">net</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_images</span><span class="p">,</span><span class="n">test_labels</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<p>输出为：</p>
+<div class="highlight"><pre><span></span><code><span class="mi">4</span><span class="o">/</span><span class="mi">4</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="n">s</span> <span class="mi">338</span><span class="n">ms</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.3110</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.0781</span>
+<span class="p">[</span><span class="mf">2.310971260070801</span><span class="p">,</span> <span class="mf">0.078125</span><span class="p">]</span>
+</code></pre></div>
+
+<h2 id="4">4.延伸版本<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>GoogLeNet是以InceptionV1为基础进行构建的，所以GoogLeNet也叫做InceptionNet,在随后的⼏年⾥，研究⼈员对GoogLeNet进⾏了数次改进， 就又产生了InceptionV2，V3,V4等版本。</p>
+<h3 id="41-inceptionv2">4.1 InceptionV2<a class="headerlink" href="#41-inceptionv2" title="Permanent link">&para;</a></h3>
+<p>在InceptionV2中将大卷积核拆分为小卷积核，将V1中的<span><span class="MathJax_Preview">5\times 5</span><script type="math/tex">5\times 5</script></span>的卷积用两个<span><span class="MathJax_Preview">3\times 3</span><script type="math/tex">3\times 3</script></span>的卷积替代，从而增加网络的深度，减少了参数。</p>
+<p><img alt="image-20200810144356206" src="../assets/image-20200810144356206.png" /></p>
+<h3 id="42-inceptionv3">4.2 InceptionV3<a class="headerlink" href="#42-inceptionv3" title="Permanent link">&para;</a></h3>
+<p>将n×n卷积分割为1×n和n×1两个卷积，例如，一个的<span><span class="MathJax_Preview">3\times3</span><script type="math/tex">3\times3</script></span>卷积首先执行一个<span><span class="MathJax_Preview">1\times3</span><script type="math/tex">1\times3</script></span>的卷积，然后执行一个<span><span class="MathJax_Preview">3\times1</span><script type="math/tex">3\times1</script></span>的卷积,这种方法的参数量和计算量都比原来降低。</p>
+<p><img alt="image-20200810145542314" src="../assets/image-20200810145542314.png" /></p>
+<hr />
+<p><strong>总结</strong></p>
+<ul>
+<li>知道GoogLeNet的网络架构：有基础模块Inception构成</li>
+<li>能够利用GoogleNet完成图像分类</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../section3/" title="VGG" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                VGG
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../section5/" title="ResNet" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                ResNet
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
