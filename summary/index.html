@@ -27,6 +27,20 @@
     <meta charset="utf-8" />
     <title>AI Note</title>
     <link href="../favicon.ico" rel="shortcut icon"/>
+    <script type="text/javascript">
+        
+        cdndomain = "https://cdn.jsdelivr.net/gh/zbmain/note@master/"
+        function goto(filepath){
+            var url = document.location.toString();
+            var arr = url.split("//");
+            url = arr[1].substring(arr[1].indexOf("/"));
+            var arr = url.split("/");
+            url = arr[1].substring(arr[0].indexOf("/"));
+            url = cdndomain + url + filepath
+            //url = url.replace(/^(http|https):\/\/[^/]+/, "");
+            window.location = url
+        }
+    </script>
 </head>
 <body>
     <!--
@@ -62,7 +76,7 @@
                     <span class="comment">虚拟环境安装、jupyter内容介绍；Matplotlib、Numpy、Pandas、Seaborn</span>
                     <ul>
                         <li>
-                            <a href="./ml/机器学习(科学计算库).pdf"><span>机器学习(科学计算库)</span></a>
+                            <a href="javascript:goto('/ml/机器学习(科学计算库).pdf')"><span>机器学习(科学计算库)</span></a>
                             <span class="comment">ml && plt && np && pd && sns</span>
                             <ul>
                                 <li>

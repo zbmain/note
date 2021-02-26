@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html>
 <style type="text/css">
-	ul li{
-		margin: 10px 0;
-		color: gray;
-		font-size: 18px;
-	}
-	a{
-		text-decoration: none;
-	}
-	.comment{
-        font-size: 15px;
-        padding-left: 20px;
-        opacity: 0.5;
-    }
+ul li{
+	margin: 10px 0;
+	color: gray;
+	font-size: 18px;
+}
+a{
+	text-decoration: none;
+}
+.comment{
+	font-size: 15px;
+	padding-left: 20px;
+	opacity: 0.5;
+}
 </style>
 <head>
 	<meta charset="utf-8" />
 	<title>ZNote</title>
 	<link href="./favicon.ico" rel="shortcut icon"/>
+	<script type="text/javascript">
+
+		cdndomain = "https://cdn.jsdelivr.net/gh/zbmain/note@master/"
+		function goto(filepath){
+			var url = document.location.toString();
+			var arr = url.split("//");
+			url = arr[1].substring(arr[1].indexOf("/"));
+			var arr = url.split("/");
+			url = arr[1].substring(arr[0].indexOf("/"));
+			url = cdndomain + url + filepath
+			//url = url.replace(/^(http|https):\/\/[^/]+/, "");
+			window.location = url
+		}
+	</script>
 </head>
 <body>
 	<!--
