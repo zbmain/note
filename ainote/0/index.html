@@ -1,13 +1,331 @@
 <!DOCTYPE html>
 <html>
+<style type="text/css">
+    ul li{
+        margin: 1.5px 0;
+        color: dimgray;
+        font-size: 15px;
+    }
+    a{
+        text-decoration: none;
+    }
+    .new{
+        color: red;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .comment{
+        font-size: 15px;
+        padding-left: 10px;
+        opacity: 0.6;
+    }
+    .comment:hover{
+        color: red;
+        cursor: default;
+        opacity: 1;
+    }
+</style>
+<script type="text/javascript">
+    document.onkeydown = keyDownHandler;
+    var state = '';//初始状态
+    function keyDownHandler(evt){
+        evt = evt ? evt : window.event;
+        if(evt.keyCode == 90) state = state == 'none' ? '':'none';
+        initState()
+    }
+    function initState(){
+        var obj = document.getElementsByTagName("body")[0].getElementsByTagName("*");
+        for(var i = 0;i < obj.length; i++){
+            if(obj[i].id == '#'){
+                obj[i].style.display = state;
+            }
+        }
+    }
+    //javascript:goto('/')
+    cdndomain = "https://cdn.jsdelivr.net/gh/zbmain/note@master/"
+        function goto(filepath){
+            var url = document.location.toString();
+            var arr = url.split("//");
+            url = arr[1].substring(arr[1].indexOf("/"));
+            var arr = url.split("/");
+            url = arr[1].substring(arr[0].indexOf("/"));
+            url = cdndomain + url + filepath
+            //url = url.replace(/^(http|https):\/\/[^/]+/, "");
+            window.location = url
+        }
+</script>
 <head>
     <meta charset="utf-8" />
-    <title>AI Note</title>
+    <title>AI Note2</title>
     <link href="../favicon.ico" rel="shortcut icon"/>
-    <script type="text/javascript">
-        window.location.href='../0.html';
-    </script>
 </head>
-<body>
+<body onload="{initState()}">
+    <!--
+        <li>
+            <a href="./"><span></span></a>
+            <span class="comment"></span>
+        </li>
+        <li><span></span>
+            <ul>
+                <li>
+                    <a href="./index.html"><span>name</span></a>
+                    <span class="comment">comment</span>
+                </li>
+            </ul>
+        </li>
+    -->
+    <ul>
+        <!-- -->
+        <li>
+            <a href="./basic/index.html"><span>Python基础</span></a>
+            <span class="comment">Var & Type & Function & 递归 & 匿名函数 & 列表推导式 & File</span>
+        </li>
+        <!-- -->
+        <li>
+            <a href="./oop/index.html"><span>Python面向对象</span></a>
+            <span class="comment">Class & OOP & try</span>
+        </li>
+        <!-- -->
+        <li>
+            <a href="./linux/index.html"><span>Linux</span></a>
+            <span class="comment">Linux & 进程&线程 & TCP & HTTP & 装饰器 & 正则</span>
+        </li>
+        <!-- -->
+        <li>
+            <a href="./mysql/index.html"><span>数据库</span></a>
+            <span class="comment">MySQL</span>
+        </li>
+        <!-- -->
+        <li>
+            <a href="./data/index.html"><span>数据结构与算法</span></a>
+            <span class="comment">算法 & 顺序表 & 链表 & 栈 & 队列 & 排序搜索 & 树与搜索</span>
+        </li>
+        <li><span>机器学习</span>
+            <ul>
+                <li>
+                    <a href="./machineleaning/科学计算库1/index.html"><span>科学计算库1</span></a>
+                    <span class="comment">Matplotlib & Numpy & Pandas</span>
+                </li>
+                <li>
+                    <a href="./machineleaning/科学计算库2/index.html"><span>科学计算库2</span></a>
+                    <span class="comment">Seaborn</span>
+                </li>
+                <li>
+                    <a href="./machineleaning/算法1/index.html"><span>算法1</span></a>
+                    <span class="comment">KNN & 线性回归 & 逻辑回归 & 决策树 & 集成学习(Bagging&随机森林&Boosting&GBDT) & 聚类</span>
+                </li>
+                <li>
+                    <a href="./machineleaning/算法2/index.html"><span>算法2</span></a>
+                    <span class="comment">朴素贝叶斯 & SVM & EM HMM & xgboost & lightGBM</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="./opencv/index.html"><span>CV</span></a>
+            <span class="comment"></span>
+            <ul>
+                <li><a href="./deeplearning/notes/noteopencv.html"><span>重点笔记</span></a></li>
+            </ul>
+        </li>
+        <ul>
+            <li><a href="./deeplearning/index.html"><span>OpenCV DL（旧版）</span></a>
+                <span class="comment"></span>
+                <ul>
+                    <li><a href="./deeplearning/notes/notedl.html"><span>重点笔记</span></a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+        <li>
+            <a href="./dlnew/index.html"><span>OpenCV DL（新版）</span></a>
+            <span class="comment"></span>
+            <ul>
+                <li><span>知识总结</span>
+                    <ul>
+                        <li>
+                            <a href="javascript:goto('/dlnew/notes/课程总结/01.tensorFlow.pdf')"><span>tensorFlow</span></a>
+                            <span class="comment"></span>
+                        </li>
+                        <li>
+                            <a href="javascript:goto('/dlnew/notes/课程总结/02.深度学习.pdf')"><span>深度学习</span></a>
+                            <span class="comment"></span>
+                        </li>
+                        <li>
+                            <a href="javascript:goto('/dlnew/notes/课程总结/03.图像分类.pdf')"><span>图像分类</span></a>
+                            <span class="comment"></span>
+                        </li>
+                        <li>
+                            <a href="javascript:goto('/dlnew/notes/课程总结/04.目标检测.pdf')"><span>目标检测</span></a>
+                            <span class="comment"></span>
+                        </li>
+                        <li>
+                            <a href="javascript:goto('/dlnew/notes/课程总结/05.图像分割.pdf')"><span>图像分割</span></a>
+                            <span class="comment"></span>
+                        </li>
+                        <li>
+                            <a href="javascript:goto('/dlnew/notes/课程总结/06.图像处理.pdf')"><span>图像处理</span></a>
+                            <span class="comment"></span>
+                        </li>
+                        <li>
+                            <a href="javascript:goto('/dlnew/notes/课程总结/07.特征提取与描述.pdf')"><span>特征提取与描述</span></a>
+                            <span class="comment"></span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <li>
+                <a href="http://52.83.69.131:10006/"><span>深度学习与CV</span></a>
+                <span class="comment">tensorflow & 神经网络 & 分类 & 检测 & 分割</span>
+            </li>
+            
+            <li>CV项目<span class="comment">CV篇待续</span>
+                <ul>
+                    <li>
+                <a href="http://52.83.69.131:8077"><span>CV案例集</span></a>
+                <span class="comment">(WIP)</span>
+            </li>
+                    <li>
+                        <a href="./index.html"><span>人脸识别</span></a>
+                        <span class="comment">(WIP)</span>
+                    </li>
+                    <li>
+                        <a href="./index.html"><span>口罩检测</span></a>
+                        <span class="comment">(WIP)</span>
+                    </li>
+                    <li>
+                        <a href="./index.html"><span>智慧交通</span></a>
+                        <span class="comment">(WIP)</span>
+                    </li>
+                </ul>
+            </li>
+
+        </li>
+        </ul>
+            <li><span>NLP</span>
+                <ul>
+                    <li>
+                        <a href="http://52.83.69.131:8020/"><span>Pytorch</span></a>
+                        <span class="comment">pytorch & CIFAR10图像分类</span>
+                    </li>
+                    <li>
+                        <a href="http://52.83.69.131:8005/"><span>NLP入门</span></a>
+                        <span class="comment">自然语言处理入门 & 云服务器使用入门</span>
+                    </li>
+                    <li>
+                        <a href="http://52.83.69.131:8003/"><span>文本预处理</span></a>
+                        <span class="comment">文本预处理(one-hot & word2vec & word embedding) & 新闻主题分类Embedding</span>
+                    </li>
+                    <li>
+                        <a href="http://52.83.69.131:8004/"><span>经典的序列模型</span></a>
+                        <span class="comment">HMM隐马尔科夫模型 vs CRF条件随机场</span>
+                    </li>
+                    <li>
+                        <a href="http://52.83.69.131:8002/"><span>RNN循环神经网络</span></a>
+                        <span class="comment">RNN & LSTM & GRU & Attention & 人名分类器</span>
+                    </li>
+                    
+                    <li>
+                        <a href="http://52.83.69.131:8001/"><span>Transformer</span></a>
+                        <span class="comment">Transformer(介绍 & 解析 & 案例)</span>
+                    </li>
+                    <li>
+                        <a href="http://52.83.69.131:8007/"><span>迁移学习</span></a>
+                        <span class="comment">fastText文本分类 & GLUE数据集 & 迁移学习(BERT & ALBERT & DistilBERT & RoBERTa & GPT & GPT-2 & Transformer-XL & XLNet)</span>
+                    </li>
+                    <li>
+                        <a href="http://52.83.69.131:8022/"><span>模型架构对比分析</span></a>
+                        <span class="comment">BERT & Transformer & ELMo & GPT</span>
+                    </li>
+                    <li>
+                        <a href="http://52.83.69.131:8008/"><span>NLP案例集</span></a>
+                        <span class="comment">图片描述生成 & 语义情感分析 & 文本生成 & seq2seq机器翻译 & BERT动态量化(模型优化系列章节) & ResNet的GPU并行</span>
+                    </li>
+                    <li><span class="new">「新」</span>
+                        <a href="http://52.83.69.131:8300/"><span>模型优化系列</span></a>
+                        <span class="comment">量化 & 微调 & 剪枝 & <span style="color: red  ;">蒸馏</span></span>
+                    </li>
+                    <li>NLP项目
+                        <ul>
+                            <li>
+                                <a href="http://52.83.69.131:8666/"><span>AI医生</span></a>
+                                <span class="comment">NER & neo4j & NER & 主题相关 ...</span>
+                            </li>
+                            <li>
+                                <a href="http://52.83.69.131:8123/1"><span>传智大脑</span></a>
+                                <span class="comment">网咨系统 & 批阅系统 ...</span>
+                            </li>
+                            <li>
+                                <a href="http://52.83.69.131:8024/"><span>RNN周杰伦歌词</span></a>
+                                <span class="comment">RNN & GRU文本生成</span>
+                            </li>
+                            <li><span class="new">「新」</span>
+                                <a href="http://52.83.69.131:8000/"><span>智能文本分类</span></a>
+                                <span class="comment">tensorflow & fasttext & [图谱neo4j & django & docker] ...</span>
+                            </li>
+                            <li id="#"><span class="new">「新」</span>
+                                <a href="http://52.83.69.131:8888/"><span>文本摘要</span></a>
+                                <span class="comment">简介 & textRank算法 & seq2seq|PGN架构 & ROUGE评估 & 优化蒸馏 & 部署</span>
+                            </li>
+                            <!-- <li>
+                                <a href="http://52.83.69.131:8876/"><span>泛娱乐推荐系统</span></a>
+                                <span class="comment">概述 & neo4j & Redis & tensorflow & gcp ML-engine</span>
+                            </li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </li>
+        <li>
+            <a href="http://52.83.69.131:8884/"><span>面试 & 工作</span></a>
+            <span class="comment">【 CV|NLP项目 & Neo4j知识图谱 & 工程化 】<span style="color: red;">工程师需知</span></span>
+            <ul>
+                <li>
+                    <a href="javascript:goto('/interview/HR面试问题.pdf')"><span>HR</span></a>
+                    <span class="comment">人事面试问题</span>
+                </li>
+                <li>
+                    <a href="javascript:goto('/interview/Py面试问题.pdf')"><span>Py&ensp;</span></a>
+                    <span class="comment">Python面试问题</span>
+                </li>
+                <li>
+                    <a href="javascript:goto('/interview/ML面试问题.pdf')"><span>ML</span></a>
+                    <span class="comment">机器学习面试问题</span>
+                </li>
+                <li>NLP
+                    <ul>
+                        <li id="#"><span class="new">「新」</span>
+                            <a href="http://52.83.69.131:8989/"><span>NLP问题集</span></a>
+                            <span class="comment">训练过程 & 推荐系统 & 各种优化手段 & 调优 & 热更新 & 读论文</span>
+                        </li>
+                        <li>
+                            <a href="http://52.83.69.131:8234/2/"><span>NLP精选题</span></a>
+                            <span class="comment">常见算法题 & ModelArchitectures & 整体优化思路</span>
+                        </li>
+                        <li>
+                            <a href="http://52.83.69.131:8333/"><span>NLP常见题</span></a>
+                            <span class="comment">Pytouch & 文本预处理 & RNN & Transformer & 迁移学习 & 智能文本分类 & AI医生</span>
+                        </li>
+                        <li>
+                            <a href="javascript:goto('/interview/NLP面试问题.pdf')"><span>NLP综合题</span></a>
+                            <span class="comment">项⽬软知识 & 模型数据问题 & 模型对⽐问题 & 模型优化问题</span>
+                        </li>
+                        <li>
+                            <a href="http://52.83.69.131:8567/2/"><span>真实综合题</span></a>
+                            <span class="comment">常见项目问题 & 常见面试问题</span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li id="#"><span>解决方案</span>
+            <ul>
+                <li><span class="new">「新」</span>
+                    <a href="http://52.83.69.131:8011/"><span>解决方案</span></a>
+                    <span class="comment">网易严选 & 华泰金融舆情 & 人体动作识别 & 股票推荐产品 & AI音乐库 & 扇贝深度知识追踪 & 淘宝多模态AI算法</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <br>
 </body>
 </html>
