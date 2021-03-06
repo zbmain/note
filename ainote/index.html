@@ -9,6 +9,9 @@
     a{
         text-decoration: none;
     }
+    .hiddend{
+        display: none;
+    }
     .new{
         color: red;
         font-size: 15px;
@@ -33,7 +36,7 @@
         if(evt.keyCode == 90) state = state == 'none' ? '':'none';
         initState()
     }
-    function initState(){
+    function initState(v=0){
         var obj = document.getElementsByTagName("body")[0].getElementsByTagName("*");
         for(var i = 0;i < obj.length; i++){
             if(obj[i].id == '#'){
@@ -99,6 +102,7 @@
             <a href="./data/index.html"><span>数据结构与算法</span></a>
             <span class="comment">算法 & 顺序表 & 链表 & 栈 & 队列 & 排序搜索 & 树与搜索</span>
         </li>
+        <hr>
         <li><span>机器学习</span>
             <ul>
                 <li>
@@ -140,37 +144,34 @@
             <a href="./dlnew/index.html"><span>OpenCV DL（新版）</span></a>
             <span class="comment"></span>
             <ul>
-                <li><span>知识总结</span>
-                    <ul>
-                        <li>
-                            <a href="javascript:goto('/dlnew/notes/课程总结/01.tensorFlow.pdf')"><span>tensorFlow</span></a>
-                            <span class="comment"></span>
-                        </li>
-                        <li>
-                            <a href="javascript:goto('/dlnew/notes/课程总结/02.深度学习.pdf')"><span>深度学习</span></a>
-                            <span class="comment"></span>
-                        </li>
-                        <li>
-                            <a href="javascript:goto('/dlnew/notes/课程总结/03.图像分类.pdf')"><span>图像分类</span></a>
-                            <span class="comment"></span>
-                        </li>
-                        <li>
-                            <a href="javascript:goto('/dlnew/notes/课程总结/04.目标检测.pdf')"><span>目标检测</span></a>
-                            <span class="comment"></span>
-                        </li>
-                        <li>
-                            <a href="javascript:goto('/dlnew/notes/课程总结/05.图像分割.pdf')"><span>图像分割</span></a>
-                            <span class="comment"></span>
-                        </li>
-                        <li>
-                            <a href="javascript:goto('/dlnew/notes/课程总结/06.图像处理.pdf')"><span>图像处理</span></a>
-                            <span class="comment"></span>
-                        </li>
-                        <li>
-                            <a href="javascript:goto('/dlnew/notes/课程总结/07.特征提取与描述.pdf')"><span>特征提取与描述</span></a>
-                            <span class="comment"></span>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="javascript:goto('/dlnew/notes/课程总结/01.tensorFlow.pdf')"><span>tensorFlow</span></a>
+                    <span class="comment"></span>
+                </li>
+                <li>
+                    <a href="javascript:goto('/dlnew/notes/课程总结/02.深度学习.pdf')"><span>深度学习</span></a>
+                    <span class="comment"></span>
+                </li>
+                <li>
+                    <a href="javascript:goto('/dlnew/notes/课程总结/03.图像分类.pdf')"><span>图像分类</span></a>
+                    <span class="comment"></span>
+                </li>
+                <li>
+                    <a href="javascript:goto('/dlnew/notes/课程总结/04.目标检测.pdf')"><span>目标检测</span></a>
+                    <span class="comment"></span>
+                </li>
+                <li>
+                    <a href="javascript:goto('/dlnew/notes/课程总结/05.图像分割.pdf')"><span>图像分割</span></a>
+                    <span class="comment"></span>
+                </li>
+                <li>
+                    <a href="javascript:goto('/dlnew/notes/课程总结/06.图像处理.pdf')"><span>图像处理</span></a>
+                    <span class="comment"></span>
+                </li>
+                <li>
+                    <a href="javascript:goto('/dlnew/notes/课程总结/07.特征提取与描述.pdf')"><span>特征提取与描述</span></a>
+                    <span class="comment"></span>
+                </li>
                 </li>
             </ul>
             <li>
@@ -178,12 +179,12 @@
                 <span class="comment">tensorflow & 神经网络 & 分类 & 检测 & 分割</span>
             </li>
             
-            <li>CV项目<span class="comment">CV篇待续</span>
+            <li class="hiddend">CV项目<span class="comment">CV篇待续</span>
                 <ul>
                     <li>
-                <a href="http://52.83.69.131:8077"><span>CV案例集</span></a>
-                <span class="comment">(WIP)</span>
-            </li>
+                        <a href="http://52.83.69.131:8077"><span>CV案例集</span></a>
+                        <span class="comment">(WIP)</span>
+                    </li>
                     <li>
                         <a href="./index.html"><span>人脸识别</span></a>
                         <span class="comment">(WIP)</span>
