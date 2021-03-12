@@ -38,12 +38,13 @@
     }
 </style>
 <script type="text/javascript">
+    var num = 0
     var state = getParamKey('z') == undefined ? 'none':'';//初始状态
     //隐藏功能
     document.onkeydown = keyDownHandler;
     function keyDownHandler(evt){
         evt = evt ? evt : window.event;
-        if(evt.keyCode == 90) otherUpdateState();
+        if(evt.keyCode == 90) otherUpdateState(2);
     }
     //改状态
     function initState(){
@@ -57,8 +58,9 @@
         }
     }
     //切换
-    function otherUpdateState(){
-        state = state == 'none' ? '':'none';
+    function otherUpdateState(v=1){
+        num += v
+        state = (num > 1 && state == 'none') ? '':'none';
         initState();
     }
     //获取参数
@@ -72,7 +74,7 @@
             }
         }
     }
-    //javascript:goto('/')
+    //github CDN链接文件：javascript:goto('/')
     cdndomain = "https://cdn.jsdelivr.net/gh/zbmain/note@master/"
     function goto(filepath){
         var url = document.location.toString();
@@ -295,7 +297,7 @@
                                 <span class="comment">tensorflow & fasttext & [图谱neo4j & django & docker]</span>
                             </li>
                             <li id="#"><span class="new">「新」</span>
-                                <a href="http://52.83.69.131:8888/"><span>文本摘要</span></a>
+                                <a href="http://52.83.69.131:8888/"><span>文本摘要生成</span></a>
                                 <span class="comment">简介 & textRank算法 & seq2seq|PGN架构 & ROUGE评估 & 优化蒸馏 & 部署</span>
                             </li>
                             <!-- <li>
@@ -351,8 +353,12 @@
             </ul>
         </li>
         <hr>
-        <li id="#"><span>解决方案</span>
+        <li id="#"><span>其他</span>
             <ul>
+                <li><span class="new">「新」</span>
+                    <a href="http://www.tisv.cn/"><span>ZMZ</span></a>
+                    <span class="comment">周明震教程分享</span>
+                </li>
                 <li><span class="new">「新」</span>
                     <a href="http://52.83.69.131:8011/"><span>解决方案</span></a>
                     <span class="comment">网易严选 & 华泰金融舆情 & 人体动作识别 & 股票推荐产品 & AI音乐库 & 扇贝深度知识追踪 & 淘宝多模态AI算法</span>
