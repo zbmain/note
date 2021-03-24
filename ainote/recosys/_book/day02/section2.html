@@ -1,0 +1,788 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>泛娱乐特征工程与模型代码构建 | 泛娱乐推荐系统项目课程定位、目标</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../day02/section3.html" />
+    
+    
+    <link rel="prev" href="../day02/section1.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3.2"
+        data-chapter-title="泛娱乐特征工程与模型代码构建"
+        data-filepath="day02/section2.md"
+        data-basepath=".."
+        data-revision="Sun Sep 08 2019 21:30:18 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        泛娱乐推荐系统项目
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="reco/index.html">
+            
+                
+                    <a href="../reco/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        泛娱乐推荐介绍
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="reco/section1.html">
+            
+                
+                    <a href="../reco/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        产品概述
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="reco/section2.html">
+            
+                
+                    <a href="../reco/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        推荐系统流程概述
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="reco/section3.html">
+            
+                
+                    <a href="../reco/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        开发环境介绍
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="day01/index.html">
+            
+                
+                    <a href="../day01/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        召回模块
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="day01/section1.html">
+            
+                
+                    <a href="../day01/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Web接口业务介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="day01/section2.html">
+            
+                
+                    <a href="../day01/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        构建双画像
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="day01/section3.html">
+            
+                
+                    <a href="../day01/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        多召回策略
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="day01/section4.html">
+            
+                
+                    <a href="../day01/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        召回金字塔
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="day01/section5.html">
+            
+                
+                    <a href="../day01/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        规则过滤器
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="day01/section6.html">
+            
+                
+                    <a href="../day01/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        用户推荐逻辑完善
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="day02/index.html">
+            
+                
+                    <a href="../day02/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        排序模块
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="day02/section1.html">
+            
+                
+                    <a href="../day02/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        模型选择与原理讲解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.2" data-path="day02/section2.html">
+            
+                
+                    <a href="../day02/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        泛娱乐特征工程与模型代码构建
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="day02/section3.html">
+            
+                
+                    <a href="../day02/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        GCP模型训练与超参数调优
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="day02/section4.html">
+            
+                
+                    <a href="../day02/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        GCP模型预测与部署
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >泛娱乐推荐系统项目课程定位、目标</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="32-&#x6CDB;&#x5A31;&#x4E50;&#x7279;&#x5F81;&#x5DE5;&#x7A0B;&#x4E0E;&#x6A21;&#x578B;&#x4EE3;&#x7801;&#x6784;&#x5EFA;">3.2 &#x6CDB;&#x5A31;&#x4E50;&#x7279;&#x5F81;&#x5DE5;&#x7A0B;&#x4E0E;&#x6A21;&#x578B;&#x4EE3;&#x7801;&#x6784;&#x5EFA;</h1>
+<h2 id="&#x5B66;&#x4E60;&#x76EE;&#x6807;">&#x5B66;&#x4E60;&#x76EE;&#x6807;</h2>
+<ul>
+<li>&#x76EE;&#x6807;<ul>
+<li>&#x8BF4;&#x660E;&#x6CDB;&#x5A31;&#x4E50;&#x63A8;&#x8350;&#x7CFB;&#x7EDF;&#x7684;&#x7279;&#x5F81;&#x5DE5;&#x7A0B;&#x8FC7;&#x7A0B;</li>
+</ul>
+</li>
+<li>&#x5E94;&#x7528;<ul>
+<li>&#x5E94;&#x7528;&#x5B8C;&#x6210;&#x6CDB;&#x5A31;&#x4E50;&#x63A8;&#x8350;&#x7CFB;&#x7EDF;Wide&amp;Deep&#x6A21;&#x578B;&#x7684;&#x6784;&#x5EFA;</li>
+</ul>
+</li>
+</ul>
+<h3 id="321-&#x7279;&#x5F81;&#x5DE5;&#x7A0B;">3.2.1 &#x7279;&#x5F81;&#x5DE5;&#x7A0B;</h3>
+<h4 id="3211-&#x5B9A;&#x4E49;&#x6B63;&#x8D1F;&#x6837;&#x672C;">3.2.1.1 &#x5B9A;&#x4E49;&#x6B63;&#x8D1F;&#x6837;&#x672C;</h4>
+<ul>
+<li>&#x6839;&#x636E;&#x6A21;&#x578B;&#x6700;&#x7EC8;&#x7684;&#x9884;&#x6D4B;&#x8981;&#x6C42;&#xFF1A;&#x4F7F;&#x7528;&#x6237;&#x4EA7;&#x751F;&#x66F4;&#x591A;&#x7684;&#x4EA4;&#x4E92;&#x884C;&#x4E3A;, &#x6765;&#x5B9A;&#x4E49;&#x6B63;&#x8D1F;&#x6837;&#x672C;<ul>
+<li>&#x6B63;&#x6837;&#x672C;&#x5B9A;&#x4E49;: &#x82E5;&#x7528;&#x6237;A&#x5BF9;&#x5E16;&#x5B50;B&#x4EA7;&#x751F;&#x4EA4;&#x4E92;&#x884C;&#x4E3A;, &#x5219;A&#x7684;&#x6240;&#x6709;&#x7279;&#x5F81;&#x548C;B&#x7684;&#x6240;&#x6709;&#x7279;&#x5F81;&#x8FDE;&#x63A5;&#x7EC4;&#x6210;&#x7684;&#x5411;&#x91CF;&#x4F5C;&#x4E3A;&#x6B63;&#x6837;&#x672C;&#x7279;&#x5F81;, 1&#x4F5C;&#x4E3A;&#x6B63;&#x6837;&#x672C;&#x7684;&#x6807;&#x7B7E;.</li>
+<li>&#x8D1F;&#x6837;&#x672C;&#x5B9A;&#x4E49;: &#x82E5;&#x7528;&#x6237;A&#x5BF9;&#x5E16;&#x5B50;B&#x4EA7;&#x751F;&#x8D1F;&#x5411;&#x884C;&#x4E3A;(&#x4E3E;&#x62A5;/&#x4E0D;&#x611F;&#x5174;&#x8DA3;)&#x6216;&#x7528;&#x6237;A&#x672A;&#x5BF9;&#x5DF2;&#x63A8;&#x8350;&#x7684;&#x5E16;&#x5B50;B&#x4EA7;&#x751F;&#x4EFB;&#x4F55;&#x884C;&#x4E3A;, &#x5219;A&#x7684;&#x6240;&#x6709;&#x7279;&#x5F81;&#x548C;B&#x7684;&#x6240;&#x6709;&#x7279;&#x5F81;&#x8FDE;&#x63A5;&#x7EC4;&#x6210;&#x7684;&#x5411;&#x91CF;&#x4F5C;&#x4E3A;&#x8D1F;&#x6837;&#x672C;&#x7279;&#x5F81;, 0&#x4F5C;&#x4E3A;&#x8D1F;&#x6837;&#x672C;&#x7684;&#x6807;&#x7B7E;.</li>
+<li>&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x7684;&#x6A21;&#x578B;&#x6700;&#x7EC8;&#x4F7F;&#x7528;ACC&#x4F5C;&#x4E3A;&#x8BC4;&#x4F30;&#x6807;&#x51C6;, &#x6211;&#x4EEC;&#x4E5F;&#x9700;&#x8981;&#x628A;&#x6B63;&#x8D1F;&#x6837;&#x672C;&#x7684;&#x6BD4;&#x4F8B;&#x5E94;&#x7EF4;&#x6301;&#x5728;1:1&#x5DE6;&#x53F3;, &#x5B9E;&#x9645;&#x60C5;&#x51B5;&#x4E2D;, &#x7528;&#x6237;&#x4E3B;&#x52A8;&#x6807;&#x8BB0;&#x4E3E;&#x62A5;/&#x4E0D;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x60C5;&#x51B5;&#x975E;&#x5E38;&#x5C11;, &#x4E3A;&#x4E86;&#x8865;&#x5145;&#x8D1F;&#x6837;&#x672C;&#x6570;&#x91CF;, &#x9700;&#x8981;&#x5C06;&#x6BCF;&#x6B21;&#x63A8;&#x8350;&#x7ED9;&#x7528;&#x6237;&#x4F46;&#x672A;&#x4EA7;&#x751F;&#x4EA4;&#x4E92;&#x884C;&#x4E3A;&#x7684;&#x6570;&#x636E;&#x5B9A;&#x4E49;&#x4E3A;&#x8D1F;&#x6837;&#x672C;</li>
+</ul>
+</li>
+</ul>
+<h4 id="3212-&#x83B7;&#x53D6;&#x521D;&#x59CB;&#x8BAD;&#x7EC3;&#x96C6;">3.2.1.2 &#x83B7;&#x53D6;&#x521D;&#x59CB;&#x8BAD;&#x7EC3;&#x96C6;</h4>
+<ul>
+<li>&#x9009;&#x53D6;&#x6700;&#x65B0;&#x4EA7;&#x751F;&#x7684;200&#x4E07;&#x6761;&#x6837;&#x672C;, &#x6837;&#x672C;&#x603B;&#x6570;&#x7684;&#x9009;&#x62E9;&#x4F9D;&#x636E;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x603B;&#x91CF;&#xFF0C;&#x800C;&#x4E14;&#x9700;&#x8981;&#x517C;&#x987E;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x65F6;&#x95F4;&#x548C;&#x6A21;&#x578B;&#x6548;&#x679C;&#xFF0C;&#x6709;&#x5173;&#x5B9E;&#x9A8C;&#x8868;&#x660E;, &#x5728;&#x6570;&#x636E;&#x96C6;&#x5B58;&#x5728;&#x566A;&#x97F3;&#x7684;&#x60C5;&#x51B5;&#x4E0B;, &#x6837;&#x672C;&#x603B;&#x6570;&#x5E94;&#x8BE5;&#x662F;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x91CF;&#x7684;10&#x500D;&#x5DE6;&#x53F3;&#xFF0C;&#x5C06;&#x5F97;&#x5230;&#x5177;&#x5907;&#x62DF;&#x5408;&#x80FD;&#x529B;&#x4E0E;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x8F83;&#x5F3A;&#x7684;&#x6A21;&#x578B;&#x3002;</li>
+<li>&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x6837;&#x5F0F;:</li>
+</ul>
+<pre><code>android,23,4,32,43,32,2,54,1502378738,2,4,6,33,421,22,43,12,0,0,0
+ios,47,4,16,28,32,43,56,1502408488,22,33,12,2,1,23,4,47,0,0,1
+android,22,4,16,7,0,0,7,1502362845,2,34,62,2,32,221,32,4,0,0,0
+android,23,21,122,223,33,23,42,1502367552,77,11,2,3,87,1,20,6,2,0,0
+android,76,432,876,23,2,23,56,1502430914,2,32,1,23,54,66,33,212,199,0,1
+</code></pre><ul>
+<li>&#x6BCF;&#x4E00;&#x5217;&#x5206;&#x522B;&#x4EE3;&#x8868;: &#x8BBE;&#x5907;&#x7CFB;&#x7EDF;&#x7C7B;&#x578B;&#x3001;&#x7528;&#x6237;&#x7684;&#x8F6C;&#x53D1;&#x6570;&#x3001;&#x8BC4;&#x8BBA;&#x6570;&#x3001;&#x70B9;&#x8D5E;&#x6570;&#x3001;&#x53D1;&#x5E03;&#x5E16;&#x5B50;&#x6570;&#x3001;&#x5E16;&#x5B50;&#x88AB;&#x70B9;&#x8D5E;&#x6570;&#x3001;&#x88AB;&#x8F6C;&#x53D1;&#x6570;&#x3001;&#x88AB;&#x8BC4;&#x8BBA;&#x6570;&#x3001;&#x5E16;&#x5B50;&#x53D1;&#x5E03;&#x65F6;&#x95F4;&#x6233;&#x3001;&#x7528;&#x6237;&#x5173;&#x6CE8;&#x7B2C;&#x4E00;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E8C;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E09;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x56DB;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E94;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x8D34;&#x5B50;&#x6D89;&#x53CA;&#x7B2C;&#x4E00;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E8C;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E09;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x56DB;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E94;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x76EE;&#x6807;&#x6807;&#x7B7E;</li>
+<li>wide-deep&#x6A21;&#x578B;&#x53C2;&#x6570;&#x91CF;&#x7684;&#x8BA1;&#x7B97;&#x6CD5;&#x5206;&#x4E3A;&#x4E24;&#x90E8;&#x5206;: <ul>
+<li>wide&#x6A21;&#x578B;&#x4FA7;&#xFF1A;&#x5BF9;&#x5E94;&#x7684;&#x7A00;&#x758F;&#x7279;&#x5F81;&#x6269;&#x5C55;&#x4E4B;&#x540E;&#x7684;&#x7EF4;&#x5EA6;&#xFF0C;&#x6CDB;&#x5A31;&#x4E50;&#x7684;&#x7279;&#x5F81;&#x5927;&#x6982;&#x5728;5&#x4E07;&#x7EF4;&#x5DE6;&#x53F3;, &#x5176;&#x4E2D;&#x5305;&#x62EC;&#x539F;&#x59CB;&#x7A00;&#x758F;&#x7279;&#x5F81;, hash&#x5206;&#x6876;&#x7684;&#x8FDE;&#x7EED;&#x7279;&#x5F81;, &#x4EE5;&#x53CA;&#x7EC4;&#x5408;&#x7279;&#x5F81; </li>
+<li>deep&#x6A21;&#x578B;&#x4FA7;,&#xFF1A;&#x6709;&#x5927;&#x6982;1000&#x7EF4;&#x7684;&#x7279;&#x5F81;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#xFF0C;&#x53C2;&#x6570;&#x603B;&#x91CF;&#x5927;&#x81F4;11&#x4E07;&#x5DE6;&#x53F3;.</li>
+<li>&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x7684;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x603B;&#x91CF;&#x4E3A;&#xFF1A;16&#x4E07;, &#x56E0;&#x6B64;&#x6837;&#x672C;&#x6570;&#x91CF;&#x6700;&#x597D;&#x7EF4;&#x6301;&#x5728;160&#x4E07;&#x4EE5;&#x4E0A;&#xFF0C;&#x8003;&#x8651;&#x5230;&#x8FD8;&#x5E94;&#x5B58;&#x5728;&#x6D4B;&#x8BD5;&#x6570;&#x636E;&#x96C6;&#x3002;&#x56E0;&#x6B64;&#x6BCF;&#x6B21;&#x4F7F;&#x7528;&#x76F8;&#x5BF9;&#x4E8E;&#x5F53;&#x524D;&#x6700;&#x65B0;&#x7684;200&#x4E07;&#x6761;&#x6570;&#x636E;</li>
+</ul>
+</li>
+</ul>
+<h3 id="322-&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x83B7;&#x53D6;">3.2.2 &#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x83B7;&#x53D6;</h3>
+<ul>
+<li>&#x76EE;&#x7684;&#xFF1A;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x6784;&#x9020;&#x6210;&#x6837;&#x672C;<ul>
+<li>&#x8BBE;&#x5907;&#x7CFB;&#x7EDF;&#x7C7B;&#x578B;&#x3001;&#x7528;&#x6237;&#x7684;&#x8F6C;&#x53D1;&#x6570;&#x3001;&#x8BC4;&#x8BBA;&#x6570;&#x3001;&#x70B9;&#x8D5E;&#x6570;&#x3001;&#x53D1;&#x5E03;&#x5E16;&#x5B50;&#x6570;&#x3001;&#x5E16;&#x5B50;&#x88AB;&#x70B9;&#x8D5E;&#x6570;&#x3001;&#x88AB;&#x8F6C;&#x53D1;&#x6570;&#x3001;&#x88AB;&#x8BC4;&#x8BBA;&#x6570;&#x3001;&#x5E16;&#x5B50;&#x53D1;&#x5E03;&#x65F6;&#x95F4;&#x6233;&#x3001;&#x7528;&#x6237;&#x5173;&#x6CE8;&#x7B2C;&#x4E00;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E8C;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E09;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x56DB;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E94;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x8D34;&#x5B50;&#x6D89;&#x53CA;&#x7B2C;&#x4E00;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E8C;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E09;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x56DB;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x7B2C;&#x4E94;&#x4F4D;&#x660E;&#x661F;&#x7F16;&#x53F7;&#x3001;&#x76EE;&#x6807;&#x6807;&#x7B7E;&#x3002;20&#x4E2A;&#x539F;&#x59CB;&#x7279;&#x5F81;&#x5217;&#xFF1A;19 + 1</li>
+</ul>
+</li>
+</ul>
+<p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4ECE;neo4j&#x5F53;&#x4E2D;&#x83B7;&#x53D6;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#xFF0C;&#x6784;&#x9020;&#x6837;&#x672C;&#x8FC7;&#x7A0B;&#x5206;&#x4E3A;&#x6B63;&#x6837;&#x672C;&#x548C;&#x8D1F;&#x6837;&#x672C;&#x4E24;&#x90E8;&#x5206;&#xFF0C;&#x6B63;&#x6837;&#x672C;: &#x7528;&#x6237;&#x4EA7;&#x751F;&#x4EA4;&#x4E92;&#x884C;&#x4E3A;&#x7684;&#x53CC;&#x753B;&#x50CF;&#xFF0C;&#x8D1F;&#x6837;&#x672C;: &#x63A8;&#x8350;&#x66DD;&#x5149;&#x540E;&#x6CA1;&#x6709;&#x4EA7;&#x751F;&#x4EA4;&#x4E92;&#x884C;&#x4E3A;&#x7684;&#x53CC;&#x753B;&#x50CF;&#xFF0C;&#x901A;&#x8FC7;cypher&#x8BED;&#x53E5;&#x53D6;&#x51FA;&#x7279;&#x5F81;&#x3002;</p>
+<p>1&#x3001;&#x8BFB;&#x53D6;&#x7528;&#x6237;&#x3001;&#x5E16;&#x5B50;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x7EC4;&#x5408;cypher&#x8BED;&#x53E5;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> neo4j.v1 <span class="hljs-keyword">import</span> GraphDatabase
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd 
+NEO4J_CONFIG = dict({
+    <span class="hljs-string">&quot;uri&quot;</span>: <span class="hljs-string">&quot;bolt://192.168.19.137:7687&quot;</span>,
+    <span class="hljs-string">&quot;auth&quot;</span>: (<span class="hljs-string">&quot;neo4j&quot;</span>, <span class="hljs-string">&quot;itcast&quot;</span>),
+    <span class="hljs-string">&quot;encrypted&quot;</span>: <span class="hljs-keyword">False</span>
+})
+
+_driver = GraphDatabase.driver(**NEO4J_CONFIG)
+
+<span class="hljs-comment"># &#x9009;&#x62E9;&#x6709;&#x8FC7;&#x884C;&#x4E3A;&#x5173;&#x7CFB;&#x7684;&#x7528;&#x6237;&#x548C;&#x5E16;&#x5B50;&#xFF0C;&#x5C06;&#x76F8;&#x5173;&#x7279;&#x5F81;&#x5408;&#x5E76;&#xFF0C;&#x4EE5;&#x53CA;&#x76EE;&#x6807;&#x4E3A;1</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_positive_sample</span><span class="hljs-params">()</span>:</span>
+    cypher = <span class="hljs-string">&quot;match(a:SuperfansUser)-[r:share|comment|like]-(b:SuperfansPost)  return [a.like_posts_num, a.forward_posts_num, a.comment_posts_num,a.publish_posts_num,a.follow_stars_list,b.hot_score,b.commented_num,b.forwarded_num,b.liked_num,b.related_stars_list,b.publish_time] limit 200&quot;</span>
+    train_data_with_labels = get_train_data(cypher, <span class="hljs-string">&apos;1&apos;</span>) 
+    <span class="hljs-keyword">return</span> train_data_with_labels
+<span class="hljs-comment"># &#x9009;&#x62E9;&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#x7684;&#x7528;&#x6237;&#x548C;&#x5E16;&#x5B50;&#xFF0C;&#x5C06;&#x76F8;&#x5173;&#x7279;&#x5F81;&#x5408;&#x5E76;&#xFF0C;&#x4EE5;&#x53CA;&#x76EE;&#x6807;&#x4E3A;0</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_negative_sample</span><span class="hljs-params">()</span>:</span>
+    cypher = <span class="hljs-string">&quot;match(a:SuperfansUser)-[r:report|unlike]-(b:SuperfansPost)  return [a.like_posts_num, a.forward_posts_num, a.comment_posts_num,a.publish_posts_num,a.follow_stars_list,b.hot_score,b.commented_num,b.forwarded_num,b.liked_num,b.related_stars_list,b.publish_time] limit 200&quot;</span>
+    train_data_with_labels = get_train_data(cypher, <span class="hljs-string">&apos;0&apos;</span>)
+    <span class="hljs-keyword">return</span> train_data_with_labels
+</code></pre>
+<p>2&#x3001;&#x83B7;&#x53D6;&#x7ED3;&#x679C;&#x4E4B;&#x540E;&#xFF0C;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x96C6;&#x7684;&#x683C;&#x5F0F;&#x5904;&#x7406;&#x548C;&#x6784;&#x9020;&#xFF1A;get_train_data(cypher, &apos;1&apos;) </p>
+<pre><code class="lang-python"><span class="hljs-comment"># [92, 47, 4, 1618, [&apos;218960&apos;, &apos;187579&apos;, &apos;210958&apos;, &apos;219148&apos;, &apos;3116&apos;], 549, 5, 2, 533, [&apos;1&apos;], 1516180431]</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_extended_length</span><span class="hljs-params">(b, index)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    :param b: &#x4F20;&#x5165;&#x6837;&#x672C;
+    :param index: &#x4F20;&#x5165;&#x4F4D;&#x7F6E;
+    :return:
+    &quot;&quot;&quot;</span>
+    print(b, index)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> index:
+        <span class="hljs-keyword">if</span> len(b[i])&lt;<span class="hljs-number">5</span>:
+            k = [<span class="hljs-number">0</span>]*<span class="hljs-number">5</span>
+            <span class="hljs-keyword">for</span> i, value <span class="hljs-keyword">in</span> enumerate(b[i]):
+                k[i] = value
+            b.extend(k)
+    print(b)
+    i = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> i &lt; len(index):
+        b.pop(index[i] - i)
+        i += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> b
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_train_data</span><span class="hljs-params">(cypher, label)</span>:</span>
+    <span class="hljs-comment">### &#x6839;&#x636E;neo4j&#x5173;&#x7CFB;&#x751F;&#x6210;&#x6807;&#x6CE8;&#x6570;&#x636E;</span>
+    <span class="hljs-comment"># &#x6B63;&#x6837;&#x672C;: &#x7528;&#x6237;&#x4EA7;&#x751F;&#x4EA4;&#x4E92;&#x884C;&#x4E3A;&#x7684;&#x53CC;&#x753B;&#x50CF;</span>
+    <span class="hljs-comment"># &#x8D1F;&#x6837;&#x672C;: &#x63A8;&#x8350;&#x66DD;&#x5149;&#x540E;&#x6CA1;&#x6709;&#x4EA7;&#x751F;&#x4EA4;&#x4E92;&#x884C;&#x4E3A;&#x7684;&#x53CC;&#x753B;&#x50CF;</span>
+    <span class="hljs-keyword">with</span> _driver.session() <span class="hljs-keyword">as</span> session:
+       record = session.run(cypher)
+       sample = list(map(<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">0</span>], record))
+
+    index_list = [<span class="hljs-number">4</span>,<span class="hljs-number">9</span>]
+    <span class="hljs-comment"># &#x7B2C;&#x4E00;&#x6B65;&#x7279;&#x5F81;&#x5904;&#x7406;: &#x5217;&#x8868;&#x7279;&#x5F81;&#x5904;&#x7406;</span>
+    train_data = list(map(<span class="hljs-keyword">lambda</span> x: _extended_length(x, index_list) + [str(label)], sample))
+    print(train_data)
+    <span class="hljs-keyword">return</span> train_data
+</code></pre>
+<p>&#x6700;&#x540E;&#x4FDD;&#x5B58;&#x5230;&#x672C;&#x5730;&#x5F53;&#x524D;&#x76EE;&#x5F55;train_data.csv&#x6587;&#x4EF6;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    p_train_data = get_positive_sample()
+    n_train_data = get_negative_sample()
+    print(len(p_train_data))
+    print(len(n_train_data))
+    train_data = p_train_data + n_train_data
+    pd.DataFrame(train_data).to_csv(<span class="hljs-string">&quot;./train_data.csv&quot;</span>, header=<span class="hljs-keyword">False</span>, index=<span class="hljs-keyword">False</span>)
+</code></pre>
+<h3 id="323-&#x6A21;&#x578B;&#x6784;&#x5EFA;">3.2.3 &#x6A21;&#x578B;&#x6784;&#x5EFA;</h3>
+<ul>
+<li><p>&#x5206;&#x6790;:</p>
+<ul>
+<li>model.py&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x4ECE;&#x6E90;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x5230;&#x6A21;&#x578B;&#x6307;&#x5B9A;&#x8F93;&#x5165;&#x683C;&#x5F0F;&#x6570;&#x636E;&#x7684;&#x5168;&#x90E8;&#x7279;&#x5F81;&#x5DE5;&#x7A0B;; </li>
+<li>&#x5176;&#x4E2D;&#x4E24;&#x4E2A;&#x91CD;&#x8981;&#x51FD;&#x6570;build_estimator&#x548C;input_fn<strong>&#x88AB;task.py&#x4E2D;&#x7684;&#x5173;&#x952E;&#x51FD;&#x6570;&#x8C03;&#x7528;;</strong></li>
+<li>&#x8981;&#x6C42;: build_estimator&#x5FC5;&#x987B;&#x8FD4;&#x56DE;tf&#x7684;&#x5206;&#x7C7B;&#x5668;&#x7C7B;&#x578B;, &#x5177;&#x4F53;&#x53C2;&#x89C1;tf.estimator.DNNLinearCombinedClassifier()&#x6E90;&#x7801;</li>
+</ul>
+</li>
+<li><p>&#x76EE;&#x7684;&#xFF1A;&#x6784;&#x5EFA;&#x6CDB;&#x5A31;&#x4E50;WDL&#x6A21;&#x578B;&#x8F93;&#x5165;&#x3001;&#x7279;&#x5F81;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x4ECE;&#x800C;&#x8FDB;&#x884C;&#x540E;&#x7EED;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;</p>
+</li>
+<li>&#x6B65;&#x9AA4;&#xFF1A;<ul>
+<li>1&#x3001;&#x6A21;&#x578B;&#x8F93;&#x5165;&#x51FD;&#x6570;&#x6784;&#x5EFA;</li>
+<li>2&#x3001; tf.feature_column&#x7279;&#x5F81;&#x5904;&#x7406;</li>
+<li>3&#x3001;DNNLinearCombinedClassifier&#x6A21;&#x578B;&#x6784;&#x5EFA;</li>
+</ul>
+</li>
+</ul>
+<h4 id="3231-&#x6A21;&#x578B;&#x8F93;&#x5165;&#x51FD;&#x6570;">3.2.3.1 &#x6A21;&#x578B;&#x8F93;&#x5165;&#x51FD;&#x6570;</h4>
+<ul>
+<li>&#x4F7F;&#x7528;tf.data.TextLineDataset(filenames)&#x89E3;&#x6790;&#x6211;&#x4EEC;&#x7684;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;CSV&#x6587;&#x4EF6;</li>
+</ul>
+<p>1&#x3001;&#x6307;&#x5B9A;&#x8BFB;&#x53D6;CSV&#x6587;&#x4EF6;API&#xFF0C;&#x8FD4;&#x56DE;dataset</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">input_fn</span><span class="hljs-params">(filenames,
+             num_epochs=None,
+             shuffle=True,
+             skip_header_lines=<span class="hljs-number">0</span>,
+             batch_size=<span class="hljs-number">200</span>)</span>:</span>
+  dataset = tf.data.TextLineDataset(filenames).skip(skip_header_lines).map(
+      _decode_csv)
+</code></pre>
+<p>2&#x3001;&#x5B9E;&#x73B0;_decode_csv&#x89E3;&#x6790;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x7279;&#x5F81;&#x4EE5;&#x53CA;&#x76EE;&#x6807;&#x503C;&#x51FD;&#x6570;</p>
+<p>&#x6240;&#x6709;CSV&#x5217;&#xFF0C;&#x4EE5;&#x53CA;&#x89E3;&#x6790;&#x5F0F;&#x7684;&#x9ED8;&#x8BA4;&#x683C;&#x5F0F;&#x3002;</p>
+<pre><code class="lang-python">CSV_COLUMNS = [
+<span class="hljs-string">&apos;like_posts_num&apos;</span>, <span class="hljs-string">&apos;forward_posts_num&apos;</span>, <span class="hljs-string">&apos;comment_posts_num&apos;</span>, <span class="hljs-string">&apos;publish_posts_num&apos;</span>, <span class="hljs-string">&apos;hot_score&apos;</span>,
+    <span class="hljs-string">&apos;commented_num&apos;</span>, <span class="hljs-string">&apos;forwarded_num&apos;</span>, <span class="hljs-string">&apos;liked_num&apos;</span>, <span class="hljs-string">&apos;publish_time&apos;</span>, <span class="hljs-string">&apos;follow_star_1&apos;</span>, 
+    <span class="hljs-string">&apos;follow_star_2&apos;</span>, <span class="hljs-string">&apos;follow_star_3&apos;</span>, <span class="hljs-string">&apos;follow_star_4&apos;</span>, <span class="hljs-string">&apos;follow_star_5&apos;</span>, <span class="hljs-string">&apos;related_star_1&apos;</span>,
+    <span class="hljs-string">&apos;related_star_2&apos;</span>, <span class="hljs-string">&apos;related_star_3&apos;</span>, <span class="hljs-string">&apos;related_star_4&apos;</span>, <span class="hljs-string">&apos;related_star_5&apos;</span>, <span class="hljs-string">&apos;islike&apos;</span>
+]
+CSV_COLUMN_DEFAULTS = [[<span class="hljs-string">&apos;&apos;</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>],
+                       [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], 
+                       [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>],
+                       [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>], [<span class="hljs-string">&apos;&apos;</span>]]
+
+LABEL_COLUMN = <span class="hljs-string">&apos;islike&apos;</span>
+LABELS = [<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-string">&apos;0&apos;</span>]
+</code></pre>
+<p>&#x4F7F;&#x7528;tf.decode_csv&#x89E3;&#x6790;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_decode_csv</span><span class="hljs-params">(line)</span>:</span>
+  <span class="hljs-comment">#  ## [&apos;123&apos;,&apos;321&apos;] ---&gt; [[&apos;123&apos;], [&apos;321&apos;]]</span>
+  row_columns = tf.expand_dims(line, -<span class="hljs-number">1</span>)  
+  <span class="hljs-comment"># ##&#x4FEE;&#x6539;&#x5404;&#x4E2A;&#x7279;&#x5F81;&#x7684;&#x7C7B;&#x578B; </span>
+  columns = tf.decode_csv(row_columns, record_defaults=CSV_COLUMN_DEFAULTS) 
+  features = dict(zip(CSV_COLUMNS, columns))
+  <span class="hljs-comment"># Remove unused columns</span>
+  <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> UNUSED_COLUMNS:
+      features.pop(col)
+  <span class="hljs-keyword">return</span> features
+</code></pre>
+<p>&#x5176;&#x4E2D;&#x4F1A;&#x5BF9;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x8FC7;&#x6EE4;&#xFF0C;&#x6307;&#x5B9A;&#x65E0;&#x7528;&#x7684;&#x7279;&#x5F81;&#x5217; UNUSED_COLUMNS&#xFF0C;&#x8F93;&#x5165;&#x7684;&#x7279;&#x5F81;&#x4EE5;&#x53CA;&#x76EE;&#x6807;&#x6807;&#x7B7E;&#x90FD;&#x4F1A;&#x9700;&#x8981;</p>
+<p>UNUSED_COLUMNS = set(CSV_COLUMNS) - {col.name for col in INPUT_COLUMNS} - {LABEL_COLUMN}</p>
+<p>&#x8FD9;&#x91CC;UNUSED_COLUMNS&#x6709;&apos;device_system&apos;&#x4EE5;&#x53CA;&apos;islike&apos;&#x8FD9;&#x4E24;&#x5217;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x6307;&#x5B9A;StarID&#x7EF4;&#x5EA6;&#x5217;&#x8868;&#x6620;&#x5C04;&#x5927;&#x5C0F;</span>
+STAR_ID_LIST = list(map(<span class="hljs-keyword">lambda</span> x: x, range(<span class="hljs-number">0</span>,<span class="hljs-number">500</span>)))
+INPUT_COLUMNS = [
+    tf.feature_column.numeric_column(<span class="hljs-string">&apos;like_posts_num&apos;</span>),              
+    tf.feature_column.numeric_column(<span class="hljs-string">&apos;forward_posts_num&apos;</span>),      
+    tf.feature_column.numeric_column(<span class="hljs-string">&apos;comment_posts_num&apos;</span>),      
+    tf.feature_column.numeric_column(<span class="hljs-string">&apos;publish_posts_num&apos;</span>),      
+    tf.feature_column.numeric_column(<span class="hljs-string">&apos;commented_num&apos;</span>),      
+    tf.feature_column.numeric_column(<span class="hljs-string">&apos;forwarded_num&apos;</span>),      
+    tf.feature_column.numeric_column(<span class="hljs-string">&apos;liked_num&apos;</span>),      
+    tf.feature_column.numeric_column(<span class="hljs-string">&apos;publish_time&apos;</span>),      
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;follow_star_1&apos;</span>, STAR_ID_LIST),
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;follow_star_2&apos;</span>, STAR_ID_LIST),
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;follow_star_3&apos;</span>, STAR_ID_LIST),
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;follow_star_4&apos;</span>, STAR_ID_LIST),
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;follow_star_5&apos;</span>, STAR_ID_LIST),
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;related_star_1&apos;</span>, STAR_ID_LIST),
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;related_star_2&apos;</span>, STAR_ID_LIST),
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;related_star_3&apos;</span>, STAR_ID_LIST),
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;related_star_4&apos;</span>, STAR_ID_LIST),
+    tf.feature_column.categorical_column_with_vocabulary_list(
+                <span class="hljs-string">&apos;related_star_5&apos;</span>, STAR_ID_LIST)
+]
+</code></pre>
+<p>3&#x3001;dataset&#x8FDB;&#x884C;&#x5236;&#x5B9A;epoch&#x4EE5;&#x53CA;Batch&#x5927;&#x5C0F;&#xFF0C;&#x6253;&#x4E71;&#x987A;&#x5E8F;&#xFF0C;&#x5E76;&#x6307;&#x5B9A;&#x76EE;&#x6807;&#x503C;&#xFF0C;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x7F16;&#x7A0B;&#x76EE;&#x6807;0&#xFF0C;1</p>
+<p>&#x4F7F;&#x7528;dataset&#x7684;batch,repeat&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;</p>
+<pre><code class="lang-python">  <span class="hljs-keyword">if</span> shuffle:
+      dataset = dataset.shuffle(buffer_size=batch_size * <span class="hljs-number">10</span>)                                                  
+  iterator = dataset.repeat(num_epochs).batch(
+      batch_size).make_one_shot_iterator()
+  features = iterator.get_next()
+  <span class="hljs-keyword">return</span> features, parse_label_column(features.pop(LABEL_COLUMN))
+</code></pre>
+<p>&#x6700;&#x540E;&#x5C06;&#x76EE;&#x6807;&#x503C;&#x8FDB;&#x884C;&#x5904;&#x7406;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse_label_column</span><span class="hljs-params">(label_string_tensor)</span>:</span>
+  table = tf.contrib.lookup.index_table_from_tensor(tf.constant(LABELS))
+  <span class="hljs-keyword">return</span> table.lookup(label_string_tensor)
+</code></pre>
+<h4 id="3232-tffeaturecolumn&#x7279;&#x5F81;&#x5904;&#x7406;">3.2.3.2 tf.feature_column&#x7279;&#x5F81;&#x5904;&#x7406;</h4>
+<pre><code>(like_posts_num, forward_posts_num, comment_posts_num, publish_posts_num, hot_score,
+commented_num, forwarded_num, liked_num, publish_time, follow_star_1,
+follow_star_2, follow_star_3, follow_star_4, follow_star_5, related_star_1,
+related_star_2, related_star_3, related_star_4, related_star_5) = INPUT_COLUMNS
+</code></pre><ul>
+<li>&#x6570;&#x503C;&#x578B;&#x7279;&#x5F81;&#xFF1A;<ul>
+<li>&#x7C7B;&#x522B;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x6570;&#x503C;&#x5316;&#x64CD;&#x4F5C;</li>
+<li>[&apos;like_posts_num&apos;, &apos;forward_posts_num&apos;, &apos;comment_posts_num&apos;, &apos;publish_posts_num&apos;, &apos;hot_score&apos;,&apos;commented_num&apos;, &apos;forwarded_num&apos;, &apos;liked_num&apos;, &apos;publish_time&apos;]</li>
+</ul>
+</li>
+<li>&#x7C7B;&#x522B;&#x578B;&#x7279;&#x5F81;&#xFF1A;<ul>
+<li>[&apos;device_system&apos;,&apos;follow_star_1&apos;, &apos;follow_star_2&apos;, &apos;follow_star_3&apos;, &apos;follow_star_4&apos;, &apos;follow_star_5&apos;, &apos;related_star_1&apos;,&apos;related_star_2&apos;, &apos;related_star_3&apos;, &apos;related_star_4&apos;, &apos;related_star_5&apos;]</li>
+</ul>
+</li>
+</ul>
+<h4 id="wide&#x4FA7;&#x7279;&#x5F81;&#x5217;&#x6307;&#x5B9A;">wide&#x4FA7;&#x7279;&#x5F81;&#x5217;&#x6307;&#x5B9A;</h4>
+<ul>
+<li>device_system,follow_star_1,follow_star_2,follow_star_3,follow_star_4,follow_star_5,related_star_1,related_star_2,related_star_3,related_star_4,related_star_5<ul>
+<li>[follow_star_1,follow_star_2]&#x4E0E; [related_star_1,related_star_2, related_star_3, related_star_4, related_star_5]&#x7684;&#x4E24;&#x4E24;&#x7EC4;&#x5408;&#x4EA4;&#x53C9;&#x7279;&#x5F81;</li>
+<li>[follow_star_1, related_star_1, follow_star_2]</li>
+<li>[follow_star_2, related_star_1, related_star_2]</li>
+<li>[follow_star_3, related_star_1, related_star_2]</li>
+<li>[follow_star_1, related_star_2, related_star_1]</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-python">wide_columns = [
+      tf.feature_column.crossed_column([follow_star_1, related_star_1],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+      tf.feature_column.crossed_column([follow_star_1, related_star_2],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+      tf.feature_column.crossed_column([follow_star_1, related_star_3],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+      tf.feature_column.crossed_column([follow_star_1, related_star_4],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+      tf.feature_column.crossed_column([follow_star_1, related_star_5],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+      tf.feature_column.crossed_column([follow_star_2, related_star_1],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+      tf.feature_column.crossed_column([follow_star_2, related_star_2],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+      tf.feature_column.crossed_column([follow_star_2, related_star_3],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+     tf.feature_column.crossed_column([follow_star_2, related_star_4],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+     tf.feature_column.crossed_column([follow_star_2, related_star_5],
+                                       hash_bucket_size=int(<span class="hljs-number">1e3</span>)),
+     tf.feature_column.crossed_column([follow_star_1, related_star_1, follow_star_2],
+                                       hash_bucket_size=int(<span class="hljs-number">1e4</span>)),
+     tf.feature_column.crossed_column([follow_star_2, related_star_1, related_star_2],
+                                       hash_bucket_size=int(<span class="hljs-number">1e4</span>)),
+     tf.feature_column.crossed_column([follow_star_3, related_star_1, related_star_2],
+                                       hash_bucket_size=int(<span class="hljs-number">1e4</span>)),
+     tf.feature_column.crossed_column([follow_star_1, related_star_2, related_star_1],
+                                       hash_bucket_size=int(<span class="hljs-number">1e4</span>)),
+     device_system,
+     follow_star_1,
+     follow_star_2,
+     follow_star_3,
+     follow_star_4,
+     follow_star_5,
+     related_star_1,
+     related_star_2,
+     related_star_3,
+     related_star_4,
+     related_star_5
+  ]
+</code></pre>
+<h4 id="deep&#x4FA7;&#x7279;&#x5F81;&#x6307;&#x5B9A;">deep&#x4FA7;&#x7279;&#x5F81;&#x6307;&#x5B9A;</h4>
+<ul>
+<li>&#x7C7B;&#x522B;&#x578B;&#x7279;&#x5F81;&#x8FDB;&#x884C;indicator_column&#x6307;&#x5B9A; + &#x6570;&#x503C;&#x578B;&#x7279;&#x5F81;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x6DF1;&#x5EA6;&#x7279;&#x5F81;&#x6BD4;&#x505A;&#x6316;&#x6398;&#x7279;&#x5F81;&#xFF0C;&#x9488;&#x5BF9;&#x7A00;&#x758F;+&#x7A20;&#x5BC6;&#x7684;&#x6240;&#x6709;&#x7279;&#x5F81;, &#x4F46;&#x7531;&#x4E8E;&#x9690;&#x5C42;&#x4F5C;&#x7528;&#x65F6;&#x5C06;&#x8003;&#x8651;&#x5927;&#x5C0F;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x6B64;&#x7C7B;&#x522B;&#x7279;&#x5F81;&#x5FC5;&#x987B;onehot&#x7F16;&#x7801;&#x624D;&#x80FD;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;</span>
+deep_columns = [
+      tf.feature_column.indicator_column(follow_star_1),
+      tf.feature_column.indicator_column(follow_star_2),
+      tf.feature_column.indicator_column(follow_star_3),
+      tf.feature_column.indicator_column(follow_star_4),
+      tf.feature_column.indicator_column(follow_star_5),
+      tf.feature_column.indicator_column(related_star_1),
+      tf.feature_column.indicator_column(related_star_2),
+      tf.feature_column.indicator_column(related_star_3),
+      tf.feature_column.indicator_column(related_star_4),
+      tf.feature_column.indicator_column(related_star_5),
+      like_posts_num,
+      forward_posts_num,
+      comment_posts_num,
+      publish_posts_num,
+      commented_num,
+      forwarded_num,
+      liked_num,
+      publish_time
+  ]
+</code></pre>
+<h4 id="3233-widedeep&#x6A21;&#x578B;&#x6784;&#x5EFA;">3.2.3.3 Wide&amp;Deep&#x6A21;&#x578B;&#x6784;&#x5EFA;</h4>
+<ul>
+<li>&#x8FD9;&#x91CC;&#x586B;&#x5165;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#xFF0C;wide&#x548C;deep&#x7684;&#x7279;&#x5F81;&#x5217;&#x6307;&#x5B9A;&#xFF0C;dnn&#x7F51;&#x7EDC;&#x7684;&#x795E;&#x7ECF;&#x5143;&#x4E2A;&#x6570;&#x4EE5;&#x53CA;&#x5C42;&#x6570;<ul>
+<li>[100, 70, 50, 25]&#x53EA;&#x662F;&#x4F5C;&#x4E3A;&#x6211;&#x4EEC;&#x521D;&#x59CB;&#x5316;&#x7684;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x540E;&#x9762;&#x5728;&#x8BAD;&#x7EC3;&#x9636;&#x6BB5;&#x4F1A;&#x81EA;&#x52A8;&#x8C03;&#x53C2;</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build_estimator</span><span class="hljs-params">(config, embedding_size=<span class="hljs-number">8</span>, hidden_units=None)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    &quot;&quot;&quot;</span>
+    <span class="hljs-comment"># &#x7279;&#x5F81;&#x5904;&#x7406;</span>
+
+    <span class="hljs-comment"># &#x6A21;&#x578B;&#x6784;&#x5EFA;</span>
+  <span class="hljs-keyword">return</span> tf.estimator.DNNLinearCombinedClassifier(config=config,
+                                                  linear_feature_columns=wide_columns,
+                                                  dnn_feature_columns=deep_columns,
+                                                  dnn_hidden_units=[embedding_size] + [<span class="hljs-number">100</span>, <span class="hljs-number">70</span>, <span class="hljs-number">50</span>, <span class="hljs-number">25</span>])
+</code></pre>
+<h3 id="324-&#x5C0F;&#x7ED3;">3.2.4 &#x5C0F;&#x7ED3;</h3>
+<ul>
+<li>&#x6CDB;&#x5A31;&#x4E50;&#x63A8;&#x8350;&#x7279;&#x5F81;&#x5DE5;&#x7A0B;&#x4EE5;&#x53CA;&#x6837;&#x672C;&#x7684;&#x5BFC;&#x51FA;</li>
+<li>&#x6CDB;&#x5A31;&#x4E50;&#x6A21;&#x578B;&#x6784;&#x5EFA;<ul>
+<li>&#x8F93;&#x5165;&#x6570;&#x636E;&#x51FD;&#x6570;&#x6784;&#x5EFA;</li>
+<li>&#x7279;&#x5F81;&#x6307;&#x5B9A;</li>
+<li>build_estimator&#x6784;&#x5EFA;</li>
+</ul>
+</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../day02/section1.html" class="navigation navigation-prev " aria-label="Previous page: 模型选择与原理讲解"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../day02/section3.html" class="navigation navigation-next " aria-label="Next page: GCP模型训练与超参数调优"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"katex":{},"expandable-chapters-small":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

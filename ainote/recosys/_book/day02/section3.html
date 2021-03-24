@@ -1,0 +1,911 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>GCP模型训练与超参数调优 | 泛娱乐推荐系统项目课程定位、目标</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../day02/section4.html" />
+    
+    
+    <link rel="prev" href="../day02/section2.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3.3"
+        data-chapter-title="GCP模型训练与超参数调优"
+        data-filepath="day02/section3.md"
+        data-basepath=".."
+        data-revision="Sun Sep 08 2019 21:30:18 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        泛娱乐推荐系统项目
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="reco/index.html">
+            
+                
+                    <a href="../reco/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        泛娱乐推荐介绍
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="reco/section1.html">
+            
+                
+                    <a href="../reco/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        产品概述
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="reco/section2.html">
+            
+                
+                    <a href="../reco/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        推荐系统流程概述
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="reco/section3.html">
+            
+                
+                    <a href="../reco/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        开发环境介绍
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="day01/index.html">
+            
+                
+                    <a href="../day01/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        召回模块
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="day01/section1.html">
+            
+                
+                    <a href="../day01/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Web接口业务介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="day01/section2.html">
+            
+                
+                    <a href="../day01/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        构建双画像
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="day01/section3.html">
+            
+                
+                    <a href="../day01/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        多召回策略
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="day01/section4.html">
+            
+                
+                    <a href="../day01/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        召回金字塔
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="day01/section5.html">
+            
+                
+                    <a href="../day01/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        规则过滤器
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="day01/section6.html">
+            
+                
+                    <a href="../day01/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        用户推荐逻辑完善
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="day02/index.html">
+            
+                
+                    <a href="../day02/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        排序模块
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="day02/section1.html">
+            
+                
+                    <a href="../day02/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        模型选择与原理讲解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="day02/section2.html">
+            
+                
+                    <a href="../day02/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        泛娱乐特征工程与模型代码构建
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.3" data-path="day02/section3.html">
+            
+                
+                    <a href="../day02/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        GCP模型训练与超参数调优
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="day02/section4.html">
+            
+                
+                    <a href="../day02/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        GCP模型预测与部署
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >泛娱乐推荐系统项目课程定位、目标</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="33-gcp&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x4E0E;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x8C03;&#x4F18;">3.3 GCP&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x4E0E;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x8C03;&#x4F18;</h1>
+<h2 id="&#x5B66;&#x4E60;&#x76EE;&#x6807;">&#x5B66;&#x4E60;&#x76EE;&#x6807;</h2>
+<ul>
+<li>&#x76EE;&#x6807;<ul>
+<li>&#x4E86;&#x89E3;GCP&#x5E73;&#x53F0;&#x7684;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;</li>
+<li>&#x8BF4;&#x660E;&#x8D85;&#x53C2;&#x6570;&#x8C03;&#x4F18;&#x8FC7;&#x7A0B;</li>
+</ul>
+</li>
+<li>&#x5E94;&#x7528;<ul>
+<li>&#x5E94;&#x7528;&#x5B8C;&#x6210;&#x6CDB;&#x5A31;&#x4E50;Wide&amp;Deep&#x6A21;&#x578B;&#x7684;&#x8BAD;&#x7EC3;</li>
+</ul>
+</li>
+</ul>
+<h3 id="331-cloud-ai-platform&#x6A21;&#x578B;&#x8BAD;&#x7EC3;">3.3.1 <strong>Cloud AI Platform</strong>&#x6A21;&#x578B;&#x8BAD;&#x7EC3;</h3>
+<p><strong>GCP&#x5E73;&#x53F0;&#x4EA7;&#x54C1;&#x4E4B;&#x4E00; Cloud Machine Learning Engine&#xFF08;&#x5DF2;&#x66F4;&#x540D;AI Platform&#xFF09; &#x662F;&#x4E00;&#x9879;&#x6258;&#x7BA1;&#x5F0F;&#x670D;&#x52A1;&#xFF0C;&#x80FD;&#x8BA9;&#x5F00;&#x53D1;&#x8005;&#x548C;&#x6570;&#x636E;&#x79D1;&#x5B66;&#x5BB6;&#x6784;&#x5EFA;&#x5353;&#x8D8A;&#x7684;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6A21;&#x578B;&#x5E76;&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x8FD0;&#x884C;&#x3002;</strong>Cloud ML Engine &#x63D0;&#x4F9B;&#x8BAD;&#x7EC3;&#x548C;&#x9884;&#x6D4B;&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#x53EF;&#x4EE5;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5355;&#x72EC;&#x4F7F;&#x7528;&#x3002;&#x6211;&#x4EEC;&#x5728;&#x8FD9;&#x91CC;&#x9009;&#x62E9;&#x5728;&#x8C37;&#x6B4C;&#x4E91;&#x5E73;&#x53F0;&#x4E0A;&#x8FDB;&#x884C;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x4E0E;&#x53C2;&#x6570;&#x8C03;&#x4F18;&#x3002;&#x4E3B;&#x8981;&#x9009;&#x62E9;&#x539F;&#x56E0;&#x5982;&#x4E0B;</p>
+<ul>
+<li>&#x63D0;&#x4F9B;&#x4E00;&#x5957;&#x5B8C;&#x6574;&#x7684;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x5E73;&#x53F0;&#xFF0C;&#x65B9;&#x4FBF;&#x5F00;&#x53D1;&#x8005;&#x5FEB;&#x901F;&#x8BAD;&#x7EC3;&#x90E8;&#x7F72;&#x4E0A;&#x7EBF;&#x6A21;&#x578B;&#x670D;&#x52A1;</li>
+<li>&#x5BF9;&#x4E8E;&#x5C0F;&#x578B;&#x516C;&#x53F8;&#x53D7;&#x5236;&#x4E8E;GPU/TPU&#x7684;&#x6210;&#x672C;&#x9650;&#x5236;&#xFF0C;&#x80FD;&#x591F;&#x63D0;&#x5347;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;&#x7B97;&#x529B;&#x6C34;&#x5E73;&#xFF0C;&#x8282;&#x7701;&#x6210;&#x672C;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x907F;&#x514D;&#x7684;&#x642D;&#x5EFA;&#x591A;GPU&#x6216;&#x8005;&#x5206;&#x5E03;&#x5F0F;&#x8BAD;&#x7EC3;&#x5E73;&#x53F0;&#x7684;&#x5E95;&#x5C42;&#x7E41;&#x7410;&#x7684;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;</li>
+</ul>
+<h4 id="&#x7279;&#x6027;">&#x7279;&#x6027;</h4>
+<ul>
+<li><p>&#x81EA;&#x5B9A;&#x4E49;&#x5BB9;&#x5668;&#x652F;&#x6301;</p>
+<p>&#x9664;&#x4E86;&#x5BF9; TensorFlow &#x7B49;&#x6D41;&#x884C;&#x6846;&#x67B6;&#x7684;&#x539F;&#x751F;&#x652F;&#x6301;&#x5916;&#xFF0C;&#x60A8;&#x8FD8;&#x53EF;&#x4EE5;&#x5728; Cloud ML Engine &#x4E0A;&#x8FD0;&#x884C;&#x4EFB;&#x4F55;&#x5176;&#x4ED6;&#x6846;&#x67B6;&#x3002;&#x60A8;&#x53EA;&#x9700;&#x4E0A;&#x4F20;&#x5E26;&#x6709;&#x8BAD;&#x7EC3;&#x7A0B;&#x5E8F;&#x7684; Docker &#x5BB9;&#x5668;&#xFF0C;Cloud ML Engine &#x4FBF;&#x4F1A;&#x8BA9;&#x5176;&#x5728; Google &#x7684;&#x57FA;&#x7840;&#x67B6;&#x6784;&#x4E0A;&#x5F00;&#x59CB;&#x5DE5;&#x4F5C;&#x3002;</p>
+</li>
+<li><p>&#x5206;&#x5E03;&#x5F0F;&#x8BAD;&#x7EC3;</p>
+<p>&#x6709;&#x65F6;&#xFF0C;&#x60A8;&#x7684;&#x6570;&#x636E;&#x548C;&#x6A21;&#x578B;&#x592A;&#x8FC7;&#x5E9E;&#x5927;&#xFF0C;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x65E0;&#x6CD5;&#x53CA;&#x65F6;&#x5B8C;&#x6210;&#x5DE5;&#x4F5C;&#x3002;&#x5E78;&#x8FD0;&#x7684;&#x662F;&#xFF0C;Cloud ML Engine &#x4F1A;&#x81EA;&#x52A8;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x73AF;&#x5883;&#xFF0C;&#x8BA9; XGBoost &#x548C; TensorFlow &#x5728;&#x591A;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x8FD0;&#x884C;&#xFF0C;&#x56E0;&#x6B64;&#x60A8;&#x53EF;&#x4EE5;&#x5411;&#x8BAD;&#x7EC3;&#x4F5C;&#x4E1A;&#x6DFB;&#x52A0;&#x591A;&#x4E2A; GPU &#x6216;&#x5C06;&#x5176;&#x62C6;&#x5206;&#x5230;&#x591A;&#x4E2A;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#xFF0C;&#x4EE5;&#x6B64;&#x83B7;&#x5F97;&#x6240;&#x9700;&#x7684;&#x901F;&#x5EA6;&#x3002;</p>
+</li>
+<li><p>&#x81EA;&#x52A8;&#x9884;&#x914D;&#x8D44;&#x6E90;</p>
+<p>Cloud ML Engine &#x662F;&#x4E00;&#x9879;&#x6258;&#x7BA1;&#x5F0F;&#x670D;&#x52A1;&#xFF0C;&#x53EF;&#x81EA;&#x52A8;&#x9884;&#x914D;&#x548C;&#x76D1;&#x63A7;&#x6240;&#x6709;&#x8D44;&#x6E90;&#xFF1B;&#x53EF;&#x4F7F;&#x7528;&#x652F;&#x6301; CPU&#x3001;GPU &#x548C; TPU &#x7684;&#x5206;&#x5E03;&#x5F0F;&#x6258;&#x7BA1;&#x8BAD;&#x7EC3;&#x57FA;&#x7840;&#x67B6;&#x6784;&#x6765;&#x6784;&#x5EFA;&#x6A21;&#x578B;&#xFF1B;&#x5E76;&#x53EF;&#x901A;&#x8FC7;&#x5728;&#x591A;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#x6216;&#x5E76;&#x53D1;&#x8FD0;&#x884C;&#x591A;&#x4E2A;&#x5B9E;&#x9A8C;&#x6765;&#x52A0;&#x901F;&#x6A21;&#x578B;&#x5F00;&#x53D1;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x4E13;&#x6CE8;&#x4E8E;&#x6A21;&#x578B;&#x5F00;&#x53D1;&#x548C;&#x90E8;&#x7F72;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x62C5;&#x5FC3;&#x57FA;&#x7840;&#x67B6;&#x6784;&#x95EE;&#x9898;&#x3002;</p>
+</li>
+<li><p>HyperTune</p>
+<p>&#x4F7F;&#x7528; HyperTune &#x81EA;&#x52A8;&#x8C03;&#x6574;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x8D85;&#x53C2;&#x6570;&#xFF0C;&#x4EE5;&#x66F4;&#x5FEB;&#x5730;&#x83B7;&#x5F97;&#x66F4;&#x597D;&#x7684;&#x7ED3;&#x679C;&#x3002;&#x6570;&#x636E;&#x79D1;&#x5B66;&#x5BB6;&#x7ECF;&#x5E38;&#x9700;&#x8981;&#x5728;&#x4E91;&#x7AEF;&#x7BA1;&#x7406;&#x6570;&#x5343;&#x9879;&#x8C03;&#x6574;&#x5B9E;&#x9A8C;&#x3002;HyperTune &#x53EF;&#x4EE5;&#x4E3A;&#x60A8;&#x7701;&#x53BB;&#x5927;&#x91CF;&#x5355;&#x8C03;&#x4E4F;&#x5473;&#x4E14;&#x5BB9;&#x6613;&#x51FA;&#x9519;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</p>
+</li>
+<li><p>&#x53EF;&#x79FB;&#x690D;&#x7684;&#x6A21;&#x578B;</p>
+<p>&#x5229;&#x7528;&#x5F00;&#x6E90; TensorFlow SDK &#x6216;&#x5176;&#x4ED6;&#x53D7;&#x652F;&#x6301;&#x7684;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#xFF0C;&#x5728;&#x672C;&#x5730;&#x57FA;&#x4E8E;&#x793A;&#x4F8B;&#x6570;&#x636E;&#x96C6;&#x6765;&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#xFF0C;&#x5E76;&#x4F7F;&#x7528; Google Cloud Platform &#x5F00;&#x5C55;&#x5927;&#x89C4;&#x6A21;&#x8BAD;&#x7EC3;&#x3002;&#x4F7F;&#x7528; Cloud ML Engine &#x8BAD;&#x7EC3;&#x7684;&#x6A21;&#x578B;&#x53EF;&#x4EE5;&#x4E0B;&#x8F7D;&#x5230;&#x672C;&#x5730;&#x8FD0;&#x884C;&#x6216;&#x7528;&#x4E8E;&#x79FB;&#x52A8;&#x5E73;&#x53F0;&#x96C6;&#x6210;&#x3002;&#x60A8;&#x8FD8;&#x53EF;&#x4EE5;&#x5BFC;&#x5165;&#x5728;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#x8BAD;&#x7EC3;&#x8FC7;&#x7684; scikit-learn&#x3001;XGBoost&#x3001;Keras &#x548C; TensorFlow &#x6A21;&#x578B;&#xFF0C;&#x4EE5;&#x7528;&#x4E8E;&#x5168;&#x6258;&#x7BA1;&#x5F0F;&#x5B9E;&#x65F6;&#x9884;&#x6D4B;&#xFF0C;&#x800C;&#x65E0;&#x9700; Docker &#x5BB9;&#x5668;&#x3002;</p>
+</li>
+<li><p>&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x9884;&#x5904;&#x7406;</p>
+<p>&#x4F7F;&#x7528; scikit-learn &#x6D41;&#x6C34;&#x7EBF;&#x548C; tf.transform &#x5C06;&#x90E8;&#x7F72;&#x9884;&#x5904;&#x7406;&#x5DE5;&#x4F5C;&#x63A8;&#x9001;&#x5230; Google Cloud&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x60A8;&#x53EF;&#x4EE5;&#x5C06;&#x539F;&#x59CB;&#x6570;&#x636E;&#x53D1;&#x9001;&#x5230;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x6A21;&#x578B;&#x5E76;&#x51CF;&#x5C11;&#x672C;&#x5730;&#x8BA1;&#x7B97;&#xFF0C;&#x540C;&#x65F6;&#x8FD8;&#x53EF;&#x4EE5;&#x9632;&#x6B62;&#x56E0;&#x5728;&#x8BAD;&#x7EC3;&#x548C;&#x9884;&#x6D4B;&#x4E2D;&#x91C7;&#x7528;&#x4E86;&#x4E0D;&#x540C;&#x7684;&#x9884;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#x800C;&#x5F15;&#x53D1;&#x6570;&#x636E;&#x503E;&#x659C;&#x3002;</p>
+</li>
+</ul>
+<h4 id="&#x6D41;&#x7A0B;">&#x6D41;&#x7A0B;</h4>
+<p>&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x56FE;&#x5C31;&#x8BF4;&#x660E;<strong>Cloud Machine Learning Engine</strong>&#x7684;&#x6D41;&#x7A0B;&#xFF1B;</p>
+<p><img src="../images/&#x8C37;&#x6B4C;GCP&#x597D;&#x5904;.png" alt=""></p>
+<ul>
+<li>&#x8BAD;&#x7EC3;&#xFF1A;&#x4F7F;&#x7528;AI platform&#x8BAD;&#x7EC3;</li>
+<li>&#x8BAD;&#x7EC3;&#x7684;&#x6A21;&#x578B;&#x6D4B;&#x8BD5;&#x5206;&#x6790;&#xFF1A;&#x4F7F;&#x7528;TFX tools&#x5DE5;&#x5177;</li>
+<li>&#x90E8;&#x7F72;&#xFF1A;AI platform&#x5E73;&#x53F0;&#x63D0;&#x4F9B;&#x90E8;&#x7F72;</li>
+</ul>
+<h3 id="332-cloud-ml-engine&#x5E73;&#x53F0;&#x4F7F;&#x7528;">3.3.2 Cloud ML Engine&#x5E73;&#x53F0;&#x4F7F;&#x7528;</h3>
+<p>&#x53EF;&#x4EE5;&#x5728; GCP &#x5185;&#x7684;&#x65E0;&#x670D;&#x52A1;&#x5668;&#x73AF;&#x5883;&#x4E2D;&#x4F7F;&#x7528; Cloud ML Engine &#x8BAD;&#x7EC3;&#x670D;&#x52A1;&#x6765;&#x6269;&#x5927;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x89C4;&#x6A21;&#x3002;Cloud ML Engine &#x652F;&#x6301;&#x6D41;&#x884C;&#x7684;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#xFF0C;&#x4E5F;&#x5141;&#x8BB8; Docker &#x6620;&#x50CF;&#x4E2D;&#x8FD0;&#x884C;&#x5E94;&#x7528;&#x3002;&#x4F7F;&#x7528;Cloud ML Engine&#x6784;&#x5EFA;&#x8BAD;&#x7EC3;&#x5206;&#x4E3A;&#x4E09;&#x6B65;</p>
+<ul>
+<li>&#x76EE;&#x7684;&#xFF1A;&#x63D0;&#x4EA4;&#x4E00;&#x4EFD;Wide&amp;Deep&#x7684;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x5DE5;&#x4F5C;&#x5230;&#x7684;&#x8C37;&#x6B4C;&#x4E91;&#x7684;ML Engine&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;</li>
+<li>&#x6B65;&#x9AA4;&#xFF1A;<ul>
+<li>1&#x3001;Python&#x4EE3;&#x7801;&#x6253;&#x5305;</li>
+<li>2&#x3001;&#x63D0;&#x4EA4;&#x8BAD;&#x7EC3;&#x4EFB;&#x52A1;&#x5230;&#x4E91;&#x7AEF;&#xFF08;&#x914D;&#x7F6E;Google Cloud SDK&#x73AF;&#x5883;&#x3001;&#x63D0;&#x4EA4;&#x547D;&#x4EE4;&#x7B49;&#xFF09;<ul>
+<li>1&#x3001;&#x5B89;&#x88C5;Google Cloud SDK&#xFF0C;&#x914D;&#x7F6E;&#x672C;&#x5730;&#x5173;&#x8054;&#x8FDC;&#x7A0B;&#x8C37;&#x6B4C;GCP&#x8D26;&#x53F7;&#x3001;&#x9879;&#x76EE;&#x7B49;</li>
+<li>2&#x3001;&#x8FDC;&#x7AEF;&#x521B;&#x5EFA;&#x5206;&#x533A;&#xFF0C;&#x672C;&#x5730;&#x4E0A;&#x4F20;wide&amp;deep&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x5230;&#x5206;&#x533A;</li>
+<li>3&#x3001;Google Cloud &#x8BAD;&#x7EC3;&#x4EFB;&#x52A1;&#x63D0;&#x4EA4;&#x5230;&#x8FDC;&#x7A0B;GCP&#x5E73;&#x53F0;</li>
+</ul>
+</li>
+<li>3&#x3001;task&#x8FD0;&#x884C;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</li>
+</ul>
+</li>
+</ul>
+<h4 id="3321-python&#x4EE3;&#x7801;&#x6253;&#x5305;">3.3.2.1 Python&#x4EE3;&#x7801;&#x6253;&#x5305;</h4>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;trainer&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x4E0B;&#x9762;&#x6DFB;&#x52A0;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;__init__.py,&#x4EE5;&#x53CA;&#x4E00;&#x4E2A;task.py&#x3002;&#x8FD9;&#x4E2A;&#x5305;&#x540D;&#x53EB;&#x505A;trainer.task&#x3002;&#x5E76;&#x4E14;&#x540C;&#x65F6;&#x5C06;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x7684;WDL&#x6A21;&#x578B;&#x653E;&#x5165;trainer&#x76EE;&#x5F55;&#x4E0B;</p>
+<p><img src="../images/&#x4EE3;&#x7801;&#x6253;&#x5305;&#x7ED3;&#x6784;.png" alt=""></p>
+<h4 id="3322-&#x63D0;&#x4EA4;&#x8BAD;&#x7EC3;&#x4EFB;&#x52A1;&#x5230;&#x4E91;&#x7AEF;">3.3.2.2 &#x63D0;&#x4EA4;&#x8BAD;&#x7EC3;&#x4EFB;&#x52A1;&#x5230;&#x4E91;&#x7AEF;</h4>
+<h4 id="1&#x3001;&#x6761;&#x4EF6;&#x5B89;&#x88C5;google-cloud-sdk">1&#x3001;&#x6761;&#x4EF6;-&#x5B89;&#x88C5;Google Cloud SDK</h4>
+<p>Google Cloud SDK &#x8FD9;&#x5957;&#x5DE5;&#x5177;&#x53EF;&#x7528;&#x4E8E;&#x7BA1;&#x7406;&#x6258;&#x7BA1;&#x5728; Google Cloud Platform &#x4E0A;&#x7684;&#x8D44;&#x6E90;&#x548C;&#x5E94;&#x7528;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x5DE5;&#x5177;&#x5305;&#x62EC; gcloud&#x3001;gsutil&#x548C; bq&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x3002;gcloud &#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x968F; Cloud SDK &#x4E00;&#x5E76;&#x4E0B;&#x8F7D;&#xFF1B;&#x5982;&#x9700;&#x67E5;&#x770B; gcloud CLI &#x7684;&#x7EFC;&#x5408;&#x6307;&#x5357;&#xFF0C;&#x8BF7;&#x53C2;&#x9605; <a href="https://cloud.google.com/sdk/gcloud" target="_blank">gcloud &#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x6982;&#x89C8;</a>&#x3002;&#x5B89;&#x88C5;&#x5730;&#x5740;: <a href="https://cloud.google.com/sdk/docs/&#xFF0C;&#x4E0B;&#x8F7D;&#x5B89;&#x88C5;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;gcloud&#x547D;&#x4EE4;" target="_blank">https://cloud.google.com/sdk/docs/&#xFF0C;&#x4E0B;&#x8F7D;&#x5B89;&#x88C5;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;gcloud&#x547D;&#x4EE4;</a></p>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A;<strong>&#x7531;&#x4E8E;gdk&#x8981;&#x4E0E;&#x8FDC;&#x7A0B;GCP&#x5E73;&#x53F0;&#x5173;&#x8054;&#xFF0C;</strong></p>
+<p><strong>(1) &#x6240;&#x4EE5;&#x524D;&#x63D0;&#x9700;&#x8981;&#x5728;centos&#x5B89;&#x88C5;shadowsocks&#x5BA2;&#x6237;&#x7AEF;&#x5E76;&#x914D;&#x7F6E;&#x597D;&#x8D26;&#x53F7;&#x5BC6;&#x7801;</strong></p>
+<p><strong>(2) GCP&#x5E73;&#x53F0;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#xFF1A;rereation-rs&#xFF08;&#x540D;&#x79F0;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#xFF0C;&#x540E;&#x9762;&#x4F1A;&#x7528;&#xFF09;</strong></p>
+<p><img src="../images/GCP&#x521B;&#x5EFA;&#x9879;&#x76EE;.jpg" alt=""></p>
+<p><strong>&#x7D27;&#x63A5;&#x7740;&#x505A;&#x4EE5;&#x4E0B;&#x64CD;&#x4F5C;&#xFF1A;</strong></p>
+</blockquote>
+<pre><code class="lang-python">gcloud config set proxy/type socks5
+gcloud config set proxy/address <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
+gcloud config set proxy/port <span class="hljs-number">1080</span>
+gcloud init --console-only
+</code></pre>
+<p>&#x7136;&#x540E;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x8F93;&#x5165;&#x9700;&#x8981;&#x5173;&#x8054;&#x5230;&#x8FDC;&#x7A0B;&#x7684;&#x5DE5;&#x7A0B;&#x4EE5;&#x53CA;&#x8D26;&#x53F7;</p>
+<pre><code class="lang-python">[root@hadoop-master google-cloud-sdk]# gcloud init --console-only
+Welcome! This command will take you through the configuration of gcloud.
+
+Settings from your current configuration [default] are:
+core:
+  disable_usage_reporting: &apos;False&apos;
+proxy:
+  address: 127.0.0.1
+  password: None
+  port: &apos;1085&apos;
+  type: socks5
+
+Pick configuration to use:
+ [1] Re-initialize this configuration [default] with new settings 
+ [2] Create a new configuration
+Please enter your numeric choice:  1
+...
+You must log in to continue. Would you like to log in (Y/n)?  y
+
+Go to the following link in your browser:
+
+https://accounts.google.com/o/oauth2/auth?redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&amp;prompt=select_account&amp;response_type=code&amp;client_id=32555940559.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&amp;access_type=offline
+
+
+Enter verification code: 4/qwE_E-QxBpEZsym-OQhMRheVthATyLcIRPApYMFWfgVcRVVi6-kJhAY
+You are logged in as: [benjamin.huxinghui@gmail.com].
+
+Pick cloud project to use: 
+ [1] rereation-rs # GCP&#x5E73;&#x53F0;&#x8FDC;&#x7A0B;&#x5DF2;&#x7ECF;&#x521B;&#x5EFA;&#x7684;&#x9879;&#x76EE;
+ [2] Create a new project
+Please enter numeric choice or text value (must exactly match list 
+item):  1
+
+Your current project has been set to: [rereation-rs].
+...
+Do you want to configure a default Compute Region and Zone? (Y/n)?  y
+
+Which Google Compute Engine zone would you like to use as project 
+default?
+If you do not specify a zone via a command line flag while working 
+with Compute Engine resources, the default is assumed.
+ [1] us-east1-b
+ [2] us-east1-c
+ [3] us-east1-d
+ [4] us-east4-c
+ [5] us-east4-b
+ [6] us-east4-a
+ [7] us-central1-c
+ [8] us-central1-a
+ ...
+ [44] asia-east2-a
+ [45] asia-east2-b
+ [46] asia-east2-c
+ [47] asia-northeast2-a
+ [48] asia-northeast2-b
+ [49] asia-northeast2-c
+ [50] europe-north1-a
+Did not print [12] options.
+Too many options [62]. Enter &quot;list&quot; at prompt to print choices fully.
+Please enter numeric choice or text value (must exactly match list 
+item):  8
+
+* Run `gcloud --help` to see the Cloud Platform services you can interact with. And run `gcloud help COMMAND` to get help on any gcloud command.
+* Run `gcloud topic --help` to learn about advanced features of the SDK like arg files and output formatting
+</code></pre>
+<p>&#x914D;&#x7F6E;&#x597D;shadosocks&#x3001;&#x90AE;&#x7BB1;&#x4FE1;&#x606F;&#x3001;&#x8FDC;&#x7A0B;&#x9879;&#x76EE;&#x4FE1;&#x606F;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x67E5;&#x770B;&#x914D;&#x7F6E;&#x597D;&#x7684;&#x4FE1;&#x606F;&#x663E;&#x793A;&#x5982;&#x4E0B;</span>
+(recreation) [root@hadoop-master model]<span class="hljs-comment"># gcloud config list</span>
+[compute]
+region = us-central1
+zone = us-central1-a
+[core]
+account = benjamin.huxinghui@gmail.com
+disable_usage_reporting = <span class="hljs-keyword">False</span>
+project = rereation-rs
+[proxy]
+address = <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
+password = <span class="hljs-keyword">None</span>
+port = <span class="hljs-number">1085</span>
+type = socks5
+
+Your active configuration <span class="hljs-keyword">is</span>: [default]
+</code></pre>
+<h4 id="2&#x3001;&#x4E3A;&#x5B58;&#x50A8;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x548C;&#x8BAD;&#x7EC3;&#x540E;&#x7684;&#x6A21;&#x578B;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x9700;&#x8981;&#x5728;gcp&#x5E73;&#x53F0;&#x8BBE;&#x7F6E;&#x5B58;&#x50A8;&#x5206;&#x533A;">2&#x3001;&#x4E3A;&#x5B58;&#x50A8;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x548C;&#x8BAD;&#x7EC3;&#x540E;&#x7684;&#x6A21;&#x578B;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x9700;&#x8981;&#x5728;GCP&#x5E73;&#x53F0;&#x8BBE;&#x7F6E;&#x5B58;&#x50A8;&#x5206;&#x533A;</h4>
+<p>&#x8FDC;&#x7AEF;&#x5E73;&#x53F0;&#x521B;&#x5EFA;&#x5206;&#x533A;&#x6548;&#x679C;&#xFF1A;</p>
+<p><img src="../images/&#x521B;&#x5EFA;&#x5206;&#x533A;.jpg" alt=""></p>
+<p>&#x8FDC;&#x7AEF;&#x521B;&#x5EFA;&#x8FC7;&#x7A0B;1&#xFF1A;&#x53D6;&#x540D;&#x5B57;recreation-bucket-1</p>
+<p><img src="../images/&#x5206;&#x533A;1.jpg" alt=""></p>
+<p><img src="../images/&#x5206;&#x533A;2.jpg" alt=""></p>
+<p><img src="../images/&#x5206;&#x533A;3.jpg" alt=""></p>
+<p>&#x5728;&#x672C;&#x5730;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;</p>
+<pre><code class="lang-python">BUCKET_NAME=<span class="hljs-string">&quot;recreation-bucket-1&quot;</span>
+</code></pre>
+<ul>
+<li>&#x51C6;&#x5907;&#x6570;&#x636E;&#xFF1A;&#x5C06;Wide&amp;Deep&#x7684;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x4F20;&#x5165;&#x4E91;&#x7AEF;&#x5206;&#x533A;</li>
+</ul>
+<pre><code class="lang-powershell">(recreation) [root@hadoop-master model]<span class="hljs-comment"># gsutil cp -r ./test_data.csv gs://$BUCKET_NAME/data</span>
+(recreation) [root@hadoop-master model]<span class="hljs-comment"># gsutil cp -r ./train_data.csv gs://$BUCKET_NAME/data</span>
+</code></pre>
+<h4 id="3&#x3001;cloud-ml-engine&#x547D;&#x4EE4;&#x63D0;&#x4EA4;&#x4EFB;&#x52A1;">3&#x3001;Cloud ML Engine&#x547D;&#x4EE4;&#x63D0;&#x4EA4;&#x4EFB;&#x52A1;</h4>
+<p>&#x63D0;&#x4EA4;&#x4EFB;&#x52A1;&#x9700;&#x8981;&#x7528;&#x5230; <code>gcloud</code> &#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</p>
+<pre><code class="lang-python">gcloud ai-platform jobs submit training JOB [--config=CONFIG] [--job-dir=JOB_DIR] [--labels=[KEY=VALUE,&#x2026;]] [--master-accelerator=[count=COUNT],[type=TYPE]] [--master-image-uri=MASTER_IMAGE_URI] [--master-machine-type=MASTER_MACHINE_TYPE] [--module-name=MODULE_NAME] [--package-path=PACKAGE_PATH] [--packages=[PACKAGE,&#x2026;]] [--parameter-server-accelerator=[count=COUNT],[type=TYPE]] [--parameter-server-image-uri=PARAMETER_SERVER_IMAGE_URI] [--python-version=PYTHON_VERSION] [--region=REGION] [--runtime-version=RUNTIME_VERSION] [--scale-tier=SCALE_TIER] [--staging-bucket=STAGING_BUCKET] [--worker-accelerator=[count=COUNT],[type=TYPE]] [--worker-image-uri=WORKER_IMAGE_URI] [--<span class="hljs-keyword">async</span>     | --stream-logs] [--parameter-server-count=PARAMETER_SERVER_COUNT --parameter-server-machine-type=PARAMETER_SERVER_MACHINE_TYPE] [--worker-count=WORKER_COUNT --worker-machine-type=WORKER_MACHINE_TYPE] [GCLOUD_WIDE_FLAG &#x2026;] [-- USER_ARGS &#x2026;]
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x7B49;&#x4EF7;&#x7684; REST API &#x8C03;&#x7528;&#x65B9;&#x5F0F;&#x3002;&#x58F0;&#x660E;&#x8981;&#x63D0;&#x4EA4;&#x7684;&#x4F5C;&#x4E1A;&#xFF0C;&#x6307;&#x5B9A;&#x76F8;&#x5173;&#x53C2;&#x6570;</p>
+<p>&#x8FD9;&#x65F6;&#x5019;&#x7EC8;&#x4E8E;&#x53EF;&#x4EE5;&#x8DD1;&#x8BAD;&#x7EC3;&#x4EFB;&#x52A1;&#x4E86;&#x3002;&#x5BF9;&#x4E8E;&#x6BCF;&#x6B21;&#x8BAD;&#x7EC3;&#x6216;&#x8005;&#x9884;&#x6D4B;&#xFF0C;&#x90FD;&#x8981;&#x53D6;&#x4E00;&#x4E2A;&#x4E13;&#x95E8;&#x7684;&#x540D;&#x79F0;&#x6807;&#x8BC6;&#x3002;</p>
+<pre><code class="lang-python">JOB_NAME=wide_deep_job
+</code></pre>
+<ul>
+<li>gcloud ai-platform jobs submit training $JOB_NAME<ul>
+<li>&#x4F5C;&#x7528;&#xFF1A;&#x5411;&#x8C37;&#x6B4C;&#x4E91;&#x8BA1;&#x7B97;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x5F15;&#x64CE;&#x63D0;&#x4EA4;&#x8BAD;&#x7EC3;&#x4EFB;&#x52A1;&#xFF0C;&#x5E76;&#x8981;&#x6C42;&#x5C06;&#x5DE5;&#x4F5C;&#x547D;&#x540D;&#x4E3A;&#x8981;&#x6C42;&#x6253;&#x5370;&#x6D41;&#x5F0F;&#x65E5;&#x5FD7;&#x8981;&#x6C42;&#x5DE5;&#x4F5C;&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#x8DEF;&#x5F84;   </li>
+<li><strong>JOB_NAME</strong>: &#x540E;&#x9762;&#x662F;&#x4EFB;&#x52A1;&#x7684;&#x540D;&#x79F0;&#xFF08;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#x4EFB;&#x52A1;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x4E0D;&#x53EF;&#x4EE5;&#x548C;&#x4E4B;&#x524D;&#x63D0;&#x4EA4;&#x7684;&#x4EFB;&#x52A1;&#x540D;&#x91CD;&#x590D;&#xFF09;</li>
+<li><strong>module-name</strong>: &#x6A21;&#x5757;&#x540D;&#x79F0;trainer.task, task&#x5C31;&#x662F;&#x4F60;&#x7A0B;&#x5E8F;&#x7684;&#x5165;&#x53E3;python&#x6587;&#x4EF6;&#xFF0C;&#x5728;&#x6807;&#x51C6;&#x9879;&#x76EE;&#x7ED3;&#x6784;&#x4E2D;&#x53EB;&#x505A;task.py&#x7684;&#x90A3;&#x4E2A;&#x6587;&#x4EF6;,trainer&#x4E3A;&#x6807;&#x51C6;&#x9879;&#x76EE;&#x7ED3;&#x6784;&#x4E2D;trainer&#x6587;&#x4EF6;&#x5939;</li>
+<li><strong>staging-bucket</strong>: &#x4E3A;google cloud&#x4E0A;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x6307;&#x5B9A;&#x4F60;&#x628A;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x5230;&#x54EA;&#x5728;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x5728;&#x90A3;&#x4E2A;&#x8DEF;&#x5F84;&#x4E0A;&#x627E;&#x5230;&#x4F60;&#x7684;&#x6E90;&#x7801;</li>
+<li><strong>package-path</strong>:&#x4E3A;&#x4F60;&#x672C;&#x5730;&#x5230;trainer&#x6587;&#x4EF6;&#x5939;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4F60;&#x628A;trainer&#x6587;&#x4EF6;&#x5939;&#x5B58;&#x5728;&#x4E86;&#x672C;&#x5730;&#x7684;&#x4EC0;&#x4E48;&#x4F4D;&#x7F6E;</li>
+<li>[--job-dir=JOB_DIR] </li>
+<li><strong>job-dir</strong> :&#x6307;&#x5B9A;&#x8F93;&#x51FA;&#x5730;&#x5740;,&#x5C31;&#x662F;&#x6307;&#x5B9A;tensorflow&#x4EE3;&#x7801;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;</li>
+<li><strong>python-version</strong>&#xFF1A;&#x8981;&#x6C42;python&#x7684;&#x7248;&#x672C; 3.5 &#xFF08;&#x9ED8;&#x8BA4;&#x4E3A;2.7, &#x8981;&#x6C42;3.5&#x65F6;&#x5FC5;&#x987B;ML-engine&#x7248;&#x672C;&gt;=1.4&#xFF09;</li>
+<li><strong>runtime-version</strong>:&#x6700;&#x65B0;&#x7248;&#x672C;&#x4E3A;1.6&#xFF0C;&#x652F;&#x6301;python 3</li>
+<li><strong>region</strong>:&#x5B9A;&#x4F4D;&#x8BA1;&#x7B97;&#x5F15;&#x64CE;&#x6240;&#x5728;&#x7684;&#x53EF;&#x7528;&#x533A;&#x57DF;</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-python">BUCKET_NAME=<span class="hljs-string">&quot;recreation-bucket-1&quot;</span>
+TRAIN_DATA=gs://$BUCKET_NAME/data/train_data.csv
+EVAL_DATA=gs://$BUCKET_NAME/data/test_data.csv
+OUTPUT_PATH=gs://$BUCKET_NAME/$JOB_NAME
+REGION=us-central1
+gcloud ml-engine jobs submit training $JOB_NAME --stream-logs --job-dir $OUTPUT_PATH --runtime-version <span class="hljs-number">1.8</span> --python-version <span class="hljs-number">3.5</span> --module-name trainer.task --package-path trainer/ --region $REGION --scale-tier STANDARD_1
+</code></pre>
+<h4 id="3323-task&#x8FD0;&#x884C;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;">3.3.2.3 task&#x8FD0;&#x884C;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</h4>
+<p><strong>&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x83B7;&#x53D6;</strong></p>
+<ul>
+<li>from tensorflow.contrib.training.python.training import hparam&#xFF1A;&#x7528;&#x4E8E;&#x6784;&#x9020;&#x53C2;&#x6570;hparam&#x4F20;&#x5165;&#x6A21;&#x578B;</li>
+<li>import argparse&#xFF1A;&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x547D;&#x4EE4;&#x53C2;&#x6570;</li>
+</ul>
+<pre><code class="lang-python"> <span class="hljs-keyword">import</span> argparse
+ <span class="hljs-keyword">import</span> json
+ <span class="hljs-keyword">import</span> os
+ <span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+ <span class="hljs-keyword">import</span> trainer.model <span class="hljs-keyword">as</span> model
+
+
+ <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+   parser = argparse.ArgumentParser()
+   <span class="hljs-comment"># &#x8F93;&#x5165;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#xFF0C;&#x63D0;&#x4F9B;&#x89E3;&#x91CA;&#x4EE5;&#x53CA;&#x9ED8;&#x8BA4;&#x503C;</span>
+   parser.add_argument(
+       <span class="hljs-string">&apos;--train-files&apos;</span>,
+       help=<span class="hljs-string">&apos;GCS file or local paths to training data&apos;</span>,
+       nargs=<span class="hljs-string">&apos;+&apos;</span>,
+       default=<span class="hljs-string">&apos;gs://recreation-bucket-1/data/train_data.csv&apos;</span>)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--eval-files&apos;</span>,
+       help=<span class="hljs-string">&apos;GCS file or local paths to evaluation data&apos;</span>,
+       nargs=<span class="hljs-string">&apos;+&apos;</span>,
+       default=<span class="hljs-string">&apos;gs://recreation-bucket-1/data/test_data.csv&apos;</span>)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--job-dir&apos;</span>,
+       help=<span class="hljs-string">&apos;GCS location to write checkpoints and export models&apos;</span>,
+       default=<span class="hljs-string">&apos;gs://recreation-bucket-1/wide_deep_job/&apos;</span>)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--num-epochs&apos;</span>,
+       help=<span class="hljs-string">&quot;&quot;&quot;\
+       Maximum number of training data epochs on which to train.
+       If both --max-steps and --num-epochs are specified,
+       the training job will run for --max-steps or --num-epochs,
+       whichever occurs first. If unspecified will run for --max-steps.\
+       &quot;&quot;&quot;</span>,
+       type=int)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--train-batch-size&apos;</span>,
+       help=<span class="hljs-string">&apos;Batch size for training steps&apos;</span>,
+       type=int,
+       default=<span class="hljs-number">64</span>)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--eval-batch-size&apos;</span>,
+       help=<span class="hljs-string">&apos;Batch size for evaluation steps&apos;</span>,
+       type=int,
+       default=<span class="hljs-number">64</span>)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--embedding-size&apos;</span>,
+       help=<span class="hljs-string">&apos;Number of embedding dimensions for categorical columns&apos;</span>,
+       default=<span class="hljs-number">8</span>,
+       type=int)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--first-layer-size&apos;</span>,
+       help=<span class="hljs-string">&apos;Number of nodes in the first layer of the DNN&apos;</span>,
+       default=<span class="hljs-number">100</span>,
+       type=int)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--num-layers&apos;</span>, help=<span class="hljs-string">&apos;Number of layers in the DNN&apos;</span>, default=<span class="hljs-number">4</span>, type=int)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--scale-factor&apos;</span>,
+       help=<span class="hljs-string">&apos;How quickly should the size of the layers in the DNN decay&apos;</span>,
+       default=<span class="hljs-number">0.7</span>,
+       type=float)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--train-steps&apos;</span>,
+       help=<span class="hljs-string">&quot;&quot;&quot;\
+       Steps to run the training job for. If --num-epochs is not specified,
+       this must be. Otherwise the training job will run indefinitely.\
+       &quot;&quot;&quot;</span>,
+       default=<span class="hljs-number">100</span>,
+       type=int)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--eval-steps&apos;</span>,
+       help=<span class="hljs-string">&apos;Number of steps to run evalution for at each checkpoint&apos;</span>,
+       default=<span class="hljs-number">100</span>,
+       type=int)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--export-format&apos;</span>,
+       help=<span class="hljs-string">&apos;The input format of the exported SavedModel binary&apos;</span>,
+       choices=[<span class="hljs-string">&apos;JSON&apos;</span>, <span class="hljs-string">&apos;CSV&apos;</span>, <span class="hljs-string">&apos;EXAMPLE&apos;</span>],
+       default=<span class="hljs-string">&apos;JSON&apos;</span>)
+   parser.add_argument(
+       <span class="hljs-string">&apos;--verbosity&apos;</span>,
+       choices=[<span class="hljs-string">&apos;DEBUG&apos;</span>, <span class="hljs-string">&apos;ERROR&apos;</span>, <span class="hljs-string">&apos;FATAL&apos;</span>, <span class="hljs-string">&apos;INFO&apos;</span>, <span class="hljs-string">&apos;WARN&apos;</span>],
+       default=<span class="hljs-string">&apos;INFO&apos;</span>)
+
+   args, _ = parser.parse_known_args()
+
+   <span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x65E5;&#x5FD7;&#x6253;&#x5370;&#x7EA7;&#x522B;</span>
+   tf.logging.set_verbosity(args.verbosity)
+   <span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x56FE;&#x8FD0;&#x884C;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;</span>
+   os.environ[<span class="hljs-string">&apos;TF_CPP_MIN_LOG_LEVEL&apos;</span>] = str(
+       tf.logging.__dict__[args.verbosity] / <span class="hljs-number">10</span>)
+
+   <span class="hljs-comment"># &#x83B7;&#x53D6;&#x53C2;&#x6570;&#xFF0C;&#x8FD0;&#x884C;&#x8BAD;&#x7EC3;&#x4EFB;&#x52A1;</span>
+   hparams = hparam.HParams(**args.__dict__)
+   train_and_evaluate(hparams)
+</code></pre>
+<h5 id="&#x6A21;&#x578B;&#x8FD0;&#x884C;&#x4EFB;&#x52A1;&#x903B;&#x8F91;">&#x6A21;&#x578B;&#x8FD0;&#x884C;&#x4EFB;&#x52A1;&#x903B;&#x8F91;</h5>
+<ul>
+<li>&#x5206;&#x6790;&#xFF1A;<ul>
+<li>&#x5728;main&#x51FD;&#x6570;&#x4E2D;, &#x63A5;&#x6536;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x7684;&#x6A21;&#x578B;&#x53C2;&#x6570;, &#x5E76;&#x8FD0;&#x884C;&#x51FD;&#x6570;train_and_evaluate<ul>
+<li>&#x5728;train_and_evaluate&#x51FD;&#x6570;&#x4E2D;, &#x6700;&#x7EC8;&#x76EE;&#x7684;&#x662F;&#x6784;&#x5EFA;estimator, &#x5E76;&#x8FD0;&#x884C;tf.estimator.train_and_evaluate()&#x51FD;&#x6570;</li>
+<li>tf.estimator.train_and_evaluate()<ul>
+<li>&#x8BE5;&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;&#x6709;&#x4E09;&#x4E2A;&#xFF1A;<ul>
+<li><code>estimator</code>&#xFF1A;&#x4E00;&#x4E2A; <code>Estimator</code> &#x5B9E;&#x4F8B;<ul>
+<li>estimator&#x4E3A;&#x8C03;&#x7528;&#x4E86;&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x578B;model&#x6A21;&#x5757;&#x7684;build_estimator&#x51FD;&#x6570;</li>
+</ul>
+</li>
+<li><code>train_spec</code>&#xFF1A;&#x4E00;&#x4E2A; <code>TrainSpec</code> &#x5B9E;&#x4F8B;&#xFF0C;&#x7528;&#x6765;&#x914D;&#x7F6E;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x3002;</li>
+<li><code>eval_spec</code>&#xFF1A;&#x4E00;&#x4E2A; <code>EvalSpec</code> &#x5B9E;&#x4F8B;&#xFF0C;&#x7528;&#x6765;&#x914D;&#x7F6E;&#x8BC4;&#x4F30;&#x8FC7;&#x7A0B;&#x3001;&#xFF08;&#x53EF;&#x9009;&#xFF09;&#x6A21;&#x578B;&#x7684;&#x5BFC;&#x51FA;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&#x6B65;&#x9AA4;<ul>
+<li>1&#x3001;&#x521B;&#x5EFA;&#x8F93;&#x5165;&#x6570;&#x636E;&#x51FD;&#x6570;</li>
+<li>2&#x3001;&#x521B;&#x5EFA;&#x6A21;&#x578B;&#x8FD0;&#x884C;&#x7684;&#x914D;&#x7F6E;</li>
+<li>3&#x3001;&#x5EFA;&#x7ACB;WDL estimator&#xFF0C;&#x8FD4;&#x56DE;&#x5B9E;&#x4F8B;</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_get_session_config_from_env_var</span><span class="hljs-params">()</span>:</span>
+  <span class="hljs-string">&quot;&quot;&quot;&#x8FD4;&#x56DE;tf.ConfigProto&#x5B9E;&#x4F8B;&#x63D0;&#x4F9B;&#x7ED9;run_config
+  &quot;&quot;&quot;</span>
+  tf_config = json.loads(os.environ.get(<span class="hljs-string">&apos;TF_CONFIG&apos;</span>, <span class="hljs-string">&apos;{}&apos;</span>))
+  <span class="hljs-keyword">if</span> (tf_config <span class="hljs-keyword">and</span> <span class="hljs-string">&apos;task&apos;</span> <span class="hljs-keyword">in</span> tf_config <span class="hljs-keyword">and</span> <span class="hljs-string">&apos;type&apos;</span> <span class="hljs-keyword">in</span> tf_config[<span class="hljs-string">&apos;task&apos;</span>] <span class="hljs-keyword">and</span>
+      <span class="hljs-string">&apos;index&apos;</span> <span class="hljs-keyword">in</span> tf_config[<span class="hljs-string">&apos;task&apos;</span>]):
+    <span class="hljs-comment"># Master&#x4E0E;PS&#x901A;&#x4FE1;</span>
+    <span class="hljs-keyword">if</span> tf_config[<span class="hljs-string">&apos;task&apos;</span>][<span class="hljs-string">&apos;type&apos;</span>] == <span class="hljs-string">&apos;master&apos;</span>:
+      <span class="hljs-keyword">return</span> tf.ConfigProto(device_filters=[<span class="hljs-string">&apos;/job:ps&apos;</span>, <span class="hljs-string">&apos;/job:master&apos;</span>])
+    <span class="hljs-comment"># Worker&#x4E0E;PS&#x901A;&#x4FE1;</span>
+    <span class="hljs-keyword">elif</span> tf_config[<span class="hljs-string">&apos;task&apos;</span>][<span class="hljs-string">&apos;type&apos;</span>] == <span class="hljs-string">&apos;worker&apos;</span>:
+      <span class="hljs-keyword">return</span> tf.ConfigProto(device_filters=[
+          <span class="hljs-string">&apos;/job:ps&apos;</span>,
+          <span class="hljs-string">&apos;/job:worker/task:%d&apos;</span> % tf_config[<span class="hljs-string">&apos;task&apos;</span>][<span class="hljs-string">&apos;index&apos;</span>]
+      ])
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">None</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_and_evaluate</span><span class="hljs-params">(hparams)</span>:</span>
+  <span class="hljs-string">&quot;&quot;&quot;&#x8FD4;&#x56DE;estimator&#x9AD8;&#x9636;API&quot;&quot;&quot;</span>
+  <span class="hljs-comment"># 1&#x3001;&#x521B;&#x5EFA;&#x8F93;&#x5165;&#x6570;&#x636E;&#x51FD;&#x6570;</span>
+  train_input = <span class="hljs-keyword">lambda</span>: model.input_fn(
+      hparams.train_files,
+      num_epochs=hparams.num_epochs,
+      batch_size=hparams.train_batch_size
+  )
+
+  <span class="hljs-comment"># &#x9A8C;&#x8BC1;&#x6570;&#x636E;&#x8F93;&#x5165;&#x51FD;&#x6570;&#xFF0C;&#x4E0D;&#x6253;&#x4E71;&#x6570;&#x636E;</span>
+  eval_input = <span class="hljs-keyword">lambda</span>: model.input_fn(
+      hparams.eval_files,
+      batch_size=hparams.eval_batch_size,
+      shuffle=<span class="hljs-keyword">False</span>
+  )
+
+  <span class="hljs-comment"># 2&#x3001;&#x521B;&#x5EFA;&#x6A21;&#x578B;&#x8FD0;&#x884C;&#x7684;&#x914D;&#x7F6E;</span>
+  <span class="hljs-comment"># &#x8BAD;&#x7EC3;&#x914D;&#x7F6E;</span>
+  train_spec = tf.estimator.TrainSpec(
+      train_input, max_steps=hparams.train_steps)
+
+  exporter = tf.estimator.FinalExporter(
+      <span class="hljs-string">&apos;nss&apos;</span>, model.SERVING_FUNCTIONS[hparams.export_format])
+  <span class="hljs-comment"># &#x9A8C;&#x8BC1;&#x914D;&#x7F6E;</span>
+  eval_spec = tf.estimator.EvalSpec(
+      eval_input,
+      steps=hparams.eval_steps,
+      exporters=[exporter],
+      name=<span class="hljs-string">&apos;nss-eval&apos;</span>)
+    <span class="hljs-comment"># &#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span>
+  run_config = tf.estimator.RunConfig(
+      session_config=_get_session_config_from_env_var())
+  run_config = run_config.replace(model_dir=hparams.job_dir)
+  print(<span class="hljs-string">&apos;Model dir %s&apos;</span> % run_config.model_dir)
+
+  <span class="hljs-comment"># 3&#x3001;&#x5EFA;&#x7ACB;WDL estimator&#xFF0C;&#x8FD4;&#x56DE;&#x5B9E;&#x4F8B;</span>
+  estimator = model.build_estimator(
+      embedding_size=hparams.embedding_size,
+      <span class="hljs-comment"># &#x4EE5;&#x6307;&#x6570;&#x8870;&#x51CF;&#x65B9;&#x5F0F;&#x6784;&#x5EFA;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5C42;&#x5927;&#x5C0F;</span>
+      hidden_units=[
+          max(<span class="hljs-number">2</span>, int(hparams.first_layer_size * hparams.scale_factor**i))
+          <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(hparams.num_layers)
+      ],
+      config=run_config)
+
+  tf.estimator.train_and_evaluate(estimator, train_spec, eval_spec)
+</code></pre>
+<h3 id="333-&#x8D85;&#x53C2;&#x6570;&#x8C03;&#x4F18;&#x4E0E;gpu&#x914D;&#x7F6E;&#x6307;&#x5B9A;">3.3.3 &#x8D85;&#x53C2;&#x6570;&#x8C03;&#x4F18;&#x4E0E;GPU&#x914D;&#x7F6E;&#x6307;&#x5B9A;</h3>
+<h4 id="3331-&#x8D85;&#x53C2;&#x6570;&#x8C03;&#x4F18;&#x5B9E;&#x73B0;">3.3.3.1 &#x8D85;&#x53C2;&#x6570;&#x8C03;&#x4F18;&#x5B9E;&#x73B0;</h4>
+<ul>
+<li>&#x76EE;&#x7684;&#xFF1A;&#x5728;GCP&#x4E2D;&#x8FD0;&#x884C;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x4EFB;&#x52A1;&#x65F6;&#xFF0C;&#x8FBE;&#x5230;&#x81EA;&#x52A8;&#x8C03;&#x8282;&#x6A21;&#x578B;&#x8D85;&#x53C2;&#x6570;&#xFF0C;&#x5199;&#x5165;&#x4F60;&#x60F3;&#x8981;&#x6307;&#x5B9A;&#x7684;gpu&#x914D;&#x7F6E;&#x4FE1;&#x606F;</li>
+<li>&#x65B9;&#x5F0F;&#xFF1A;<ul>
+<li>&#x5BF9;&#x5E94;&#x7684;&#x63D0;&#x4EA4;&#x53C2;&#x6570;&#x662F; --config $HPTUNING_CONFIG</li>
+<li>HPTUNING_CONFIG&#x6307;&#x5411;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;: ./hptuning_config.yaml</li>
+</ul>
+</li>
+</ul>
+<p>&#x6307;&#x5B9A;&#x914D;&#x7F6E;&#x5982;&#x4E0B;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre><code class="lang-python"> trainingInput:
+   hyperparameters:
+     goal: MAXIMIZE
+     algorithm: GRID_SEARCH
+     hyperparameterMetricTag: accuracy
+     maxTrials: <span class="hljs-number">4</span>
+     maxParallelTrials: <span class="hljs-number">2</span>
+     params:
+       - parameterName: first-layer-size
+         type: INTEGER
+         minValue: <span class="hljs-number">50</span>
+         maxValue: <span class="hljs-number">500</span>
+         scaleType: UNIT_LINEAR_SCALE
+       - parameterName: hidden1
+           type: INTEGER
+         minValue: <span class="hljs-number">40</span>
+         maxValue: <span class="hljs-number">400</span>
+         scaleType: UNIT_LINEAR_SCALE
+       - parameterName: num-layers
+         type: INTEGER
+         minValue: <span class="hljs-number">1</span>
+         maxValue: <span class="hljs-number">15</span>
+         scaleType: UNIT_LINEAR_SCALE
+   scaleTier: CUSTOM
+   masterType: complex_model_m_gpu
+   workerType: complex_model_m_gpu
+   parameterServerType: large_model
+   workerCount: <span class="hljs-number">9</span>
+   parameterServerCount: <span class="hljs-number">3</span>
+
+<span class="hljs-comment"># &#x53C2;&#x6570;&#x89E3;&#x91CA;</span>
+ &#x8BAD;&#x7EC3;&#x8F93;&#x5165;:
+   &#x8D85;&#x53C2;&#x6570;:
+     &#x76EE;&#x6807;: &#x6700;&#x5927;&#x5316;&#xFF08;&#x6700;&#x5C0F;&#x5316;&#xFF09;
+     &#x7B97;&#x6CD5;: &#x7F51;&#x683C;&#x641C;&#x7D22;&#xFF08;&#x8D1D;&#x53F6;&#x65AF;&#x4F18;&#x5316;&#xFF0C;&#x968F;&#x673A;&#x641C;&#x7D22;&#xFF09;
+     &#x8D85;&#x53C2;&#x6570;&#x8C03;&#x8282;&#x6307;&#x6807;: &#x51C6;&#x786E;&#x7387;
+     &#x6700;&#x5927;&#x5C1D;&#x8BD5;&#x53C2;&#x6570;&#x8C03;&#x4F18;&#x7684;&#x6B21;&#x6570;&#xFF1A;<span class="hljs-number">4</span>      
+     &#x6700;&#x591A;&#x540C;&#x65F6;&#x8FDB;&#x884C;&#x53C2;&#x6570;&#x8C03;&#x4F18;&#x7684;woker&#x6570;&#x91CF;&#xFF1A;<span class="hljs-number">2</span>  
+
+     &#x53C2;&#x6570;&#xFF1A;
+       - &#x53C2;&#x6570;&#x540D;&#xFF1A;&#x9996;&#x5C42;&#x7F51;&#x7EDC;&#x5927;&#x5C0F;
+         &#x7C7B;&#x578B;: &#x6574;&#x578B;
+         &#x6700;&#x5C0F;&#x503C;: <span class="hljs-number">50</span>
+         &#x6700;&#x5927;&#x503C;: <span class="hljs-number">500</span>
+         &#x7F29;&#x653E;&#x7C7B;&#x578B;&#xFF1A; &#x7EBF;&#x6027;&#x7F29;&#x653E; &#xFF08;<span class="hljs-number">0</span>-<span class="hljs-number">1</span>&#xFF09;
+       - &#x53C2;&#x6570;&#x540D;&#xFF1A;&#x5C42;&#x6570;
+         &#x7C7B;&#x578B;: &#x6574;&#x578B;
+         &#x6700;&#x5C0F;&#x503C;: <span class="hljs-number">1</span>
+         &#x6700;&#x5927;&#x503C;: <span class="hljs-number">15</span>
+         &#x7F29;&#x653E;&#x7C7B;&#x578B;&#xFF1A; &#x7EBF;&#x6027;&#x7F29;&#x653E; &#xFF08;<span class="hljs-number">0</span>-<span class="hljs-number">1</span>&#xFF09;
+</code></pre>
+<h3 id="334-&#x5C0F;&#x7ED3;">3.3.4 &#x5C0F;&#x7ED3;</h3>
+<ul>
+<li>Cloud ML Engine&#x5E73;&#x53F0;&#x4F7F;&#x7528;&#x7684;&#x8FC7;&#x7A0B;</li>
+<li>Cloud ML Engine&#x5E73;&#x53F0;&#x5B9E;&#x73B0;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../day02/section2.html" class="navigation navigation-prev " aria-label="Previous page: 泛娱乐特征工程与模型代码构建"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../day02/section4.html" class="navigation navigation-next " aria-label="Next page: GCP模型预测与部署"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"katex":{},"expandable-chapters-small":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
