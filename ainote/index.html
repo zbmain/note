@@ -1,156 +1,47 @@
 <!DOCTYPE html>
 <html>
-<style type="text/css">
-ul li{
-    margin: 1.5px 0;
-    color: dimgray;
-    font-size: 15px;
-}
-.hr-dashed{
-    height:1px;
-    border:none;
-    border-top:1px dashed;
-}
-a{
-    text-decoration: none;
-}
-.hiddend{
-    display: none;
-}
-.hidden-doubleon{
-    opacity: 0.3;
-    cursor:pointer;
-}
-.new{
-    color: red;
-    font-size: 15px;
-    font-weight: bold;
-}
-.dead-text{
-    opacity: 0.3;
-    cursor:help;
-}
-.comment{
-    font-size: 13px;
-    padding-left: 10px;
-    opacity: 0.6;
-}
-.comment:hover{
-    color: red;
-    cursor: default;
-    opacity: 1;
-}
-</style>
-<script type="text/javascript">
-    var num = 0
-    var state = getParamKey('z') == undefined ? 'none':'';//初始状态
-    //隐藏功能
-    document.onkeydown = keyDownHandler;
-    function keyDownHandler(evt){
-        evt = evt ? evt : window.event;
-        if(evt.keyCode == 90) otherUpdateState(2);
-    }
-    //改状态
-    function initState(){
-        var obj = document.getElementsByTagName("body")[0].getElementsByTagName("*");
-        for(var i = 0;i < obj.length; i++){
-            if(obj[i].id == '#'){
-                obj[i].style.display = state;
-            }else if(obj[i].id == '##'){
-                obj[i].style.display = state == 'none' ? '':'none';
-            }
-        }
-    }
-    //
-    function click_hidden_func(){
-        var obj = document.getElementsByTagName("body")[0].getElementsByTagName("*");
-        for(var i = 0;i < obj.length; i++){
-            state = obj[i].style.display
-            if(obj[i].id == 'cvul'){
-                console.log(obj[i].style.display)
-                obj[i].style.display = state == 'none' ? '':'none';
-                (obj[i]).parentNode.style.opacity = state ? 1 : 0.3;
-            }
-        }
-    }
-    //切换
-    function otherUpdateState(v=1){
-        num += v
-        state = (num > 1 && state == 'none') ? '':'none';
-        initState();
-    }
-    //获取参数
-    function getParamKey(key){
-        var str = window.location.search;
-        if (str.indexOf(key) != -1) {
-            var pos_start = str.indexOf(key) + key.length + 1;
-            var pos_end = str.indexOf("&", pos_start);
-            if (pos_end == -1) {
-                return str.substring(pos_start)
-            }
-        }
-    }
-    //github CDN链接文件：javascript:goto('/')
-    cdndomain = "https://cdn.jsdelivr.net/gh/zbmain/note@master/"
-    function goto(filepath){
-        var url = document.location.toString();
-        var arr = url.split("//");
-        url = arr[1].substring(arr[1].indexOf("/"));
-        var arr = url.split("/");
-        url = arr[1].substring(arr[0].indexOf("/"));
-        url = cdndomain + url + filepath
-        //url = url.replace(/^(http|https):\/\/[^/]+/, "");
-        window.location = url
-    }
-</script>
 <head>
     <meta charset="utf-8" />
     <title>AI Note</title>
     <link href="../favicon.ico" rel="shortcut icon"/>
+    <link rel="stylesheet" type="text/css" href="../cssjs/css.css">
+    <script type="text/javascript" src="../cssjs/js.js"></script>
 </head>
 <body onload="{initState()}">
-    <!--
-        <li>
-            <a href="./"><span></span></a>
-            <span class="comment"></span>
-        </li>
-        <li><span></span>
-            <ul>
+    <ul>
+        <li class="hidden-doubleon" onclick="click_hidden_func(event,name)">
+            <a href="http://git.itcast.cn/lemonhxj/python-senior"><span>基础</span></a>
+            <!-- <span id="">基础</span> -->
+            <span id=### class="comment">click open</span>
+            <ul id="####" style="display: none;">
                 <li>
-                    <a href="./index.html"><span>name</span></a>
-                    <span class="comment">comment</span>
+                    <a href="./basic/index.html"><span>Python基础</span></a>
+                    <span class="comment">Var & Type & Function & 递归 & 匿名函数 & 列表推导式 & File</span>
+                </li>
+                <li>
+                    <a href="./oop/index.html"><span>Python面向对象</span></a>
+                    <span class="comment">Class & OOP & try</span>
+                </li>
+                <li>
+                    <a href="./linux/index.html"><span>Linux</span></a>
+                    <span class="comment">Linux & 进程&线程 & TCP & HTTP & 装饰器 & 正则</span>
+                </li>
+                <li>
+                    <a href="./mysql/index.html"><span>数据库</span></a>
+                    <span class="comment">MySQL</span>
+                </li>
+                <li>
+                    <a href="./data/index.html"><span>数据结构与算法</span></a>
+                    <span class="comment">算法 & 顺序表 & 链表 & 栈 & 队列 & 排序搜索 & 树与搜索</span>
                 </li>
             </ul>
         </li>
-    -->
-    <ul>
-        <li>
-            <a href="./basic/index.html"><span>Python基础</span></a>
-            <span class="comment">Var & Type & Function & 递归 & 匿名函数 & 列表推导式 & File</span>
-        </li>
-        <!-- -->
-        <li>
-            <a href="./oop/index.html"><span>Python面向对象</span></a>
-            <span class="comment">Class & OOP & try</span>
-        </li>
-        <!-- -->
-        <li>
-            <a href="./linux/index.html"><span>Linux</span></a>
-            <span class="comment">Linux & 进程&线程 & TCP & HTTP & 装饰器 & 正则</span>
-        </li>
-        <!-- -->
-        <li>
-            <a href="./mysql/index.html"><span>数据库</span></a>
-            <span class="comment">MySQL</span>
-        </li>
-        <!-- -->
-        <li>
-            <a href="./data/index.html"><span>数据结构与算法</span></a>
-            <span class="comment">算法 & 顺序表 & 链表 & 栈 & 队列 & 排序搜索 & 树与搜索</span>
-        </li>
         <hr>
-        <li><span>机器学习</span>
-            <ul>
+        <li class="hidden-doubleon" onclick="click_hidden_func(event,name)">
+            <a href="http://121.199.45.168:10003"><span>ML</span></a>
+            <!-- <span id="">机器学习</span> -->
+            <span id="###" class="comment">click open</span>
+            <ul id="####" style="display: "";">
                 <li>
                     <a href="./machineleaning/科学计算库1/index.html"><span>科学计算库1</span></a>
                     <span class="comment">Matplotlib & Numpy & Pandas</span>
@@ -170,10 +61,10 @@ a{
             </ul>
         </li>
         <hr>
-        <li class="hidden-doubleon" onclick="click_hidden_func()">
-            <span>CV </span>
-            <span class="comment">click open</span>
-            <ul id="cvul" style="display: none;">
+        <li class="hidden-doubleon" onclick="click_hidden_func(event,name)">
+            <span id="">CV</span>
+            <span id=### class="comment">click open</span>
+            <ul id="####" style="display: none;">
                 <li><a href="./opencv/index.html"><span>OpenCV</span></a></li>
                 <li><a href="./deeplearning/notes/noteopencv.html"><span>重点笔记</span></a></li>
                 <li><a href="./deeplearning/index.html"><span>OpenCV DL（旧版）</span></a>
@@ -244,8 +135,11 @@ a{
             </li>
         </ul>
         <hr>
-        <li><span>NLP</span>
-            <ul>
+        <li class="hidden-doubleon" onclick="click_hidden_func(event,name)">
+            <a href="http://git.itcast.cn/lemonhxj/NLP_basis"><span>NLP</span></a>
+            <!-- <span id="">NLP</span> -->
+            <span id="###" class="comment">click open</span>
+            <ul id="####" style="display: ;">
                 <li>
                     <a href="http://121.199.45.168:8020/"><span>Pytorch</span></a>
                     <span class="comment">pytorch & CIFAR10图像分类</span>
@@ -319,11 +213,12 @@ a{
             </ul>
         </li>
     </li>
-    <li>
-        <hr>
-        <a href="http://121.199.45.168:8884/"><span>面试 & 工作</span></a>
-        <span class="comment">【 CV|NLP项目 & Neo4j知识图谱 & 工程化 】<span style="color: red;">工程师需知</span></span>
-        <ul>
+    <hr>
+    <li class="hidden-doubleon" onclick="click_hidden_func(event,name)">
+        <a href="http://121.199.45.168:8884">面试 & 工作</a>
+        <span id="###" class="comment">【 CV|NLP项目 & Neo4j知识图谱 & 工程化 】<span style="color: red;">工程师需知</span>
+        <span id="###" class="comment">click open</span>
+        <ul id="####" style="display: ;">
             <li>
                 <a href="javascript:goto('/interview/HR面试问题.pdf')"><span>HR</span></a>
                 <span class="comment">人事面试问题</span>
@@ -363,8 +258,13 @@ a{
         </ul>
     </li>
     <hr>
-    <li id="#"><span>其他</span>
-        <ul>
+    <li id="#" class="hidden-doubleon" onclick="click_hidden_func(event,name)">
+            <a href="http://git.itcast.cn/lemonhxj/NLP_basis"><span>其他</span></a>
+            <!-- <span id="">NLP</span> -->
+            <span id="###" class="comment">click open</span>
+            <ul id="####" style="display: ;">
+    <!-- <li id="#"><span>其他</span>
+        <ul> -->
             <li><span class="new">「新」</span>
                 <a href="http://www.tisv.cn/"><span>ZMZ</span></a>
                 <span class="comment">周明震的人工智能分享</span>

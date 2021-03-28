@@ -1,69 +1,26 @@
 <!DOCTYPE html>
 <html>
-<style type="text/css">
-    ul li{
-        margin: 2px 0;
-        color: dimgray;
-        font-size: 18px;
-    }
-    a{
-        text-decoration: none;
-    }
-    .new{
-        color: red;
-        font-size: 15px;
-        font-weight: bold;
-    }
-    .comment{
-        font-size: 15px;
-        padding-left: 10px;
-        opacity: 0.6;
-    }
-    .comment:hover{
-        color: red;
-        cursor: default;
-        opacity: 1;
-
-    }
-</style>
-<script type="text/javascript">
-</script>
 <head>
     <meta charset="utf-8" />
     <title>AI Summary</title>
     <link href="../favicon.ico" rel="shortcut icon"/>
-    <script type="text/javascript">
-        
-        cdndomain = "https://cdn.jsdelivr.net/gh/zbmain/note@master/"
-        function goto(filepath){
-            var url = document.location.toString();
-            var arr = url.split("//");
-            url = arr[1].substring(arr[1].indexOf("/"));
-            var arr = url.split("/");
-            url = arr[1].substring(arr[0].indexOf("/"));
-            url = cdndomain + url + filepath
-            //url = url.replace(/^(http|https):\/\/[^/]+/, "");
-            window.location = url
+    <link rel="stylesheet" type="text/css" href="../cssjs/css.css">
+    <script type="text/javascript" src="../cssjs/js.js"></script>
+    <style type="text/css">
+        ul li{
+            margin: 2px 0;
+            color: dimgray;
+            font-size: 18px;
         }
-    </script>
+        .comment{
+            font-size: 15px;
+            padding-left: 10px;
+            opacity: 0.6;
+        }
+    </style>
 </head>
 <body>
-    <!--
-        <li>
-            <a href="./"><span></span></a>
-            <span class="comment"></span>
-        </li>
-        <li><span></span>
-            <ul>
-                <li>
-                    <a href="./index.html"><span>name</span></a>
-                    <span class="comment">comment</span>
-                </li>
-            </ul>
-        </li>
-    -->
     <ul>
-        <!-- -->
         <li>
             <a href="http://git.itcast.cn/explore/projects"><span>Itcast GitLab</span></a>
             <span class="comment">Itcast开源项目集</span>
@@ -120,7 +77,7 @@
                 </li>
                 <li>
                     <a href="http://121.199.45.168:10003/"><span>机器学习经典算法</span></a>
-                    <span class="comment">K-近邻算法、线性回归、逻辑回归、决策树算法、聚类算法、朴素贝叶斯支持向量机、EM算法、HMM算法、集成学习、随机森林、GBDT、XGBoost、lightGBM</span>
+                    <span class="comment">K-近邻、线性回归、逻辑回归、决策树算法、聚类算法、朴素贝叶斯、SVM、EM、HMM、集成学习、随机森林、GBDT、XGBoost、lightGBM</span>
                 </li>
                 <li>
                     <a href="http://121.199.45.168:10004/"><span>Python环境搭建【拓展阅读】</span></a>
@@ -130,7 +87,6 @@
                     <a href="javascript:goto('/ml/ML阶段常见面试题.pdf')"><span>ML常见面试题</span></a>
                     <span class="comment"></span>
                 </li>
-                
             </ul>
         </li>
         <hr>
