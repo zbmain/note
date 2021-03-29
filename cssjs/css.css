@@ -1,11 +1,10 @@
 body{
-    background-color:FFF;
-    border: 50px solid darkslategray;
-    border-width: 5px 300px;
+    background-color:#FFF;
+    border: 20px solid darkslategray;
+    border-width: 5px 20px;
 }
 ul li{
-    margin: 1.1px 
-    back;
+    margin: 1.5px;
     color: dimgray;
     font-size: 16px;
 }
@@ -29,6 +28,9 @@ a{
     font-weight: bold;
 }
 .dead-text{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
     opacity: 0.3;
     cursor:help;
 }
@@ -40,5 +42,18 @@ a{
 .comment:hover{
     color: red;
     cursor: default;
+    opacity: 1;
+}
+#z1{
+    display: none;
+}
+#z2{
+    display: '';
+}
+#z3{
+
+}
+#z4{
+    display: 'none';
     opacity: 1;
 }

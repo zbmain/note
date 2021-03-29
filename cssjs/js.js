@@ -1,5 +1,5 @@
 var num = 0
-var state = getParamKey('z') == undefined ? 'none':'';//初始状态
+var state = getParamKey('z') == undefined ? 'none':'block';//初始状态
 //隐藏功能
 document.onkeydown = keyDownHandler;
 function keyDownHandler(evt){
@@ -14,23 +14,24 @@ function keyDownHandler(evt){
 function initState(){
     var obj = document.getElementsByTagName("body")[0].getElementsByTagName("*");
     for(var i = 0;i < obj.length; i++){
-        if(obj[i].id == '#'){
+        if(obj[i].id == 'z1'){
+            console.log(state,'@@@')
             obj[i].style.display = state;
-        }else if(obj[i].id == '##'){
-            obj[i].style.display = state == 'none' ? '':'none';
+        }else if(obj[i].id == 'z2'){
+            obj[i].style.display = state == 'none' ? 'block':'none';
         }
     }
 }
 //
 function click_hidden_func(event,name){
 
-    if(event.target.id=='###')
+    if(event.target.id=='z3')
     {
         var obj = event.currentTarget.getElementsByTagName("*");
         for(var i = 0;i < obj.length; i++){
             state = obj[i].style.display
-            if(obj[i].id == '####'){
-                obj[i].style.display = state == 'none' ? '':'none';
+            if(obj[i].id == 'z4'){
+                obj[i].style.display = state == 'none' ? 'block':'none';
                 (obj[i]).parentNode.style.opacity = state ? 1 : 1;
             }
         }
@@ -39,7 +40,8 @@ function click_hidden_func(event,name){
 //切换
 function otherUpdateState(v=1){
     num += v
-    state = (num > 1 && state == 'none') ? '':'none';
+    state = (num > 1 && state == 'none') ? 'block':'none';
+    console.log(state)
     initState();
 }
 //获取参数
