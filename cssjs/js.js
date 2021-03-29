@@ -10,6 +10,12 @@ function keyDownHandler(evt){
     }
     if(typeof(bfunc)=='function' && (evt.keyCode == 66)) bfunc();
 }
+function body_obload(){
+    if (state == 'block'){
+        initState()
+    }
+    console.log(state)
+}
 //改状态
 function initState(){
     var obj = document.getElementsByTagName("body")[0].getElementsByTagName("*");
