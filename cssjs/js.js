@@ -14,14 +14,12 @@ function body_obload(){
     if (state == 'block'){
         initState()
     }
-    console.log(state)
 }
 //改状态
 function initState(){
     var obj = document.getElementsByTagName("body")[0].getElementsByTagName("*");
     for(var i = 0;i < obj.length; i++){
         if(obj[i].id == 'z1'){
-            console.log(state,'@@@')
             obj[i].style.display = state;
         }else if(obj[i].id == 'z2'){
             obj[i].style.display = state == 'none' ? 'block':'none';
@@ -46,7 +44,7 @@ function click_hidden_func(event,name){
 //切换
 function otherUpdateState(v=1){
     num += v
-    state = (num > 1 && state == 'none') ? 'block':'none';
+    state = (num >= 1 && state == 'none') ? 'block':'none';
     console.log(state)
     initState();
 }
