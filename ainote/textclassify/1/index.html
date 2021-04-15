@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>第一章:整体系统搭建 - 智能文本分类</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../js/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u7b2c\u4e00\u7ae0:\u6574\u4f53\u7cfb\u7edf\u642d\u5efa";
+    var mkdocs_page_input_path = "1.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-36723568-3', 'mkdocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 智能文本分类</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">初识智能文本分类系统</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">第一章:整体系统搭建</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">本章导学</a></li>
+    
+
+    <li class="toctree-l2"><a href="#11">1.1 后端服务搭建</a></li>
+    
+
+    <li class="toctree-l2"><a href="#12">1.2 输入预处理</a></li>
+    
+
+    <li class="toctree-l2"><a href="#13">1.3 图谱匹配</a></li>
+    
+
+    <li class="toctree-l2"><a href="#14">1.4 匹配歧义判断</a></li>
+    
+
+    <li class="toctree-l2"><a href="#15">1.5 概率调整</a></li>
+    
+
+    <li class="toctree-l2"><a href="#16">1.6 概率归一化与父标签检索</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_3">本章总结</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2/">第二章:构建标签词汇图谱</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3/">第三章:特征工程与fasttext模型训练</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../4/">第四章:多模型训练与预测</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../5/">第五章:系统联调与测试</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6/">全文总结</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../7/">附录-环境安装部署手册</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">智能文本分类</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>第一章:整体系统搭建</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="_1">本章导学</h2>
+<ul>
+<li>学习目标<ul>
+<li>掌握智能文本分类系统对外服务的搭建及其内部处理环节,并在服务器中实现它们.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>引导分析</p>
+<ul>
+<li>
+<p>系统输入为: 文章, 评论, 描述等具体的非结构化文本. </p>
+</li>
+<li>
+<p>系统输出为: 该文本涉及的主要标签,主要标签预测概率以及关联的父级标签列表.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p><img alt="avatar" src="../img/7.png" /></p>
+<hr />
+<ul>
+<li>智能文本分类整体系统搭建的六个环节:</li>
+</ul>
+<p><img alt="avatar" src="../img/11.png" /></p>
+<ul>
+<li>
+<p>本章小节:</p>
+<ul>
+<li>1.1 后端服务搭建  <ul>
+<li>学习构建起对外提供restAPI的服务框架，使成果能被非技术人员调用.  </li>
+</ul>
+</li>
+<li>1.2 输入预处理  <ul>
+<li>学习对输入的文本做长度验证, 分词, 去停用词等处理操作.  </li>
+</ul>
+</li>
+<li>1.3 图谱匹配<ul>
+<li>学习使用输入文本中的词汇进入到图谱中进行匹配, 找出所有可能的标签.  </li>
+</ul>
+</li>
+<li>1.4 匹配歧义判断<ul>
+<li>学习使用模型对所有不确定的标签进行判断, 找出最合适的标签.  </li>
+</ul>
+</li>
+<li>1.5 概率调整<ul>
+<li>学习调整标签的概率, 满足随着相关词汇增多, 概率逐渐增大.  </li>
+</ul>
+</li>
+<li>1.6 概率标签化与父标签检索<ul>
+<li>学习对概率进行归一化处理, 并检索匹配标签的父级标签列表.  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<hr />
+<h2 id="11">1.1 后端服务搭建</h2>
+<ul>
+<li>学习目标:<ul>
+<li>了解后端服务在整个系统中的主要作用.</li>
+<li>学习如何搭建并启动一个完整的django服务框架.</li>
+<li>使用服务内部的三个python文件运行一个请求的demo.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>后端服务的主要作用:<ul>
+<li>封装所有的文本处理环节, 对外提供可以调用的restAPI, 让其他部门的同事或者不了解内部细节的人员都可以使用.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>搭建并启动一个完整的django服务框架四步曲:<ul>
+<li>第一步: 拷贝服务框架的基本文件.</li>
+<li>第二步: 安装必备的组件.</li>
+<li>第三步: 启动图数据库并查看数据库状态.</li>
+<li>第四步: 使用supervisor启动主服务,并查看服务状态.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>第一步: 拷贝服务框架的基本文件:<ul>
+<li>文件已经存放在/data/django-uwsgi目录下.</li>
+<li>在服务器中进行文件查看.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>第二步: 安装必备的组件:<ul>
+<li>nginx: 用于负载均衡, 增强服务的健壮性.</li>
+<li>supervisor: 用于django服务的守护和监控, 当服务出现异常时自动重启.</li>
+<li>neo4j: 图数据库, 用于存储和查询数据.</li>
+<li>组件安装过程: 请参考附录部分的环境安装部署手册.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>第三步: 启动图数据库并查看数据库状态:</li>
+</ul>
+<pre><code>cd /data/django-uwsgi
+
+# 启动图数据库
+neo4j start
+
+# 查看状态
+neo4j status
+</code></pre>
+
+<ul>
+<li>代码实现(视频演示):<ul>
+<li>位置: 代码将在/data/django-uwsgi/目录下的终端中运行.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>第四步: 使用supervisor启动主服务,并查看服务状态:</p>
+<pre><code># 使用supervisord启动主服务
+# -c是读取自定义配置文件的意思
+# supervisord.conf是在工程主目录下的配置文件
+# 里面包含了监控和守护django以及nginx进程的内容
+supervisord -c supervisord.conf
+
+# 查看所有监控和守护进程的状态
+supervisorctl status all
+
+</code></pre>
+
+<ul>
+<li>代码位置: 代码将在/data/django-uwsgi/目录下的终端中运行.</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>使用服务内部的三个python文件运行一个请求的demo的三步曲:<ul>
+<li>第一步: 认识三个python文件.</li>
+<li>第二步: 编写三个文件中的代码内容.</li>
+<li>第三步: 编写测试文件并发送请求.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>第一步: 认识三个python文件:</p>
+<ul>
+<li>
+<p>urls.py, 位于/data/django-uwsgi/api/目录下, 用于将前端的请求url转发到views函数中.</p>
+</li>
+<li>
+<p>views.py, 位于/data/django-uwsgi/api/目录下, 用于接收来自前端请求的数据, 并传给api.py中的函数执行, 并获得结果, 封装成响应体返回.</p>
+</li>
+<li>
+<p>api.py, 位于/data/django-uwsgi/text_labeled/目录下, 用于执行主要的逻辑处理部分, 并返回结果给views.py中的函数.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>第二步: 编写三个文件中的代码内容:</li>
+</ul>
+<pre><code>#  编写urls.py文件
+
+from django.conf.urls import url
+from django.contrib import admin
+from . import views
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+
+    # 定义路径api/get_label, 前端将请求该路径
+    # 请求后, 该条语句将其转发到views中的get_label函数上
+    # get_label函数将在views.py中实现
+    # views即是同目录下的views.py文件
+    url(r'^api/get_label[/]?$', views.get_label)
+]
+
+</code></pre>
+
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/api/urls.py文件中. </li>
+</ul>
+<hr />
+<pre><code># 编写views.py文件
+
+# 首先导入django服务必备的工具包
+from django.http import HttpResponse
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import authentication_classes
+from rest_framework.decorators import permission_classes
+import json
+
+# 从text_labeled文件中导入了api.py文件
+from text_labeled import api
+
+# 该装饰器用于保证函数能够接收POST请求
+@api_view(['POST'])
+def get_label(request):
+    &quot;&quot;&quot;获取标签接口, 参数request是请求体, 包含前端传来的数据&quot;&quot;&quot;
+    # 通过请求体接收前端传来的数据text
+    # request.POST &gt;&gt;&gt; {&quot;text&quot;: &quot;xxxx&quot;}
+    text = request.POST.get(&quot;text&quot;)
+
+    # 调用text_labeled/api.py文件中的label函数进行处理 
+    result = api.label(text)
+
+    # 返回json格式的结果，并使用HttpResponse进行封装
+    return HttpResponse(json.dumps(result, ensure_ascii=False))
+
+</code></pre>
+
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/api/views.py文件中.</li>
+</ul>
+<hr />
+<pre><code># 编写api.py文件
+
+def label(text):
+    label = &quot;嘻哈音乐&quot;
+    return label
+</code></pre>
+
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/text_labeled/api.py文件中.</li>
+</ul>
+<hr />
+<ul>
+<li>重启服务:</li>
+</ul>
+<pre><code># 服务文件改变后, 需要重新启动才能生效
+supervisorctl restart all
+</code></pre>
+
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/目录下的终端中.</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>第三步: 编写测试脚本test.py, 并发送请求:</li>
+</ul>
+<pre><code># 编写test.py
+
+# 导入发送请求的工具包
+import requests
+
+def test():
+    url = &quot;http://127.0.0.1:8087/api/get_label&quot;
+    data = {&quot;text&quot;: &quot;我抽着差不多的烟,又过了差不多的一天！&quot;}
+    # 使用requests发送post请求
+    res = requests.post(url, data=data)
+    print(res.text)
+
+if __name__ == &quot;__main__&quot;:
+    test()
+</code></pre>
+
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/test.py文件中.</li>
+</ul>
+<hr />
+<ul>
+<li>最终运行结果:</li>
+</ul>
+<pre><code>&quot;嘻哈音乐&quot;
+</code></pre>
+
+<hr />
+<hr />
+<ul>
+<li>
+<p>小节总结:</p>
+<ul>
+<li>学习了后端服务在整个系统中的主要作用:<ul>
+<li>封装所有的文本处理环节,对外提供可以调用的restAPI，让其他部门的同事或者不了解内部细节的人员都可以使用.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了搭建并启动一个完整的django服务框架的四步曲:<ul>
+<li>第一步: 拷贝服务框架的基本文件, 在/data/django-uwsgi目录下.</li>
+<li>第二步: 安装必备的组件, 如: nginx, supervisor, neo4j.</li>
+<li>第三步: 启动图数据库并查看数据库状态. 使用neo4j start和neo4j status.</li>
+<li>第四步: 使用supervisor启动主服务, 并查看服务状态. 使用supervisord -c supervisord.conf 和 supervisorctl status all.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了使用服务内部的三个python文件运行一个请求的demo的三步曲:<ul>
+<li>第一步: 认识三个python文件. urls.py, views.py, api.py.</li>
+<li>第二步: 编写三个文件中的代码内容. urls中加了一行转发代码, views.py中实现了get_label函数, api.py中实现了label函数.</li>
+<li>第三步: 编写测试文件并发送请求. 在test.py文件中实现test函数, 使用requests发送了post请求, 并获得了"嘻哈音乐"的结果.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<hr />
+<h2 id="12">1.2 输入预处理</h2>
+<ul>
+<li>学习目标:<ul>
+<li>了解输入预处理在整个系统中的作用.</li>
+<li>掌握实现输入预处理的三步曲.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>输入预处理在整个系统中的作用:<ul>
+<li>保证用户输入的合理性,避免系统因为接受异常数据而过载,同时为下一步处理做必要的准备.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>输入预处理的三步曲:<ul>
+<li>第一步:对输入进行长度限制.</li>
+<li>第二步:对输入进行分词处理.</li>
+<li>第三步:对分词结果进行去停用词处理.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>实现输入预处理三步曲的代码分析:</li>
+</ul>
+<pre><code># 代码首先引入三个必备的package,分别是os主要用于操作文件路径，
+# jieba用于分词处理,fileinput用于从文件读取数据到内存.
+import os
+import jieba
+import fileinput
+
+
+# 定义了用户自定义词典路径,和停用词典路径，即在该代码文件路径下应有userdict.txt和stopdict.txt文件
+userdict_path = os.path.join(os.path.dirname(__file__), &quot;userdict.txt&quot;)
+stopdict_path = os.path.join(os.path.dirname(__file__), &quot;stopdict.txt&quot;)
+
+# 加载用户自定义词典
+jieba.load_userdict(userdict_path)
+
+# 定义输入文本最大长度限制为200
+MAX_LIMIT = 200
+
+def handle_cn_text(text: str):
+    &quot;&quot;&quot;用于完成预处理的主要流程, 以原始文本为输入，以分词和去停用词后的词汇列表为输出.&quot;&quot;&quot;
+
+    # 对输入进行合法性检验
+    if not text: return []
+
+    # 使用jieba的cut方法对使用最大限制进行切片的输入文本进行分词
+    word_list = jieba.cut(text[:MAX_LIMIT])    
+
+    def _load_stop_dict():
+        &quot;&quot;&quot;用于从文件中加载停用词词表&quot;&quot;&quot;
+        # 使用fileinput加载停用词表至内存,使用字符串的strip()方法去除两端空白符
+        stop_word_set = set(map(lambda x: x.strip(), fileinput.FileInput(stopdict_path)))
+        return stop_word_set
+
+    # 调用_load_stop_dict()函数
+    stop_word_set = _load_stop_dict()
+
+    # 使用高阶函数filter进行循环过滤操作生成最终结果
+    word_list = list(filter(lambda x: x not in stop_word_set and len(x)&gt;1, word_list))
+    return word_list
+</code></pre>
+
+<hr />
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/text_labeled/api.py中.</li>
+</ul>
+<hr />
+<ul>
+<li>输入实例: </li>
+</ul>
+<pre><code>&quot;我的眼睛很大很大,可以装得下天空，装得下高山，装得下大海，装得下整个世界；我的眼睛又很小很小，有心事时，就连两行眼泪，也装不下.&quot;
+
+</code></pre>
+
+<hr />
+<ul>
+<li>输出效果:</li>
+</ul>
+<pre><code>['眼睛', '很大', '很大', '装得', '天空', '装得', '高山', '装得', '大海', '装得', '整个', '世界', '眼睛', '很小', '很小', '心事', '两行', '眼泪', '装不下']
+
+</code></pre>
+
+<hr />
+<ul>
+<li>主要注释:</li>
+</ul>
+<pre><code># 定义了用户自定义词典路径,和停用词典路径
+
+# 加载用户自定义词典
+
+# 定义输入文本最大长度限制为200
+
+&quot;&quot;&quot;用于完成预处理的主要流程, 以原始文本为输入，以分词和去停用词后的词汇列表为输出.&quot;&quot;&quot;
+
+# 对输入进行合法性检验
+
+# 使用jieba的cut方法对使用最大限制进行切片的输入文本进行分词
+
+&quot;&quot;&quot;用于从文件中加载停用词词表&quot;&quot;&quot;
+
+# 使用fileinput加载停用词表至内存,使用字符串的strip()方法去除两端空白符
+
+# 调用_load_stop_dict()函数
+
+# 使用高阶函数filter进行循环过滤操作生成最终结果
+
+</code></pre>
+
+<hr />
+<hr />
+<ul>
+<li>
+<p>小节总结:</p>
+<ul>
+<li>学习了输入预处理在整个系统中的作用:<ul>
+<li>保证用户输入的合理性, 避免系统因为接受异常数据而过载, 并为下一步处理做数据准备.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习输入预处理的三步曲:<ul>
+<li>第一步: 对输入进行长度限制.</li>
+<li>第二步: 对输入进行分词处理.</li>
+<li>第三步: 对分词列表进行去停用词处理.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>实现了输入预处理三步曲的过程:<ul>
+<li>创建handle_cn_text函数来实现.</li>
+<li>使用切片方法进行长度限制, 最大长度限制为200.</li>
+<li>使用jieba分词进行分词处理.</li>
+<li>使用高阶函数filter进行循环过滤操作.</li>
+</ul>
+</li>
+</ul>
+<hr />
+</li>
+</ul>
+<hr />
+<hr />
+<h2 id="13">1.3 图谱匹配</h2>
+<ul>
+<li>学习目标:<ul>
+<li>知道什么是标签词汇图谱.</li>
+<li>了解图谱匹配在整个系统中的作用.</li>
+<li>掌握实现图谱匹配的过程.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>什么是标签词汇图谱:</li>
+</ul>
+<h2 id="_2"><img alt="avatar" src="../img/图谱.png" /></h2>
+<ul>
+<li>标签词汇图谱分析:<ul>
+<li>图谱由节点和关系(边)组成.</li>
+<li>蓝色节点代表标签,橘色节点代表词汇.</li>
+<li>在节点与节点之间存在着不同类型的边.</li>
+<li>蓝色节点(标签节点)之间的边表示包含关系,没有权重值.</li>
+<li>蓝色节点与橘色节点(词汇节点)之间的边表示隶属关系,有权重值，代表该词汇属于该标签的概率.</li>
+<li>所有的节点与边组成了一个树结构,也就是我们的图谱.</li>
+<li>图谱匹配的过程,即将分词列表中的词汇与词汇节点进行匹配，相同则返回该标签节点名称和边上的权重.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>图谱匹配在整个系统中的作用:<ul>
+<li>通过匹配词汇召回所有可能的标签.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>掌握实现图谱匹配的过程:<ul>
+<li>注意: 我们并没有构建标签词汇图谱,它将在第二章中构建，我们先假设图谱已经存在.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>实现图谱匹配过程的代码分析:</li>
+</ul>
+<pre><code># 首先导入操作图数据库neo4j的必备官方工具neo4j-driver,
+# 从settings.py配置文件中导入数据库配置NEO4J_CONFIG
+from neo4j.v1 import GraphDatabase
+from settings import NEO4J_CONFIG
+
+# 导入用于扁平化列表的chain方法
+from itertools import chain
+
+def get_index_map_label(word_list):
+    &quot;&quot;&quot;
+    用于获取每个词汇在图谱中对应的类别标签
+    该函数以词汇列表为输入, 以词汇出现在词汇列表
+    中的索引和对应的[标签, 权重]列表为输出.
+    &quot;&quot;&quot;
+    # 对word_list进行合法性检验
+    if not word_list: return []
+
+    # 使用GraphDatabase开启一个driver.
+    _driver = GraphDatabase.driver(**NEO4J_CONFIG)
+
+    # 开启neo4j的一个session 
+    with _driver.session() as session:
+        def _f(index, word):
+            &quot;&quot;&quot;以词汇列表中一组词索引和词作为输入,
+            返回该索引和词对应的标签列表.&quot;&quot;&quot;
+            # 进行输入的合法性判断
+            if not word: return []
+
+            # 建立cypher语句, 它匹配一条图中的路径, 该路径以一个词汇为开端通过一条边连接一个Label节点,
+            # 返回标签的title属性,和边的权重, 这正是我们图谱构建时定义的连接模式.
+            cypher = &quot;MATCH(a:Vocabulary{name:%r})-[r:Related]-(b:Label) \
+                      RETURN b.title, r.weight&quot; % (word)
+            record = session.run(cypher)
+            result = list(map(lambda x: [x[0], x[1]], record))
+            if not result: return []
+            return [str(index), result]
+
+        # 将word_list的索引和词汇作为输入传给_f()函数,并将返回结果做chain操作
+        index_map_label = list(
+            chain(*map(lambda x: _f(x[0], x[1]), enumerate(word_list))))
+    return index_map_label
+
+</code></pre>
+
+<hr />
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/text_labeled/api.py中.</li>
+</ul>
+<hr />
+<ul>
+<li>输入实例:</li>
+</ul>
+<pre><code>['眼睛', '很大', '很大', '装得', '天空', '装得', '高山', '装得', '大海', '装得', '整个', '世界', '眼睛', '很小', '很小', '心事', '两行', '眼泪', '装不下']
+
+</code></pre>
+
+<hr />
+<ul>
+<li>输出效果: </li>
+</ul>
+<pre><code>[]  # 因为我们图谱还没有构建, 因此暂时会返回一个空列表, 实际上应该返回类似结构: [&quot;0&quot;, [[&quot;美妆&quot;, 0.654], [&quot;情感故事&quot;:0.765]]]
+
+</code></pre>
+
+<hr />
+<ul>
+<li>主要注释:</li>
+</ul>
+<pre><code># 从settings.py配置文件中导入数据库配置NEO4J_CONFIG
+
+&quot;&quot;&quot;
+用于获取每个词汇在图谱中对应的类别标签
+该函数以词汇列表为输入, 以词汇出现在词汇列表
+中的索引和对应的[标签, 权重]列表为输出.
+&quot;&quot;&quot;
+
+# 对word_list进行合法性检验
+
+# 使用GraphDatabase开启一个driver.
+
+# 开启neo4j的一个session 
+
+&quot;&quot;&quot;以词汇列表中一组词索引和词作为输入,
+   返回该索引和词对应的标签列表.&quot;&quot;&quot;
+
+# 进行输入的合法性判断
+
+# 建立cypher语句, 它匹配一条图中的路径, 该路径以一个词汇为开端通过一条边连接一个Label节点,
+# 返回标签的title属性,和边的权重, 这正是我们图谱构建时定义的连接模式.
+
+# 将word_list的索引和词汇作为输入传给_f()函数,并将返回结果做chain操作
+
+</code></pre>
+
+<hr />
+<hr />
+<ul>
+<li>
+<p>小节总结:</p>
+<ul>
+<li>
+<p>学习了什么是标签词汇图谱:</p>
+<ul>
+<li>它是由标签节点和词汇节点以及节点之间的边组成的一张树状图.</li>
+</ul>
+<hr />
+</li>
+<li>
+<p>学习了图谱匹配在整个系统中的作用:</p>
+<ul>
+<li>通过匹配词汇召回所有可能的标签.</li>
+</ul>
+<hr />
+</li>
+<li>
+<p>学习并实现了图谱匹配的过程:</p>
+<ul>
+<li>创建了get_index_map_label函数来实现.</li>
+<li>使用neo4j的driver开启了一个session.</li>
+<li>创建了一条cypher语句, 它匹配词汇节点到标签节点的路径,返回标签的title属性和边的weight属性.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<hr />
+<h2 id="14">1.4 匹配歧义判断</h2>
+<ul>
+<li>学习目标:<ul>
+<li>知道什么是匹配歧义.</li>
+<li>了解匹配歧义判断在整个系统中的作用.</li>
+<li>掌握实现匹配歧义判断的过程.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>什么是匹配歧义: <ul>
+<li>在图谱匹配过程中, 一个词汇可能一起匹配到多个标签, 这时说明我们的词汇出现了歧义现象，这就是匹配歧义.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>举个栗子: </li>
+</ul>
+<p><img alt="avatar" src="../img/分歧.png" /></p>
+<ul>
+<li>"闪现"一词匹配到两个标签, LOL和王者农药, 说明这个词汇在句子中具有歧义，需要进行更深层次的判断.</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>匹配歧义判断的作用:<ul>
+<li>在词汇出现歧义时,通过模型重新计算所属标签的概率，从语义层面获得更真实的标签概率.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>
+<p>掌握实现匹配歧义判断的过程</p>
+<ul>
+<li>注意: 函数中会调用多模型预测函数, 我们会在第三,四章中实现, 这里我们会编写一个空壳函数暂时充当.</li>
+</ul>
+</li>
+</ul>
+<pre><code>def request_model_serve(word_list, label_list):
+    return [[&quot;情感故事&quot;, 0.865]]
+</code></pre>
+
+<hr />
+<p>代码位置: 代码将写在/data/django-uwsgi/text_labeled/model_train/multithread_predict.py中.</p>
+<hr />
+<ul>
+<li>实现匹配歧义判断过程的代码分析:</li>
+</ul>
+<pre><code># 导入多模型预测函数 
+from model_train.multithread_predict import request_model_serve
+
+def weight_update(word_list, index_map_label):
+    &quot;&quot;&quot;该函数将分词列表和具有初始概率的标签-概率列表作为输入,将模型预测后的标签-概率列表作为输出&quot;&quot;&quot;
+    # 首先将列表转化为字典的形式
+    # index_map_label &gt;&gt;&gt; [&quot;1&quot;, [[&quot;美食&quot;, 0.735], [&quot;音乐&quot;, 0.654]],  &quot;2&quot;,  [[&quot;美妆&quot;, 0.734]] &gt;&gt;&gt; 
+    # {&quot;1&quot;: [[&quot;美食&quot;, 0.735],[&quot;音乐&quot;,  0.654]], &quot;2&quot;: [[&quot;美妆&quot;, 0.734]]}
+    index_map_label = dict(zip(index_map_label[::2], index_map_label[1::2]))
+    for k, v in index_map_label.items():
+        # v的长度大于1说明存在歧义现象 
+        if len(v) &gt; 1:
+            # 获取对应的标签作为参数,即通知服务应该调用哪些模型进行预测.
+            label_list = list(map(lambda x: x[0], v))
+            # 通过request_model_serve函数获得标签最新的预测概率,并使用字典方式更新.
+            # v &gt;&gt;&gt; [[&quot;美食&quot;: 0.954]]
+            v = request_model_serve(word_list, label_list)
+            index_map_label.update({k:v})
+    # 将字典转化为列表形式
+    index_map_label_ = list(chain(*map(lambda x: [x[0], x[1]], index_map_label.items())))
+    return index_map_label_
+
+</code></pre>
+
+<hr />
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/text_labeled/api.py中.</li>
+</ul>
+<hr />
+<ul>
+<li>输入实例: </li>
+</ul>
+<pre><code># word_list
+['眼睛', '很大', '很大', '装得', '天空', '装得', '高山', '装得', '大海', '装得', '整个', '世界', '眼睛', '很小', '很小', '心事', '两行', '眼泪', '装不下']         
+
+# index_map_label
+[&quot;0&quot;, [[&quot;美妆&quot;, 0.654], [&quot;情感故事&quot;, 0.765]]]
+
+</code></pre>
+
+<hr />
+<ul>
+<li>输出效果: </li>
+</ul>
+<pre><code>[&quot;0&quot;, [[&quot;情感故事&quot;, 0.865]]]
+
+</code></pre>
+
+<hr />
+<ul>
+<li>主要注释:</li>
+</ul>
+<pre><code># 导入多模型预测函数 
+
+&quot;&quot;&quot;该函数将分词列表和具有初始概率的标签-概率列表作为输入,将模型预测后的标签-概率列表作为输出&quot;&quot;&quot;
+
+# 首先将列表转化为字典的形式
+# index_map_label &gt;&gt;&gt; [&quot;1&quot;, [[&quot;美食&quot;, 0.735], [&quot;音乐&quot;, 0.654]],  &quot;2&quot;,  [[&quot;美妆&quot;, 0.734]] &gt;&gt;&gt; 
+# {&quot;1&quot;: [[&quot;美食&quot;, 0.735],[&quot;音乐&quot;,  0.654]], &quot;2&quot;: [[&quot;美妆&quot;, 0.734]]}
+
+
+# v的长度大于1说明存在歧义现象 
+
+# 获取对应的标签作为参数,即通知服务应该调用哪些模型进行预测.
+
+# 通过request_model_serve函数获得标签最新的预测概率,并使用字典方式更新.
+# v &gt;&gt;&gt; [[&quot;美食&quot;: 0.954]]
+
+# 将字典转化为列表形式
+
+</code></pre>
+
+<hr />
+<hr />
+<ul>
+<li>
+<p>小节总结:</p>
+<ul>
+<li>学习了什么是匹配歧义:<ul>
+<li>在图谱匹配过程中,一个词汇可能一起匹配到多个标签，这时说明我们的词汇出现了歧义现象，这就是匹配歧义.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了匹配歧义判断在整个系统中的作用:<ul>
+<li>在词汇出现歧义时,通过模型重新计算所属标签的概率，从语义层面获得更真实的标签概率.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了匹配歧义判断的过程:<ul>
+<li>创建了weight_update函数来实现.</li>
+<li>通过检测匹配到的标签数量进行歧义判断.</li>
+<li>通过调用多模型预测服务函数request_model_serve来更新概率.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<hr />
+<h2 id="15">1.5 概率调整</h2>
+<ul>
+<li>学习目标:<ul>
+<li>知道什么是概率调整.</li>
+<li>了解概率调整在整个系统中的作用.</li>
+<li>掌握实现概率调整的过程.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>什么是概率调整:<ul>
+<li>当句子中的多个词都指向同一标签时, 这个标签概率将成为所有的概率之和.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>举个栗子:</li>
+</ul>
+<pre><code>我爱苹果！   -------&gt; [[&quot;水果&quot;, 0.654], [&quot;电影&quot;, 0.654], [&quot;公司&quot;, 0.654]] 
+
+# 出现了一次苹果, 可能是在说水果，电影，或者公司, 他们的概率基本上是相同的. 这句话打上什么标签不能确定.
+
+</code></pre>
+
+<pre><code>我爱苹果，橘子，香蕉!  --------&gt; [[&quot;水果&quot;, 0.654], [&quot;电影&quot;, 0.654], [&quot;公司&quot;, 0.654], [&quot;水果&quot;, 0.654], [&quot;水果&quot;, 0.654]]
+
+# 全句共出现了三次有关水果的词，如果水果的概率是苹果，橘子，香蕉为水果的概率和，这样就大于了电影或者公司的概率. 基本上可以打上一个确定的标签了.
+
+</code></pre>
+
+<hr />
+<hr />
+<ul>
+<li>概率调整的作用:<ul>
+<li>保证随着某一类别词汇出现的次数增多,这个类别的概率会随之增加.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>实现概率调整过程的代码分析:</li>
+</ul>
+<pre><code># 导入可以进行扁平化操作的reduce
+# 导入进行合并操作的pandas
+from functools import reduce
+import pandas as pd
+
+def control_increase(index_map_label_):
+    &quot;&quot;&quot;以模型预测后的标签-权重列表为输入, 以标签归并后的结果为输出&quot;&quot;&quot;
+    if not index_map_label_: return []
+
+    # index_map_label_ &gt;&gt;&gt; 
+    #  [&quot;2&quot;, [[&quot;情感故事&quot;, 0.765]], &quot;3&quot;, [[&quot;情感故事&quot;,  0.876], [&quot;明星&quot;, 0.765]]]
+    # 将index_map_label_奇数项即[label, score]取出放在字典中
+    # k的数据结构形式: 
+    # [{'label': '情感故事', 'score': 0.765}, {'label': '情感故事', 'score': 0.876},
+    #  {'label': '明星', 'score': 0.765}]
+    k = list(map(lambda x: {&quot;label&quot;: x[0], &quot;score&quot;: x[1]}, reduce(
+        lambda z, y: z + y, index_map_label_[1::2])))
+
+    # 使用pandas中的groupby方法进行合并分值
+    df = pd.DataFrame(k)
+    df_ = df.groupby(by=['label'])['score'].sum()
+    return df_
+
+</code></pre>
+
+<hr />
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/text_labeled/api.py中.</li>
+</ul>
+<hr />
+<ul>
+<li>输入实例: </li>
+</ul>
+<pre><code>[&quot;2&quot;, [[&quot;情感故事&quot;, 0.765]], &quot;3&quot;, [[&quot;情感故事&quot;,  0.876], [&quot;明星&quot;, 0.765]]]
+
+</code></pre>
+
+<ul>
+<li>输出效果:</li>
+</ul>
+<pre><code>label
+情感故事    1.641
+明星      0.765
+Name: score, dtype: float64
+
+</code></pre>
+
+<ul>
+<li>主要注释:</li>
+</ul>
+<pre><code>&quot;&quot;&quot;以模型预测后的标签-权重元组列表为输入, 以标签归并后的结果为输出&quot;&quot;&quot;
+
+# index_map_label_ &gt;&gt;&gt; 
+#  [&quot;2&quot;, [[&quot;情感故事&quot;, 0.765]], &quot;3&quot;, [[&quot;情感故事&quot;,  0.876], [&quot;明星&quot;, 0.765]]]
+# 将index_map_label_奇数项即[label, score]取出放在字典中
+# k的数据结构形式: 
+# [{'label': '情感故事', 'score': 0.765}, {'label': '情感故事', 'score': 0.876},
+#  {'label': '明星', 'score': 0.765}]
+
+# 使用pandas中的groupby方法进行合并分值
+
+</code></pre>
+
+<hr />
+<hr />
+<ul>
+<li>
+<p>小节总结:</p>
+<ul>
+<li>什么是概率调整:<ul>
+<li>当句子中的多个词都指向同一标签时, 这个标签概率将成为所有的概率之和.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了概率调整在整个系统中的作用:<ul>
+<li>保证随着某一类别词汇出现的次数增多,这个类别的概率会随之增加.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了概率调整的过程:<ul>
+<li>创建control_increase函数来实现.</li>
+<li>使用了pandas中的groupby方法进行合并求和.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<hr />
+<h2 id="16">1.6 概率归一化与父标签检索</h2>
+<ul>
+<li>学习目标:<ul>
+<li>知道什么是概率归一化与父标签检索</li>
+<li>了解概率归一化与父标签检索在整个系统中的作用.</li>
+<li>掌握实现概率归一化与父标签检索的过程.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>什么是概率归一化:<ul>
+<li>对超过1的概率进行归一化处理。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>什么是父标签检索:<ul>
+<li>在标签树中找到某个标签的所有父节点。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>概率归一化的作用:<ul>
+<li>使标签概率的结果在（0到1）的概率值域内.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>父标签检索的作用:<ul>
+<li>找到当前标签的父标签列表,丰富系统的返回结果.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<ul>
+<li>实现概率归一化与父标签检索过程的代码分析:</li>
+</ul>
+<pre><code>import numpy as np
+
+def father_label_and_normalized(df_):
+    &quot;&quot;&quot;
+    以概率调整后的DataFrame对象为输入, 以整个系统的最终结果为输出
+    输入样式为:DataFrame&lt;[[“LOL”, 1.465]]&gt;
+    输出样式为:[{“label”: “LOL”, “score”: “0.811”, “related”:[“游戏”]}]
+    &quot;&quot;&quot;
+    def _sigmoid(x):
+        y = 1.0 / (1.0 + np.exp(-x))
+        return round(y, 3)
+    def _sg(pair):
+        &quot;&quot;&quot;获得单个标签的父级标签和归一化概率&quot;&quot;&quot;
+        # 使用GraphDatabase开启一个driver.
+        _driver = GraphDatabase.driver(**NEO4J_CONFIG)
+        with _driver.session() as session:
+            # 通过关系查询获得从该标签节点直到根节点的路径上的其他Label节点的title属性
+            cypher = &quot;MATCH(a:Label{title:%r})&lt;-[r:Contain*1..3]-(b:Label) \
+                      WHERE b.title&lt;&gt;'泛娱乐' RETURN b.title&quot; % pair[0]
+            record = session.run(cypher)
+            result = list(map(lambda x: x[0], record))
+        return {&quot;label&quot;: pair[0], &quot;score&quot;: _sigmoid(pair[1]), &quot;related&quot;: result}
+    # 遍历所有的标签
+    return list(map(_sg, df_.to_dict().items()))
+
+</code></pre>
+
+<hr />
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/text_labeled/api.py中.</li>
+</ul>
+<hr />
+<ul>
+<li>输入实例:</li>
+</ul>
+<pre><code>label
+情感故事    1.641
+明星      0.765
+Name: score, dtype: float64
+
+</code></pre>
+
+<hr />
+<ul>
+<li>输出效果: </li>
+</ul>
+<pre><code># 因为没有构建图谱，所以related匹配不到任何父标签
+[{'label': '情感故事', 'score': 0.838, 'related': []}, {'label': '明星', 'score': 0.682, 'related': []}]
+
+</code></pre>
+
+<hr />
+<ul>
+<li>主要注释</li>
+</ul>
+<pre><code>&quot;&quot;&quot;
+以概率调整后的DataFrame对象为输入, 以整个系统的最终结果为输出
+输入样式为:DataFrame&lt;[[“LOL”, 1.465]]&gt;
+输出样式为:[{“label”: “LOL”, “score”: “0.811”, “related”:[“游戏”]}]
+&quot;&quot;&quot;
+
+&quot;&quot;&quot;获得单个标签的父级标签和归一化概率&quot;&quot;&quot;
+# 使用GraphDatabase开启一个driver
+
+# 通过关系查询获得从该标签节点直到根节点的路径上的其他Label节点的title属性
+
+# 遍历所有的标签
+
+</code></pre>
+
+<hr />
+<hr />
+<ul>
+<li>
+<p>小节总结:</p>
+<ul>
+<li>什么是概率归一化:<ul>
+<li>对超过1的概率进行归一化处理。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>什么是父标签检索:<ul>
+<li>在标签树中找到某个标签的所有父节点。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了概率归一化在整个系统中的作用:<ul>
+<li>使标签概率的结果在（0到1）的概率值域内.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了父标签检索在整个系统中的作用:<ul>
+<li>找到当前标签的父标签列表,丰富系统的返回结果.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了概率归一化与父标签检索的过程:<ul>
+<li>创建father_label_and_normalized函数来实现.</li>
+<li>使用sigmoid函数来进行归一化处理.</li>
+<li>通过创建cypher语句匹配标签图谱中的所有父节点来获得父标签列表. </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<hr />
+<h2 id="_3">本章总结</h2>
+<ul>
+<li>
+<p>第1小节: 后端服务搭建</p>
+<ul>
+<li>
+<p>学习了后端服务在整个系统中的主要作用:</p>
+<ul>
+<li>封装所有的文本处理环节,对外提供可以调用的restAPI，让其他部门的同事或者不了解内部细节的人员都可以使用.</li>
+</ul>
+<hr />
+</li>
+<li>
+<p>学习并实现了搭建并启动一个完整的django服务框架四步曲.</p>
+<ul>
+<li>第一步: 拷贝服务框架的基本文件, 在系统的/data/jango-uwsgi目录.<ul>
+<li>第二步: 安装必备的组件, 如: nginx, supervisor, neo4j等, 具体安装过程详见安装手册.</li>
+<li>第三步: 启动图数据库并查看数据库状态.</li>
+<li>第四步: 使用supervisor启动主服务,并查看服务状态.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了使用服务内部的三个python文件运行一个请求的demo的三步曲.<ul>
+<li>第一步: 认识三个python文件.<ul>
+<li>第二步: 编写三个文件中的代码内容.</li>
+<li>第三步: 编写测试文件并发送请求.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>第2小节: 输入预处理</p>
+<ul>
+<li>学习了输入预处理在整个系统中的作用:<ul>
+<li>保证用户输入的合理性, 避免系统因为接受异常数据而过载.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了输入预处理的三步曲.<ul>
+<li>第一步:对输入进行长度限制.<ul>
+<li>第二步:对输入进行分词处理.</li>
+<li>第三步:对分词结果进行去停用词处理.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>第3小节: 图谱匹配</p>
+<ul>
+<li>学习了什么是标签词汇图谱:<ul>
+<li>它是由标签节点和词汇节点以及节点之间的边组成的一张树状图.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了图谱匹配在整个系统中的作用:<ul>
+<li>通过匹配词汇召回所有可能的标签.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了图谱匹配的过程.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>第4小节: 匹配歧义判断</p>
+<ul>
+<li>学习了什么是匹配歧义:<ul>
+<li>在图谱匹配过程中, 一个词汇可能一起匹配到多个标签，这时说明我们的词汇出现了歧义现象，这就是匹配歧义.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了匹配歧义判断在整个系统中的作用:<ul>
+<li>在词汇出现歧义时, 通过模型重新计算所属标签的概率，从语义层面获得更真实的标签概率.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了匹配歧义判断的过程.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>第5小节: 概率调整</p>
+<ul>
+<li>什么是概率调整:<ul>
+<li>概率: 是指输入文本属于某个标签的概率.</li>
+<li>调整: 是指同类别的概率相加.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了概率调整在整个系统中的作用:<ul>
+<li>保证随着某一类别词汇出现的次数增多, 这个类别的概率会随之增加.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了图谱匹配的过程.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>第6小节: 概率归一化与父标签检索</p>
+<ul>
+<li>
+<p>什么是概率归一化:</p>
+<ul>
+<li>对超过1的概率进行归一化处理。</li>
+</ul>
+<hr />
+<ul>
+<li>什么父标签检索:</li>
+<li>在标签树中找到某个标签的所有父节点。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了概率归一化在整个系统中的作用:<ul>
+<li>使标签概率的结果在（0到1）的概率值域内.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了父标签检索在整个系统中的作用:<ul>
+<li>找到当前标签的父标签列表, 丰富系统的返回结果.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习并实现了概率归一化与父标签检索的过程.</li>
+</ul>
+</li>
+</ul>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../2/" class="btn btn-neutral float-right" title="第二章:构建标签词汇图谱">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="初识智能文本分类系统"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©Copyright 2018, OrangeStar Inc.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../2/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

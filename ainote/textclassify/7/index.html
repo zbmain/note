@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>附录-环境安装部署手册 - 智能文本分类</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../js/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u9644\u5f55-\u73af\u5883\u5b89\u88c5\u90e8\u7f72\u624b\u518c";
+    var mkdocs_page_input_path = "7.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-36723568-3', 'mkdocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 智能文本分类</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">初识智能文本分类系统</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../1/">第一章:整体系统搭建</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2/">第二章:构建标签词汇图谱</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3/">第三章:特征工程与fasttext模型训练</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../4/">第四章:多模型训练与预测</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../5/">第五章:系统联调与测试</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6/">全文总结</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">附录-环境安装部署手册</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">智能文本分类系统安装部署手册</a></li>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">智能文本分类</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>附录-环境安装部署手册</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="_1">智能文本分类系统安装部署手册</h2>
+<ul>
+<li>注意事项:<ul>
+<li>这个安装手册只适用于操作系统: centos7</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>安装部署步骤:</li>
+</ul>
+<p>0, 拷贝必备文件:</p>
+<hr />
+<p>1, 安装Anconda科学计算环境， 它包括python3， pip，pandas， numpy等科学计算包。</p>
+<pre><code>cd /root
+curl -O https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+sh Anaconda3-2019.07-Linux-x86_64.sh 
+# 配置~/.bashrc, 添加一行: export PATH=/root/anaconda/bin/:$PATH
+</code></pre>
+
+<hr />
+<p>2, 安装必备组件supervisor, nginx</p>
+<pre><code>yum install supervisor -y
+yum install nginx -y
+</code></pre>
+
+<hr />
+<p>3, 安装项目需要的python工具包，uwsgi，tensorflow，keras，django等，我们使用requirements.txt一同安装。</p>
+<pre><code>cd /data/django-uwsgi/
+pip install requirements.txt -r
+</code></pre>
+
+<hr />
+<p>4, 安装图数据库neo4j</p>
+<pre><code># 生成yum镜像
+rpm --import http://debian.neo4j.org/neotechnology.gpg.key
+cat &lt;&lt;EOF&gt;  /etc/yum.repos.d/neo4j.repo
+[neo4j]
+name=Neo4j RPM Repository
+baseurl=http://yum.neo4j.org/stable
+enabled=1
+gpgcheck=1
+EOF
+
+# 安装neo4j
+yum install neo4j-3.3.5
+`
+# 使用自己的配置文件
+cp /data/django-uwsgi/util/neo4j.conf /etc/neo4j/neo4j.conf
+</code></pre>
+
+<hr />
+<p>5, 启动图数据库并查看状态</p>
+<pre><code># 启动
+neo4j start
+
+# 查看状态
+neo4j status
+</code></pre>
+
+<hr />
+<p>6, 使用脚本生成图谱</p>
+<pre><code>python /data/django-uswgi/text_labeled/create_graph/build.py
+</code></pre>
+
+<hr />
+<p>7, 使用多进程脚本训练模型</p>
+<pre><code>cd /data/django-uwsgi/text_labeled/model_train/
+
+python multiprocess_train.py
+</code></pre>
+
+<hr />
+<p>8, 安装docker并封装模型微服务</p>
+<pre><code># 安装docker
+yum install docker
+
+# 使用docker拉取tensorflow-serving镜像。
+docker pull tensorflow/serving
+
+
+MODEL_PATH=&quot;/data/django-uwsgi/text_labeled/model_train&quot;
+
+# 使用docker run命令启动微服务
+# 启动第一个模型
+docker run -t --rm -p 8501:8501 \
+    -v &quot;$MODEL_PATH/movie:/models/movie&quot; \
+            -e MODEL_NAME=movie \
+               tensorflow/serving &amp;
+
+# 同理启动， 启动第二个模型
+docker run -t --rm -p 8501:8502 \
+    -v &quot;$MODEL_PATH/beauty:/models/beauty&quot; \
+            -e MODEL_NAME=beauty \
+              tensorflow/serving &amp;
+
+# 更多模型以此类推
+
+# 使用curl命令在终端进行测试。
+curl -d '{&quot;instances&quot;: [[1.0, 2.0, 5.0]]}' \
+    -X POST http://localhost:8501/v1/models/movie:predict
+</code></pre>
+
+<hr />
+<p>9, 使用supervisor启动nginx和uwsgi主服务</p>
+<pre><code>cd /data/django-uwsgi/text_labeled/
+
+# 启动主服务
+supervisord -c supervisor.conf
+
+# 查看状态
+supervisorctl status all
+</code></pre>
+
+<hr />
+<p>10, 使用脚本发送请求进行测试</p>
+<pre><code>python /data/django-uwsgi/test.py
+
+</code></pre>
+
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../6/" class="btn btn-neutral" title="全文总结"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©Copyright 2018, OrangeStar Inc.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../6/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>第五章:系统联调与测试 - 智能文本分类</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../js/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u7b2c\u4e94\u7ae0:\u7cfb\u7edf\u8054\u8c03\u4e0e\u6d4b\u8bd5";
+    var mkdocs_page_input_path = "5.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-36723568-3', 'mkdocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 智能文本分类</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">初识智能文本分类系统</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../1/">第一章:整体系统搭建</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2/">第二章:构建标签词汇图谱</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3/">第三章:特征工程与fasttext模型训练</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../4/">第四章:多模型训练与预测</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">第五章:系统联调与测试</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">本章导学</a></li>
+    
+
+    <li class="toctree-l2"><a href="#51">5.1 系统联调与测试</a></li>
+    
+
+    <li class="toctree-l2"><a href="#52">5.2 搭建前端可视化页面</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">本章总结</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6/">全文总结</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../7/">附录-环境安装部署手册</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">智能文本分类</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>第五章:系统联调与测试</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="_1">本章导学</h2>
+<ul>
+<li>学习目标:<ul>
+<li>完成系统的各个环节的联调，使其成为一个完整可运行的后端服务。</li>
+<li>搭建一个前端页面，使其能够与后端系统进行交互。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>引导分析:<ul>
+<li>必须完成系统各个环节的联调工作，才能使其正常运行和对外提供服务。</li>
+<li>一个完整的前端可视化页面能够帮助我们更好的展示自己作品效果。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>本章小节:<ul>
+<li>5.1 系统联调与测试<ul>
+<li>将整个后端服务的各个部分连接起来, 能够正常对外提供服务.</li>
+</ul>
+</li>
+<li>5.2 前端可视化页面的搭建<ul>
+<li>搭建一个前端页面能够请求后端服务.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<hr />
+<h2 id="51">5.1 系统联调与测试</h2>
+<ul>
+<li>学习目标:<ul>
+<li>掌握实现系统联调与测试过程的三步曲。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>系统联调与测试过程的三步曲:<ul>
+<li>第一步: 明确系统处理请求的五个环节.</li>
+<li>第二步: 将这五个环节实现在django服务的views.py函数中.</li>
+<li>第三步: 使用测试脚本进行测试.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>明确系统处理请求的五个环节:<ul>
+<li>输入预处理<ul>
+<li>对输入的文本做长度验证, 分词, 去停用词等处理操作.</li>
+</ul>
+</li>
+<li>图谱匹配<ul>
+<li>使用输入文本中的词汇进入到图谱中进行匹配, 找出所有可能的标签.</li>
+</ul>
+</li>
+<li>匹配歧义判断<ul>
+<li>使用模型对所有不确定的标签进行判断, 找出最合适的标签.</li>
+</ul>
+</li>
+<li>概率调整<ul>
+<li>调整标签的概率, 满足随着相关词汇增多, 概率逐渐增大</li>
+</ul>
+</li>
+<li>概率归一化与父标签检索<ul>
+<li>对概率进行归一化处理, 并检索匹配标签的父级标签列表.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>将这五个环节实现在django服务的views.py函数中过程的代码分析:</li>
+</ul>
+<pre><code>from django.http import HttpResponse
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import authentication_classes
+from rest_framework.decorators import permission_classes
+import json
+
+
+# 从text_labeled导入api文件
+from text_labeled import api
+
+
+# 接收POST类型的请求
+@api_view(['POST'])
+def get_label(request):
+    # 接收POST请求，并取数据中的&quot;text&quot;对应的值
+    text = request.POST.get(&quot;text&quot;)
+    # 开始调用text_labeled目录下的api.py中的函数:
+    # 调用输入预处理  
+    word_list = api.handle_cn_text(text)
+    # 调用图谱匹配
+    index_map_label = api.get_index_map_label(word_list)
+    # 调用匹配歧义判断
+    index_map_label_ = api.weight_update(word_list, index_map_label)
+    if index_map_label_:
+        # 调用概率调整
+        df_ = api.control_increase(index_map_label_)
+        # 调用概率归一化与父标签检索
+        result = api.father_label_and_normalized(df_)
+    else:
+        result = []
+
+    # 然后封装成响应体返回结果
+    return HttpResponse(json.dumps(result, ensure_ascii=False))
+</code></pre>
+
+<hr />
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/api/views.py中。</li>
+</ul>
+<hr />
+<ul>
+<li>文件路径调整:</li>
+</ul>
+<pre><code># 在/data/django-uwsgi/text_labeled/api.py中添加系统路径识别
+import sys
+sys.path.append(&quot;/data/django-uwsgi/text_labeled/&quot;)
+
+# 在/data/django-uwsgi/text_labeled/model_train/multithread_predict.py
+import sys
+sys.path.append(&quot;/data/django-uwsgi/text_labeled/model_train/&quot;) 
+</code></pre>
+
+<hr />
+<ul>
+<li>主要注释:</li>
+</ul>
+<pre><code>    # 接收POST请求，并取数据中的&quot;text&quot;对应的值
+    # 开始调用text_labeled目录下的api.py中的函数:
+    # 调用输入预处理
+    # 调用图谱匹配
+    # 调用匹配歧义判断
+    # 调用概率调整
+    # 调用概率归一化与父标签检索
+    # 然后封装成响应体返回结果
+
+</code></pre>
+
+<ul>
+<li>使用测试脚本进行测试:</li>
+</ul>
+<pre><code># 修改test.py文件中的输入内容:
+将输入文本改为:
+{&quot;text&quot;: &quot;衬衫、裤子、外套、帽子：均为Wan Hung, 鞋：Samo, 项链：Crazy Rhythmm, 耳钉：Yvmin!&quot;}
+
+</code></pre>
+
+<hr />
+<ul>
+<li>代码位置: 代码写在/data/django-uwsgi/test.py中.</li>
+</ul>
+<hr />
+<pre><code># 重启服务 
+supervisorctl restart all
+
+# 运行测试脚本
+python test.py
+
+</code></pre>
+
+<hr />
+<ul>
+<li>代码位置: 代码在终端中运行, 写在/data/django-uwsgi/目录下.</li>
+</ul>
+<hr />
+<ul>
+<li>输出效果:</li>
+</ul>
+<pre><code># 最终的结果样式
+[{&quot;label&quot;: &quot;时尚&quot;, &quot;score&quot;: 0.991, &quot;related&quot;: []}]
+</code></pre>
+
+<hr />
+<hr />
+<ul>
+<li>
+<p>小节总结:</p>
+<ul>
+<li>学习并实现系统联调与测试过程的三步曲:<ul>
+<li>第一步: 明确系统处理请求的五个环节。</li>
+<li>第二步: 将这五个环节实现在django服务的views.py函数中。</li>
+<li>第三步: 使用测试脚本进行测试。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>明确系统处理请求的五个环节:<ul>
+<li>输入预处理<ul>
+<li>对输入的文本做长度验证, 分词, 去停用词等处理操作.</li>
+</ul>
+</li>
+<li>图谱匹配<ul>
+<li>使用输入文本中的词汇进入到图谱中进行匹配, 找出所有可能的标签.</li>
+</ul>
+</li>
+<li>匹配歧义判断<ul>
+<li>使用模型对所有不确定的标签进行判断, 找出最合适的标签.</li>
+</ul>
+</li>
+<li>概率调整<ul>
+<li>调整标签的概率, 满足随着相关词汇增多, 概率逐渐增大</li>
+</ul>
+</li>
+<li>概率归一化与父标签检索<ul>
+<li>对概率进行归一化处理, 并检索匹配标签的父级标签列表.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>将这五个环节实现在django服务的views.py函数中:<ul>
+<li>函数: get_label</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>使用测试脚本进行测试:<ul>
+<li>文件路径调整</li>
+<li>重启服务</li>
+<li>运行脚本test.py</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<hr />
+<hr />
+<h2 id="52">5.2 搭建前端可视化页面</h2>
+<ul>
+<li>学习目标:<ul>
+<li>掌握搭建一个与后端交互的前端可视化页面的三步曲。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>搭建一个前端可视化页面的三步曲:<ul>
+<li>第一步: 使用bootstrap3搭建一个html页面。</li>
+<li>第二步: 使用jquery向后端发送ajax请求并显示结果。</li>
+<li>第三步: 在页面中输入文本进行请求测试。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>使用bootstrap3搭建一个html页面的代码分析:</li>
+</ul>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt; 
+
+&lt;!— 导入bootstrap3 css部分用于文本输入框按钮等控件的美化。—&gt;
+&lt;link href=&quot;./bootstrap-3.3.7-dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+&lt;!-- 导入jquery用于发送ajax请求--&gt;
+&lt;script src=&quot;./js/jquery-2.1.1.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- 导入bootstrap3 js部分用于控件中的效果--&gt;
+&lt;script src=&quot;./bootstrap-3.3.7-dist/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+
+ &lt;!-- 导入我们自己的js部分用于控件中的效果--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./js/try.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;$(init);&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;$.ajaxSetup({
+    data: {csrfmiddlewaretoken: '6tuXkYOS6uhRbDX1BSC2wbZ5d3Js9DKpdBf9v3NlSfS8qXVI0BtGWH3LAV7AX98E' },});&lt;/script&gt;
+
+
+
+&lt;!-- 等待图标 --&gt;
+
+&lt;div id=&quot;loading&quot;&gt;
+    &lt;p&gt;&lt;img src=&quot;./img/loading.gif&quot; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;!-- 图标样式 --&gt;
+&lt;style&gt;
+#loading{ display:none;
+          position:fixed;
+          left:47%;
+          top:68%;
+          z-index: 99;}
+&lt;/style&gt;
+
+&lt;hr/&gt;
+
+
+&lt;!-- 试用区的标题 --&gt;
+&lt;h3  align=&quot;center&quot;&gt;&lt;span class=&quot;label label-primary&quot;&gt; 试用区&lt;/span&gt;&lt;/h3&gt;
+
+&lt;br&gt;
+
+
+&lt;!-- 输入文本框 --&gt;
+&lt;div&gt;
+    &lt;form class=&quot;bs-example bs-example-form&quot; role=&quot;form&quot;&gt;
+        &lt;div class=&quot;input-group&quot;&gt;
+            &lt;span class=&quot;input-group-addon&quot;&gt;输入&lt;/span&gt;
+            &lt;textarea id=&quot;text-content&quot; class=&quot;form-control&quot; placeholder=&quot;在这里输入您想要识别标签的文本信息，可以是文章的标题或内容，评论以及相关的对话。我们将通过标准NLP流程，兴趣知识网络，和一些机器学习模型为您提供标签识别服务。&quot; rows=&quot;10&quot; cols=&quot;80&quot;&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;br&gt;&lt;br&gt;
+
+&lt;!-- 请求按钮 --&gt;
+ &lt;div class=&quot;button-div&quot;&gt;
+           &lt;button type=&quot;button&quot; class=&quot;btn  btn-success btn-block&quot; id=&quot;label-button&quot;&gt;获取标签&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;br&gt;&lt;br&gt;
+
+
+&lt;!-- 输出文本框 --&gt;  
+        &lt;div class=&quot;input-group&quot;&gt;
+            &lt;span class=&quot;input-group-addon&quot;&gt;输出&lt;/span&gt;
+            &lt;textarea id=&quot;label-result&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder='您将得到json格式的输出，如：[{&quot;label&quot;:&quot;王者农药&quot;, &quot;score&quot;: 0.700987, &quot;related&quot;:[&quot;游戏&quot;]}]  其中score是label的置信打分，related是label的所有父级标签列表。' rows=&quot;10&quot; cols=&quot;80&quot;&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+
+&lt;br/&gt;
+
+&lt;/html&gt;
+</code></pre>
+
+<hr />
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/text_labeled/html/index.html中。</li>
+</ul>
+<hr />
+<ul>
+<li>查看地址: http://47.92.175.143:8087/text_labeled/html/index.html</li>
+</ul>
+<hr />
+<ul>
+<li>输出效果:</li>
+</ul>
+<p><img alt="avatar" src="../img/xiaoguo1.png" /></p>
+<hr />
+<ul>
+<li>使用jquery向后端发送ajax请求并显示结果过程的代码分析:</li>
+</ul>
+<pre><code>////////展示loading图标//////////
+function showLoading() {
+    $(&quot;#loading&quot;).show();
+}
+
+
+////////隐藏loading图标//////////
+function hideLoading() {
+    $(&quot;#loading&quot;).hide();
+}
+
+
+function init(){
+    $(&quot;#label-button&quot;).click(function(){
+          label_processing();
+       });
+   }
+
+
+////////发送试用请求//////////
+function label_processing(){
+        showLoading();
+        var content = $(&quot;#text-content&quot;).val();
+        $.ajax({ type:&quot;POST&quot;,
+          url:&quot;http://47.92.175.143:8087/api/get_label/&quot;,
+          data: {&quot;text&quot;:content,},
+          success:function(result){
+          var obj = JSON.parse(result);
+          var pretty = JSON.stringify(obj, undefined, 4);
+          $(&quot;#label-result&quot;).val(pretty);
+          hideLoading();}
+               });         }
+
+</code></pre>
+
+<ul>
+<li>代码位置: 代码将写在/data/django-uwsgi/text_labeled/html/js/index.js中。</li>
+</ul>
+<hr />
+<ul>
+<li>输入文本:</li>
+</ul>
+<pre><code>衬衫、裤子、外套、帽子：均为Wan Hung, 
+鞋：Samo, 
+项链：Crazy Rhythmm, 
+耳钉：Yvmin!
+</code></pre>
+
+<hr />
+<ul>
+<li>最终效果演示:</li>
+</ul>
+<p><img alt="avatar" src="../img/xiaoguo2.png" /></p>
+<hr />
+<ul>
+<li>
+<p>小节总结:</p>
+<ul>
+<li>学习并实现了搭建一个前端可视化页面的三步曲:<ul>
+<li>第一步：使用bootstrap3搭建一个html页面。</li>
+<li>第二步：使用jquery向后端发送ajax请求并显示结果。</li>
+<li>第三步: 在页面中输入文本进行请求测试。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="_2">本章总结</h2>
+<ul>
+<li>
+<p>第一小节: 系统联调与测试</p>
+<ul>
+<li>学习并实现系统联调与测试过程的三步曲:<ul>
+<li>第一步: 明确系统处理请求的五个环节。</li>
+<li>第二步: 将这五个环节实现在django服务的views.py函数中。</li>
+<li>第三步: 使用测试脚本进行测试。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>学习了明确系统处理请求的五个环节:<ul>
+<li>输入预处理</li>
+<li>图谱匹配</li>
+<li>匹配歧义判断</li>
+<li>概率调整</li>
+<li>概率标签化与父标签检索</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>第二小节: 搭建前端可视化页面</p>
+<ul>
+<li>学习并实现了搭建一个前端可视化页面的三步曲:<ul>
+<li>第一步：使用bootstrap3搭建一个可视化页面。</li>
+<li>第二步：使用jquery向后端发送ajax请求并显示结果。</li>
+<li>第三步: 在页面中输入文本进行请求测试。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../6/" class="btn btn-neutral float-right" title="全文总结">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../4/" class="btn btn-neutral" title="第四章:多模型训练与预测"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©Copyright 2018, OrangeStar Inc.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../4/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../6/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
